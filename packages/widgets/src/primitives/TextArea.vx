@@ -1,0 +1,22 @@
+#script
+  prop field: Optional<String>
+  prop value: Optional<String>
+  prop placeholder: Optional<String> = ""
+  prop rows: Optional<Int> = 3
+  prop minRows: Optional<Int>
+  prop maxRows: Optional<Int>
+  prop disabled: Optional<Bool> = false
+  prop readonly: Optional<Bool> = false
+  prop required: Optional<Bool> = false
+  prop maxLength: Optional<Int>
+  prop resize: Optional<String> = "none"
+  prop name: Optional<String>
+
+  prop error: Optional<String>
+  prop helperText: Optional<String>
+
+  prop change: Optional<Event<String>>
+  prop focus: Optional<Event<Void>>
+  prop blur: Optional<Event<Void>>
+  prop keyDown: Optional<Event<String>>
+#end script

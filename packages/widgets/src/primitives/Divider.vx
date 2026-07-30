@@ -1,0 +1,7 @@
+#script
+  prop orientation: Optional<String> = "horizontal"
+  prop thickness: Optional<String> = "1px"
+  prop color: Optional<String>
+  prop margin: Optional<String>
+  prop variant: Optional<String> = "solid"
+#end script

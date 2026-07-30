@@ -1,0 +1,10 @@
+export { vitePluginVX } from './plugin.js';
+export type { VXPluginOptions } from './plugin.js';
+export { build } from './build.js';
+export type { BuildOptions, BuildResult, LibraryBuildOptions } from './build.js';
+export * from './assets/index.js';
+export * from './build/index.js';
+export * from './adapters/types.js';
+export { adapterCapabilities, officialAdapters, runDeploymentAdapter } from './adapters/registry.js';
+export { runNodeAdapter } from './adapters/node.js';
+export { runStaticAdapter } from './adapters/static.js';

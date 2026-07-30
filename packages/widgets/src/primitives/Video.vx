@@ -1,0 +1,20 @@
+#script
+  prop src: String
+  prop poster: Optional<String>
+  prop autoPlay: Optional<Bool> = false
+  prop controls: Optional<Bool> = true
+  prop loop: Optional<Bool> = false
+  prop muted: Optional<Bool> = false
+  prop playsInline: Optional<Bool> = true
+  prop preload: Optional<String> = "metadata"
+  prop width: Optional<String>
+  prop height: Optional<String>
+  prop objectFit: Optional<String> = "cover"
+  prop cornerRadius: Optional<String>
+
+  prop play: Optional<Event<Void>>
+  prop pause: Optional<Event<Void>>
+  prop end: Optional<Event<Void>>
+  prop timeUpdate: Optional<Event<Float>>
+  prop error: Optional<Event<String>>
+#end script

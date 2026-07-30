@@ -1,0 +1,54 @@
+name: Public Performance
+
+on:
+  workflow_dispatch:
+    inputs:
+      frameworks:
+        description: Comma-separated frameworks or all
+        required: true
+        default: all
+      scenarios:
+        description: Comma-separated scenarios or all
+        required: true
+        default: all
+  schedule:
+    - cron: '11 4 * * 0'
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm --filter @vx/benchmark build
+      - run: pnpm bench:public:verify
+      - run: pnpm bench:quality
+
+  benchmark:
+    if: github.event_name == 'workflow_dispatch'
+    needs: conformance
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 0 }
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm build
+      - run: node benchmarks/public/scripts/prepare.mjs ${{ inputs.frameworks == 'all' && '' || inputs.frameworks }}
+      - run: node benchmarks/public/scripts/run.mjs --framework '${{ inputs.frameworks }}' --scenario '${{ inputs.scenarios }}'
+        env:
+          VX_BENCH_BROWSER: chromium-pinned
+      - uses: actions/upload-artifact@v6
+        with:
+          name: vx-public-benchmark-results
+          path: benchmarks/public/results/**
+          if-no-files-found: error

@@ -1,0 +1,56 @@
+{
+  "name": "@vx/language",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Tokenizer, parser and AST for the VX .vx single-file component language.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@vx/types": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "bench": "node ../../scripts/noop-bench.mjs @vx/language"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/language"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/language#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "language"
+  ]
+}

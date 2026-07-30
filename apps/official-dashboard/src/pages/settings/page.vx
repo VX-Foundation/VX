@@ -1,0 +1,42 @@
+#script
+  state organization: String = "VX Labs"
+  state alerts: Bool = true
+  state saved: Bool = false
+
+  action save() {
+    saved = true
+  }
+#end script
+
+#view
+  View @page {
+    Title("Settings")
+    Form {
+      action: "/api/settings"
+      method: "post"
+
+      Input {
+        label: "Organization name"
+        name: "organization"
+        value: organization
+        change => organization = $event
+      }
+
+      Switch {
+        label: "Security alerts"
+        name: "alerts"
+        checked: alerts
+        change => alerts = $event
+      }
+
+      Button("Save settings") {
+        type: "submit"
+        click => save()
+      }
+    }
+
+    if saved { Text("Settings saved.") }
+  }
+
+  @page { flow: vertical space: lg maxWidth: 720 }
+#end view

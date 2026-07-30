@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { performance } from 'node:perf_hooks';
+import { createDevtoolsBridge } from '../../packages/devtools/dist/index.js';
+const bridge = createDevtoolsBridge('benchmark', undefined);
+const start = performance.now();
+for (let index = 0; index < 50_000; index++) bridge.emit('performance', 'measure', `metric:${index}`, { id: `metric:${index}`, name: 'tick', value: index, unit: 'count', timestamp: index });
+const duration = performance.now() - start;
+assert.equal(bridge.snapshot().metrics.length, 2000);
+assert.ok(duration < 15_000, `DevTools event benchmark exceeded 15s: ${duration.toFixed(2)}ms`);
+console.log(`Phase 18 benchmark passed: 50,000 events in ${duration.toFixed(2)}ms.`);

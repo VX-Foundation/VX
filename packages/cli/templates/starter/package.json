@@ -1,0 +1,37 @@
+{
+  "name": "vx-starter-template",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vx dev",
+    "build": "vx build",
+    "preview": "vx preview",
+    "check": "vx check src",
+    "lint": "vx lint src",
+    "format": "vx format src",
+    "format:check": "vx format src --check",
+    "doctor": "vx doctor",
+    "test": "vx test:component src/pages/page.vx",
+    "verify": "pnpm doctor && pnpm check && pnpm lint && pnpm test && pnpm build",
+    "inspect": "vx inspect src/pages/page.vx --generated"
+  },
+  "dependencies": {
+    "@vx/core": "workspace:*",
+    "@vx/data": "workspace:*",
+    "@vx/forms": "workspace:*",
+    "@vx/router": "workspace:*",
+    "@vx/runtime": "workspace:*",
+    "@vx/server": "workspace:*"
+  },
+  "devDependencies": {
+    "@vx/cli": "workspace:*",
+    "@vx/tooling": "workspace:*",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25",
+    "pnpm": ">=11.17.0 <12"
+  },
+  "packageManager": "pnpm@11.17.0"
+}

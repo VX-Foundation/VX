@@ -1,0 +1,5 @@
+#script
+  prop controller: Any
+  prop title: Optional<String> = "Please correct the following errors."
+  prop role: Optional<String> = "alert"
+#end script

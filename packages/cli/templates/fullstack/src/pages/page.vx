@@ -1,0 +1,22 @@
+#script
+  state count: Int = 0
+
+  action increment() {
+    count++
+  }
+#end script
+
+#view
+  View {
+    Image {
+      src: "/vx.svg"
+      alt: "VX Logo"
+    }
+    Text("Server-rendered VX application")
+    Text("Count: " + count)
+
+    Button("Increment") @primary {
+      click => increment()
+    }
+  }
+#end view

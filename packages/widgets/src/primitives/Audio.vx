@@ -1,0 +1,13 @@
+#script
+  prop src: String
+  prop autoPlay: Optional<Bool> = false
+  prop controls: Optional<Bool> = true
+  prop loop: Optional<Bool> = false
+  prop muted: Optional<Bool> = false
+  prop preload: Optional<String> = "metadata"
+
+  prop play: Optional<Event<Void>>
+  prop pause: Optional<Event<Void>>
+  prop end: Optional<Event<Void>>
+  prop timeUpdate: Optional<Event<Float>>
+#end script

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vx.dev/schemas/release-policy/v1",
+  "version": 1,
+  "repository": "https://github.com/VX-Foundation/vx",
+  "registry": "https://registry.npmjs.org/",
+  "apiBaseline": "release/api-baseline.json",
+  "channels": {
+    "canary": {
+      "npmTag": "canary",
+      "compatibility": "advisory",
+      "provenance": true
+    },
+    "next": {
+      "npmTag": "next",
+      "compatibility": "required",
+      "provenance": true
+    },
+    "stable": {
+      "npmTag": "latest",
+      "compatibility": "required",
+      "provenance": true,
+      "repositoryIdentity": "required",
+      "readiness": "required"
+    }
+  },
+  "registrySecurity": {
+    "trustedPublishing": true,
+    "twoFactorAuthentication": "authorization-and-writes",
+    "lifecycleScripts": "forbidden",
+    "publicAccess": true
+  },
+  "frameworkVersion": "0.1.0",
+  "readiness": "release/v1-readiness.json",
+  "stabilizationPolicy": "release/stabilization-policy.json"
+}

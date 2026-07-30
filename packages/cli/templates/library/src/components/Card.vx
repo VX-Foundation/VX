@@ -1,0 +1,11 @@
+#script
+  prop title: String
+  content default: optional
+#end script
+
+#view
+  View @card {
+    Title(title) @title
+    Content(default)
+  }
+#end view

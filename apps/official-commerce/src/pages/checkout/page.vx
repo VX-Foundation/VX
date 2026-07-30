@@ -1,0 +1,46 @@
+#script
+  state email: String = ""
+  state address: String = ""
+  state completed: Bool = false
+
+  action complete() {
+    completed = true
+  }
+#end script
+
+#view
+  View @page {
+    Title("Checkout")
+    Form {
+      action: "/api/checkout"
+      method: "post"
+
+      Input {
+        label: "Email"
+        name: "email"
+        type: "email"
+        value: email
+        required: true
+        change => email = $event
+      }
+
+      TextArea {
+        ariaLabel: "Delivery address"
+        name: "address"
+        value: address
+        placeholder: "Delivery address"
+        required: true
+        change => address = $event
+      }
+
+      Button("Place order") {
+        type: "submit"
+        click => complete()
+      }
+    }
+
+    if completed { Text("Order submitted for server validation.") }
+  }
+
+  @page { flow: vertical space: lg inset: xl maxWidth: 720 }
+#end view

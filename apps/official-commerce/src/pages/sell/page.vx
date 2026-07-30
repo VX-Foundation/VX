@@ -1,0 +1,40 @@
+#script
+  state title: String = ""
+  state submitted: Bool = false
+
+  action submitListing() { submitted = true }
+#end script
+
+#view
+  View @page {
+    Title("Create listing")
+    Form {
+      action: "/api/listings"
+      method: "post"
+
+      Input {
+        label: "Product title"
+        name: "title"
+        value: title
+        required: true
+        change => title = $event
+      }
+
+      Input {
+        label: "Product image"
+        name: "image"
+        type: "file"
+        required: true
+      }
+
+      Button("Submit listing") {
+        type: "submit"
+        click => submitListing()
+      }
+    }
+
+    if submitted { Text("Upload will be validated by the server.") }
+  }
+
+  @page { flow: vertical space: lg inset: xl maxWidth: 720 }
+#end view

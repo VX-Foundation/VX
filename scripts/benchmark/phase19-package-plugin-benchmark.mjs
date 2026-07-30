@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { performance } from 'node:perf_hooks';
+import { canonicalJson, createIntegrity } from '../../packages/package-system/dist/index.js';
+const records = Object.fromEntries(Array.from({ length: 20_000 }, (_, index) => [`pkg-${String(index).padStart(5, '0')}`, { version: '1.0.0', integrity: createIntegrity(String(index)) }]));
+const start = performance.now();
+const output = canonicalJson({ packages: records });
+const duration = performance.now() - start;
+assert.ok(output.length > 1_000_000);
+assert.ok(duration < 15_000, `Package metadata benchmark exceeded 15s: ${duration.toFixed(2)}ms`);
+console.log(`Phase 19 benchmark passed: 20,000 package records in ${duration.toFixed(2)}ms.`);

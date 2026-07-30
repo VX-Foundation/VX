@@ -1,0 +1,42 @@
+{
+  "vx": {
+    "directory": "fixtures/vx",
+    "package": "@vx/runtime",
+    "versionCommand": "node ../../scripts/version.mjs vx"
+  },
+  "react": {
+    "directory": "fixtures/react",
+    "package": "react",
+    "versionCommand": "node ../../scripts/version.mjs react"
+  },
+  "next": {
+    "directory": "fixtures/next",
+    "package": "next",
+    "versionCommand": "node ../../scripts/version.mjs next"
+  },
+  "svelte": {
+    "directory": "fixtures/svelte",
+    "package": "svelte",
+    "versionCommand": "node ../../scripts/version.mjs svelte"
+  },
+  "sveltekit": {
+    "directory": "fixtures/sveltekit",
+    "package": "@sveltejs/kit",
+    "versionCommand": "node ../../scripts/version.mjs @sveltejs/kit"
+  },
+  "solid": {
+    "directory": "fixtures/solid",
+    "package": "solid-js",
+    "versionCommand": "node ../../scripts/version.mjs solid-js"
+  },
+  "vue": {
+    "directory": "fixtures/vue",
+    "package": "vue",
+    "versionCommand": "node ../../scripts/version.mjs vue"
+  },
+  "nuxt": {
+    "directory": "fixtures/nuxt",
+    "package": "nuxt",
+    "versionCommand": "node ../../scripts/version.mjs nuxt"
+  }
+}

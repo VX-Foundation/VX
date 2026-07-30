@@ -1,0 +1,73 @@
+{
+  "name": "@vx/security-testing",
+  "version": "0.1.0",
+  "description": "Deterministic fuzzing, secret scanning, and supply-chain policy primitives for VX.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./fuzz": {
+      "types": "./dist/fuzz.d.ts",
+      "import": "./dist/fuzz.js"
+    },
+    "./secrets": {
+      "types": "./dist/secrets.d.ts",
+      "import": "./dist/secrets.js"
+    },
+    "./supply-chain": {
+      "types": "./dist/supply-chain.d.ts",
+      "import": "./dist/supply-chain.js"
+    },
+    "./random": {
+      "types": "./dist/random.d.ts",
+      "import": "./dist/random.js"
+    },
+    "./mutators": {
+      "types": "./dist/mutators.d.ts",
+      "import": "./dist/mutators.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/security-testing"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/security-testing#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "security",
+    "testing"
+  ]
+}

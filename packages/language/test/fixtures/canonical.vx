@@ -1,0 +1,61 @@
+model Product {
+  id: Int
+  name: String
+  inStock: Bool
+}
+
+#script
+  prop category: String
+  const pageSize: Int = 24
+  state page: Int = 1
+
+  query products from Product.list {
+    category: category
+    page: page
+    limit: pageSize
+  }
+
+  derive canLoadMore: Bool = products.hasNext
+
+  action loadMore() {
+    page++
+  }
+
+  effect {
+    analytics.track("catalog_opened", category)
+  }
+#end script
+
+#view
+  View @page {
+    Title("Products in category: " + category) @title
+
+    if products.loading {
+      Text("Loading...") @muted
+    }
+
+    View @grid(min: 260, gap: lg) {
+      ProductCard(products.data) @product
+    }
+
+    Button("Load more") @primary(width: fill) {
+      disabled: !canLoadMore || products.loading
+      click => loadMore()
+    }
+  }
+
+  @page {
+    flow: vertical
+    space: xl
+    inset: xl
+  }
+
+  @product {
+    surface: raised
+    corner: lg
+
+    when hover {
+      surface: highlighted
+    }
+  }
+#end view

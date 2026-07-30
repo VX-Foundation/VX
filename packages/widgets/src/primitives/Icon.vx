@@ -1,0 +1,12 @@
+#script
+  prop name: String
+  prop size: Optional<String> = "24px"
+  prop color: Optional<String> = "currentColor"
+  prop decorative: Optional<Bool> = true
+  prop weight: Optional<String>
+  prop variant: Optional<String> = "outline"
+  prop strokeWidth: Optional<Float>
+  prop viewBox: Optional<String>
+
+  prop click: Optional<Event<Void>>
+#end script

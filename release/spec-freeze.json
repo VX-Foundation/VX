@@ -1,0 +1,75 @@
+{
+  "schema": "https://vx.dev/schemas/spec-freeze/v1",
+  "version": 1,
+  "frameworkVersion": "0.1.0",
+  "specificationVersion": "0.1",
+  "frozenAt": "2026-07-30",
+  "files": [
+    {
+      "path": "docs/spec/FROZEN.md",
+      "size": 672,
+      "sha256": "a0f6dad075f564beea37da2af200e5a48e2c492a7862cac05fa236b883466b12"
+    },
+    {
+      "path": "docs/spec/README.md",
+      "size": 1039,
+      "sha256": "81f08430a2054469b1785d4a88da621a094af29c381056d8183d62412c5f74e8"
+    },
+    {
+      "path": "docs/spec/components.md",
+      "size": 1136,
+      "sha256": "28e2de1b00ddc63008fb58b455cf0941fd38ceee3909f135c1a14886ef02cd9d"
+    },
+    {
+      "path": "docs/spec/conformance.md",
+      "size": 668,
+      "sha256": "a0987b4ae6d4ed49e234de5b848fd3e5ea2b56498d216834a2f6cdd1b1232f07"
+    },
+    {
+      "path": "docs/spec/diagnostics.md",
+      "size": 784,
+      "sha256": "3bc14656ffc4307db8e882bf930e9fbd6ca07de3cfc958a93b72bbdcf60500a6"
+    },
+    {
+      "path": "docs/spec/javascript-interoperability.md",
+      "size": 1074,
+      "sha256": "afa0b19f77ba045e12a7d14e11b3bf5a7ef9b0fbb007134ffa38b575ea4c4a9c"
+    },
+    {
+      "path": "docs/spec/lexical-structure.md",
+      "size": 1478,
+      "sha256": "4df7f8bad2018466d038841f5777577ab6c9fed2f16ead0ce07ffcd25c15a6a2"
+    },
+    {
+      "path": "docs/spec/modules-and-packages.md",
+      "size": 1325,
+      "sha256": "848e6fce731603e6143d597826311de874264c27b6b22c54656ec3c3a67e62ad"
+    },
+    {
+      "path": "docs/spec/reactive-execution.md",
+      "size": 1372,
+      "sha256": "f43682e4e500b7945261381f0bd1a55f382afc5fffb97bade2da79d2c072f4eb"
+    },
+    {
+      "path": "docs/spec/routing.md",
+      "size": 1056,
+      "sha256": "561b9857b58e053f50b8e4d1ba189fa9aed48fdad49077b74ba810476d08c204"
+    },
+    {
+      "path": "docs/spec/server-boundaries.md",
+      "size": 1218,
+      "sha256": "8e6d475a429f74b63806d4f3e41cfaaf6f258e7aa025706a5ce823852b28ff44"
+    },
+    {
+      "path": "docs/spec/types-and-values.md",
+      "size": 1512,
+      "sha256": "e9067b6abaa07090a7188c8cc20542446479cab585b9c9c23084f4bd059032ca"
+    },
+    {
+      "path": "docs/spec/view-language.md",
+      "size": 1182,
+      "sha256": "1680581eabbbf017ea392f59d3ddd98a5b78b8ab448fefe53b153e20ff47838e"
+    }
+  ],
+  "integrity": "e7c7eba0cd33336c0b6b2988461cd6819a039cdcdf7aedd1df44a2b8e87d5af3"
+}

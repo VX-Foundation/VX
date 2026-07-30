@@ -1,0 +1,12 @@
+#script
+  prop items: List<Any>
+  prop emptyText: Optional<String>
+  prop spacing: Optional<String> = "0px"
+  prop layout: Optional<String> = "column"
+  prop wrap: Optional<Bool> = false
+  prop keyExtractor: Optional<String>
+  prop onEndReached: Optional<Event<Void>>
+  prop onEndReachedThreshold: Optional<Float> = 0.5
+  prop refreshing: Optional<Bool> = false
+  prop onRefresh: Optional<Event<Void>>
+#end script

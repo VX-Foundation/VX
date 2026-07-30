@@ -1,0 +1,15 @@
+#script
+  prop src: String
+  prop title: Optional<String>
+  prop width: Optional<String> = "100%"
+  prop height: Optional<String> = "100%"
+  prop loading: Optional<String> = "lazy"
+  prop allowFullScreen: Optional<Bool> = false
+  prop allow: Optional<String>
+  prop referrerPolicy: Optional<String>
+  prop sandbox: Optional<String>
+  prop trusted: Optional<Bool> = false
+
+  prop load: Optional<Event<Void>>
+  prop error: Optional<Event<String>>
+#end script

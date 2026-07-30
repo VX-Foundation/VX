@@ -1,0 +1,46 @@
+#script
+  state reportName: String = ""
+  state format: String = "csv"
+  state requested: Bool = false
+
+  action requestReport() {
+    requested = true
+  }
+#end script
+
+#view
+  View @page {
+    Title("Reports")
+    Form {
+      action: "/api/reports"
+      method: "post"
+
+      Input {
+        label: "Report name"
+        name: "name"
+        value: reportName
+        required: true
+        change => reportName = $event
+      }
+
+      Select {
+        ariaLabel: "Report format"
+        name: "format"
+        value: format
+        options: ["csv", "json", "pdf"]
+        change => format = $event
+      }
+
+      Button("Generate report") {
+        type: "submit"
+        click => requestReport()
+      }
+    }
+
+    if requested {
+      Text("The report request was queued.")
+    }
+  }
+
+  @page { flow: vertical space: lg maxWidth: 720 }
+#end view

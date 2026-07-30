@@ -1,0 +1,1 @@
+This directory contains reviewed Changesets for public VX packages. Historical pre-release planning changesets are archived under `docs/archive/changesets/`; only changes intended for the next published version belong here.

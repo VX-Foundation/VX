@@ -1,0 +1,68 @@
+{
+  "name": "@vx/benchmark",
+  "version": "0.1.0",
+  "description": "Framework-neutral benchmark protocol, statistics, fairness rules, budgets, and reports for VX public performance comparisons.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./protocol": {
+      "types": "./dist/protocol.d.ts",
+      "import": "./dist/protocol.js"
+    },
+    "./statistics": {
+      "types": "./dist/statistics.d.ts",
+      "import": "./dist/statistics.js"
+    },
+    "./report": {
+      "types": "./dist/report.d.ts",
+      "import": "./dist/report.js"
+    },
+    "./runner": {
+      "types": "./dist/runner.d.ts",
+      "import": "./dist/runner.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/benchmark"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/benchmark#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "benchmark"
+  ]
+}

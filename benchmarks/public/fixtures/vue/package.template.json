@@ -1,0 +1,18 @@
+{
+  "name": "vx-benchmark-vue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "node driver.mjs --prepare",
+    "build": "node driver.mjs --build",
+    "start": "node driver.mjs --start"
+  },
+  "dependencies": {
+    "vue": "$stable"
+  },
+  "devDependencies": {
+    "vite": "$stable",
+    "@vitejs/plugin-vue": "$stable"
+  }
+}

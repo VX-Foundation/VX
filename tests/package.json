@@ -1,0 +1,44 @@
+{
+  "name": "@vx/tests",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:e2e": "playwright test e2e accessibility visual",
+    "test:security": "playwright test security",
+    "bench": "vitest bench benchmarks --run",
+    "test:fuzz": "vitest run fuzz",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test:component": "vitest run component",
+    "test:dom": "vitest run dom",
+    "test:ssr": "vitest run ssr",
+    "test:hydration": "vitest run hydration",
+    "test:route": "vitest run route",
+    "test:action": "vitest run action",
+    "test:endpoint": "vitest run endpoint",
+    "test:visual": "playwright test visual",
+    "test:accessibility": "playwright test accessibility",
+    "test:performance": "vitest bench benchmarks --run"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "vitest": "^1.0.0",
+    "@vx/core": "workspace:*",
+    "@vx/cli": "workspace:*",
+    "@vx/language": "workspace:*",
+    "@vx/compiler": "workspace:*",
+    "@vx/runtime": "workspace:*",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.3",
+    "@vx/forms": "workspace:*",
+    "@vx/testing": "workspace:*",
+    "@vx/security-testing": "workspace:*",
+    "@vx/benchmark": "workspace:*",
+    "jsdom": "^29.1.1"
+  },
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  }
+}

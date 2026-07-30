@@ -1,0 +1,55 @@
+{
+  "name": "@vx/widgets",
+  "version": "0.1.0",
+  "description": "Industrial-grade Native Widget Primitives for the VX Framework",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@vx/types": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/widgets"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/widgets#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "widgets"
+  ]
+}

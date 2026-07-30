@@ -1,0 +1,83 @@
+{
+  "name": "@vx/server",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "VX production server platform with request context, sessions, middleware, security, observability, and Node adapters.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./cookies": {
+      "types": "./dist/cookies.d.ts",
+      "import": "./dist/cookies.js"
+    },
+    "./sessions": {
+      "types": "./dist/sessions.d.ts",
+      "import": "./dist/sessions.js"
+    },
+    "./middleware": {
+      "types": "./dist/middleware.d.ts",
+      "import": "./dist/middleware.js"
+    },
+    "./security": {
+      "types": "./dist/security.d.ts",
+      "import": "./dist/security.js"
+    },
+    "./observability": {
+      "types": "./dist/observability.d.ts",
+      "import": "./dist/observability.js"
+    },
+    "./node": {
+      "types": "./dist/node.d.ts",
+      "import": "./dist/node.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@vx/router": "workspace:*",
+    "@vx/runtime": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/server"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/server#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "server"
+  ]
+}

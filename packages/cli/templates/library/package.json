@@ -1,0 +1,31 @@
+{
+  "name": "vx-library-template",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "check": "vx check src",
+    "lint": "vx lint src",
+    "format": "vx format src",
+    "format:check": "vx format src --check",
+    "doctor": "vx doctor",
+    "test": "vx test:component src/components/Card.vx",
+    "package": "vx package",
+    "verify": "pnpm doctor && pnpm check && pnpm lint && pnpm test && pnpm build && pnpm package",
+    "build": "vx build"
+  },
+  "peerDependencies": {
+    "@vx/runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@vx/cli": "workspace:*",
+    "@vx/core": "workspace:*",
+    "@vx/runtime": "workspace:*",
+    "@vx/tooling": "workspace:*",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25",
+    "pnpm": ">=11.17.0 <12"
+  },
+  "packageManager": "pnpm@11.17.0"
+}

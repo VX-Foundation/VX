@@ -1,0 +1,67 @@
+#script
+  state search: String = ""
+  state category: String = "all"
+  state products: List<Any> = [
+  { id: "camera", name: "VX Camera", price: 849, category: "devices" }, 
+  { id: "keyboard", name: "Compiler Keyboard", price: 499, category: "accessories" }, 
+  { id: "monitor", name: "Visual IR Monitor", price: 2199, category: "devices" }
+  ]
+  state cartCount: Int = 0
+
+  action updateSearch(value: String) { search = value }
+  action updateCategory(value: String) { category = value }
+  action addToCart(productId: String) {
+    cartCount++
+    log(productId)
+  }
+#end script
+
+#view
+  View @page {
+    View @header {
+      View {
+        Title("Catalog")
+        Text("Cart items: " + cartCount)
+      }
+      View @filters {
+        Input {
+          label: "Search products"
+          value: search
+          change => updateSearch($event)
+        }
+        Select {
+          ariaLabel: "Product category"
+          value: category
+          options: ["all", "devices", "accessories"]
+          change => updateCategory($event)
+        }
+      }
+    }
+
+    View @catalog {
+      for product in products keyed(product.id) {
+        View @product {
+          Image {
+            src: "/products/" + product.id + ".jpg"
+            alt: product.name
+            width: "320"
+            height: "240"
+          }
+          Title(product.name) { level: 2 }
+          Text("R$ " + product.price)
+          Button("Add to cart") {
+            click => addToCart(product.id)
+          }
+        }
+      } empty {
+        Text("No products found.")
+      }
+    }
+  }
+
+  @page { flow: vertical space: xl inset: xl }
+  @header { flow: horizontal justify: between align: end }
+  @filters { flow: horizontal space: md }
+  @catalog { flow: grid columns: responsive(min: 260) space: lg containerType: inline-size }
+  @product { surface: raised inset: lg corner: lg }
+#end view

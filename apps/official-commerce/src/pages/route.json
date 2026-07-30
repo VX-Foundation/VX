@@ -1,0 +1,17 @@
+{
+  "render": "static",
+  "preload": "eager",
+  "hydration": "none",
+  "streaming": "blocking",
+  "generation": {
+    "mode": "static",
+    "entries": [
+      {}
+    ]
+  },
+  "metadata": {
+    "title": "VX Commerce",
+    "description": "Official VX commerce conformance application.",
+    "canonical": "https://commerce.vx.example/"
+  }
+}

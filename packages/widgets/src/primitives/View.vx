@@ -1,0 +1,28 @@
+#script
+  prop layout: Optional<String> = "column"
+  prop align: Optional<String> = "stretch"
+  prop justify: Optional<String> = "start"
+  prop spacing: Optional<Int> = 0
+  prop wrap: Optional<Bool> = false
+  prop width: Optional<String>
+  prop height: Optional<String>
+  prop minWidth: Optional<String>
+  prop minHeight: Optional<String>
+  prop maxWidth: Optional<String>
+  prop maxHeight: Optional<String>
+  prop padding: Optional<String>
+  prop margin: Optional<String>
+  prop background: Optional<String>
+  prop cornerRadius: Optional<String>
+  prop border: Optional<String>
+  prop shadow: Optional<String>
+  prop opacity: Optional<Float>
+  prop overflow: Optional<String>
+  prop position: Optional<String>
+  prop zIndex: Optional<Int>
+  prop cursor: Optional<String>
+
+  prop click: Optional<Event<Void>>
+  prop mouseEnter: Optional<Event<Void>>
+  prop mouseLeave: Optional<Event<Void>>
+#end script

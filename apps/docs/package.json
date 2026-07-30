@@ -1,0 +1,29 @@
+{
+  "name": "@vx/docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vx dev",
+    "build": "vx build",
+    "preview": "vx preview",
+    "check": "vx check src",
+    "lint": "vx lint src",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vx test:component src/pages/index.vx",
+    "verify": "pnpm check && pnpm lint && pnpm test && pnpm build"
+  },
+  "dependencies": {
+    "@vx/core": "workspace:*",
+    "@vx/router": "workspace:*",
+    "@vx/runtime": "workspace:*",
+    "@vx/server": "workspace:*"
+  },
+  "devDependencies": {
+    "@vx/cli": "workspace:*",
+    "@vx/tooling": "workspace:*",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  }
+}

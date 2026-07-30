@@ -1,0 +1,16 @@
+#script
+  prop text: String
+  prop size: Optional<String>
+  prop weight: Optional<String> = "normal"
+  prop color: Optional<String>
+  prop align: Optional<String> = "left"
+  prop lineHeight: Optional<String>
+  prop letterSpacing: Optional<String>
+  prop textDecoration: Optional<String>
+  prop textTransform: Optional<String>
+  prop fontFamily: Optional<String>
+  prop maxLines: Optional<Int>
+  prop truncate: Optional<Bool> = false
+  prop selectable: Optional<Bool> = true
+  prop margin: Optional<String>
+#end script

@@ -1,0 +1,31 @@
+#script
+  state items: List<Any> = [
+  { id: "camera", name: "VX Camera", quantity: 1, price: 849 }
+  ]
+  derive total: Int = 849
+
+  action remove(itemId: String) {
+    log(itemId)
+  }
+#end script
+
+#view
+  View @page {
+    Title("Cart")
+    for item in items keyed(item.id) {
+      View @item {
+        Text(item.name)
+        Text("Quantity: " + item.quantity)
+        Text("R$ " + item.price)
+        Button("Remove") { click => remove(item.id) }
+      }
+    } empty {
+      Text("Your cart is empty.")
+    }
+    Text("Total: R$ " + total)
+    Link("Checkout") { href: "/checkout" }
+  }
+
+  @page { flow: vertical space: lg inset: xl }
+  @item { flow: grid columns: 4 inset: md borderBottom: subtle }
+#end view

@@ -1,0 +1,65 @@
+{
+  "name": "@vx/cli",
+  "version": "0.1.0",
+  "description": "CLI for VX Framework",
+  "main": "./dist/cli.js",
+  "type": "module",
+  "bin": {
+    "vx": "./bin/vx.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json -w",
+    "test": "vitest run",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@vx/core": "workspace:*",
+    "@vx/plugins": "workspace:*",
+    "cac": "^6.7.14",
+    "picocolors": "^1.1.1",
+    "@vx/tooling": "workspace:*",
+    "@vx/release": "workspace:*",
+    "@vx/package-system": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^3.0.0"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "bin",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/cli#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "cli"
+  ]
+}

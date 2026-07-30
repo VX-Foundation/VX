@@ -1,0 +1,33 @@
+name: Continuous Fuzzing
+on:
+  pull_request:
+  schedule:
+    - cron: '41 1 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fuzz:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+        seed: [101, 202, 303]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with: { node-version: '${{ matrix.node }}', cache: pnpm }
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm build
+      - run: pnpm fuzz:continuous
+        env:
+          VX_FUZZ_SEED: '${{ matrix.seed }}'
+          VX_FUZZ_ITERATIONS: '${{ github.event_name == ''schedule'' && ''50000'' || ''3000'' }}'
+      - uses: actions/upload-artifact@v6
+        if: failure()
+        with:
+          name: fuzz-crash-node-${{ matrix.node }}-seed-${{ matrix.seed }}
+          path: artifacts/fuzz/**
+          if-no-files-found: ignore

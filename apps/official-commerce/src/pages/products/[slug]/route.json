@@ -1,0 +1,25 @@
+{
+  "render": "server",
+  "preload": "intent",
+  "hydration": "islands",
+  "streaming": "blocking",
+  "generation": {
+    "mode": "incremental",
+    "revalidateSeconds": 600,
+    "entries": [
+      {
+        "slug": "camera"
+      },
+      {
+        "slug": "keyboard"
+      },
+      {
+        "slug": "monitor"
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Product | VX Commerce",
+    "description": "Product detail in the official VX commerce application."
+  }
+}

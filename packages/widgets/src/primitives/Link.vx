@@ -1,0 +1,12 @@
+#script
+  prop href: String
+  prop text: Optional<String>
+  prop target: Optional<String> = "_self"
+  prop rel: Optional<String>
+  prop color: Optional<String>
+  prop underline: Optional<String> = "hover"
+  prop size: Optional<String>
+  prop weight: Optional<String>
+
+  prop click: Optional<Event<Void>>
+#end script

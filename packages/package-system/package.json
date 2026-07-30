@@ -1,0 +1,94 @@
+{
+  "name": "@vx/package-system",
+  "version": "0.1.0",
+  "description": "Deterministic package metadata, lockfiles, workspaces, integrity, signatures, and dependency mutation for VX.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./contracts": {
+      "import": "./dist/contracts.js",
+      "types": "./dist/contracts.d.ts"
+    },
+    "./exports": {
+      "import": "./dist/exports.js",
+      "types": "./dist/exports.d.ts"
+    },
+    "./integrity": {
+      "import": "./dist/integrity.js",
+      "types": "./dist/integrity.d.ts"
+    },
+    "./lockfile": {
+      "import": "./dist/lockfile.js",
+      "types": "./dist/lockfile.d.ts"
+    },
+    "./metadata": {
+      "import": "./dist/metadata.js",
+      "types": "./dist/metadata.d.ts"
+    },
+    "./publication": {
+      "import": "./dist/publication.js",
+      "types": "./dist/publication.d.ts"
+    },
+    "./semver": {
+      "import": "./dist/semver.js",
+      "types": "./dist/semver.d.ts"
+    },
+    "./signatures": {
+      "import": "./dist/signatures.js",
+      "types": "./dist/signatures.d.ts"
+    },
+    "./workspace": {
+      "import": "./dist/workspace.js",
+      "types": "./dist/workspace.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/package-system"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/package-system#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "package",
+    "system"
+  ]
+}

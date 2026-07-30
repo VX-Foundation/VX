@@ -1,0 +1,15 @@
+{
+  "name": "vx-benchmark-nuxt",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "node driver.mjs --prepare",
+    "build": "node driver.mjs --build",
+    "start": "node driver.mjs --start"
+  },
+  "dependencies": {
+    "nuxt": "$stable",
+    "vue": "$stable"
+  }
+}

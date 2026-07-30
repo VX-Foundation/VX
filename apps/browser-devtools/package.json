@@ -1,0 +1,16 @@
+{
+  "name": "@vx/browser-devtools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "VX browser DevTools extension panel.",
+  "scripts": {
+    "build": "node ./scripts/verify.mjs",
+    "test": "node ./scripts/verify.mjs",
+    "lint": "node ./scripts/verify.mjs"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  }
+}

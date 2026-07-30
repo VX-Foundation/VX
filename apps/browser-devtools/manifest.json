@@ -1,0 +1,8 @@
+{
+  "manifest_version": 3,
+  "name": "VX DevTools",
+  "version": "0.1.0",
+  "description": "Inspect VX components, reactivity, routes, hydration, performance, memory and HMR.",
+  "devtools_page": "devtools.html",
+  "permissions": []
+}

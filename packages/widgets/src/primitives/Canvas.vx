@@ -1,0 +1,8 @@
+#script
+  prop width: String
+  prop height: String
+  prop contextType: Optional<String> = "2d"
+
+  prop ready: Optional<Event<Any>>
+  prop click: Optional<Event<Any>>
+#end script

@@ -1,0 +1,105 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Distribution channel
+        required: true
+        type: choice
+        options: [canary, next, stable]
+      sequence:
+        description: Optional prerelease sequence (defaults to workflow run number)
+        required: false
+        type: number
+
+permissions:
+  contents: write
+  checks: read
+  actions: read
+  id-token: write
+  attestations: write
+
+concurrency:
+  group: vx-release-${{ inputs.channel }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: release validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: node scripts/release/verify-source-tree.mjs
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org/
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify:release-candidate
+      - run: pnpm --filter @vx/tests exec playwright install --with-deps chromium firefox webkit
+      - run: pnpm test:browser
+      - run: pnpm release:repository-check
+      - name: Verify protected checks for stable
+        if: inputs.channel == 'stable'
+        run: pnpm release:github-checks
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Verify channel readiness
+        run: node scripts/release/verify-v1-readiness.mjs --channel "${{ inputs.channel }}"
+        env:
+          VX_STABLE_CI_VERIFIED: ${{ inputs.channel == 'stable' && 'true' || 'false' }}
+
+  publish:
+    name: publish to npm
+    runs-on: ubuntu-latest
+    needs: validate
+    environment: npm
+    steps:
+      - uses: actions/checkout@v6
+      - run: node scripts/release/verify-source-tree.mjs
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org/
+      - name: Install npm for trusted publishing
+        run: npm install --global npm@11.5.1
+      - run: npm --version
+      - run: pnpm install --frozen-lockfile
+      - name: Prepare canary version
+        if: inputs.channel == 'canary'
+        run: node scripts/release/prepare-channel-version.mjs --channel canary --sequence "${{ inputs.sequence || github.run_number }}" --revision "${{ github.sha }}"
+      - name: Prepare next version
+        if: inputs.channel == 'next'
+        run: node scripts/release/prepare-channel-version.mjs --channel next --sequence "${{ inputs.sequence || github.run_number }}"
+      - name: Validate stable version
+        if: inputs.channel == 'stable'
+        run: |
+          test "$(node -p "require('./package.json').version")" = "1.0.0"
+          VX_STABLE_CI_VERIFIED=true pnpm release:stable:check
+      - run: pnpm build
+      - run: pnpm release:artifacts
+      - run: pnpm release:clean-room
+      - run: pnpm release:provenance
+      - name: Publish with npm trusted publishing
+        run: pnpm changeset publish --tag "${{ inputs.channel == 'stable' && 'latest' || inputs.channel }}"
+        env:
+          NPM_CONFIG_ACCESS: public
+          NPM_CONFIG_PROVENANCE: 'true'
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_CHANNEL: ${{ inputs.channel }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          PRERELEASE=""
+          if [ "$RELEASE_CHANNEL" != "stable" ]; then PRERELEASE="--prerelease"; fi
+          gh release create "vx-v${VERSION}" --target "${GITHUB_SHA}" --title "VX ${VERSION}" --generate-notes $PRERELEASE

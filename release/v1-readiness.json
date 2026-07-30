@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vx.dev/schemas/v1-readiness/v1",
+  "version": 1,
+  "frameworkVersion": "0.1.0",
+  "stableTarget": "1.0.0",
+  "canonicalRepository": "https://github.com/VX-Foundation/vx",
+  "criteria": [
+    {
+      "id": "specification-frozen",
+      "status": "complete",
+      "requiredForNext": true,
+      "evidence": [
+        "release/spec-freeze.json",
+        "docs/spec/FROZEN.md"
+      ]
+    },
+    {
+      "id": "public-api-frozen",
+      "status": "complete",
+      "requiredForNext": true,
+      "evidence": [
+        "release/api-baseline.json",
+        "release/api-freeze.json"
+      ]
+    },
+    {
+      "id": "no-fictitious-public-api",
+      "status": "automated",
+      "requiredForNext": true,
+      "gate": "pnpm verify:official-apps"
+    },
+    {
+      "id": "zero-stubs-placeholders",
+      "status": "automated",
+      "requiredForNext": true,
+      "gate": "pnpm verify:stabilization"
+    },
+    {
+      "id": "ci-green",
+      "status": "external-automated",
+      "requiredForNext": true,
+      "gate": "GitHub protected checks"
+    },
+    {
+      "id": "windows-linux-macos",
+      "status": "external-automated",
+      "requiredForNext": true,
+      "gate": "CI operating-system matrix"
+    },
+    {
+      "id": "supported-node",
+      "status": "external-automated",
+      "requiredForNext": true,
+      "gate": "Node.js 22 and 24 matrix"
+    },
+    {
+      "id": "chromium-firefox-webkit",
+      "status": "external-automated",
+      "requiredForNext": true,
+      "gate": "Playwright browser matrix"
+    },
+    {
+      "id": "primary-adapters",
+      "status": "automated",
+      "requiredForNext": true,
+      "gate": "pnpm verify:assets-build-deployment"
+    },
+    {
+      "id": "documentation-complete",
+      "status": "complete",
+      "requiredForNext": true,
+      "evidence": [
+        "docs/framework/official-applications.md"
+      ]
+    },
+    {
+      "id": "migrations-complete",
+      "status": "complete",
+      "requiredForNext": true,
+      "evidence": [
+        "docs/migrations/README.md",
+        "docs/VERSIONING.md"
+      ]
+    },
+    {
+      "id": "semver-compatibility",
+      "status": "automated",
+      "requiredForNext": true,
+      "gate": "pnpm release:unstable:check"
+    },
+    {
+      "id": "rfc-process",
+      "status": "complete",
+      "requiredForNext": true,
+      "evidence": [
+        "rfcs/README.md",
+        "docs/RFC-PROCESS.md"
+      ]
+    },
+    {
+      "id": "maintenance-support-policy",
+      "status": "complete",
+      "requiredForNext": true,
+      "evidence": [
+        "MAINTENANCE.md",
+        "SUPPORT.md",
+        "docs/SUPPORT-POLICY.md"
+      ]
+    },
+    {
+      "id": "external-audit",
+      "status": "pending",
+      "requiredForNext": false,
+      "evidence": [
+        "release/evidence/external-audit.json"
+      ]
+    },
+    {
+      "id": "reproducible-native-benchmarks",
+      "status": "pending",
+      "requiredForNext": false,
+      "evidence": [
+        "release/evidence/public-benchmarks.json"
+      ]
+    },
+    {
+      "id": "official-applications-in-production",
+      "status": "pending",
+      "requiredForNext": false,
+      "evidence": [
+        "release/evidence/production-applications.json"
+      ]
+    },
+    {
+      "id": "canary-next-stabilization-period",
+      "status": "pending",
+      "requiredForNext": false,
+      "evidence": [
+        "release/stabilization-log.json",
+        "release/stabilization-policy.json"
+      ]
+    }
+  ]
+}

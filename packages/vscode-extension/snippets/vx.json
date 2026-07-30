@@ -1,0 +1,29 @@
+{
+  "VX component": {
+    "prefix": "vxcomponent",
+    "body": [
+      "#script",
+      "prop ${1:title}: String",
+      "state ${2:count}: Number = 0",
+      "#end script",
+      "",
+      "#view",
+      "View @column {",
+      "  Title { ${1:title} }",
+      "  Button on:click={${2:count} = ${2:count} + 1} { ${2:count} }",
+      "}",
+      "#end view"
+    ],
+    "description": "Create a typed VX component"
+  },
+  "VX query": {
+    "prefix": "vxquery",
+    "body": [
+      "query ${1:data} from ${2:loadData} policy {",
+      "  stale: ${3:30000}",
+      "  retry: ${4:2}",
+      "}"
+    ],
+    "description": "Create a managed VX query"
+  }
+}

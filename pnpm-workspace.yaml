@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+  - tests
+
+pmOnFail: download
+engineStrict: true
+strictDepBuilds: true
+minimumReleaseAge: 1440
+
+allowBuilds:
+  esbuild: true

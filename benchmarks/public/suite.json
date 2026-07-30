@@ -1,0 +1,10 @@
+{
+  "$schema": "https://vx.dev/schemas/public-benchmark-suite/v1",
+  "suiteVersion": 1,
+  "frameworks": ["vx", "react", "next", "svelte", "sveltekit", "solid", "vue", "nuxt"],
+  "scenarios": ["lists", "reorder", "forms", "dashboards", "ssr", "streaming", "hydration", "islands", "cold-build", "incremental-build", "hmr", "memory", "bundle-size"],
+  "warmupIterations": 5,
+  "measuredIterations": 30,
+  "versionPolicy": "resolve exact stable versions during preparation and retain generated lockfiles",
+  "resultDirectory": "results"
+}

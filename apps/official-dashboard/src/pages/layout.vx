@@ -1,0 +1,22 @@
+#script
+  content route: required
+#end script
+
+#view
+  View @shell {
+    View @navigationPanel {
+      Title("VX Operations") @brand
+      Link("Overview") { href: "/" }
+      Link("Users") { href: "/users" }
+      Link("Reports") { href: "/reports" }
+      Link("Settings") { href: "/settings" }
+    }
+    View @main {
+      Content(route)
+    }
+  }
+
+  @shell { flow: horizontal minHeight: viewport }
+  @navigationPanel { flow: vertical space: md inset: lg width: 260 surface: raised }
+  @main { flow: vertical space: lg inset: xl width: fill }
+#end view

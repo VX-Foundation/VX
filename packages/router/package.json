@@ -1,0 +1,68 @@
+{
+  "name": "@vx/router",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "VX file-based router and client navigation engine.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@vx/language": "workspace:*",
+    "@vx/shared": "workspace:*",
+    "@vx/types": "workspace:*",
+    "@vx/runtime": "workspace:*",
+    "@vx/forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^28.0.3",
+    "memfs": "^4.9.2",
+    "jsdom": "^29.1.1"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/router"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/router#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "router"
+  ]
+}

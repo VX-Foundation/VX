@@ -1,0 +1,12 @@
+{
+  "render": "static",
+  "preload": "eager",
+  "hydration": "none",
+  "streaming": "blocking",
+  "generation": {
+    "mode": "static",
+    "entries": [
+      {}
+    ]
+  }
+}

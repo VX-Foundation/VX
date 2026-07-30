@@ -1,0 +1,8 @@
+#script
+  prop value: Float
+  prop max: Optional<Float> = 100
+  prop variant: Optional<String> = "determinate"
+  prop size: Optional<String> = "medium"
+  prop color: Optional<String> = "primary"
+  prop showLabel: Optional<Bool> = false
+#end script

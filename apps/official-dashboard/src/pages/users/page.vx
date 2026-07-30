@@ -1,0 +1,59 @@
+#script
+  state filter: String = ""
+  state users: List<Any> = [
+  { id: "usr_ada", name: "Ada Lovelace", role: "admin", status: "active" }, 
+  { id: "usr_grace", name: "Grace Hopper", role: "analyst", status: "active" }, 
+  { id: "usr_katherine", name: "Katherine Johnson", role: "viewer", status: "invited" }
+  ]
+
+  action updateFilter(value: String) {
+    filter = value
+  }
+
+  action suspend(userId: String) {
+    log(userId)
+  }
+#end script
+
+#view
+  View @page {
+    View @header {
+      Title("Users")
+      Input {
+        label: "Filter users"
+        value: filter
+        placeholder: "Name, role or status"
+        change => updateFilter($event)
+      }
+    }
+
+    View @table {
+      View @tableHeader {
+        Text("Name")
+        Text("Role")
+        Text("Status")
+        Text("Action")
+      }
+
+      for user, index in users keyed(user.id) {
+        View @userRow {
+          Text(user.name)
+          Text(user.role)
+          Text(user.status)
+          Button("Suspend") {
+            disabled: user.role == "admin"
+            click => suspend(user.id)
+          }
+        }
+      } empty {
+        Text("No users match this view.")
+      }
+    }
+  }
+
+  @page { flow: vertical space: lg }
+  @header { flow: horizontal justify: between align: end }
+  @table { flow: vertical layer: content }
+  @tableHeader { flow: grid columns: 4 inset: md surface: muted }
+  @userRow { flow: grid columns: 4 inset: md borderBottom: subtle }
+#end view

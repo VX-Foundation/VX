@@ -1,0 +1,9 @@
+#view
+  View @hero {
+    Title("A production commerce workload")
+    Text("Static landing content, incremental catalog pages, secure checkout, uploads and SEO.")
+    Link("Browse the catalog") { href: "/catalog" }
+  }
+
+  @hero { flow: vertical space: lg inset: xl maxWidth: 960 }
+#end view

@@ -1,0 +1,28 @@
+{
+  "name": "@vx/playground",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vx/compiler": "workspace:*",
+    "@vx/data": "workspace:*",
+    "@vx/forms": "workspace:*",
+    "@vx/language": "workspace:*",
+    "@vx/runtime": "workspace:*",
+    "@vx/tooling": "workspace:*",
+    "monaco-editor": "^0.55.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.1"
+  },
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  }
+}

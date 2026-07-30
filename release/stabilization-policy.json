@@ -1,0 +1,22 @@
+{
+  "$schema": "https://vx.dev/schemas/stabilization-policy/v1",
+  "version": 1,
+  "target": "1.0.0",
+  "canary": {
+    "minimumCalendarDays": 14,
+    "minimumReleases": 3
+  },
+  "next": {
+    "minimumCalendarDays": 30,
+    "minimumReleases": 3,
+    "maximumOpenSeverityHighIncidents": 0
+  },
+  "productionApplications": {
+    "minimumCalendarDays": 30,
+    "requiredApplications": [
+      "dashboard",
+      "commerce",
+      "collaboration"
+    ]
+  }
+}

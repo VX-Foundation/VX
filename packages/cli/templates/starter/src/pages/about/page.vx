@@ -1,0 +1,6 @@
+#view
+  View {
+    Title("About")
+    Text("This project was created with VX.")
+  }
+#end view

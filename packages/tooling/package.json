@@ -1,0 +1,65 @@
+{
+  "name": "@vx/tooling",
+  "version": "0.1.0",
+  "description": "Compiler-backed formatter, language intelligence, inspection, HMR, testing, and migration tools for VX.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./formatter": "./dist/formatter.js",
+    "./language": "./dist/language-service.js",
+    "./inspect": "./dist/inspect.js",
+    "./hmr": "./dist/hmr.js",
+    "./testing": "./dist/testing.js",
+    "./migration": "./dist/migration.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@vx/compiler": "workspace:*",
+    "@vx/language": "workspace:*",
+    "@vx/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/tooling"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/tooling#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "tooling"
+  ]
+}

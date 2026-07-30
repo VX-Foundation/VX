@@ -1,0 +1,9 @@
+{
+  "render": "server",
+  "preload": "intent",
+  "hydration": "islands",
+  "streaming": "blocking",
+  "generation": {
+    "mode": "dynamic"
+  }
+}

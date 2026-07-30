@@ -1,0 +1,14 @@
+{
+  "schema": "https://vx.dev/schemas/benchmark/v1",
+  "node": "v22.16.0",
+  "calibrationMs": 0.00017048460000000033,
+  "metrics": {
+    "parseAnalyzeLowerMs": 5.069620763333332,
+    "renderDocumentMs": 0.024309823999999935
+  },
+  "normalized": {
+    "parseAnalyzeLowerMs": 29736.532,
+    "renderDocumentMs": 142.592492
+  },
+  "tolerance": 1.75
+}

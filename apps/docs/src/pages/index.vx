@@ -1,0 +1,62 @@
+#script
+  state searchQuery: String = ""
+  state activeSection: String = "specification"
+
+  action selectSection(section: String) {
+    activeSection = section
+  }
+
+  action updateSearch(value: String) {
+    searchQuery = value
+  }
+#end script
+
+#view
+  View @docsPage {
+    View @docsSidebar {
+      Title("VX Documentation") @brand
+      Text("Specification, guides, API and conformance applications.")
+
+      Input {
+        label: "Search documentation"
+        value: searchQuery
+        placeholder: "Search by topic"
+        change => updateSearch($event)
+      }
+
+      Button("Language specification") { click => selectSection("specification") }
+      Button("Framework") { click => selectSection("framework") }
+      Button("API reference") { click => selectSection("api") }
+      Button("Security") { click => selectSection("security") }
+      Button("Deployment") { click => selectSection("deployment") }
+      Button("Accessibility") { click => selectSection("accessibility") }
+    }
+
+    View @content {
+      Title("VX Phase 21")
+      Text("The documentation is normative where explicitly marked.")
+      Text("Selected section: " + activeSection)
+
+      View @featureGrid {
+        View @feature {
+          Title("Language specification") { level: 2 }
+          Text("Lexical structure, types, modules, reactivity, components, views, routing and server boundaries.")
+        }
+        View @feature {
+          Title("Production guides") { level: 2 }
+          Text("Security, deployment, performance, accessibility, packages and plugins.")
+        }
+        View @feature {
+          Title("Official applications") { level: 2 }
+          Text("Dashboard, commerce and collaboration workloads use only public VX APIs.")
+        }
+      }
+    }
+  }
+
+  @docsPage { flow: horizontal surface: base minHeight: viewport }
+  @docsSidebar { flow: vertical space: md inset: lg width: 300 surface: raised }
+  @content { flow: vertical space: xl inset: xl width: fill }
+  @featureGrid { flow: grid columns: 3 space: lg }
+  @feature { surface: raised corner: lg inset: lg }
+#end view

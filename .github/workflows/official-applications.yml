@@ -1,0 +1,42 @@
+name: Official Applications
+
+on:
+  pull_request:
+    paths:
+      - 'apps/docs/**'
+      - 'apps/official-*/**'
+      - 'docs/**'
+      - 'packages/**'
+      - 'scripts/verify-phase21*.mjs'
+      - 'pnpm-lock.yaml'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  applications:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm docs:api
+      - run: pnpm verify:official-apps
+      - run: pnpm verify:official-apps:ci
+      - uses: actions/upload-artifact@v6
+        with:
+          name: vx-official-application-builds
+          path: |
+            apps/docs/dist/**
+            apps/official-dashboard/dist/**
+            apps/official-commerce/dist/**
+            apps/official-collaboration/dist/**
+          if-no-files-found: error

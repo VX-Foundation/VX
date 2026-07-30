@@ -1,0 +1,16 @@
+#script
+  prop src: String
+  prop alt: Optional<String> = ""
+  prop decorative: Optional<Bool> = false
+  prop objectFit: Optional<String> = "cover"
+  prop objectPosition: Optional<String> = "center"
+  prop width: Optional<String>
+  prop height: Optional<String>
+  prop loading: Optional<String> = "lazy"
+  prop crossOrigin: Optional<String>
+  prop cornerRadius: Optional<String>
+  prop fallbackSrc: Optional<String>
+
+  prop load: Optional<Event<Void>>
+  prop error: Optional<Event<Void>>
+#end script

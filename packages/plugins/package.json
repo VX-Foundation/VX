@@ -1,0 +1,76 @@
+{
+  "name": "@vx/plugins",
+  "version": "0.1.0",
+  "description": "Versioned, capability-based plugin host and official deterministic VX plugins.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./host": {
+      "import": "./dist/host.js",
+      "types": "./dist/host.d.ts"
+    },
+    "./sandbox": {
+      "import": "./dist/sandbox.js",
+      "types": "./dist/sandbox.d.ts"
+    },
+    "./signing": {
+      "import": "./dist/signing.js",
+      "types": "./dist/signing.d.ts"
+    },
+    "./sitemap": {
+      "import": "./dist/sitemap/index.js",
+      "types": "./dist/sitemap/index.d.ts"
+    },
+    "./source-integrity": {
+      "import": "./dist/source-integrity.js",
+      "types": "./dist/source-integrity.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "pnpm run build && vitest run",
+    "test:watch": "pnpm run build && vitest",
+    "lint": "eslint src test",
+    "typecheck": "pnpm run build && tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@vx/types": "workspace:*"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/plugins"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/plugins#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "plugins"
+  ]
+}

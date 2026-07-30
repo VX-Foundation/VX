@@ -1,0 +1,67 @@
+{
+  "name": "@vx/core",
+  "version": "0.1.0",
+  "description": "VX Core Orchestration",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package": {
+      "import": "./dist/package.js",
+      "types": "./dist/package.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@vx/bundler": "workspace:*",
+    "@vx/compiler": "workspace:*",
+    "@vx/dev-server": "workspace:*",
+    "@vx/router": "workspace:*",
+    "@vx/shared": "workspace:*",
+    "@vx/types": "workspace:*",
+    "jiti": "^2.4.0",
+    "@vx/plugins": "workspace:*"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": {
+    "name": "Veelv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VX-Foundation/vx.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/VX-Foundation/vx/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/VX-Foundation/vx/issues"
+  },
+  "keywords": [
+    "vx",
+    "web-framework",
+    "typescript",
+    "core"
+  ]
+}

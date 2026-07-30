@@ -1,0 +1,4 @@
+#script
+  prop field: String
+  prop role: Optional<String> = "alert"
+#end script

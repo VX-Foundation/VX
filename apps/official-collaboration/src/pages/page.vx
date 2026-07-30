@@ -1,0 +1,50 @@
+#script
+  state online: Bool = true
+  state members: List<Any> = [
+  { id: "ada", name: "Ada", status: "editing" }, 
+  { id: "grace", name: "Grace", status: "online" }, 
+  { id: "linus", name: "Linus", status: "away" }
+  ]
+  state documentVersion: Int = 42
+
+  action toggleConnection() { online = !online }
+#end script
+
+#view
+  View @page {
+    View @header {
+      View {
+        Title("Design workspace")
+        Text("Document version: " + documentVersion)
+      }
+      Button(online ?"Go offline": "Reconnect") {
+        click => toggleConnection()
+      }
+    }
+
+    View @workspace {
+      View @document {
+        Text("Collaborative document canvas")
+        Text("Optimistic edits are reconciled against the authoritative version.")
+      }
+      View @presence {
+        Title("Presence") { level: 2 }
+        for member in members keyed(member.id) {
+          View @member {
+            Text(member.name)
+            Text(member.status)
+          }
+        } empty {
+          Text("Nobody else is here.")
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical space: lg inset: xl }
+  @header { flow: horizontal justify: between align: center }
+  @workspace { flow: grid columns: 2 space: lg }
+  @document { surface: raised inset: xl minHeight: 520 }
+  @presence { surface: muted inset: lg }
+  @member { flow: horizontal justify: between inset: sm }
+#end view

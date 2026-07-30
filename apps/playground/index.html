@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VX Playground and Compiler Explorer</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, system-ui, sans-serif; height: 100vh; overflow: hidden; background: #151515; color: #f5f5f5; }
+      main { display: grid; grid-template-columns: minmax(320px, 1fr) minmax(360px, 1fr); height: 100%; }
+      #editor-container { min-width: 0; border-right: 1px solid #343434; }
+      #workspace { display: grid; grid-template-rows: minmax(240px, 1fr) minmax(240px, 1fr); min-width: 0; }
+      #preview-frame { width: 100%; height: 100%; border: 0; background: white; }
+      .panel { min-height: 0; display: flex; flex-direction: column; border-bottom: 1px solid #343434; }
+      .header { display: flex; gap: 8px; align-items: center; min-height: 38px; padding: 6px 10px; background: #242424; font-size: 13px; font-weight: 650; }
+      .tabs { margin-left: auto; display: flex; gap: 6px; }
+      button { background: #343434; color: inherit; border: 1px solid #4a4a4a; border-radius: 5px; padding: 4px 8px; cursor: pointer; }
+      .outputs { min-height: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; }
+      .outputs section { min-width: 0; min-height: 0; border-right: 1px solid #343434; display: flex; flex-direction: column; }
+      pre { margin: 0; padding: 12px; overflow: auto; white-space: pre; font: 12px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; flex: 1; }
+      h2 { font-size: 12px; margin: 0; padding: 7px 10px; background: #202020; border-bottom: 1px solid #343434; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="editor-container"></div>
+      <div id="workspace">
+        <section class="panel">
+          <div class="header">Live Preview</div>
+          <iframe id="preview-frame" title="VX live preview"></iframe>
+        </section>
+        <section class="panel">
+          <div class="header">Compiler Explorer <span class="tabs"><button data-output="client">Client</button><button data-output="server">Server</button></span></div>
+          <div class="outputs">
+            <section><h2>Generated output</h2><pre id="generated-output"></pre></section>
+            <section><h2>IR and boundaries</h2><pre id="inspector"></pre></section>
+            <section><h2>Diagnostics</h2><pre id="diagnostics"></pre></section>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

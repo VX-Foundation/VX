@@ -1,0 +1,31 @@
+name: Nightly Hardening
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hardening:
+    strategy:
+      matrix:
+        node: [22, 24]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm bench:quality
+      - run: pnpm fuzz:continuous
+        env:
+          VX_FUZZ_ITERATIONS: 10000
+          VX_FUZZ_SEED: ${{ github.run_number }}
+      - run: pnpm security:verify

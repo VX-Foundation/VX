@@ -1,0 +1,5 @@
+#script
+  prop text: String
+  prop level: Optional<Int> = 1
+  prop id: Optional<String>
+#end script

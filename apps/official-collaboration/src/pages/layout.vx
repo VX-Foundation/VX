@@ -1,0 +1,18 @@
+#script
+  content route: required
+#end script
+
+#view
+  View @shell {
+    View @navigation {
+      Title("VX Collaboration")
+      Link("Workspace") { href: "/" }
+      Link("Messages") { href: "/messages" }
+      Link("Activity") { href: "/activity" }
+    }
+    Content(route)
+  }
+
+  @shell { flow: vertical minHeight: viewport }
+  @navigation { flow: horizontal justify: between inset: lg surface: raised }
+#end view

@@ -1,0 +1,28 @@
+#script
+  content route: required
+#end script
+
+#view
+  View @shell {
+    View @navigation {
+      Link("Home") {
+        href: "/"
+      }
+      Link("About") {
+        href: "/about"
+      }
+    }
+    Content(route)
+  }
+
+  @shell {
+    flow: vertical
+    space: lg
+    inset: xl
+  }
+
+  @navigation {
+    flow: horizontal
+    space: md
+  }
+#end view

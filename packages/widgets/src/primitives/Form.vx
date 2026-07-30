@@ -1,0 +1,10 @@
+#script
+  prop controller: Optional<Any>
+  prop action: Optional<String>
+  prop method: Optional<String> = "post"
+  prop autocomplete: Optional<String>
+  prop noValidate: Optional<Bool> = false
+
+  prop submit: Optional<Event<Any>>
+  prop reset: Optional<Event<Void>>
+#end script

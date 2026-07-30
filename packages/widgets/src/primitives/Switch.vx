@@ -1,0 +1,12 @@
+#script
+  prop field: Optional<String>
+  prop checked: Optional<Bool>
+  prop disabled: Optional<Bool> = false
+  prop label: Optional<String>
+  prop labelPlacement: Optional<String> = "end"
+  prop size: Optional<String> = "medium"
+  prop color: Optional<String> = "primary"
+  prop name: Optional<String>
+
+  prop change: Optional<Event<Bool>>
+#end script

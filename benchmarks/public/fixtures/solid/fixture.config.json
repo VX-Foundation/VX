@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vx.dev/schemas/benchmark-fixture/v1",
+  "framework": "solid",
+  "implementation": "framework-native",
+  "runtimePackage": "solid-js",
+  "nativeEntrypoint": "native-runner.mjs",
+  "requiredEvidence": [
+    "native-runtime",
+    "rendered-output",
+    "scenario-contract",
+    "raw-artifact"
+  ],
+  "supportedScenarios": [
+    "lists",
+    "reorder",
+    "forms",
+    "dashboards",
+    "ssr",
+    "streaming",
+    "hydration",
+    "islands",
+    "cold-build",
+    "incremental-build",
+    "hmr",
+    "memory",
+    "bundle-size"
+  ]
+}

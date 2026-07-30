@@ -1,0 +1,16 @@
+#script
+  prop label: Optional<String>
+  prop variant: Optional<String> = "primary"
+  prop size: Optional<String> = "medium"
+  prop disabled: Optional<Bool> = false
+  prop loading: Optional<Bool> = false
+  prop fullWidth: Optional<Bool> = false
+  prop type: Optional<String> = "button"
+  prop iconLeft: Optional<String>
+  prop iconRight: Optional<String>
+  prop form: Optional<String>
+
+  prop click: Optional<Event<Void>>
+  prop focus: Optional<Event<Void>>
+  prop blur: Optional<Event<Void>>
+#end script

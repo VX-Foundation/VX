@@ -1,0 +1,30 @@
+#script
+  state events: List<Any> = [
+  { id: 1, label: "Document created", version: 1 }, 
+  { id: 2, label: "Section reordered", version: 38 }, 
+  { id: 3, label: "Conflict resolved", version: 42 }
+  ]
+#end script
+
+#view
+  View @page {
+    Title("Activity")
+    Text("The production workload uses cursor-backed infinite collections.")
+    for event, index in events keyed(event.id) {
+      View @event {
+        Text(index + 1)
+        Text(event.label)
+        Text("Version " + event.version)
+      }
+    } loading {
+      Text("Loading activity...")
+    } empty {
+      Text("No activity.")
+    } error problem {
+      Text(problem.message)
+    }
+  }
+
+  @page { flow: vertical space: lg inset: xl }
+  @event { flow: grid columns: 3 inset: md borderBottom: subtle }
+#end view

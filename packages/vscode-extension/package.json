@@ -1,0 +1,227 @@
+{
+  "name": "vx-vscode",
+  "displayName": "VX Framework Language Features",
+  "description": "Official VS Code extension for the VX framework",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22.11.0 <23 || >=24.11.0 <25"
+  },
+  "categories": [
+    "Programming Languages",
+    "Debuggers",
+    "Visualization"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "vx",
+        "aliases": [
+          "VX",
+          "vx"
+        ],
+        "extensions": [
+          ".vx"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vx",
+        "scopeName": "source.vx",
+        "path": "./syntaxes/vx.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "vx.restartLanguageServer",
+        "title": "VX: Restart Language Server"
+      },
+      {
+        "command": "vx.inspectCurrentFile",
+        "title": "VX: Inspect Current File"
+      },
+      {
+        "command": "vx.openPreview",
+        "title": "VX: Open Preview"
+      },
+      {
+        "command": "vx.showGeneratedOutput",
+        "title": "VX: Show Generated Output"
+      },
+      {
+        "command": "vx.showGraph",
+        "title": "VX: Show Graph Viewer"
+      },
+      {
+        "command": "vx.inspectComponent",
+        "title": "VX: Inspect Component"
+      },
+      {
+        "command": "vx.refreshExplorers",
+        "title": "VX: Refresh Explorers"
+      }
+    ],
+    "configuration": {
+      "title": "VX",
+      "properties": {
+        "vx.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Trace communication with the VX language server."
+        },
+        "vx.inlayHints.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show compiler-provided VX inlay hints."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "vx",
+        "path": "./snippets/vx.json"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vxExplorer",
+          "title": "VX",
+          "icon": "./media/vx.svg"
+        }
+      ]
+    },
+    "views": {
+      "vxExplorer": [
+        {
+          "id": "vx.components",
+          "name": "Components"
+        },
+        {
+          "id": "vx.graph",
+          "name": "Reactive Graph"
+        },
+        {
+          "id": "vx.routes",
+          "name": "Routes"
+        }
+      ]
+    },
+    "debuggers": [
+      {
+        "type": "vx",
+        "label": "VX Application",
+        "languages": [
+          "vx"
+        ],
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "cwd"
+            ],
+            "properties": {
+              "cwd": {
+                "type": "string",
+                "description": "VX project root"
+              },
+              "command": {
+                "type": "string",
+                "default": "vx"
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  "dev"
+                ]
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "vx",
+            "request": "launch",
+            "name": "Debug VX Application",
+            "cwd": "${workspaceFolder}",
+            "command": "vx",
+            "args": [
+              "dev"
+            ]
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "VX: Launch application",
+            "description": "Launch the VX development runtime",
+            "body": {
+              "type": "vx",
+              "request": "launch",
+              "name": "Debug VX Application",
+              "cwd": "${workspaceFolder}",
+              "command": "vx",
+              "args": [
+                "dev"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "breakpoints": [
+      {
+        "language": "vx"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/stage-language-server.mjs",
+    "test": "vitest run --passWithNoTests",
+    "lint": "eslint src",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "vscode:prepublish": "pnpm run build",
+    "watch": "tsc -p tsconfig.build.json -w"
+  },
+  "dependencies": {
+    "@vx/tooling": "workspace:*",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.4.5",
+    "@types/node": "^24.0.0",
+    "vitest": "^3.2.0"
+  },
+  "files": [
+    "dist",
+    "server",
+    "syntaxes",
+    "language-configuration.json",
+    "snippets",
+    "media"
+  ],
+  "private": true,
+  "activationEvents": [
+    "onLanguage:vx",
+    "onCommand:vx.openPreview",
+    "onDebug:vx",
+    "onView:vx.components",
+    "onView:vx.graph",
+    "onView:vx.routes"
+  ]
+}

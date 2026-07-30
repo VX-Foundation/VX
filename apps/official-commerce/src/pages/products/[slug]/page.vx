@@ -1,0 +1,27 @@
+#script
+  prop slug: String
+  state quantity: Int = 1
+  state added: Bool = false
+
+  action increase() { quantity++}
+  action add() { added = true }
+#end script
+
+#view
+  View @page {
+    Text("Product / " + slug)
+    Title("Product detail")
+    Image {
+      src: "/products/" + slug + ".jpg"
+      alt: "Product image"
+      width: "720"
+      height: "540"
+    }
+    Text("Quantity: " + quantity)
+    Button("Increase quantity") { click => increase() }
+    Button("Add to cart") { click => add() }
+    if added { Text("Added to cart.") }
+  }
+
+  @page { flow: vertical space: lg inset: xl maxWidth: 960 }
+#end view

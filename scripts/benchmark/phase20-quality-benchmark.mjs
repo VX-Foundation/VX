@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { performance } from 'node:perf_hooks';
+import { compareHydrationMarkup, compareRgbaSnapshots } from '../../packages/testing/dist/index.js';
+import { runFuzzCampaign } from '../../packages/security-testing/dist/index.js';
+import { summarizeSamples } from '../../packages/benchmark/dist/index.js';
+const hydrationStart = performance.now(); for (let index=0; index<50_000; index+=1) compareHydrationMarkup(`<p>${index}</p>`, `<p>${index}</p>`); const hydrationMs = performance.now()-hydrationStart;
+const actual = new Uint8ClampedArray(400*400*4); const visualStart=performance.now(); for(let index=0;index<100;index+=1) compareRgbaSnapshots(actual, actual, 400, 400); const visualMs=performance.now()-visualStart;
+const fuzzStart=performance.now(); const fuzz=await runFuzzCampaign({seed:20,iterations:10_000,corpus:['vx'],target() {}}); const fuzzMs=performance.now()-fuzzStart;
+const statsStart=performance.now(); for(let index=0;index<20_000;index+=1) summarizeSamples(Array.from({length:30},(_,sample)=>({value:sample+1,metric:'duration-ms'}))); const statsMs=performance.now()-statsStart;
+const limits={hydrationMs:8_000,visualMs:8_000,fuzzMs:8_000,statsMs:8_000}; assert(hydrationMs<limits.hydrationMs); assert(visualMs<limits.visualMs); assert(fuzzMs<limits.fuzzMs); assert(statsMs<limits.statsMs); assert.equal(fuzz.crashes.length,0);
+console.log(JSON.stringify({hydrationComparisons:50_000,hydrationMs:Number(hydrationMs.toFixed(2)),visualPixels:400*400*100,visualMs:Number(visualMs.toFixed(2)),fuzzExecutions:10_000,fuzzMs:Number(fuzzMs.toFixed(2)),statisticsReports:20_000,statsMs:Number(statsMs.toFixed(2))})); console.log('Phase 20 quality benchmark passed.');

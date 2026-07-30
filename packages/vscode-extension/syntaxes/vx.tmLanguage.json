@@ -1,0 +1,162 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "VX",
+  "scopeName": "source.vx",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#models"
+    },
+    {
+      "include": "#script"
+    },
+    {
+      "include": "#view"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.vx",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.vx",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "models": {
+      "patterns": [
+        {
+          "begin": "^\\s*(model)\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\{",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.declaration.model.vx"
+            },
+            "2": {
+              "name": "entity.name.type.model.vx"
+            }
+          },
+          "end": "\\}",
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "match": "\\b[A-Z][A-Za-z0-9_]*(?:<[^>]+>)?\\b",
+              "name": "support.type.vx"
+            },
+            {
+              "match": "\\b[A-Za-z_][A-Za-z0-9_]*(?=\\s*:)",
+              "name": "variable.other.property.vx"
+            }
+          ]
+        }
+      ]
+    },
+    "script": {
+      "begin": "^\\s*(#script)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.section.vx"
+        }
+      },
+      "end": "^\\s*(#end\\s+script)\\b",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.section.vx"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "match": "\\b(server\\s+(?:query|action|effect|store)|prop|output|content|part|const|state|derive|query|action|effect|store|import|export|from|as|policy|lifetime|uses|on|mount|unmount|update)\\b",
+          "name": "keyword.other.vx"
+        },
+        {
+          "match": "\\b(stale|retain|retry|retryDelay|backoff|execute|network|refreshInterval|structuralSharing|persist|tags|enabled|deduplicate|refreshOnFocus|refreshOnReconnect|component|tree|route|session|application|request|manual|universal|client|server|online|always|offlineFirst|fixed|exponential)\\b",
+          "name": "support.constant.language.vx"
+        },
+        {
+          "match": "\\b(emit|optimistic|invalidate|refresh)(?=\\s*\\()",
+          "name": "support.function.builtin.vx"
+        },
+        {
+          "match": "\\b(Bool|Int|Float|String|Void|Any|Optional|List|Map|Result|Event)\\b",
+          "name": "support.type.vx"
+        },
+        {
+          "include": "source.ts"
+        }
+      ]
+    },
+    "view": {
+      "begin": "^\\s*(#view)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.section.vx"
+        }
+      },
+      "end": "^\\s*(#end\\s+view)\\b",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.section.vx"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "match": "@[A-Za-z_][A-Za-z0-9_]*",
+          "name": "entity.other.attribute-name.role.vx"
+        },
+        {
+          "match": "\\b(content|part)(?=\\s+[A-Za-z_][A-Za-z0-9_]*)",
+          "name": "keyword.declaration.component.vx"
+        },
+        {
+          "match": "\\b(required|optional|multiple|container|text|control|media|any)\\b",
+          "name": "support.constant.component.vx"
+        },
+        {
+          "match": "\\b(if|else|when|is|for|in|key)\\b",
+          "name": "keyword.control.vx"
+        },
+        {
+          "match": "\\b[A-Z][A-Za-z0-9_]*(?=\\s*(?:\\(|\\{|@|$))",
+          "name": "entity.name.type.widget.vx"
+        },
+        {
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*(?=\\s*=>)",
+          "name": "entity.name.function.event.vx"
+        },
+        {
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*(?=\\s*:)",
+          "name": "variable.other.property.vx"
+        },
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.vx",
+          "patterns": [
+            {
+              "match": "\\\\.",
+              "name": "constant.character.escape.vx"
+            }
+          ]
+        },
+        {
+          "include": "source.ts#expression"
+        }
+      ]
+    }
+  }
+}

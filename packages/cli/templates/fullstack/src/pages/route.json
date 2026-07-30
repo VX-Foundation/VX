@@ -1,0 +1,8 @@
+{
+  "render": "server",
+  "hydration": "full",
+  "streaming": "blocking",
+  "generation": {
+    "mode": "dynamic"
+  }
+}

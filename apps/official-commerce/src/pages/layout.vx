@@ -1,0 +1,18 @@
+#script
+  content route: required
+#end script
+
+#view
+  View @shell {
+    View @navigation {
+      Link("VX Commerce") { href: "/" }
+      Link("Catalog") { href: "/catalog" }
+      Link("Cart") { href: "/cart" }
+      Link("Sell") { href: "/sell" }
+    }
+    Content(route)
+  }
+
+  @shell { flow: vertical minHeight: viewport }
+  @navigation { flow: horizontal justify: between align: center inset: lg surface: raised layer: navigation }
+#end view

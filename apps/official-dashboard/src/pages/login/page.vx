@@ -1,0 +1,44 @@
+#script
+  state email: String = ""
+  state password: String = ""
+  state submitting: Bool = false
+
+  action submit() { submitting = true }
+#end script
+
+#view
+  View @page {
+    Title("Sign in")
+    Text("Use a server-issued opaque session. Roles are resolved only by the server.")
+    Form {
+      action: "/api/session"
+      method: "post"
+
+      Input {
+        label: "Email"
+        name: "email"
+        type: "email"
+        value: email
+        required: true
+        change => email = $event
+      }
+
+      Input {
+        label: "Password"
+        name: "password"
+        type: "password"
+        value: password
+        required: true
+        change => password = $event
+      }
+
+      Button("Sign in") {
+        type: "submit"
+        loading: submitting
+        click => submit()
+      }
+    }
+  }
+
+  @page { flow: vertical space: lg inset: xl maxWidth: 520 }
+#end view

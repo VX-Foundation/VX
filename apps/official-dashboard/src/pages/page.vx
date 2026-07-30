@@ -1,0 +1,64 @@
+#script
+  prop metricsLoader: MetricsLoader
+  state range: String = "30d"
+  state revenue: Int = 184200
+  state activeUsers: Int = 4280
+  state conversion: Float = 4.8
+
+  query metrics from metricsLoader {
+    range: range
+    policy {
+      stale: 30s
+      retain: 5m
+      retry: 2
+      execute: client
+    }
+  }
+
+  action selectRange(value: String) {
+    range = value
+    invalidate(metrics)
+  }
+#end script
+
+#view
+  View @page {
+    View @header {
+      View {
+        Title("Operations dashboard")
+        Text("Server-rendered metrics with permission-aware actions.")
+      }
+      View @toolbar {
+        Button("7 days") { click => selectRange("7d") }
+        Button("30 days") { click => selectRange("30d") }
+        Button("90 days") { click => selectRange("90d") }
+      }
+    }
+
+    View @metrics {
+      View @card { Text("Revenue") Text("R$ " + revenue) }
+      View @card { Text("Active users") Text(activeUsers) }
+      View @card { Text("Conversion") Text(conversion + "%") }
+    }
+
+    Canvas {
+      width: "960"
+      height: "320"
+      contextType: "2d"
+    }
+
+    if metrics.loading {
+      Text("Loading fresh metrics...")
+    }
+
+    if metrics.error {
+      Text("Metrics are temporarily unavailable.") @danger
+    }
+  }
+
+  @page { flow: vertical space: xl }
+  @header { flow: horizontal justify: between align: center }
+  @toolbar { flow: horizontal space: sm }
+  @metrics { flow: grid columns: 3 space: lg }
+  @card { surface: raised inset: lg corner: lg }
+#end view

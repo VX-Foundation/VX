@@ -1,0 +1,23 @@
+#script
+  state count: Int = 0
+  derive doubled: Int = count * 2
+
+  action increment() {
+    count++
+  }
+#end script
+
+#view
+  View {
+    Image {
+      src: "/vx.svg"
+      alt: "VX Logo"
+    }
+    Title("VX Starter")
+    Text("Count: {{ count }}")
+    Text("Doubled: {{ doubled }}")
+    Button("Increment") {
+      click => increment()
+    }
+  }
+#end view

@@ -1,0 +1,53 @@
+#script
+  state draft: String = ""
+  state pending: Bool = false
+  state messages: List<Any> = [
+  { id: "m1", author: "Ada", body: "The compiler graph is ready.", status: "sent" }, 
+  { id: "m2", author: "Grace", body: "Reviewing hydration boundaries.", status: "sent" }
+  ]
+
+  action updateDraft(value: String) { draft = value }
+
+  action send() {
+    pending = true
+    draft = ""
+  }
+#end script
+
+#view
+  View @page {
+    Title("Messages")
+
+    ScrollView {
+      height: "520px"
+      for message in messages keyed(message.id) {
+        View @message {
+          Text(message.author)
+          Text(message.body)
+          Text(message.status)
+        }
+      } empty {
+        Text("No messages.")
+      }
+    }
+
+    View @composer {
+      Input {
+        label: "Message"
+        value: draft
+        change => updateDraft($event)
+      }
+      Button("Send") {
+        disabled: draft == ""
+        loading: pending
+        click => send()
+      }
+    }
+
+    if pending { Text("Message queued for delivery.") }
+  }
+
+  @page { flow: vertical space: lg inset: xl }
+  @message { flow: grid columns: 3 inset: md borderBottom: subtle }
+  @composer { flow: horizontal space: md align: end }
+#end view

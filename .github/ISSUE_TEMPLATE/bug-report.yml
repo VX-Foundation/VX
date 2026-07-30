@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible VX defect.
+title: "[Bug]: "
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: Do not report security vulnerabilities here. Use the private advisory link.
+  - type: input
+    id: version
+    attributes:
+      label: VX version
+      placeholder: 0.1.0-next.0
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Node, OS, browser or adapter, and package manager versions.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Provide a repository or complete minimal source and commands.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and diagnostics
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verification
+      options:
+        - label: I searched existing issues.
+          required: true
+        - label: This report contains no private vulnerability details.
+          required: true

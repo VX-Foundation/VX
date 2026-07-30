@@ -1,0 +1,16 @@
+#script
+  content route: required
+#end script
+
+#view
+  View @page {
+    Title("VX Fullstack") @title
+    Content(route)
+  }
+
+  @page {
+    flow: vertical
+    space: lg
+    inset: xl
+  }
+#end view

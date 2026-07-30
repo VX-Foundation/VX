@@ -1,0 +1,18 @@
+#script
+  prop direction: Optional<String> = "vertical"
+  prop showsIndicators: Optional<Bool> = true
+  prop padding: Optional<String>
+  prop margin: Optional<String>
+  prop background: Optional<String>
+  prop width: Optional<String>
+  prop height: Optional<String>
+  prop maxHeight: Optional<String>
+  prop maxWidth: Optional<String>
+  prop contentContainerStyle: Optional<String>
+  prop scrollEventThrottle: Optional<Int> = 16
+  prop bounces: Optional<Bool> = true
+
+  prop scroll: Optional<Event<Any>>
+  prop scrollBeginDrag: Optional<Event<Void>>
+  prop scrollEndDrag: Optional<Event<Void>>
+#end script

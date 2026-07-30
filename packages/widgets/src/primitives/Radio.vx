@@ -1,0 +1,15 @@
+#script
+  prop field: Optional<String>
+  prop selected: Optional<Bool>
+  prop label: Optional<String>
+  prop value: Optional<String>
+  prop name: String
+  prop disabled: Optional<Bool> = false
+  prop required: Optional<Bool> = false
+  prop size: Optional<String> = "medium"
+  prop color: Optional<String> = "primary"
+
+  prop error: Optional<String>
+
+  prop change: Optional<Event<String>>
+#end script

@@ -1,0 +1,18 @@
+{
+  "render": "server",
+  "preload": "visible",
+  "hydration": "islands",
+  "streaming": "blocking",
+  "generation": {
+    "mode": "incremental",
+    "revalidateSeconds": 300,
+    "entries": [
+      {}
+    ]
+  },
+  "metadata": {
+    "title": "Catalog | VX Commerce",
+    "description": "Browse the official VX commerce catalog.",
+    "canonical": "https://commerce.vx.example/catalog"
+  }
+}

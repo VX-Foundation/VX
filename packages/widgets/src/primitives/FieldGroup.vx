@@ -1,0 +1,5 @@
+#script
+  prop label: Optional<String>
+  prop description: Optional<String>
+  prop required: Optional<Bool> = false
+#end script

@@ -1,0 +1,13 @@
+{
+  "render": "server",
+  "preload": "intent",
+  "hydration": "full",
+  "streaming": "blocking",
+  "generation": {
+    "mode": "dynamic"
+  },
+  "metadata": {
+    "title": "Checkout | VX Commerce",
+    "robots": "noindex,nofollow"
+  }
+}

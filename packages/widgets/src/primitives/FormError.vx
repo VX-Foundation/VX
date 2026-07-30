@@ -1,0 +1,4 @@
+#script
+  prop controller: Any
+  prop role: Optional<String> = "alert"
+#end script
