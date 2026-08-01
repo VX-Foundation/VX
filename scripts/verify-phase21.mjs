@@ -9,9 +9,9 @@ import { buildApplicationGraph } from '../packages/router/dist/index.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const officialApplications = [
-  { directory: 'apps/official-dashboard', name: '@vx/official-dashboard', features: ['authentication', 'layouts', 'tables', 'charts', 'forms', 'permissions', 'SSR', 'queries', 'mutations'] },
-  { directory: 'apps/official-commerce', name: '@vx/official-commerce', features: ['catalog', 'filters', 'cart', 'checkout', 'uploads', 'SEO', 'static generation', 'incremental rendering'] },
-  { directory: 'apps/official-collaboration', name: '@vx/official-collaboration', features: ['realtime', 'messages', 'presence', 'optimistic updates', 'offline', 'conflicts', 'large collections'] }
+  { directory: 'apps/official-dashboard', name: '@vx-foundation/official-dashboard', features: ['authentication', 'layouts', 'tables', 'charts', 'forms', 'permissions', 'SSR', 'queries', 'mutations'] },
+  { directory: 'apps/official-commerce', name: '@vx-foundation/official-commerce', features: ['catalog', 'filters', 'cart', 'checkout', 'uploads', 'SEO', 'static generation', 'incremental rendering'] },
+  { directory: 'apps/official-collaboration', name: '@vx-foundation/official-collaboration', features: ['realtime', 'messages', 'presence', 'optimistic updates', 'offline', 'conflicts', 'large collections'] }
 ];
 
 verifyDocumentation();
@@ -56,7 +56,7 @@ ${typecheck.stderr || typecheck.stdout}`);
   for (const file of files.filter((entry) => ['.ts', '.mts', '.cts', '.js', '.mjs', '.cjs'].includes(extname(entry)))) {
     const source = readFileSync(file, 'utf8');
     for (const specifier of extractImports(source)) {
-      if (!specifier.startsWith('@vx/')) continue;
+      if (!specifier.startsWith('@vx-foundation/')) continue;
       verifyPublicImport(specifier, manifest, packageContracts, file);
       importCount += 1;
     }
@@ -134,7 +134,7 @@ function loadPackageContracts() {
     const path = resolve(root, 'packages', directoryName, 'package.json');
     if (!existsSync(path)) continue;
     const manifest = readJson(path);
-    if (!manifest.name?.startsWith('@vx/')) continue;
+    if (!manifest.name?.startsWith('@vx-foundation/')) continue;
     const exports = new Set(Object.keys(manifest.exports ?? { '.': manifest.main ?? './dist/index.js' }));
     contracts.set(manifest.name, exports);
   }

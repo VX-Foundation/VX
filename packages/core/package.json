@@ -1,6 +1,6 @@
 {
-  "name": "@vx/core",
-  "version": "0.1.0",
+  "name": "@vx-foundation/core",
+  "version": "0.1.1",
   "description": "VX Core Orchestration",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,14 +23,14 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vx/bundler": "workspace:*",
-    "@vx/compiler": "workspace:*",
-    "@vx/dev-server": "workspace:*",
-    "@vx/router": "workspace:*",
-    "@vx/shared": "workspace:*",
-    "@vx/types": "workspace:*",
+    "@vx-foundation/bundler": "workspace:*",
+    "@vx-foundation/compiler": "workspace:*",
+    "@vx-foundation/dev-server": "workspace:*",
+    "@vx-foundation/router": "workspace:*",
+    "@vx-foundation/shared": "workspace:*",
+    "@vx-foundation/types": "workspace:*",
     "jiti": "^2.4.0",
-    "@vx/plugins": "workspace:*"
+    "@vx-foundation/plugins": "workspace:*"
   },
   "license": "MIT",
   "engines": {

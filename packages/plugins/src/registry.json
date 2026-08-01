@@ -1,6 +1,6 @@
 {
   "sitemap": {
-    "module": "@vx/plugins/sitemap",
+    "module": "@vx-foundation/plugins/sitemap",
     "apiVersion": "1",
     "compiler": ">=0.1.0",
     "description": "Generate a deterministic sitemap.xml from the VX route manifest"

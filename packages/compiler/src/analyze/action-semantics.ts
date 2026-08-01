@@ -1,4 +1,4 @@
-import type { ActionDeclaration } from '@vx/types';
+import type { ActionDeclaration } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 
 export function validateActionDeclaration(

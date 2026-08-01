@@ -9,11 +9,11 @@
     "start": "node driver.mjs --start"
   },
   "dependencies": {
-    "@vx/runtime": "$stable",
-    "@vx/router": "$stable",
-    "@vx/server": "$stable"
+    "@vx-foundation/runtime": "$stable",
+    "@vx-foundation/router": "$stable",
+    "@vx-foundation/server": "$stable"
   },
   "devDependencies": {
-    "@vx/cli": "$stable"
+    "@vx-foundation/cli": "$stable"
   }
 }

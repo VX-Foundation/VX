@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { cac } from 'cac';
 import pc from 'picocolors';
-import { build, dev, preview } from '@vx/core';
+import { build, dev, preview } from '@vx-foundation/core';
 import { create, init } from './commands/create.js';
 import { addDependencyCommand, removeDependencyCommand, updateDependencyCommand, verifyIntegrationsCommand } from './commands/dependencies.js';
 import { packageCommand } from './commands/package.js';

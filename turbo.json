@@ -92,7 +92,7 @@
         ".bench/**"
       ]
     },
-    "@vx/browser-devtools#build": {
+    "@vx-foundation/browser-devtools#build": {
       "dependsOn": [
         "^build"
       ],

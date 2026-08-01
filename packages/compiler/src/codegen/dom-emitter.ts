@@ -1,4 +1,4 @@
-import type { ComponentContract, ViewNode, ViewSourceMapEntry, VisualProgramIR, VisualResolvedNode, WidgetNode } from '@vx/types';
+import type { ComponentContract, ViewNode, ViewSourceMapEntry, VisualProgramIR, VisualResolvedNode, WidgetNode } from '@vx-foundation/types';
 import { lowerExpression } from './javascript.js';
 import { expandInterpolatedExpression } from '../interpolation.js';
 import { normalizeVisualExpression } from '../visual/expression.js';

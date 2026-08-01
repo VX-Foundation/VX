@@ -1,6 +1,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
-import { generateStaticEntries, type RuntimeServerRouteRecord, type ServerApplication } from '@vx/router/server';
+import { pathToFileURL } from 'node:url';
+import { generateStaticEntries, type RuntimeServerRouteRecord, type ServerApplication } from '@vx-foundation/router/server';
 
 export interface StaticAdapterOptions {
   serverEntry?: string;
@@ -21,9 +22,7 @@ export async function runStaticAdapter(outDir: string, options: StaticAdapterOpt
   const serverEntry = path.join(outDir, 'server', options.serverEntry ?? 'vx-server.mjs');
   if (!fs.existsSync(serverEntry) || !fs.existsSync(clientDir)) throw new Error('VX static adapter requires both client and server build outputs.');
 
-  const serverCode = fs.readFileSync(serverEntry, 'utf8');
-  const dataUrl = `data:text/javascript;base64,${Buffer.from(serverCode).toString('base64')}`;
-  const module = await import(dataUrl) as BuiltServerModule;
+  const module = await import(/* @vite-ignore */ pathToFileURL(serverEntry).href) as BuiltServerModule;
   if (!Array.isArray(module.routes) || typeof module.createVXServerApplication !== 'function') {
     throw new TypeError('Compiled VX server entry does not expose routes and createVXServerApplication().');
   }

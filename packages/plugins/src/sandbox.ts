@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { dirname, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { Worker } from 'node:worker_threads';
-import type { Integration, IntegrationContext, PluginDiagnostic, PluginHookContext, PluginHookName, PluginManifest } from '@vx/types';
+import type { Integration, IntegrationContext, PluginDiagnostic, PluginHookContext, PluginHookName, PluginManifest } from '@vx-foundation/types';
 import { markIsolatedIntegration } from './isolation.js';
 import { snapshotPluginSource } from './source-integrity.js';
 
@@ -173,7 +173,7 @@ function resolveModuleSpecifier(specifier: string, root: string): string {
     if (!/\.(?:mjs|js|cjs)$/.test(target)) throw new Error(`Plugin module '${specifier}' must be built JavaScript.`);
     return pathToFileURL(realpathSync(target)).href;
   }
-  if (specifier === '@vx/plugins/sitemap') return new URL('./sitemap/index.js', import.meta.url).href;
+  if (specifier === '@vx-foundation/plugins/sitemap') return new URL('./sitemap/index.js', import.meta.url).href;
   return pathToFileURL(resolveInstalledPlugin(specifier, projectRoot)).href;
 }
 

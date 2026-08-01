@@ -1,4 +1,4 @@
-# @vx/devtools
+# @vx-foundation/devtools
 
 Browser DevTools protocol, inspector store, performance timeline, and runtime bridge for VX.
 
@@ -7,7 +7,7 @@ Browser DevTools protocol, inspector store, performance timeline, and runtime br
 ## Installation
 
 ```bash
-pnpm add @vx/devtools
+pnpm add @vx-foundation/devtools
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

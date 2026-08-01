@@ -3,7 +3,7 @@
  * conventions. User-authored export maps are intentionally not part of the VX
  * authoring contract.
  */
-import type { Diagnostic, SourceSpan } from '@vx/types';
+import type { Diagnostic, SourceSpan } from '@vx-foundation/types';
 import { existsSync, readFileSync, realpathSync, statSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 

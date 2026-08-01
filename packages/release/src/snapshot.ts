@@ -10,7 +10,7 @@ export interface CreateWorkspaceSnapshotOptions {
 }
 
 export function createWorkspaceApiSnapshot(rootDir: string, options: CreateWorkspaceSnapshotOptions = {}): WorkspaceApiSnapshot {
-  const packages = discoverPackageManifests(rootDir, options.groups ?? ['packages', 'apps'])
+  const packages = [join(rootDir, 'package.json'), ...discoverPackageManifests(rootDir, options.groups ?? ['packages', 'apps'])]
     .map((path) => snapshotPackage(path, options.includePrivate ?? false))
     .filter((value): value is PublicPackageSnapshot => Boolean(value))
     .sort((left, right) => left.name.localeCompare(right.name));

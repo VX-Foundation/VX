@@ -1,4 +1,4 @@
-import type { BuildTarget } from '@vx/types';
+import type { BuildTarget } from '@vx-foundation/types';
 
 export interface DeploymentContext {
   outDir: string;

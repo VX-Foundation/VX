@@ -2,9 +2,9 @@
 
 VX maintains three first-party applications as public-API conformance projects:
 
-- `@vx/official-dashboard`;
-- `@vx/official-commerce`;
-- `@vx/official-collaboration`.
+- `@vx-foundation/official-dashboard`;
+- `@vx-foundation/official-commerce`;
+- `@vx-foundation/official-collaboration`.
 
 ## Purpose
 

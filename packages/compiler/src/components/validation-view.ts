@@ -1,4 +1,4 @@
-import type { ComponentContract, ComponentModuleIR, ComponentProjectIR, ContentRegionUseNode, ScriptBlockNode, ViewNode, WidgetNode } from '@vx/types';
+import type { ComponentContract, ComponentModuleIR, ComponentProjectIR, ContentRegionUseNode, ScriptBlockNode, ViewNode, WidgetNode } from '@vx-foundation/types';
 import ts from 'typescript';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 import { findViewBlock } from './contract.js';

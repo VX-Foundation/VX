@@ -1,6 +1,6 @@
 {
-  "name": "@vx/bundler",
-  "version": "0.1.0",
+  "name": "@vx-foundation/bundler",
+  "version": "0.1.1",
   "description": "VX deterministic asset pipeline, multi-target build system, and official deployment adapters",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -31,12 +31,12 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vx/compiler": "workspace:*",
-    "@vx/language": "workspace:*",
-    "@vx/router": "workspace:*",
-    "@vx/shared": "workspace:*",
-    "@vx/types": "workspace:*",
-    "@vx/tooling": "workspace:*"
+    "@vx-foundation/compiler": "workspace:*",
+    "@vx-foundation/language": "workspace:*",
+    "@vx-foundation/router": "workspace:*",
+    "@vx-foundation/shared": "workspace:*",
+    "@vx-foundation/types": "workspace:*",
+    "@vx-foundation/tooling": "workspace:*"
   },
   "peerDependencies": {
     "vite": "^6.0.0"

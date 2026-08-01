@@ -4,7 +4,7 @@ import type {
   ViewBlockNode,
   ViewSourceMapEntry,
   VisualProgramIR,
-} from '@vx/types';
+} from '@vx-foundation/types';
 import type { ReactiveGraph } from '../analyze/graph-builder.js';
 import type { ComponentCodegenContext } from '../components/codegen-context.js';
 import { generateModuleImports } from './component-module.js';
@@ -78,8 +78,8 @@ export function generateDomCode(
   ];
 
   let code = moduleImports.code;
-  code += `import { ${imports.join(', ')} } from '@vx/runtime/client';\n`;
-  if (data.schemas.length || data.forms.length) code += `import { schema, createForm } from '@vx/forms';\nimport { bindFormElement, bindFormField, bindFieldError, bindFormError, bindErrorSummary } from '@vx/forms/client';\n`;
+  code += `import { ${imports.join(', ')} } from '@vx-foundation/runtime/client';\n`;
+  if (data.schemas.length || data.forms.length) code += `import { schema, createForm } from '@vx-foundation/forms';\nimport { bindFormElement, bindFormField, bindFieldError, bindFormError, bindErrorSummary } from '@vx-foundation/forms/client';\n`;
   code += `\n`;
   code += `function __vxRunCleanup(cleanups) { disposeCleanupStack(cleanups); }\n\n`;
   code += generateSetup(scriptBlock, graph, data, symbols, component, moduleImports.headlessFactories, moduleImports.componentFactories);

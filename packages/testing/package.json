@@ -1,6 +1,6 @@
 {
-  "name": "@vx/testing",
-  "version": "0.1.0",
+  "name": "@vx-foundation/testing",
+  "version": "0.1.1",
   "description": "Official VX unit, component, DOM, SSR, hydration, route, action, endpoint, visual, accessibility, and performance testing contracts.",
   "type": "module",
   "main": "./dist/index.js",

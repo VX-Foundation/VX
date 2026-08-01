@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { createRequestRuntime } from '@vx/runtime/server';
+import { createRequestRuntime } from '@vx-foundation/runtime/server';
 import { CookieJar } from './cookies.js';
 import { currentServerContext, runWithServerContext } from './context.js';
 import { composeServerMiddleware } from './middleware.js';

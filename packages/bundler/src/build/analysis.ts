@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { brotliCompressSync, gzipSync } from 'node:zlib';
-import type { BuildTarget } from '@vx/types';
+import type { BuildTarget } from '@vx-foundation/types';
 import { fileHash } from './fingerprint.js';
 import type { BuildArtifact, BundleAnalysis, NormalizedBuildOptions } from './types.js';
 

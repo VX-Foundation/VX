@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parse } from '@vx/language';
+import { parse } from '@vx-foundation/language';
 import { analyze } from '../src/core.js';
 
 function diagnostics(source: string) {

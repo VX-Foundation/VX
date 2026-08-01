@@ -1,4 +1,4 @@
-import type { FormDeclaration, SchemaDeclaration, SchemaFieldNode, ScriptBlockNode } from '@vx/types';
+import type { FormDeclaration, SchemaDeclaration, SchemaFieldNode, ScriptBlockNode } from '@vx-foundation/types';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 
 const STRING_RULES = new Map([['min', [1, 2]], ['max', [1, 2]], ['pattern', [1, 2]], ['email', [0, 1]], ['url', [0, 1]], ['trim', [0, 0]], ['sensitive', [0, 0]]]);

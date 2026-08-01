@@ -2,8 +2,8 @@
 
 ## Distribution channels
 
-- `canary` publishes short-lived evaluation builds using versions such as `0.1.0-canary.<revision>.<sequence>`.
-- `next` publishes compatible release candidates such as `0.1.0-next.<sequence>`.
+- `canary` publishes short-lived evaluation builds using versions such as `0.1.1-canary.<revision>.<sequence>`.
+- `next` publishes compatible release candidates such as `0.1.1-next.<sequence>`.
 - `latest` is reserved for stable releases. VX 1.0 cannot use this tag until every criterion in `release/v1-readiness.json` passes.
 
 ## Required preparation
@@ -24,7 +24,7 @@ Stable publication additionally verifies protected GitHub checks for Windows, Li
 
 After npm publication:
 
-1. Install `create-vx` and the package set from the published dist-tag in an empty environment.
+1. Install `@vx-foundation/create-vx` and the package set from the published dist-tag in an empty environment.
 2. Create all four official templates.
 3. Run doctor, check, lint, test, build, and preview smoke tests.
 4. Record the version, source revision, publication time, incidents, and artifact integrity in `release/stabilization-log.json`.

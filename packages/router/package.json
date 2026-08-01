@@ -1,6 +1,6 @@
 {
-  "name": "@vx/router",
-  "version": "0.1.0",
+  "name": "@vx-foundation/router",
+  "version": "0.1.1",
   "type": "module",
   "description": "VX file-based router and client navigation engine.",
   "main": "./dist/index.js",
@@ -21,11 +21,11 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@vx/language": "workspace:*",
-    "@vx/shared": "workspace:*",
-    "@vx/types": "workspace:*",
-    "@vx/runtime": "workspace:*",
-    "@vx/forms": "workspace:*"
+    "@vx-foundation/language": "workspace:*",
+    "@vx-foundation/shared": "workspace:*",
+    "@vx-foundation/types": "workspace:*",
+    "@vx-foundation/runtime": "workspace:*",
+    "@vx-foundation/forms": "workspace:*"
   },
   "devDependencies": {
     "@types/jsdom": "^28.0.3",

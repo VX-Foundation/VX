@@ -7,7 +7,7 @@ import type {
   StoreIR,
   SchemaIR,
   FormIR
-} from '@vx/types';
+} from '@vx-foundation/types';
 import { bodyContainsAwait } from '../codegen/javascript.js';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 import type { ReactiveGraph } from '../analyze/graph-builder.js';

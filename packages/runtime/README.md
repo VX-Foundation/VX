@@ -1,4 +1,4 @@
-# @vx/runtime
+# @vx-foundation/runtime
 
 VX direct-DOM client runtime and request-scoped SSR server platform.
 
@@ -7,7 +7,7 @@ VX direct-DOM client runtime and request-scoped SSR server platform.
 ## Installation
 
 ```bash
-pnpm add @vx/runtime
+pnpm add @vx-foundation/runtime
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

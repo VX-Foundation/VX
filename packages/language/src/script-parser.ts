@@ -1,4 +1,4 @@
-import type { DeclarationVisibility, Diagnostic, ExecutionSide, SourcePosition, StateStatement } from '@vx/types';
+import type { DeclarationVisibility, Diagnostic, ExecutionSide, SourcePosition, StateStatement } from '@vx-foundation/types';
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { Scanner } from './scanner.js';
 import {
@@ -22,7 +22,7 @@ const SCRIPT_KEYWORDS = ['import', 'generic', 'prop', 'model', 'schema', 'form',
 
 /**
  * Parses the contents of a `#script … #end script` block into the `StateStatement[]`
- * shape defined in `@vx/types`, following the grammar in docs/spec/reactive-execution.md.
+ * shape defined in `@vx-foundation/types`, following the grammar in docs/spec/reactive-execution.md.
  *
  * Data declarations may be client-owned or explicitly server-owned. The
  * execution side is recorded on the declaration so semantic analysis can

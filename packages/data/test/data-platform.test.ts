@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { QueryClient } from '@vx/runtime';
+import { QueryClient } from '@vx-foundation/runtime';
 import {
   OfflineMutationQueue,
   RealtimeClient,

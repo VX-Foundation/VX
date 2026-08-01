@@ -1,7 +1,7 @@
 {
   "schema": "https://vx.dev/schemas/spec-freeze/v1",
   "version": 1,
-  "frameworkVersion": "0.1.0",
+  "frameworkVersion": "0.1.1",
   "specificationVersion": "0.1",
   "frozenAt": "2026-07-30",
   "files": [
@@ -42,8 +42,8 @@
     },
     {
       "path": "docs/spec/modules-and-packages.md",
-      "size": 1325,
-      "sha256": "848e6fce731603e6143d597826311de874264c27b6b22c54656ec3c3a67e62ad"
+      "size": 1347,
+      "sha256": "b8a397169ef15bd0c6b57b8c4895af963d9659e9a996f222288375a80bb4818c"
     },
     {
       "path": "docs/spec/reactive-execution.md",
@@ -71,5 +71,5 @@
       "sha256": "1680581eabbbf017ea392f59d3ddd98a5b78b8ab448fefe53b153e20ff47838e"
     }
   ],
-  "integrity": "e7c7eba0cd33336c0b6b2988461cd6819a039cdcdf7aedd1df44a2b8e87d5af3"
+  "integrity": "f7680d16ab1de6721d0deaf9b68fd3a9af59f338dcd2b4b2f695146a9b1c2b58"
 }

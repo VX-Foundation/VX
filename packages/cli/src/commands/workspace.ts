@@ -2,9 +2,9 @@ import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from '
 import { extname, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import pc from 'picocolors';
-import { formatVX, inspectVX } from '@vx/tooling';
-import { loadConfig } from '@vx/core';
-import { readLockfile } from '@vx/package-system';
+import { formatVX, inspectVX } from '@vx-foundation/tooling';
+import { loadConfig } from '@vx-foundation/core';
+import { readLockfile } from '@vx-foundation/package-system';
 
 export interface TestCommandOptions { filter?: string; kind?: string; watch?: boolean; coverage?: boolean; updateSnapshots?: boolean; all?: boolean; }
 export interface LintCommandOptions { fix?: boolean; }

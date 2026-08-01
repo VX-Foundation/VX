@@ -6,7 +6,7 @@ export interface NodeAdapterOptions {
   clientEntry?: string;
 }
 
-/** Emits the production Node entry backed by the shared @vx/server adapter. */
+/** Emits the production Node entry backed by the shared @vx-foundation/server adapter. */
 export function runNodeAdapter(outDir: string, options: NodeAdapterOptions = {}): string {
   const serverDir = path.join(outDir, 'server');
   const compiledEntry = options.serverEntry ?? 'vx-server.mjs';
@@ -22,7 +22,7 @@ export function runNodeAdapter(outDir: string, options: NodeAdapterOptions = {})
 function nodeEntry(serverEntry: string, clientEntry: string): string {
   return `import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createStaticFileHandler, startNodeServer } from '@vx/server/node';
+import { createStaticFileHandler, startNodeServer } from '@vx-foundation/server/node';
 import createVXServerApplication from ${JSON.stringify(`./${serverEntry}`)};
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));

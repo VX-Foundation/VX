@@ -94,7 +94,9 @@ try {
   const outDir = path.join(root, 'dist-app');
   mkdirSync(path.join(outDir, 'client'), { recursive: true });
   mkdirSync(path.join(outDir, 'server'), { recursive: true });
+  mkdirSync(path.join(outDir, 'server', 'chunks'), { recursive: true });
   writeFileSync(path.join(outDir, 'client', 'assets-placeholder.txt'), 'client');
+  writeFileSync(path.join(outDir, 'server', 'chunks', 'render.mjs'), `export const renderPath = (pathname) => '<!doctype html><title>Static ' + pathname + '</title>';\n`);
   writeFileSync(path.join(outDir, 'server', 'vx-server.mjs'), fakeServerModule());
   const written = await runStaticAdapter(outDir);
   assert.equal(written.length, 2);
@@ -103,7 +105,7 @@ try {
   const nodeEntry = runNodeAdapter(outDir);
   const nodeSource = readFileSync(nodeEntry, 'utf8');
   assert.match(nodeSource, /(?:createServer|startNodeServer)\(/);
-  assert.ok(nodeSource.includes('Readable.fromWeb') || nodeSource.includes('@vx/server/node'));
+  assert.ok(nodeSource.includes('Readable.fromWeb') || nodeSource.includes('@vx-foundation/server/node'));
   execFileSync(process.execPath, ['--check', nodeEntry], { stdio: 'pipe' });
 
   console.log('Phase 7 static verification passed (safe serialization, SSR codegen, server policies, virtual server graph, static generation, and Node adapter output).');
@@ -122,11 +124,12 @@ function page(label) {
 }
 
 function fakeServerModule() {
-  return `export const routes = [
+  return `import { renderPath } from './chunks/render.mjs';
+export const routes = [
   { id: 'root', path: '/', segments: [], parameters: [], pagePath: '/index.vx', layoutPaths: [], boundaries: {}, policy: { render: 'static', preload: 'none', hydration: 'none', streaming: 'blocking', generation: { mode: 'static', entries: [] }, metadata: {}, preserve: { state: false, scroll: true, focus: true } }, queries: [], actions: [], score: 0, loadLayouts: [] },
   { id: 'guide', path: '/docs/:slug', segments: [{ kind: 'static', value: 'docs' }, { kind: 'parameter', value: 'slug', parameter: { name: 'slug', kind: 'slug', catchAll: false, optional: false, source: '[slug.slug]' } }], parameters: [{ name: 'slug', kind: 'slug', catchAll: false, optional: false, source: '[slug.slug]' }], pagePath: '/guide.vx', layoutPaths: [], boundaries: {}, policy: { render: 'static', preload: 'none', hydration: 'none', streaming: 'blocking', generation: { mode: 'static', entries: [{ slug: 'guide' }] }, metadata: {}, preserve: { state: false, scroll: true, focus: true } }, queries: [], actions: [], score: 1, loadLayouts: [] }
 ];
-export function createVXServerApplication() { return { render: async (pathname) => new Response('<!doctype html><title>Static ' + pathname + '</title>', { status: 200, headers: { 'content-type': 'text/html' } }) }; }
+export function createVXServerApplication() { return { render: async (pathname) => new Response(renderPath(pathname), { status: 200, headers: { 'content-type': 'text/html' } }) }; }
 export default createVXServerApplication;
 `;
 }

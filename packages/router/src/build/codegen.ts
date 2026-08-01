@@ -12,7 +12,7 @@ export function generateApplicationModules(graph: ApplicationGraph): GeneratedAp
   const clientRoutes = graph.routes.map((route) => emitRuntimeRoute(route, graph.rootDir)).join(',\n');
   const endpoints = graph.endpoints.map((endpoint) => emitRuntimeEndpoint(endpoint, graph.rootDir)).join(',\n');
   const client = [
-    `import { createApplicationRouter, createRouteCatalog } from '@vx/router';`,
+    `import { createApplicationRouter, createRouteCatalog } from '@vx-foundation/router';`,
     `export const routes = Object.freeze([${clientRoutes}]);`,
     `export const routeById = Object.freeze(Object.fromEntries(routes.map((route) => [route.id, route])));`,
     `export const routeCatalog = createRouteCatalog(routes);`,
@@ -31,7 +31,7 @@ export function generateApplicationModules(graph: ApplicationGraph): GeneratedAp
     `export const endpointById = Object.freeze(Object.fromEntries(endpoints.map((endpoint) => [endpoint.id, endpoint])));`
   ].join('\n');
   const server = [
-    `import { createServerApplication } from '@vx/server';`,
+    `import { createServerApplication } from '@vx-foundation/server';`,
     `export const routes = Object.freeze([${clientRoutes}]);`,
     `export const endpoints = Object.freeze([${endpoints}]);`,
     `export function createVXServerApplication(options = {}) {`,

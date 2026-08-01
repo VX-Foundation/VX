@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parse } from '@vx/language';
+import { parse } from '@vx-foundation/language';
 import { analyze } from '../src/index.js';
 
 describe('Compiler Analyze Pass', () => {

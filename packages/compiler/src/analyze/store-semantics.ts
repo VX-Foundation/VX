@@ -1,4 +1,4 @@
-import type { StoreDeclaration } from '@vx/types';
+import type { StoreDeclaration } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 
 export function validateStoreDeclaration(store: StoreDeclaration, diagnostics: DiagnosticCollector): void {

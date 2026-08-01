@@ -1,6 +1,6 @@
 import processModule from 'node:process';
 import { parentPort, workerData } from 'node:worker_threads';
-import type { Integration, IntegrationContext, PluginDiagnostic, PluginHook, PluginHookContext, PluginHookName, PluginManifest } from '@vx/types';
+import type { Integration, IntegrationContext, PluginDiagnostic, PluginHook, PluginHookContext, PluginHookName, PluginManifest } from '@vx-foundation/types';
 
 interface WorkerData { moduleSpecifier: string; root: string; sourceIntegrity: string; declaredManifest?: PluginManifest; options?: Record<string, unknown>; }
 type Operation =

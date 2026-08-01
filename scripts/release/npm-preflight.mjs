@@ -6,18 +6,19 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-const version = spawnSync(npm, ['--version'], { encoding: 'utf8' });
+const spawnOptions = { encoding: 'utf8', shell: process.platform === 'win32' };
+const version = spawnSync(npm, ['--version'], spawnOptions);
 assert.equal(version.status, 0, 'npm CLI is required.');
 const npmVersion = version.stdout.trim();
 assert.ok(atLeast(npmVersion, [11, 5, 1]), `npm 11.5.1 or newer is required for trusted publishing; found ${npmVersion}.`);
-const whoami = spawnSync(npm, ['whoami', '--registry', 'https://registry.npmjs.org/'], { encoding: 'utf8' });
+const whoami = spawnSync(npm, ['whoami', '--registry', 'https://registry.npmjs.org/'], spawnOptions);
 assert.equal(whoami.status, 0, 'Authenticate to npm before running the manual ownership preflight. Trusted publishing itself uses OIDC in GitHub Actions.');
 const identity = whoami.stdout.trim();
 const packages = await publicPackages();
 for (const manifest of packages) {
   assert.equal(manifest.publishConfig?.registry, 'https://registry.npmjs.org/');
   assert.equal(manifest.publishConfig?.access, 'public');
-  const view = spawnSync(npm, ['view', manifest.name, 'name', '--json', '--registry', 'https://registry.npmjs.org/'], { encoding: 'utf8' });
+  const view = spawnSync(npm, ['view', manifest.name, 'name', '--json', '--registry', 'https://registry.npmjs.org/'], spawnOptions);
   if (view.status === 0) {
     console.log(`${manifest.name}: existing package found; confirm ${identity} or its organization has publish permission.`);
   } else if (!/E404|404 Not Found/iu.test(`${view.stderr}\n${view.stdout}`)) {
@@ -29,7 +30,7 @@ for (const manifest of packages) {
 console.log(`VX npm preflight completed for ${packages.length} packages as '${identity}'. Unpublished packages require the documented one-time bootstrap before trusted publishing can be configured.`);
 
 async function publicPackages() {
-  const output = [];
+  const output = [JSON.parse(await readFile(join(root, 'package.json'), 'utf8'))];
   for (const group of ['packages', 'apps']) {
     for (const entry of await readdir(join(root, group), { withFileTypes: true })) {
       if (!entry.isDirectory()) continue;

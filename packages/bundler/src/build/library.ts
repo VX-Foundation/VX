@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import path from 'node:path';
-import type { LibraryBuildConfig } from '@vx/types';
+import type { LibraryBuildConfig } from '@vx-foundation/types';
 
 export type ViteLibraryEntry = string | Readonly<Record<string, string>>;
 export type ViteLibraryFileName = string | ((format: string, entryName: string) => string);

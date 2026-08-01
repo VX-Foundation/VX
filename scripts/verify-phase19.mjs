@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const read = (path) => readFileSync(resolve(root, path), 'utf8');
-for (const packageName of ['package-system','interop','devtools']) assert.ok(existsSync(resolve(root, 'packages', packageName, 'package.json')), `Missing @vx/${packageName}.`);
+for (const packageName of ['package-system','interop','devtools']) assert.ok(existsSync(resolve(root, 'packages', packageName, 'package.json')), `Missing @vx-foundation/${packageName}.`);
 const packageSystem = read('packages/package-system/src/semver.ts') + read('packages/package-system/src/lockfile.ts') + read('packages/package-system/src/signatures.ts') + read('packages/package-system/src/workspace.ts') + read('packages/package-system/src/contracts.ts') + read('packages/package-system/src/publication.ts');
 for (const contract of ['compareSemver', 'satisfiesSemver', 'validSemverRange', 'lockfileVersion', 'ed25519', 'createWorkspaceGraph', 'comparePublicContracts', 'createPublicationManifest', 'verifyPublicationManifest']) assert.ok(packageSystem.includes(contract), `Package system is missing ${contract}.`);
 const pluginExports = JSON.parse(read('packages/plugins/package.json')).exports;

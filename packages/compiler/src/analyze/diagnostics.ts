@@ -1,4 +1,4 @@
-import type { Diagnostic, DiagnosticSeverity, SourceSpan } from '@vx/types';
+import type { Diagnostic, DiagnosticSeverity, SourceSpan } from '@vx-foundation/types';
 
 /**
  * Collects and formats diagnostics during the compilation's Analyze pass.

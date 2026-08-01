@@ -1,6 +1,6 @@
 {
-  "name": "@vx/widgets",
-  "version": "0.1.0",
+  "name": "@vx-foundation/widgets",
+  "version": "0.1.1",
   "description": "Industrial-grade Native Widget Primitives for the VX Framework",
   "type": "module",
   "main": "./dist/index.js",
@@ -9,7 +9,7 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@vx/types": "workspace:*"
+    "@vx-foundation/types": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.4.5"

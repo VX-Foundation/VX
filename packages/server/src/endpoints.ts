@@ -1,4 +1,4 @@
-import { createRequestRuntime, type RequestRuntime } from '@vx/runtime/server';
+import { createRequestRuntime, type RequestRuntime } from '@vx-foundation/runtime/server';
 import { parseRequestBody, type BodyLimits, type ParsedRequestBody } from './body.js';
 import { createLogger, createTrace } from './observability.js';
 import { json } from './responses.js';

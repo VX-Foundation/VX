@@ -1,7 +1,7 @@
 {
-  "name": "@vx/playground",
+  "name": "@vx-foundation/playground",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,12 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vx/compiler": "workspace:*",
-    "@vx/data": "workspace:*",
-    "@vx/forms": "workspace:*",
-    "@vx/language": "workspace:*",
-    "@vx/runtime": "workspace:*",
-    "@vx/tooling": "workspace:*",
+    "@vx-foundation/compiler": "workspace:*",
+    "@vx-foundation/data": "workspace:*",
+    "@vx-foundation/forms": "workspace:*",
+    "@vx-foundation/language": "workspace:*",
+    "@vx-foundation/runtime": "workspace:*",
+    "@vx-foundation/tooling": "workspace:*",
     "monaco-editor": "^0.55.1"
   },
   "devDependencies": {

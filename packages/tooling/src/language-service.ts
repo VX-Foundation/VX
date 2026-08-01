@@ -1,6 +1,6 @@
-import { analyze } from '@vx/compiler/core';
-import { DiagnosticCodes, parse } from '@vx/language';
-import type { Diagnostic, SourceSpan } from '@vx/types';
+import { analyze } from '@vx-foundation/compiler/core';
+import { DiagnosticCodes, parse } from '@vx-foundation/language';
+import type { Diagnostic, SourceSpan } from '@vx-foundation/types';
 import { formatVX } from './formatter.js';
 import { collectReferences, collectSymbols, wordAtOffset } from './symbols.js';
 import { collectSemanticTokens } from './semantic.js';

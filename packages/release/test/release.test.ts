@@ -12,7 +12,7 @@ function snapshot(version: string, symbols: Array<{ name: string; kind: string; 
   return {
     schema: 'https://vx.dev/schemas/public-api-snapshot/v1',
     version: 1,
-    packages: [{ name: '@vx/example', version, peerDependencies: {}, entrypoints: [{ subpath: '.', typesPath: 'dist/index.d.ts', symbols }] }]
+    packages: [{ name: '@vx-foundation/example', version, peerDependencies: {}, entrypoints: [{ subpath: '.', typesPath: 'dist/index.d.ts', symbols }] }]
   };
 }
 
@@ -42,7 +42,7 @@ describe('release compatibility', () => {
 describe('release policy and provenance', () => {
   it('rejects install scripts and unpinned registries', () => {
     const result = validatePackagePolicy({
-      name: '@vx/example', version: '1.0.0', description: 'Example package.', type: 'module', license: 'MIT',
+      name: '@vx-foundation/example', version: '1.0.0', description: 'Example package.', type: 'module', license: 'MIT',
       author: { name: 'Veelv' }, files: ['dist', 'README.md', 'LICENSE'], keywords: ['vx', 'example', 'framework'],
       exports: { '.': './dist/index.js' }, sideEffects: false,
       engines: { node: '>=22.11.0 <23 || >=24.11.0 <25' },
@@ -55,7 +55,7 @@ describe('release policy and provenance', () => {
   });
 
   it('detects provenance tampering', () => {
-    const manifest = createProvenanceManifest('@vx/example', '1.0.0', 'abc123', [{ path: 'dist/index.js', content: 'safe' }]);
+    const manifest = createProvenanceManifest('@vx-foundation/example', '1.0.0', 'abc123', [{ path: 'dist/index.js', content: 'safe' }]);
     expect(verifyProvenanceManifest(manifest, [{ path: 'dist/index.js', content: 'safe' }])).toBe(true);
     expect(verifyProvenanceManifest(manifest, [{ path: 'dist/index.js', content: 'changed' }])).toBe(false);
   });

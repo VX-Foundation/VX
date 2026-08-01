@@ -1,7 +1,7 @@
 import { bench, describe } from 'vitest';
-import { parse } from '@vx/language';
-import { analyze, lower } from '@vx/compiler/core';
-import { createRequestRuntime, createServerRenderContext, renderDocument } from '@vx/runtime/server';
+import { parse } from '@vx-foundation/language';
+import { analyze, lower } from '@vx-foundation/compiler/core';
+import { createRequestRuntime, createServerRenderContext, renderDocument } from '@vx-foundation/runtime/server';
 
 const source = '#view\n  View {\n    Title("VX", level: 1)\n    Text("Production benchmark")\n  }\n#end view\n';
 

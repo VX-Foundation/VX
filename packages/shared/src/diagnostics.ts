@@ -1,4 +1,4 @@
-import type { Diagnostic, SourcePosition } from '@vx/types';
+import type { Diagnostic, SourcePosition } from '@vx-foundation/types';
 
 function formatPosition(position: SourcePosition): string {
   return `${position.line}:${position.column}`;

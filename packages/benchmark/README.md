@@ -1,4 +1,4 @@
-# @vx/benchmark
+# @vx-foundation/benchmark
 
 Framework-neutral benchmark protocol, statistics, fairness rules, budgets, and reports for VX public performance comparisons.
 
@@ -7,7 +7,7 @@ Framework-neutral benchmark protocol, statistics, fairness rules, budgets, and r
 ## Installation
 
 ```bash
-pnpm add @vx/benchmark
+pnpm add @vx-foundation/benchmark
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

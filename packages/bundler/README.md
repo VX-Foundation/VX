@@ -1,4 +1,4 @@
-# @vx/bundler
+# @vx-foundation/bundler
 
 VX deterministic asset pipeline, multi-target build system, and official deployment adapters
 
@@ -7,7 +7,7 @@ VX deterministic asset pipeline, multi-target build system, and official deploym
 ## Installation
 
 ```bash
-pnpm add @vx/bundler
+pnpm add @vx-foundation/bundler
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

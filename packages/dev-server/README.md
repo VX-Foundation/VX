@@ -1,4 +1,4 @@
-# @vx/dev-server
+# @vx-foundation/dev-server
 
 Dev server and HMR for VX
 
@@ -7,7 +7,7 @@ Dev server and HMR for VX
 ## Installation
 
 ```bash
-pnpm add @vx/dev-server
+pnpm add @vx-foundation/dev-server
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

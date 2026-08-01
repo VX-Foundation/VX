@@ -1,4 +1,4 @@
-import { QueryClient, createAction, createQuery, state } from '@vx/runtime';
+import { QueryClient, createAction, createQuery, state } from '@vx-foundation/runtime';
 
 export const dashboardQueryClient = new QueryClient();
 const range = state('30d');

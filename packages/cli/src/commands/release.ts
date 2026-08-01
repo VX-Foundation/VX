@@ -7,7 +7,7 @@ import {
   validatePackagePolicy,
   type ReleaseChannel,
   type WorkspaceApiSnapshot
-} from '@vx/release';
+} from '@vx-foundation/release';
 
 export interface ReleaseCheckOptions {
   channel?: ReleaseChannel;
@@ -133,7 +133,7 @@ function readSnapshot(path: string): WorkspaceApiSnapshot {
 }
 
 function discoverManifests(root: string): string[] {
-  const result: string[] = [];
+  const result: string[] = [join(root, 'package.json')];
   for (const group of ['packages', 'apps']) {
     const directory = join(root, group);
     if (!existsSync(directory)) continue;

@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@vx-foundation/core':
+        specifier: workspace:*
+        version: link:packages/core
     devDependencies:
       '@changesets/cli':
         specifier: ^2.29.5
@@ -46,7 +50,7 @@ importers:
 
   apps/create-vx:
     dependencies:
-      '@vx/cli':
+      '@vx-foundation/cli':
         specifier: workspace:*
         version: link:../../packages/cli
     devDependencies:
@@ -59,23 +63,23 @@ importers:
 
   apps/docs:
     dependencies:
-      '@vx/core':
+      '@vx-foundation/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@vx/router':
+      '@vx-foundation/router':
         specifier: workspace:*
         version: link:../../packages/router
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
-      '@vx/server':
+      '@vx-foundation/server':
         specifier: workspace:*
         version: link:../../packages/server
     devDependencies:
-      '@vx/cli':
+      '@vx-foundation/cli':
         specifier: workspace:*
         version: link:../../packages/cli
-      '@vx/tooling':
+      '@vx-foundation/tooling':
         specifier: workspace:*
         version: link:../../packages/tooling
       typescript:
@@ -84,29 +88,29 @@ importers:
 
   apps/official-collaboration:
     dependencies:
-      '@vx/core':
+      '@vx-foundation/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@vx/data':
+      '@vx-foundation/data':
         specifier: workspace:*
         version: link:../../packages/data
-      '@vx/forms':
+      '@vx-foundation/forms':
         specifier: workspace:*
         version: link:../../packages/forms
-      '@vx/router':
+      '@vx-foundation/router':
         specifier: workspace:*
         version: link:../../packages/router
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
-      '@vx/server':
+      '@vx-foundation/server':
         specifier: workspace:*
         version: link:../../packages/server
     devDependencies:
-      '@vx/cli':
+      '@vx-foundation/cli':
         specifier: workspace:*
         version: link:../../packages/cli
-      '@vx/testing':
+      '@vx-foundation/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       typescript:
@@ -118,32 +122,32 @@ importers:
 
   apps/official-commerce:
     dependencies:
-      '@vx/core':
+      '@vx-foundation/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@vx/data':
+      '@vx-foundation/data':
         specifier: workspace:*
         version: link:../../packages/data
-      '@vx/forms':
+      '@vx-foundation/forms':
         specifier: workspace:*
         version: link:../../packages/forms
-      '@vx/router':
+      '@vx-foundation/router':
         specifier: workspace:*
         version: link:../../packages/router
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
-      '@vx/server':
+      '@vx-foundation/server':
         specifier: workspace:*
         version: link:../../packages/server
     devDependencies:
       '@types/node':
         specifier: ^24.0.15
         version: 24.13.2
-      '@vx/cli':
+      '@vx-foundation/cli':
         specifier: workspace:*
         version: link:../../packages/cli
-      '@vx/testing':
+      '@vx-foundation/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       typescript:
@@ -155,32 +159,32 @@ importers:
 
   apps/official-dashboard:
     dependencies:
-      '@vx/core':
+      '@vx-foundation/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@vx/data':
+      '@vx-foundation/data':
         specifier: workspace:*
         version: link:../../packages/data
-      '@vx/forms':
+      '@vx-foundation/forms':
         specifier: workspace:*
         version: link:../../packages/forms
-      '@vx/router':
+      '@vx-foundation/router':
         specifier: workspace:*
         version: link:../../packages/router
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
-      '@vx/server':
+      '@vx-foundation/server':
         specifier: workspace:*
         version: link:../../packages/server
     devDependencies:
       '@types/node':
         specifier: ^24.0.15
         version: 24.13.2
-      '@vx/cli':
+      '@vx-foundation/cli':
         specifier: workspace:*
         version: link:../../packages/cli
-      '@vx/testing':
+      '@vx-foundation/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       typescript:
@@ -192,22 +196,22 @@ importers:
 
   apps/playground:
     dependencies:
-      '@vx/compiler':
+      '@vx-foundation/compiler':
         specifier: workspace:*
         version: link:../../packages/compiler
-      '@vx/forms':
+      '@vx-foundation/forms':
         specifier: workspace:*
         version: link:../../packages/forms
-      '@vx/data':
+      '@vx-foundation/data':
         specifier: workspace:*
         version: link:../../packages/data
-      '@vx/language':
+      '@vx-foundation/language':
         specifier: workspace:*
         version: link:../../packages/language
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../../packages/runtime
-      '@vx/tooling':
+      '@vx-foundation/tooling':
         specifier: workspace:*
         version: link:../../packages/tooling
       monaco-editor:
@@ -239,22 +243,22 @@ importers:
 
   packages/bundler:
     dependencies:
-      '@vx/compiler':
+      '@vx-foundation/compiler':
         specifier: workspace:*
         version: link:../compiler
-      '@vx/language':
+      '@vx-foundation/language':
         specifier: workspace:*
         version: link:../language
-      '@vx/router':
+      '@vx-foundation/router':
         specifier: workspace:*
         version: link:../router
-      '@vx/shared':
+      '@vx-foundation/shared':
         specifier: workspace:*
         version: link:../shared
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
-      '@vx/tooling':
+      '@vx-foundation/tooling':
         specifier: workspace:*
         version: link:../tooling
     devDependencies:
@@ -264,19 +268,19 @@ importers:
 
   packages/cli:
     dependencies:
-      '@vx/core':
+      '@vx-foundation/core':
         specifier: workspace:*
         version: link:../core
-      '@vx/package-system':
+      '@vx-foundation/package-system':
         specifier: workspace:*
         version: link:../package-system
-      '@vx/release':
+      '@vx-foundation/release':
         specifier: workspace:*
         version: link:../release
-      '@vx/plugins':
+      '@vx-foundation/plugins':
         specifier: workspace:*
         version: link:../plugins
-      '@vx/tooling':
+      '@vx-foundation/tooling':
         specifier: workspace:*
         version: link:../tooling
       cac:
@@ -298,16 +302,16 @@ importers:
 
   packages/compiler:
     dependencies:
-      '@vx/language':
+      '@vx-foundation/language':
         specifier: workspace:*
         version: link:../language
-      '@vx/shared':
+      '@vx-foundation/shared':
         specifier: workspace:*
         version: link:../shared
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
-      '@vx/widgets':
+      '@vx-foundation/widgets':
         specifier: workspace:*
         version: link:../widgets
       typescript:
@@ -316,25 +320,25 @@ importers:
 
   packages/core:
     dependencies:
-      '@vx/bundler':
+      '@vx-foundation/bundler':
         specifier: workspace:*
         version: link:../bundler
-      '@vx/compiler':
+      '@vx-foundation/compiler':
         specifier: workspace:*
         version: link:../compiler
-      '@vx/dev-server':
+      '@vx-foundation/dev-server':
         specifier: workspace:*
         version: link:../dev-server
-      '@vx/router':
+      '@vx-foundation/router':
         specifier: workspace:*
         version: link:../router
-      '@vx/plugins':
+      '@vx-foundation/plugins':
         specifier: workspace:*
         version: link:../plugins
-      '@vx/shared':
+      '@vx-foundation/shared':
         specifier: workspace:*
         version: link:../shared
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
       jiti:
@@ -343,7 +347,7 @@ importers:
 
   packages/data:
     dependencies:
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../runtime
     devDependencies:
@@ -356,10 +360,10 @@ importers:
       '@vitejs/plugin-basic-ssl':
         specifier: ^1.1.0
         version: 1.2.0(vite@6.4.3(@types/node@20.19.43)(jiti@2.6.1)(lightningcss@1.32.0))
-      '@vx/bundler':
+      '@vx-foundation/bundler':
         specifier: workspace:*
         version: link:../bundler
-      '@vx/shared':
+      '@vx-foundation/shared':
         specifier: workspace:*
         version: link:../shared
       vite:
@@ -405,19 +409,19 @@ importers:
 
   packages/language:
     dependencies:
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
 
   packages/language-server:
     dependencies:
-      '@vx/compiler':
+      '@vx-foundation/compiler':
         specifier: workspace:*
         version: link:../compiler
-      '@vx/language':
+      '@vx-foundation/language':
         specifier: workspace:*
         version: link:../language
-      '@vx/tooling':
+      '@vx-foundation/tooling':
         specifier: workspace:*
         version: link:../tooling
       vscode-languageserver:
@@ -451,7 +455,7 @@ importers:
 
   packages/plugins:
     dependencies:
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
 
@@ -470,19 +474,19 @@ importers:
 
   packages/router:
     dependencies:
-      '@vx/forms':
+      '@vx-foundation/forms':
         specifier: workspace:*
         version: link:../forms
-      '@vx/language':
+      '@vx-foundation/language':
         specifier: workspace:*
         version: link:../language
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@vx/shared':
+      '@vx-foundation/shared':
         specifier: workspace:*
         version: link:../shared
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
     devDependencies:
@@ -498,7 +502,7 @@ importers:
 
   packages/runtime:
     dependencies:
-      '@vx/shared':
+      '@vx-foundation/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
@@ -511,10 +515,10 @@ importers:
 
   packages/server:
     dependencies:
-      '@vx/router':
+      '@vx-foundation/router':
         specifier: workspace:*
         version: link:../router
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../runtime
     devDependencies:
@@ -524,19 +528,19 @@ importers:
 
   packages/shared:
     dependencies:
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
 
   packages/tooling:
     dependencies:
-      '@vx/compiler':
+      '@vx-foundation/compiler':
         specifier: workspace:*
         version: link:../compiler
-      '@vx/language':
+      '@vx-foundation/language':
         specifier: workspace:*
         version: link:../language
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
     devDependencies:
@@ -554,7 +558,7 @@ importers:
 
   packages/vscode-extension:
     dependencies:
-      '@vx/tooling':
+      '@vx-foundation/tooling':
         specifier: workspace:*
         version: link:../tooling
       vscode-languageclient:
@@ -582,7 +586,7 @@ importers:
 
   packages/widgets:
     dependencies:
-      '@vx/types':
+      '@vx-foundation/types':
         specifier: workspace:*
         version: link:../types
     devDependencies:
@@ -592,13 +596,13 @@ importers:
 
   tests:
     devDependencies:
-      '@vx/testing':
+      '@vx-foundation/testing':
         specifier: workspace:*
         version: link:../packages/testing
-      '@vx/security-testing':
+      '@vx-foundation/security-testing':
         specifier: workspace:*
         version: link:../packages/security-testing
-      '@vx/benchmark':
+      '@vx-foundation/benchmark':
         specifier: workspace:*
         version: link:../packages/benchmark
       '@playwright/test':
@@ -607,22 +611,22 @@ importers:
       '@types/node':
         specifier: ^24.0.0
         version: 24.13.2
-      '@vx/cli':
+      '@vx-foundation/cli':
         specifier: workspace:*
         version: link:../packages/cli
-      '@vx/compiler':
+      '@vx-foundation/compiler':
         specifier: workspace:*
         version: link:../packages/compiler
-      '@vx/core':
+      '@vx-foundation/core':
         specifier: workspace:*
         version: link:../packages/core
-      '@vx/forms':
+      '@vx-foundation/forms':
         specifier: workspace:*
         version: link:../packages/forms
-      '@vx/language':
+      '@vx-foundation/language':
         specifier: workspace:*
         version: link:../packages/language
-      '@vx/runtime':
+      '@vx-foundation/runtime':
         specifier: workspace:*
         version: link:../packages/runtime
       jsdom:

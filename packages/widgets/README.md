@@ -1,4 +1,4 @@
-# @vx/widgets
+# @vx-foundation/widgets
 
 Industrial-grade Native Widget Primitives for the VX Framework
 
@@ -7,7 +7,7 @@ Industrial-grade Native Widget Primitives for the VX Framework
 ## Installation
 
 ```bash
-pnpm add @vx/widgets
+pnpm add @vx-foundation/widgets
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

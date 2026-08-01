@@ -22,17 +22,17 @@ export function runCreateVX(input: readonly string[], runtime: CreateVXRuntime =
   let cliPath: string;
   try { cliPath = runtime.resolveCli(); }
   catch (cause) {
-    runtime.report(`Could not resolve @vx/cli: ${cause instanceof Error ? cause.message : String(cause)}`);
+    runtime.report(`Could not resolve @vx-foundation/cli: ${cause instanceof Error ? cause.message : String(cause)}`);
     return 1;
   }
 
   const result = runtime.spawn(process.execPath, [cliPath, ...args]);
   if (result.error) {
-    runtime.report(`Could not start @vx/cli: ${result.error.message}`);
+    runtime.report(`Could not start @vx-foundation/cli: ${result.error.message}`);
     return 1;
   }
   if (result.signal) {
-    runtime.report(`@vx/cli terminated by signal ${result.signal}.`);
+    runtime.report(`@vx-foundation/cli terminated by signal ${result.signal}.`);
     return 1;
   }
   return result.status ?? 1;
@@ -41,7 +41,7 @@ export function runCreateVX(input: readonly string[], runtime: CreateVXRuntime =
 function defaultRuntime(): CreateVXRuntime {
   const require = createRequire(import.meta.url);
   return {
-    resolveCli: () => require.resolve('@vx/cli'),
+    resolveCli: () => require.resolve('@vx-foundation/cli'),
     spawn: (executable, args) => spawnSync(executable, args, { stdio: 'inherit', env: process.env }),
     report: (message) => console.error(message)
   };

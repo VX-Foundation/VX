@@ -4,7 +4,7 @@ Trusted publishing is the permanent release path for VX. A new npm package must 
 
 ## Preconditions
 
-1. Confirm that the `@vx` npm scope and the unscoped `create-vx` name are controlled by the VX maintainers. Package-name availability is not assumed by this repository.
+1. Confirm that the `@vx-foundation` npm organization is controlled by the VX maintainers and that the publishing account belongs to it with package creation permission.
 2. Enable two-factor authentication on every maintainer account.
 3. Run the repository, package, clean-room, security, and `next` readiness gates from a clean commit.
 4. Inspect every generated tarball and confirm its repository, license, README, exports, integrity, and version.
@@ -18,7 +18,7 @@ Use one of these reviewed bootstrap methods:
 
 Do not store a permanent automation token in the repository or organization.
 
-The initial public line is `0.1.0` and must use the `next` distribution tag. `latest` remains reserved for the approved VX 1.0 release.
+The initial VX Foundation public line is `0.1.1` and must use the `next` distribution tag. Version `0.1.0` remains an unpublished internal baseline. `latest` remains reserved for the approved VX 1.0 release.
 
 ## Enable trusted publishing
 

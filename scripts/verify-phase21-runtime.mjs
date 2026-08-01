@@ -38,12 +38,12 @@ try {
       } else if (full.endsWith('.js')) {
         let code = readFileSync(full, 'utf8');
         code = code
-          .replace(/'@vx\/server'/g, `'${pathToFileURL(join(root, 'packages/server/dist/index.js')).href}'`)
-          .replace(/'@vx\/server\/([a-zA-Z0-9_-]+)'/g, (_, sub) => `'${pathToFileURL(join(root, `packages/server/dist/${sub}.js`)).href}'`)
-          .replace(/'@vx\/runtime'/g, `'${pathToFileURL(join(root, 'packages/runtime/dist/index.js')).href}'`)
-          .replace(/'@vx\/runtime\/([a-zA-Z0-9_-]+)'/g, (_, sub) => `'${pathToFileURL(join(root, `packages/runtime/dist/${sub}.js`)).href}'`)
-          .replace(/'@vx\/data'/g, `'${pathToFileURL(join(root, 'packages/data/dist/index.js')).href}'`)
-          .replace(/'@vx\/data\/([a-zA-Z0-9_-]+)'/g, (_, sub) => `'${pathToFileURL(join(root, `packages/data/dist/${sub}.js`)).href}'`);
+          .replace(/'@vx-foundation\/server'/g, `'${pathToFileURL(join(root, 'packages/server/dist/index.js')).href}'`)
+          .replace(/'@vx-foundation\/server\/([a-zA-Z0-9_-]+)'/g, (_, sub) => `'${pathToFileURL(join(root, `packages/server/dist/${sub}.js`)).href}'`)
+          .replace(/'@vx-foundation\/runtime'/g, `'${pathToFileURL(join(root, 'packages/runtime/dist/index.js')).href}'`)
+          .replace(/'@vx-foundation\/runtime\/([a-zA-Z0-9_-]+)'/g, (_, sub) => `'${pathToFileURL(join(root, `packages/runtime/dist/${sub}.js`)).href}'`)
+          .replace(/'@vx-foundation\/data'/g, `'${pathToFileURL(join(root, 'packages/data/dist/index.js')).href}'`)
+          .replace(/'@vx-foundation\/data\/([a-zA-Z0-9_-]+)'/g, (_, sub) => `'${pathToFileURL(join(root, `packages/data/dist/${sub}.js`)).href}'`);
         writeFileSync(full, code, 'utf8');
       }
     }

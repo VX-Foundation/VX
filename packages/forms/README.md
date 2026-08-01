@@ -1,4 +1,4 @@
-# @vx/forms
+# @vx-foundation/forms
 
 Typed VX forms, schema validation, progressive enhancement, and multipart handling.
 
@@ -7,7 +7,7 @@ Typed VX forms, schema validation, progressive enhancement, and multipart handli
 ## Installation
 
 ```bash
-pnpm add @vx/forms
+pnpm add @vx-foundation/forms
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

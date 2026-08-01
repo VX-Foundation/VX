@@ -3,13 +3,13 @@ import type {
   ViewNode,
   ExpressionNode,
   WidgetProperty,
-} from '@vx/types';
+} from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 import type { ReactiveGraph } from './graph-builder.js';
 import type { ComponentBindingContext } from '../components/context.js';
 import { collectReferencedIdentifiers } from './expression-identifiers.js';
-import { parse } from '@vx/language';
-import { PRIMITIVE_SOURCES } from '@vx/widgets';
+import { parse } from '@vx-foundation/language';
+import { PRIMITIVE_SOURCES } from '@vx-foundation/widgets';
 import { expandInterpolatedExpression } from '../interpolation.js';
 
 const primitivePropsCache = new Map<string, Set<string>>();
@@ -29,7 +29,7 @@ function getPrimitiveProps(tagName: string): Set<string> | null {
   const source = PRIMITIVE_SOURCES[tagName];
   if (!source) return null;
 
-  const parsed = parse(source, `@vx/widgets/${tagName}.vx`);
+  const parsed = parse(source, `@vx-foundation/widgets/${tagName}.vx`);
   const script = parsed.ast.blocks.find((block) => block.kind === 'ScriptBlock');
   const props = new Set<string>();
 
@@ -94,7 +94,7 @@ export function checkViewTypes(
           'VX_UNKNOWN_PROPERTY',
           `Property '${prop.name}' does not exist on primitive widget '${widgetName}'.`,
           prop.span,
-          `Check the signature of '${widgetName}.vx' in @vx/widgets.`
+          `Check the signature of '${widgetName}.vx' in @vx-foundation/widgets.`
         );
       }
     }

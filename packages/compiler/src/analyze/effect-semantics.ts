@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import type { EffectDeclaration } from '@vx/types';
+import type { EffectDeclaration } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 
 export function validateEffectDeclaration(effect: EffectDeclaration, diagnostics: DiagnosticCollector): void {

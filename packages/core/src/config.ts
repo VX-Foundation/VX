@@ -1,6 +1,6 @@
 import { createJiti } from 'jiti';
 import { resolve } from 'node:path';
-import type { VXConfig } from '@vx/types';
+import type { VXConfig } from '@vx-foundation/types';
 import { fileURLToPath } from 'node:url';
 
 /**

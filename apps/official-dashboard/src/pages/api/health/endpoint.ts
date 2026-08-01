@@ -1,4 +1,4 @@
-import { applySecurityHeaders } from '@vx/server/security';
+import { applySecurityHeaders } from '@vx-foundation/server/security';
 
 export function GET(): Response {
   const headers = applySecurityHeaders(new Headers({ 'content-type': 'application/json; charset=utf-8' }));

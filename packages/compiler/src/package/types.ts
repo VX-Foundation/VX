@@ -1,4 +1,4 @@
-import type { Diagnostic } from '@vx/types';
+import type { Diagnostic } from '@vx-foundation/types';
 
 export const VX_PACKAGE_MANIFEST_SCHEMA = 'vx.package-manifest';
 export const VX_PACKAGE_MANIFEST_VERSION = 1;

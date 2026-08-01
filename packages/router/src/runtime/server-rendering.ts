@@ -1,4 +1,4 @@
-import type { ServerRenderContext } from '@vx/runtime/server';
+import type { ServerRenderContext } from '@vx-foundation/runtime/server';
 import type { RouteLocation, RuntimeServerRouteRecord, VXServerRouteComponentModule } from '../types.js';
 
 export async function loadServerRouteModules(route: RuntimeServerRouteRecord, signal: AbortSignal): Promise<{ page: VXServerRouteComponentModule; layouts: VXServerRouteComponentModule[] }> {

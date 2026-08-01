@@ -6,7 +6,7 @@ const root = resolve(import.meta.dirname, '..');
 const read = (path) => readFileSync(resolve(root, path), 'utf8');
 
 for (const name of ['testing', 'security-testing', 'benchmark']) {
-  assert.ok(existsSync(resolve(root, 'packages', name, 'package.json')), `Missing @vx/${name}.`);
+  assert.ok(existsSync(resolve(root, 'packages', name, 'package.json')), `Missing @vx-foundation/${name}.`);
 }
 
 const testing = ['types', 'runner', 'dom', 'component', 'ssr', 'routes', 'accessibility', 'visual', 'performance', 'browser']
@@ -68,7 +68,7 @@ for (const framework of ['vx', 'react', 'next', 'svelte', 'sveltekit', 'solid', 
 
 const exports = JSON.parse(read('packages/testing/package.json')).exports;
 for (const entry of ['./runner', './dom', './component', './routes', './ssr', './visual', './accessibility', './performance', './browser']) {
-  assert.ok(exports[entry], `@vx/testing is missing ${entry}.`);
+  assert.ok(exports[entry], `@vx-foundation/testing is missing ${entry}.`);
 }
 
 console.log('Phase 20 structural verification passed.');

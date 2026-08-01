@@ -1,4 +1,4 @@
-import type { DataProgramIR, ScriptBlockNode, ScriptStatement } from '@vx/types';
+import type { DataProgramIR, ScriptBlockNode, ScriptStatement } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 import type { ReactiveGraph } from './graph-builder.js';
 import { collectMutatedIdentifiers, expressionContainsMutationOrAwait } from './expression-identifiers.js';

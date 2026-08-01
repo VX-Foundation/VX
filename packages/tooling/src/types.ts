@@ -1,4 +1,4 @@
-import type { Diagnostic, SourceSpan } from '@vx/types';
+import type { Diagnostic, SourceSpan } from '@vx-foundation/types';
 
 export interface TextEdit {
   span: SourceSpan;

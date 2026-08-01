@@ -1,4 +1,4 @@
-import { createRouteEndpointHandler, defineEndpoint } from '@vx/server';
+import { createRouteEndpointHandler, defineEndpoint } from '@vx-foundation/server';
 
 const checkout = defineEndpoint(
   { id: 'commerce.checkout', methods: ['POST'], body: { maxBytes: 65_536 } },

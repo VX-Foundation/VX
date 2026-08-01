@@ -1,4 +1,4 @@
-# @vx/server
+# @vx-foundation/server
 
 VX production server platform with request context, sessions, middleware, security, observability, and Node adapters.
 
@@ -7,7 +7,7 @@ VX production server platform with request context, sessions, middleware, securi
 ## Installation
 
 ```bash
-pnpm add @vx/server
+pnpm add @vx-foundation/server
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

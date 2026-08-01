@@ -1,4 +1,4 @@
-import type { FormIR, SchemaIR } from '@vx/types';
+import type { FormIR, SchemaIR } from '@vx-foundation/types';
 import { lowerExpression, type JavaScriptBinding } from '../codegen/javascript.js';
 
 export function emitSchemas(schemas: readonly SchemaIR[], bindings: ReadonlyMap<string, JavaScriptBinding>, indent = ''): string {

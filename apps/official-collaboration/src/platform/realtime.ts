@@ -3,8 +3,8 @@ import {
   RealtimeClient,
   createInfiniteQuery,
   createMemoryPersistenceAdapter
-} from '@vx/data';
-import { QueryClient, createAction, createQuery, state } from '@vx/runtime';
+} from '@vx-foundation/data';
+import { QueryClient, createAction, createQuery, state } from '@vx-foundation/runtime';
 
 export interface CollaborativeEvent { id: string; version: number; body: string; }
 export interface ActivityPage { items: readonly { id: string; label: string }[]; next?: number; }

@@ -5,10 +5,10 @@
  */
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import type { ComponentArtifact, Diagnostic } from '@vx/types';
-import { compareHMRSignatures, createHMRSignature, type HMRSignature } from '@vx/tooling/hmr';
-import { compileComponentProject } from '@vx/compiler/project';
-import { buildApplicationGraph, generateApplicationModules, type ApplicationGraph, type GeneratedApplicationModules } from '@vx/router';
+import type { ComponentArtifact, Diagnostic } from '@vx-foundation/types';
+import { compareHMRSignatures, createHMRSignature, type HMRSignature } from '@vx-foundation/tooling/hmr';
+import { compileComponentProject } from '@vx-foundation/compiler/project';
+import { buildApplicationGraph, generateApplicationModules, type ApplicationGraph, type GeneratedApplicationModules } from '@vx-foundation/router';
 import type { Plugin, ResolvedConfig } from 'vite';
 
 const PUBLIC_COMPONENT_PREFIX = 'virtual:vx-component/';
@@ -285,7 +285,7 @@ function browserEntryModule(pagesDir: string): string {
   const pattern = `/${sourceDirectory || 'src'}/**/*.vx`;
   return [
     `import { createVXApplication } from 'virtual:vx-app';`,
-    `import { QueryClient, StoreRegistry, hydrateQueryClient, hydrateIslands, readHydrationState } from '@vx/runtime/client';`,
+    `import { QueryClient, StoreRegistry, hydrateQueryClient, hydrateIslands, readHydrationState } from '@vx-foundation/runtime/client';`,
     `const root = document.getElementById('vx-app');`,
     `if (!root) throw new Error('VX application root was not found.');`,
     `const state = readHydrationState(document);`,
@@ -319,13 +319,13 @@ function browserEntryModule(pagesDir: string): string {
 
 
 function edgeEntryModule(serverModule: string): string {
-  return serverModule.replace(`from '@vx/server'`, `from '@vx/router/server'`);
+  return serverModule.replace(`from '@vx-foundation/server'`, `from '@vx-foundation/router/server'`);
 }
 
 function nodeStandaloneEntryModule(): string {
   return `import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { createStaticFileHandler, startNodeServer } from '@vx/server/node';
+import { createStaticFileHandler, startNodeServer } from '@vx-foundation/server/node';
 import createVXServerApplication from 'virtual:vx-server-app';
 const clientDirectory = fileURLToPath(new URL('../client/', import.meta.url));
 const staticFiles = createStaticFileHandler({ root: clientDirectory, prefix: '/', immutablePrefix: '/assets/' });

@@ -4,6 +4,8 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
+const rootManifest = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
+const frameworkVersion = rootManifest.version;
 const specDirectory = join(root, 'docs', 'spec');
 const specFiles = (await readdir(specDirectory, { withFileTypes: true }))
   .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
@@ -21,7 +23,7 @@ for (const path of specFiles) {
 const spec = {
   schema: 'https://vx.dev/schemas/spec-freeze/v1',
   version: 1,
-  frameworkVersion: '0.1.0',
+  frameworkVersion,
   specificationVersion: '0.1',
   frozenAt: '2026-07-30',
   files,
@@ -38,7 +40,7 @@ const entrypoints = Array.isArray(api.packages)
 const apiFreeze = {
   schema: 'https://vx.dev/schemas/api-freeze/v1',
   version: 1,
-  frameworkVersion: '0.1.0',
+  frameworkVersion,
   frozenAt: '2026-07-30',
   path: 'release/api-baseline.json',
   packages: Array.isArray(api.packages) ? api.packages.length : 0,

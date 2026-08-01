@@ -1,5 +1,5 @@
-import { createAction, state } from '@vx/runtime';
-import { OfflineMutationQueue, createMemoryPersistenceAdapter } from '@vx/data';
+import { createAction, state } from '@vx-foundation/runtime';
+import { OfflineMutationQueue, createMemoryPersistenceAdapter } from '@vx-foundation/data';
 
 export interface CartLine { productId: string; quantity: number; unitPrice: number; }
 export const cartLines = state<readonly CartLine[]>([]);

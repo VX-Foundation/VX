@@ -1,4 +1,4 @@
-import type { ExpressionNode, ViewBlockNode, ViewNode, WidgetNode, WidgetProperty } from '@vx/types';
+import type { ExpressionNode, ViewBlockNode, ViewNode, WidgetNode, WidgetProperty } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 
 const FORM_CONTROLS = new Set(['Input', 'TextArea', 'Select', 'Checkbox', 'Radio', 'Slider', 'Switch']);

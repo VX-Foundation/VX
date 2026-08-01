@@ -46,9 +46,9 @@ for (const directory of packages) {
   if (manifest.private) continue;
   publicCount += 1;
   assert.equal(manifest.license, 'MIT', `${manifest.name} must declare MIT.`);
-  const expectedFiles = manifest.name === '@vx/cli'
+  const expectedFiles = manifest.name === '@vx-foundation/cli'
     ? ['dist', 'bin', 'templates', 'README.md', 'LICENSE']
-    : manifest.name === 'create-vx'
+    : manifest.name === '@vx-foundation/create-vx'
       ? ['dist', 'bin', 'README.md', 'LICENSE']
       : ['dist', 'README.md', 'LICENSE'];
   assert.deepEqual(manifest.files, expectedFiles, `${manifest.name} must publish the expected artifacts.`);

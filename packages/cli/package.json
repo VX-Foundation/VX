@@ -1,6 +1,6 @@
 {
-  "name": "@vx/cli",
-  "version": "0.1.0",
+  "name": "@vx-foundation/cli",
+  "version": "0.1.1",
   "description": "CLI for VX Framework",
   "main": "./dist/cli.js",
   "type": "module",
@@ -15,13 +15,13 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vx/core": "workspace:*",
-    "@vx/plugins": "workspace:*",
+    "@vx-foundation/core": "workspace:*",
+    "@vx-foundation/plugins": "workspace:*",
     "cac": "^6.7.14",
     "picocolors": "^1.1.1",
-    "@vx/tooling": "workspace:*",
-    "@vx/release": "workspace:*",
-    "@vx/package-system": "workspace:*"
+    "@vx-foundation/tooling": "workspace:*",
+    "@vx-foundation/release": "workspace:*",
+    "@vx-foundation/package-system": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

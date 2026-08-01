@@ -1,5 +1,5 @@
 import { createServer, type InlineConfig } from 'vite';
-import { vitePluginVX } from '@vx/bundler';
+import { vitePluginVX } from '@vx-foundation/bundler';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { Readable } from 'node:stream';
 import { resolve } from 'node:path';

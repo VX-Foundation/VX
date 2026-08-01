@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createRouteHarness } from '@vx/testing';
+import { createRouteHarness } from '@vx-foundation/testing';
 
 describe('official route testing', () => {
   it('tests matching and navigation through one production-shaped contract', async () => {

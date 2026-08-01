@@ -1,4 +1,4 @@
-import type { Diagnostic, ModelDeclaration, ModelFieldNode, ProgramNode, SourcePosition, TopLevelBlock } from '@vx/types';
+import type { Diagnostic, ModelDeclaration, ModelFieldNode, ProgramNode, SourcePosition, TopLevelBlock } from '@vx-foundation/types';
 
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { Scanner } from './scanner.js';

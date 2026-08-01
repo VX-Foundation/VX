@@ -1,4 +1,4 @@
-import { authorizeServerRequest, type AuthorizationPolicy } from '@vx/server';
+import { authorizeServerRequest, type AuthorizationPolicy } from '@vx-foundation/server';
 
 export const dashboardPolicies = Object.freeze({
   overview: { permissions: ['dashboard.read'] },

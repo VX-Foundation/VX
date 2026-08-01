@@ -1,4 +1,4 @@
-import type { QueryClient } from '@vx/runtime';
+import type { QueryClient } from '@vx-foundation/runtime';
 
 export interface RealtimeMessage<T = unknown> {
   id: string;

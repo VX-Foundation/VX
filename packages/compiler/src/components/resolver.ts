@@ -11,8 +11,8 @@ import type {
   ProgramNode,
   ResolvedComponentImport,
   SourceSpan
-} from '@vx/types';
-import { parse } from '@vx/language';
+} from '@vx-foundation/types';
+import { parse } from '@vx-foundation/language';
 import { readFileSync, realpathSync, statSync } from 'node:fs';
 import { dirname, extname, isAbsolute, relative, resolve, sep } from 'node:path';
 

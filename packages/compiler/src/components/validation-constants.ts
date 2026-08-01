@@ -1,4 +1,4 @@
-import type { ScriptStatement } from '@vx/types';
+import type { ScriptStatement } from '@vx-foundation/types';
 
 export const ALLOWED_PUBLIC_KINDS = new Set<ScriptStatement['kind']>([
   'ConstDeclaration',

@@ -61,7 +61,7 @@ assert.equal(satisfiesSemver('1.2.3-beta.2', '>=1.2.3-beta.1 <1.2.3'), true);
 
 // Public contracts classify compatibility and required semantic-version movement.
 const baseMetadata = {
-  schema: 'https://vx.dev/schemas/package/v1', version: 1, name: '@vx/demo', packageVersion: '1.0.0',
+  schema: 'https://vx.dev/schemas/package/v1', version: 1, name: '@vx-foundation/demo', packageVersion: '1.0.0',
   exports: { '.': './dist/index.js', './feature': './dist/feature.js' }, privateModules: ['./internal/*'],
   publicContracts: { '.': { integrity: 'sha512-base', declarationsIntegrity: 'sha512-types', symbols: ['main'] }, './feature': 'sha512-feature' }
 };
@@ -150,7 +150,7 @@ mkdirSync(join(pluginPackage, 'dist'), { recursive: true });
 writeFileSync(join(pluginPackage, 'package.json'), JSON.stringify({ name: 'demo-vx-plugin', version: '1.0.0', type: 'module', exports: { '.': { import: './dist/index.js' } } }));
 writeFileSync(join(pluginPackage, 'dist', 'index.js'), `export default function plugin() { return { name: 'demo-vx-plugin', manifest: { name: 'demo-vx-plugin', version: '1.0.0', apiVersion: '1', capabilities: ['build', 'emit-file'], permissions: ['write-output'], deterministic: true }, setup(context) { context.registerHook('buildEnd', () => context.emitFile('plugin.txt', 'isolated')); } }; }`);
 const host = new PluginHost(root);
-const isolated = await loadIsolatedIntegration('@vx/plugins/sitemap', { site: 'https://example.com' }, { root, timeoutMs: 5_000 });
+const isolated = await loadIsolatedIntegration('@vx-foundation/plugins/sitemap', { site: 'https://example.com' }, { root, timeoutMs: 5_000 });
 const installedPlugin = await loadIsolatedIntegration('demo-vx-plugin', undefined, { root, timeoutMs: 5_000 });
 await host.install(isolated);
 await host.install(installedPlugin);

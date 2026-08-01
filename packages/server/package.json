@@ -1,6 +1,6 @@
 {
-  "name": "@vx/server",
-  "version": "0.1.0",
+  "name": "@vx-foundation/server",
+  "version": "0.1.1",
   "type": "module",
   "description": "VX production server platform with request context, sessions, middleware, security, observability, and Node adapters.",
   "main": "./dist/index.js",
@@ -41,8 +41,8 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@vx/router": "workspace:*",
-    "@vx/runtime": "workspace:*"
+    "@vx-foundation/router": "workspace:*",
+    "@vx-foundation/runtime": "workspace:*"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",

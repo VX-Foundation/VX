@@ -36,7 +36,7 @@ async function main() {
   try {
     const runtimeUrl = pathToFileURL(join(root, 'packages/runtime/dist/client.js')).href;
     const modulePath = join(directory, 'visual.mjs');
-    await writeFile(modulePath, output.clientCode.replace("'@vx/runtime/client'", JSON.stringify(runtimeUrl)), 'utf8');
+    await writeFile(modulePath, output.clientCode.replace("'@vx-foundation/runtime/client'", JSON.stringify(runtimeUrl)), 'utf8');
     const { default: mount } = await import(`${pathToFileURL(modulePath).href}?run=${Date.now()}`);
 
     const mountRoot = new FakeElement('main');

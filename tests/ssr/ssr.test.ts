@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { assertDeterministicMarkup } from '@vx/testing';
+import { assertDeterministicMarkup } from '@vx-foundation/testing';
 
 describe('official SSR testing', () => {
   it('requires deterministic markup', async () => {

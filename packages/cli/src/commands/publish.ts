@@ -2,9 +2,9 @@ import { lstatSync, readFileSync, readdirSync, statSync, writeFileSync } from 'n
 import { isAbsolute, join, relative, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import pc from 'picocolors';
-import { packageLibrary } from '@vx/core/package';
-import { canonicalJson, createPublicationManifest, signPackagePayload, verifyPublicationManifest } from '@vx/package-system';
-import { createProvenanceManifest, validatePackagePolicy } from '@vx/release';
+import { packageLibrary } from '@vx-foundation/core/package';
+import { canonicalJson, createPublicationManifest, signPackagePayload, verifyPublicationManifest } from '@vx-foundation/package-system';
+import { createProvenanceManifest, validatePackagePolicy } from '@vx-foundation/release';
 import { detectPackageManager } from './workspace.js';
 
 export interface PublishCommandOptions {

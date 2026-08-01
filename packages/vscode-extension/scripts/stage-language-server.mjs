@@ -9,7 +9,7 @@ try {
   const metadata = await stat(resolve(source, 'server.js'));
   if (!metadata.isFile()) throw new Error('server.js is not a file');
 } catch {
-  throw new Error('Build @vx/language-server before staging the VS Code extension.');
+  throw new Error('Build @vx-foundation/language-server before staging the VS Code extension.');
 }
 await rm(target, { recursive: true, force: true });
 await mkdir(target, { recursive: true });

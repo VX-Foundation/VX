@@ -15,28 +15,28 @@ This document defines package ownership and communication boundaries for the cur
 
 | Unit | Primary side | Browser output | Responsibility |
 |---|---|---:|---|
-| `@vx/types` | shared types | erased | AST, IR, contracts, diagnostics |
-| `@vx/shared` | build time | no | pure utilities and hashing |
-| `@vx/language` | build time | playground only | scanner, parser, AST construction |
-| `@vx/compiler` | build time | playground only | analysis, graphs, IR, secure component projects, lowering |
-| `@vx/widgets` | build time metadata | no | canonical primitive contracts |
-| `@vx/runtime` | runtime | yes | selected reactive, DOM, data, visual, and component primitives |
-| `@vx/forms` | split | client and server slices | schemas, form state, progressive enhancement, secure form dispatch, and accessibility |
-| `@vx/data` | split | client and server slices | persistence, offline mutations, infinite data, realtime transports, and cache synchronization |
-| `@vx/router` | split | client and server slices | final route graph, typed URLs, matching, middleware, loaders, navigation, metadata, and rendering coordination |
-| `@vx/server` | server | no | request contexts, cookies, sessions, middleware, endpoints, authorization, security, observability, and production adapters |
-| `@vx/bundler` | build time | no | Vite integration, artifact graph, adapters |
-| `@vx/dev-server` | build time | no | development orchestration and HMR foundation |
-| `@vx/core` | build time | no | configuration and framework orchestration |
-| `@vx/package-system` | developer/build time | no | package metadata, workspaces, `vx.lock`, integrity, signatures, and mutations |
-| `@vx/interop` | split contract | selected helpers | npm/TypeScript declarations, FFI, streams, classes, and environment boundaries |
-| `@vx/devtools` | development runtime | development only | inspector protocol, bounded store, bridge, and transport contracts |
-| `@vx/plugins` | isolated build workers | no by default | versioned, capability-mediated integrations |
-| `@vx/cli` | developer machine | no | command parsing and dispatch |
-| `@vx/language-server` | editor process | no | diagnostics and language features |
+| `@vx-foundation/types` | shared types | erased | AST, IR, contracts, diagnostics |
+| `@vx-foundation/shared` | build time | no | pure utilities and hashing |
+| `@vx-foundation/language` | build time | playground only | scanner, parser, AST construction |
+| `@vx-foundation/compiler` | build time | playground only | analysis, graphs, IR, secure component projects, lowering |
+| `@vx-foundation/widgets` | build time metadata | no | canonical primitive contracts |
+| `@vx-foundation/runtime` | runtime | yes | selected reactive, DOM, data, visual, and component primitives |
+| `@vx-foundation/forms` | split | client and server slices | schemas, form state, progressive enhancement, secure form dispatch, and accessibility |
+| `@vx-foundation/data` | split | client and server slices | persistence, offline mutations, infinite data, realtime transports, and cache synchronization |
+| `@vx-foundation/router` | split | client and server slices | final route graph, typed URLs, matching, middleware, loaders, navigation, metadata, and rendering coordination |
+| `@vx-foundation/server` | server | no | request contexts, cookies, sessions, middleware, endpoints, authorization, security, observability, and production adapters |
+| `@vx-foundation/bundler` | build time | no | Vite integration, artifact graph, adapters |
+| `@vx-foundation/dev-server` | build time | no | development orchestration and HMR foundation |
+| `@vx-foundation/core` | build time | no | configuration and framework orchestration |
+| `@vx-foundation/package-system` | developer/build time | no | package metadata, workspaces, `vx.lock`, integrity, signatures, and mutations |
+| `@vx-foundation/interop` | split contract | selected helpers | npm/TypeScript declarations, FFI, streams, classes, and environment boundaries |
+| `@vx-foundation/devtools` | development runtime | development only | inspector protocol, bounded store, bridge, and transport contracts |
+| `@vx-foundation/plugins` | isolated build workers | no by default | versioned, capability-mediated integrations |
+| `@vx-foundation/cli` | developer machine | no | command parsing and dispatch |
+| `@vx-foundation/language-server` | editor process | no | diagnostics and language features |
 | `vx-vscode` | editor extension | no | VS Code client and grammar |
-| `create-vx` | developer machine | no | project scaffolding entrypoint |
-| `@vx/playground` | standalone browser app | yes | browser-hosted compiler demonstration |
+| `@vx-foundation/create-vx` | developer machine | no | project scaffolding entrypoint |
+| `@vx-foundation/playground` | standalone browser app | yes | browser-hosted compiler demonstration |
 
 ## `packages/types`
 
@@ -173,9 +173,9 @@ client/request runtime contexts
 Public runtime entrypoints:
 
 ```text
-@vx/runtime
-@vx/runtime/client
-@vx/runtime/server
+@vx-foundation/runtime
+@vx-foundation/runtime/client
+@vx-foundation/runtime/server
 ```
 
 ## `packages/data`
@@ -189,7 +189,7 @@ Public runtime entrypoints:
 - WebSocket/EventSource realtime clients;
 - server peer hubs and backplane contracts.
 
-It consumes the query/action contracts from `@vx/runtime`. It does not implement compiler semantics, route discovery, authentication, or vendor-specific storage/message-broker adapters.
+It consumes the query/action contracts from `@vx-foundation/runtime`. It does not implement compiler semantics, route discovery, authentication, or vendor-specific storage/message-broker adapters.
 
 ## `packages/router`
 
@@ -219,7 +219,7 @@ The router consumes compiler-owned component contracts and generated modules. It
 - structured logging, tracing, environment validation, and server timing;
 - Node HTTP bridging, static assets, compression, and graceful shutdown.
 
-The package wraps `@vx/router/server`; it does not rediscover routes, reimplement rendering, or own compiler semantics. Distributed stores and vendor observability exporters remain adapters over public contracts.
+The package wraps `@vx-foundation/router/server`; it does not rediscover routes, reimplement rendering, or own compiler semantics. Distributed stores and vendor observability exporters remain adapters over public contracts.
 
 ## `packages/bundler`
 
@@ -232,7 +232,7 @@ The package wraps `@vx/router/server`; it does not rediscover routes, reimplemen
 - diagnostic location forwarding;
 - adapter and production graph foundations.
 
-The bundler never resolves component contracts independently. It calls `@vx/compiler/project` and consumes emitted artifacts.
+The bundler never resolves component contracts independently. It calls `@vx-foundation/compiler/project` and consumes emitted artifacts.
 
 HMR recompiles the affected graph and compares compiler-derived component, state, store, and query signatures. Compatible remounts preserve route-level query/store runtime state; incompatible changes reload explicitly.
 
@@ -292,7 +292,7 @@ Command implementations should remain small. Plugin commands that are not implem
 - component harnesses and browser fixture boundaries;
 - deterministic legacy migration.
 
-Tooling consumes `@vx/language` and `@vx/compiler`; it does not maintain a parallel parser or semantic model.
+Tooling consumes `@vx-foundation/language` and `@vx-foundation/compiler`; it does not maintain a parallel parser or semantic model.
 
 ## `packages/language-server`
 
@@ -306,7 +306,7 @@ Current features include parser/analyzer diagnostics and completions for:
 - outputs, content regions, visual parts, and `emit`;
 - visual roles and managed runtime helpers.
 
-The server delegates semantic navigation, references, rename, document symbols, formatting, and code actions to `@vx/tooling`. Project-wide import-graph indexing beyond open compiler documents remains release-hardening work.
+The server delegates semantic navigation, references, rename, document symbols, formatting, and code actions to `@vx-foundation/tooling`. Project-wide import-graph indexing beyond open compiler documents remains release-hardening work.
 
 ## `packages/vscode-extension`
 
@@ -322,7 +322,7 @@ It must not import unpublished internal CLI files.
 
 ## `apps/playground`
 
-**Owns:** a standalone browser compiler explorer where `@vx/tooling` runs in a Web Worker and exposes live preview, diagnostics, Reactive/Visual IR, client/server boundaries, source maps, and generated client/server output.
+**Owns:** a standalone browser compiler explorer where `@vx-foundation/tooling` runs in a Web Worker and exposes live preview, diagnostics, Reactive/Visual IR, client/server boundaries, source maps, and generated client/server output.
 
 The playground is not shipped with generated applications and is not evidence of production sandboxing or browser security conformance.
 
@@ -348,7 +348,7 @@ entry .vx file
   → per-module semantic/reactive/visual/data analysis
   → dependency-first ESM artifacts
   → private bundler virtual modules
-  → generated output imports @vx/runtime/client
+  → generated output imports @vx-foundation/runtime/client
   → wrapper-free mount and deterministic cleanup
 ```
 
@@ -372,12 +372,12 @@ A package or syntax node is not considered complete until its language contract,
 It reads generated declarations and package manifests only. It must not compile VX source, publish automatically, infer repository identity, or weaken stable-release gates.
 
 
-## @vx/forms
+## @vx-foundation/forms
 
 Typed schema validation, form controllers, progressive enhancement, multipart decoding, accessible field bindings, registered server form dispatch, and SSR-native form helpers. Public entrypoints: `.`, `./client`, and `./server`.
 
-- `@vx/testing`: official deterministic testing contracts for every framework layer.
+- `@vx-foundation/testing`: official deterministic testing contracts for every framework layer.
 
-- `@vx/security-testing`: deterministic fuzzing, secret scanning, and supply-chain policies.
+- `@vx-foundation/security-testing`: deterministic fuzzing, secret scanning, and supply-chain policies.
 
-- `@vx/benchmark`: public cross-framework benchmark protocol and reports.
+- `@vx-foundation/benchmark`: public cross-framework benchmark protocol and reports.

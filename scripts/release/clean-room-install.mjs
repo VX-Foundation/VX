@@ -57,7 +57,7 @@ module.exports = {
 }
 
 async function publicPackageDirectories(workspace) {
-  const result = [];
+  const result = [workspace];
   for (const parent of ['packages', 'apps']) {
     for (const entry of await readdir(join(workspace, parent), { withFileTypes: true })) {
       if (!entry.isDirectory()) continue;

@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import type { QueryDeclaration, QueryPolicyIR } from '@vx/types';
+import type { QueryDeclaration, QueryPolicyIR } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 
 export function validateQueryDeclaration(

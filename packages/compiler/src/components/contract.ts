@@ -5,8 +5,8 @@ import type {
   ProgramNode,
   ScriptBlockNode,
   ViewBlockNode
-} from '@vx/types';
-import { hashContent } from '@vx/shared';
+} from '@vx-foundation/types';
+import { hashContent } from '@vx-foundation/shared';
 
 /** Extracts the immutable public contract of one parsed VX module. */
 export function extractComponentContract(program: ProgramNode): ComponentContract {

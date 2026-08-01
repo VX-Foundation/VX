@@ -1,4 +1,4 @@
-# @vx/compiler
+# @vx-foundation/compiler
 
 Compiler core: Reactive graph, type checking, lowering.
 
@@ -7,7 +7,7 @@ Compiler core: Reactive graph, type checking, lowering.
 ## Installation
 
 ```bash
-pnpm add @vx/compiler
+pnpm add @vx-foundation/compiler
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

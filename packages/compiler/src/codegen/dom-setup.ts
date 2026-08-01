@@ -1,4 +1,4 @@
-import type { DataProgramIR, QueryPolicyIR, ScriptBlockNode, ScriptStatement } from '@vx/types';
+import type { DataProgramIR, QueryPolicyIR, ScriptBlockNode, ScriptStatement } from '@vx-foundation/types';
 import type { ReactiveGraph } from '../analyze/graph-builder.js';
 import type { ComponentCodegenContext } from '../components/codegen-context.js';
 import { isRuntimeDeclaration } from './component-module.js';

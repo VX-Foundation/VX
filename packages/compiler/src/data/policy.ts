@@ -1,4 +1,4 @@
-import type { ExpressionNode, QueryDeclaration, QueryPolicyIR } from '@vx/types';
+import type { ExpressionNode, QueryDeclaration, QueryPolicyIR } from '@vx-foundation/types';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 
 const DEFAULT_POLICY: QueryPolicyIR = Object.freeze({

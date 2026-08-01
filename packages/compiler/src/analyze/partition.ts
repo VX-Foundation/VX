@@ -1,4 +1,4 @@
-import type { ScriptBlockNode, ViewBlockNode, ViewNode, ExpressionNode, StateStatement } from '@vx/types';
+import type { ScriptBlockNode, ViewBlockNode, ViewNode, ExpressionNode, StateStatement } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 import type { ReactiveGraph } from './graph-builder.js';
 import { findForbiddenClientAccess } from './security.js';

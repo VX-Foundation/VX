@@ -28,7 +28,7 @@ assert.equal(compareApiSnapshots(base, breaking).valid, false);
 assert.equal(compareApiSnapshots(base, breaking).requiredImpact, 'major');
 
 const packagePolicy = validatePackagePolicy({
-  name: '@vx/valid', version: '1.0.0', description: 'Valid VX package.', type: 'module', license: 'MIT',
+  name: '@vx-foundation/valid', version: '1.0.0', description: 'Valid VX package.', type: 'module', license: 'MIT',
   author: { name: 'Veelv' }, files: ['dist', 'README.md', 'LICENSE'], sideEffects: false,
   keywords: ['vx', 'valid', 'framework'], exports: { '.': './dist/index.js' },
   engines: { node: '>=22.11.0 <23 || >=24.11.0 <25' },
@@ -37,9 +37,9 @@ const packagePolicy = validatePackagePolicy({
   publishConfig: { access: 'public', registry: 'https://registry.npmjs.org/' }
 });
 assert.equal(packagePolicy.valid, true);
-assert.equal(validatePackagePolicy({ ...{}, name: '@vx/bad', version: '1.0.0', scripts: { postinstall: 'node unsafe.js' } }).valid, false);
+assert.equal(validatePackagePolicy({ ...{}, name: '@vx-foundation/bad', version: '1.0.0', scripts: { postinstall: 'node unsafe.js' } }).valid, false);
 
-const provenance = createProvenanceManifest('@vx/example', '1.0.0', 'abc123', [{ path: 'dist/index.js', content: 'export const safe = true;' }]);
+const provenance = createProvenanceManifest('@vx-foundation/example', '1.0.0', 'abc123', [{ path: 'dist/index.js', content: 'export const safe = true;' }]);
 assert.equal(verifyProvenanceManifest(provenance, [{ path: 'dist/index.js', content: 'export const safe = true;' }]), true);
 assert.equal(verifyProvenanceManifest(provenance, [{ path: 'dist/index.js', content: 'tampered' }]), false);
 assert.equal(createReleaseChannelPlan({ channel: 'stable', baseVersion: '1.0.0' }).npmTag, 'latest');
@@ -55,5 +55,5 @@ try {
 console.log('Phase 9 runtime and release verification passed.');
 
 function snapshot(version, symbols) {
-  return { schema: 'https://vx.dev/schemas/public-api-snapshot/v1', version: 1, packages: [{ name: '@vx/example', version, peerDependencies: {}, entrypoints: [{ subpath: '.', typesPath: 'dist/index.d.ts', symbols }] }] };
+  return { schema: 'https://vx.dev/schemas/public-api-snapshot/v1', version: 1, packages: [{ name: '@vx-foundation/example', version, peerDependencies: {}, entrypoints: [{ subpath: '.', typesPath: 'dist/index.d.ts', symbols }] }] };
 }

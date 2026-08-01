@@ -19,7 +19,7 @@ describe('Core Orchestrator', () => {
     const config = await loadConfig(fixtureRoot);
     expect(config.adapter).toBe('static');
     expect(config.integrations.length).toBe(1);
-    expect(config.integrations[0]!.name).toBe('@vx/plugins/sitemap');
+    expect(config.integrations[0]!.name).toBe('@vx-foundation/plugins/sitemap');
   });
 
   it('runs integrations from config', async () => {
@@ -27,6 +27,6 @@ describe('Core Orchestrator', () => {
     const config = await loadConfig(fixtureRoot);
     const context = await runIntegrations(config);
 
-    expect(context.installed.map((plugin) => plugin.name)).toContain('@vx/sitemap');
+    expect(context.installed.map((plugin) => plugin.name)).toContain('@vx-foundation/sitemap');
   });
 });

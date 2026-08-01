@@ -6,7 +6,7 @@ The canonical source repository is `https://github.com/VX-Foundation/vx`. Releas
 
 ## npm organization
 
-Public framework packages use the `@vx` npm scope and `create-vx` is unscoped. Before the first publish, an npm administrator must confirm ownership of the scope and package names, require two-factor authentication, and follow the controlled bootstrap in [`NPM-BOOTSTRAP.md`](NPM-BOOTSTRAP.md). Trusted publishers are configured after the package records exist.
+All public framework packages, including the `@vx-foundation/vx` facade and `@vx-foundation/create-vx` project initializer, use the `@vx-foundation` npm scope. Before the first publish, an npm administrator must confirm ownership of the organization scope, require two-factor authentication, and follow the controlled bootstrap in [`NPM-BOOTSTRAP.md`](NPM-BOOTSTRAP.md). Trusted publishers are configured after the package records exist.
 
 ## Trusted publishing
 

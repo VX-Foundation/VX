@@ -12,8 +12,8 @@ import {
   type ServerRenderContext,
   type ServerResourceHint,
   type ServerStyleAsset
-} from '@vx/runtime/server';
-import { createMemoryFormFlashStore, executeRegisteredServerForm, type DispatchServerFormOptions, type FormFlashState, type FormFlashStore, type ServerFormSecurityContext } from '@vx/forms/server';
+} from '@vx-foundation/runtime/server';
+import { createMemoryFormFlashStore, executeRegisteredServerForm, type DispatchServerFormOptions, type FormFlashState, type FormFlashStore, type ServerFormSecurityContext } from '@vx-foundation/forms/server';
 import type {
   RouteLocation,
   RuntimeServerEndpointRecord,
@@ -194,7 +194,7 @@ export function createServerApplication(options: ServerApplicationOptions): Serv
         verifyCsrf: async (incoming: Request, action: ServerActionContract) => {
           const token = incoming.headers.get('x-vx-csrf');
           if (!token || action.csrf !== 'required') return action.csrf !== 'required';
-          const { verifyCsrfToken } = await import('@vx/runtime/server');
+          const { verifyCsrfToken } = await import('@vx-foundation/runtime/server');
           return verifyCsrfToken(token, { secret: options.csrfSecret!, binding: sessionId });
         }
       } : {})

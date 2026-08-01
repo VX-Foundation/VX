@@ -1,6 +1,6 @@
 {
-  "name": "@vx/browser-devtools",
-  "version": "0.1.0",
+  "name": "@vx-foundation/browser-devtools",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "VX browser DevTools extension panel.",

@@ -1,6 +1,6 @@
 {
-  "name": "@vx/package-system",
-  "version": "0.1.0",
+  "name": "@vx-foundation/package-system",
+  "version": "0.1.1",
   "description": "Deterministic package metadata, lockfiles, workspaces, integrity, signatures, and dependency mutation for VX.",
   "type": "module",
   "main": "./dist/index.js",

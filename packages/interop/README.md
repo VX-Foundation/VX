@@ -1,4 +1,4 @@
-# @vx/interop
+# @vx-foundation/interop
 
 Typed JavaScript and TypeScript interoperability contracts for VX.
 
@@ -7,7 +7,7 @@ Typed JavaScript and TypeScript interoperability contracts for VX.
 ## Installation
 
 ```bash
-pnpm add @vx/interop
+pnpm add @vx-foundation/interop
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

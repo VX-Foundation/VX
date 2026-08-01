@@ -1,4 +1,4 @@
-import type { SourceSpan, ViewPatternNode } from '@vx/types';
+import type { SourceSpan, ViewPatternNode } from '@vx-foundation/types';
 
 const NAMED_PATTERN = /^([A-Za-z_][A-Za-z0-9_.]*)(?:\(([A-Za-z_][A-Za-z0-9_]*)\))?$/;
 const NUMBER_PATTERN = /^-?(?:0|[1-9]\d*)(?:\.\d+)?$/;

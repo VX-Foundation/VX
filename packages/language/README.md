@@ -1,4 +1,4 @@
-# @vx/language
+# @vx-foundation/language
 
 Tokenizer, parser and AST for the VX .vx single-file component language.
 
@@ -7,7 +7,7 @@ Tokenizer, parser and AST for the VX .vx single-file component language.
 ## Installation
 
 ```bash
-pnpm add @vx/language
+pnpm add @vx-foundation/language
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

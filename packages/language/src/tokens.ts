@@ -1,4 +1,4 @@
-import type { SourceSpan } from '@vx/types';
+import type { SourceSpan } from '@vx-foundation/types';
 
 export type BlockKind = 'script' | 'view';
 

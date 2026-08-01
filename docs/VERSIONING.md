@@ -4,10 +4,10 @@ VX follows Semantic Versioning for every public package.
 
 ## Initial unstable line
 
-All public packages start at `0.1.0`. During stabilization, prerelease builds use synchronized versions:
+The internal baseline was `0.1.0`. The first VX Foundation public package line is `0.1.1`, and all public packages remain synchronized during stabilization:
 
-- `0.1.0-canary.<revision>.<sequence>` published under `canary`;
-- `0.1.0-next.<sequence>` published under `next`;
+- `0.1.1-canary.<revision>.<sequence>` published under `canary`;
+- `0.1.1-next.<sequence>` published under `next`;
 - `1.0.0` published under `latest` only after the stable gate passes.
 
 ## Compatibility

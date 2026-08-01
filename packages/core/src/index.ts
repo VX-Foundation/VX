@@ -1,8 +1,8 @@
 import { loadConfig } from './config.js';
 import { runIntegrations } from './integration.js';
-import { startDevServer } from '@vx/dev-server';
-import { build as bundlerBuild } from '@vx/bundler';
-import type { BuildOptions } from '@vx/bundler';
+import { startDevServer } from '@vx-foundation/dev-server';
+import { build as bundlerBuild } from '@vx-foundation/bundler';
+import type { BuildOptions } from '@vx-foundation/bundler';
 import { startPreview, type PreviewOptions } from './preview.js';
 
 export { defineConfig, loadConfig } from './config.js';

@@ -33,7 +33,7 @@ if (failures.length > 0) {
 }
 
 async function discoverManifests(projectRoot) {
-  const candidates = [];
+  const candidates = [join(projectRoot, 'package.json')];
   for (const group of ['packages', 'apps']) {
     const directory = join(projectRoot, group);
     const entries = await import('node:fs/promises').then(({ readdir }) => readdir(directory, { withFileTypes: true }));

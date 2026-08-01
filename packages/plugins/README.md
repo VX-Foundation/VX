@@ -1,4 +1,4 @@
-# @vx/plugins
+# @vx-foundation/plugins
 
 Versioned, capability-based plugin host and official deterministic VX plugins.
 
@@ -7,7 +7,7 @@ Versioned, capability-based plugin host and official deterministic VX plugins.
 ## Installation
 
 ```bash
-pnpm add @vx/plugins
+pnpm add @vx-foundation/plugins
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

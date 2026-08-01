@@ -1,17 +1,17 @@
-# @vx/widgets
+# @vx-foundation/widgets
 
 Industrial-grade Native Widget Primitives for the VX Framework
 
-Current package line: `0.1.0`.
+Current package line: `0.1.1`.
 
 ## Public entries
 
-- `.` → `./dist/index.d.ts`
+- `.` -> `./dist/index.d.ts`
 
 ## Exported symbols
 
-- `PRIMITIVE_NAMES` — const in `index.ts`
-- `PRIMITIVE_SOURCES` — const in `index.ts`
+- `PRIMITIVE_NAMES` - const in `index.ts`
+- `PRIMITIVE_SOURCES` - const in `index.ts`
 
 ## Stability
 

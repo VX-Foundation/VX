@@ -13,8 +13,8 @@ A package exposes only entries declared by its generated or authored public cont
 Consumers MUST import a public package entry, for example:
 
 ```ts
-import { QueryClient } from '@vx/runtime';
-import { OfflineMutationQueue } from '@vx/data/offline';
+import { QueryClient } from '@vx-foundation/runtime';
+import { OfflineMutationQueue } from '@vx-foundation/data/offline';
 ```
 
 They MUST NOT import implementation files.

@@ -1,5 +1,5 @@
 /** Shared client-codegen helpers kept separate from the DOM emitter orchestration. */
-import type { ScriptBlockNode, ViewNode, ViewSourceMapEntry } from '@vx/types';
+import type { ScriptBlockNode, ViewNode, ViewSourceMapEntry } from '@vx-foundation/types';
 import type { ComponentCodegenContext } from '../components/codegen-context.js';
 import { isRuntimeDeclaration } from './component-module.js';
 import type { JavaScriptBinding } from './javascript.js';

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { reviewLockfileText, reviewPackageManifest, runFuzzCampaign, scanSecrets } from '../src/index.js';
 
-describe('@vx/security-testing', () => {
+describe('@vx-foundation/security-testing', () => {
   it('runs deterministic fuzz campaigns', async () => expect((await runFuzzCampaign({ seed: 9, iterations: 20, corpus: ['vx'], target() {} })).crashes).toHaveLength(0));
   it('reports the number of main-loop executions before stopping', async () => {
     const report = await runFuzzCampaign({ seed: 3, iterations: 10, corpus: ['vx'], target() { throw new Error('crash'); }, stopAfterFirstCrash: true });

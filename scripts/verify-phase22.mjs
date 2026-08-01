@@ -5,12 +5,12 @@ import { dirname, extname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const VERSION = '0.1.0';
 const NODE_RANGE = '>=22.11.0 <23 || >=24.11.0 <25';
 const PNPM = '11.17.0';
 const REPOSITORY = 'git+https://github.com/VX-Foundation/vx.git';
 const rootManifest = readJson('package.json');
-assert.equal(rootManifest.version, VERSION);
+const VERSION = rootManifest.version;
+assert.match(VERSION, /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u);
 assert.equal(rootManifest.packageManager, `pnpm@${PNPM}`);
 assert.equal(rootManifest.engines?.node, NODE_RANGE);
 assert.equal(rootManifest.engines?.pnpm, `>=${PNPM} <12`);
@@ -19,7 +19,7 @@ assert.equal(rootManifest.license, 'MIT');
 assert.match(readFileSync(join(root, 'LICENSE'), 'utf8'), /Permission is hereby granted/u);
 
 const publicPackages = discoverWorkspaceManifests().filter(({ manifest }) => manifest.private !== true);
-assert.equal(publicPackages.length, 24, 'VX 0.1 must publish 23 scoped packages plus create-vx.');
+assert.equal(publicPackages.length, 25, 'VX 0.1 must publish 25 packages in the @vx-foundation scope.');
 for (const { path, manifest } of publicPackages) {
   assert.equal(manifest.version, VERSION, `${manifest.name} is not synchronized at ${VERSION}.`);
   assert.equal(manifest.license, 'MIT', `${manifest.name} has no MIT license declaration.`);
@@ -90,7 +90,8 @@ assert.match(releaseWorkflow, /inputs\.channel == 'stable' && 'latest' \|\| inpu
 console.log(`VX Phase 22 verification passed (${publicPackages.length} publishable packages, frozen specification/API, zero source placeholders).`);
 
 function discoverWorkspaceManifests() {
-  const output = [];
+  const rootPath = join(root, 'package.json');
+  const output = [{ path: rootPath, manifest: JSON.parse(readFileSync(rootPath, 'utf8')) }];
   for (const group of ['packages', 'apps']) {
     for (const entry of readdirSync(join(root, group), { withFileTypes: true })) {
       if (!entry.isDirectory()) continue;

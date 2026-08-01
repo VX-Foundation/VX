@@ -1,4 +1,4 @@
-# create-vx
+# @vx-foundation/create-vx
 
 Scaffolding tool for VX framework
 
@@ -7,7 +7,7 @@ Scaffolding tool for VX framework
 ## Installation
 
 ```bash
-pnpm create vx@next my-app
+pnpm create @vx-foundation/vx@next my-app
 cd my-app
 pnpm install
 pnpm dev

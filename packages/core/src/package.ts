@@ -1,5 +1,5 @@
-import type { BuildVXPackageOptions, BuildVXPackageResult } from '@vx/compiler/package';
-import { buildVXPackage } from '@vx/compiler/package';
+import type { BuildVXPackageOptions, BuildVXPackageResult } from '@vx-foundation/compiler/package';
+import { buildVXPackage } from '@vx-foundation/compiler/package';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 

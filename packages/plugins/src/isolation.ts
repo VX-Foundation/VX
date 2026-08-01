@@ -1,6 +1,6 @@
-import type { Integration } from '@vx/types';
+import type { Integration } from '@vx-foundation/types';
 
-const ISOLATED_INTEGRATION = Symbol.for('@vx/plugins/isolated-integration');
+const ISOLATED_INTEGRATION = Symbol.for('@vx-foundation/plugins/isolated-integration');
 
 export interface IsolatedIntegrationMetadata {
   sourceIntegrity: string;

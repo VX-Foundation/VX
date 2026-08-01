@@ -3,7 +3,7 @@
  * generated export maps, framework metadata, integrity records, and source
  * selection so library authors never maintain infrastructure manifests.
  */
-import type { Diagnostic, SourceSpan } from '@vx/types';
+import type { Diagnostic, SourceSpan } from '@vx-foundation/types';
 import {
   copyFileSync,
   existsSync,
@@ -184,7 +184,7 @@ function createDistributionPackageJson(
   const peerDependencies = isRecord(descriptor['peerDependencies'])
     ? { ...descriptor['peerDependencies'] }
     : {};
-  peerDependencies['@vx/runtime'] = exactFrameworkRange(frameworkVersion);
+  peerDependencies['@vx-foundation/runtime'] = exactFrameworkRange(frameworkVersion);
   output['peerDependencies'] = peerDependencies;
   return output;
 }

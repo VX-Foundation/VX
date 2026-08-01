@@ -4,7 +4,7 @@ import { dirname, resolve, sep } from 'node:path';
 import type {
   AdapterRegistration, Integration, IntegrationContext, PluginCapability, PluginDiagnostic,
   PluginHook, PluginHookContext, PluginHookName, PluginManifest, PluginPermission
-} from '@vx/types';
+} from '@vx-foundation/types';
 import { isolatedIntegrationMetadata } from './isolation.js';
 
 export interface PluginHostPolicy {

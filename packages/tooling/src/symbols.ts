@@ -5,7 +5,7 @@ import type {
   SourcePosition,
   SourceSpan,
   ViewNode
-} from '@vx/types';
+} from '@vx-foundation/types';
 import type { SymbolKind, SymbolReference, VXSymbol } from './types.js';
 
 const RESERVED = new Set([

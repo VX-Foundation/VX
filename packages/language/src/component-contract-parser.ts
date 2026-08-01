@@ -16,7 +16,7 @@ import type {
   TypeExpressionNode,
   VisualPartDeclaration,
   VisualPartKind
-} from '@vx/types';
+} from '@vx-foundation/types';
 
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { readLineExpression, readStringLiteralValue } from './expression.js';

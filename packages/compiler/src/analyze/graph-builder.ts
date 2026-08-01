@@ -1,4 +1,4 @@
-import type { ScriptBlockNode, StateStatement } from '@vx/types';
+import type { ScriptBlockNode, StateStatement } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 import { collectReferencedIdentifiers } from './expression-identifiers.js';
 

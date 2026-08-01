@@ -1,7 +1,7 @@
-import type { ViewBlockNode, ViewNode, VisualRoleUseNode, WidgetNode } from '@vx/types';
+import type { ViewBlockNode, ViewNode, VisualRoleUseNode, WidgetNode } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 import { STRUCTURAL_ROLE_NAMES } from '../visual/catalog.js';
-import { PRIMITIVE_SOURCES } from '@vx/widgets';
+import { PRIMITIVE_SOURCES } from '@vx-foundation/widgets';
 
 const CONTAINER_WIDGETS = new Set(['View', 'List', 'ScrollView', 'Form']);
 const INTERACTIVE_WIDGETS = new Set(['Button', 'Input', 'TextArea', 'Select', 'Checkbox', 'Radio', 'Slider', 'Switch', 'Link']);

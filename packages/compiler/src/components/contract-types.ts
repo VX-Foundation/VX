@@ -10,7 +10,7 @@ import type {
   ExpressionNode,
   ScriptStatement,
   WidgetNode
-} from '@vx/types';
+} from '@vx-foundation/types';
 import ts from 'typescript';
 
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';

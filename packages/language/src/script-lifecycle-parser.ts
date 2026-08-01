@@ -1,4 +1,4 @@
-import type { Diagnostic, LifecycleDirective, LifecycleDirectiveName } from '@vx/types';
+import type { Diagnostic, LifecycleDirective, LifecycleDirectiveName } from '@vx-foundation/types';
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { type Scanner } from './scanner.js';
 import { recoverToNextLine } from './script-parser-utils.js';

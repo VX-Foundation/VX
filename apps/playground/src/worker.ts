@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 
-import { inspectVX } from '@vx/tooling/inspect';
+import { inspectVX } from '@vx-foundation/tooling/inspect';
 
 interface CompileMessage {
   type: 'COMPILE';

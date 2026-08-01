@@ -1,4 +1,4 @@
-import { createServerApplication as createRouterApplication, type ServerApplication, type ServerApplicationOptions } from '@vx/router/server';
+import { createServerApplication as createRouterApplication, type ServerApplication, type ServerApplicationOptions } from '@vx-foundation/router/server';
 import { optionalServerContext } from './context.js';
 import { createServerPlatform, type ServerPlatformApplication, type ServerPlatformOptions } from './platform.js';
 

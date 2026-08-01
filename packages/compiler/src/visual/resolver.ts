@@ -16,8 +16,8 @@ import type {
   VisualRoleDeclarationNode,
   VisualRolePropertyNode,
   VisualRoleUseNode
-} from '@vx/types';
-import { hashContent } from '@vx/shared';
+} from '@vx-foundation/types';
+import { hashContent } from '@vx-foundation/shared';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 import type { ReactiveGraph } from '../analyze/graph-builder.js';
 import { collectReferencedIdentifiers } from '../analyze/expression-identifiers.js';

@@ -1,4 +1,4 @@
-import type { Diagnostic, SourceSpan } from '@vx/types';
+import type { Diagnostic, SourceSpan } from '@vx-foundation/types';
 
 /**
  * Stable diagnostic codes for the tokenizer and parser.

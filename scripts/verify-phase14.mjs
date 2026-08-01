@@ -14,11 +14,11 @@ const required = [
 ];
 for (const relative of required) assert.ok(fs.existsSync(path.join(root, relative)), `Missing Phase 14 artifact: ${relative}`);
 const codegen = fs.readFileSync(path.join(root, 'packages/router/src/build/codegen.ts'), 'utf8');
-assert.match(codegen, /from '@vx\/server'/);
+assert.match(codegen, /from '@vx-foundation\/server'/);
 const nodeAdapter = fs.readFileSync(path.join(root, 'packages/bundler/src/adapters/node.ts'), 'utf8');
 assert.match(nodeAdapter, /startNodeServer/);
 assert.match(nodeAdapter, /gracefulShutdownMs/);
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'packages/server/package.json'), 'utf8'));
-assert.equal(packageJson.name, '@vx/server');
+assert.equal(packageJson.name, '@vx-foundation/server');
 for (const subpath of ['./cookies', './sessions', './middleware', './security', './observability', './node']) assert.ok(packageJson.exports[subpath]);
 console.log('Phase 14 structural verification passed.');

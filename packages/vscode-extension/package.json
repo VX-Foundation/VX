@@ -2,7 +2,7 @@
   "name": "vx-vscode",
   "displayName": "VX Framework Language Features",
   "description": "Official VS Code extension for the VX framework",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "node": ">=22.11.0 <23 || >=24.11.0 <25"
   },
@@ -196,7 +196,7 @@
     "watch": "tsc -p tsconfig.build.json -w"
   },
   "dependencies": {
-    "@vx/tooling": "workspace:*",
+    "@vx-foundation/tooling": "workspace:*",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.11"

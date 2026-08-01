@@ -1,5 +1,5 @@
 import path from 'node:path';
-import type { AdapterConfig, AdapterName, BuildTarget } from '@vx/types';
+import type { AdapterConfig, AdapterName, BuildTarget } from '@vx-foundation/types';
 import type { BuildOptions, NormalizedBuildOptions } from './types.js';
 import { adapterCapabilities, normalizeAdapterName } from '../adapters/registry.js';
 import { validateBuildOptionsInput } from './validation.js';

@@ -1,4 +1,4 @@
-import type { VisualRoleCategory } from '@vx/types';
+import type { VisualRoleCategory } from '@vx-foundation/types';
 
 export interface BuiltinRoleDefinition {
   category: VisualRoleCategory;

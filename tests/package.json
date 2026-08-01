@@ -1,6 +1,6 @@
 {
-  "name": "@vx/tests",
-  "version": "0.1.0",
+  "name": "@vx-foundation/tests",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -25,17 +25,17 @@
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "vitest": "^1.0.0",
-    "@vx/core": "workspace:*",
-    "@vx/cli": "workspace:*",
-    "@vx/language": "workspace:*",
-    "@vx/compiler": "workspace:*",
-    "@vx/runtime": "workspace:*",
+    "@vx-foundation/core": "workspace:*",
+    "@vx-foundation/cli": "workspace:*",
+    "@vx-foundation/language": "workspace:*",
+    "@vx-foundation/compiler": "workspace:*",
+    "@vx-foundation/runtime": "workspace:*",
     "@types/node": "^24.0.0",
     "typescript": "^5.8.3",
-    "@vx/forms": "workspace:*",
-    "@vx/testing": "workspace:*",
-    "@vx/security-testing": "workspace:*",
-    "@vx/benchmark": "workspace:*",
+    "@vx-foundation/forms": "workspace:*",
+    "@vx-foundation/testing": "workspace:*",
+    "@vx-foundation/security-testing": "workspace:*",
+    "@vx-foundation/benchmark": "workspace:*",
     "jsdom": "^29.1.1"
   },
   "engines": {

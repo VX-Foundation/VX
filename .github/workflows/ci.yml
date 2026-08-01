@@ -64,7 +64,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm --filter @vx/tests exec playwright install --with-deps chromium firefox webkit
+      - run: pnpm --filter @vx-foundation/tests exec playwright install --with-deps chromium firefox webkit
       - run: pnpm test:browser
       - uses: actions/upload-artifact@v6
         if: always()

@@ -1,6 +1,6 @@
 {
-  "name": "@vx/release",
-  "version": "0.1.0",
+  "name": "@vx-foundation/release",
+  "version": "0.1.1",
   "description": "Public API compatibility, package policy, release channels, and provenance tooling for VX.",
   "type": "module",
   "main": "./dist/index.js",

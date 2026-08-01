@@ -1,6 +1,6 @@
 {
-  "name": "@vx/compiler",
-  "version": "0.1.0",
+  "name": "@vx-foundation/compiler",
+  "version": "0.1.1",
   "type": "module",
   "description": "Compiler core: Reactive graph, type checking, lowering.",
   "main": "./dist/index.js",
@@ -29,10 +29,10 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@vx/language": "workspace:*",
-    "@vx/shared": "workspace:*",
-    "@vx/types": "workspace:*",
-    "@vx/widgets": "workspace:*",
+    "@vx-foundation/language": "workspace:*",
+    "@vx-foundation/shared": "workspace:*",
+    "@vx-foundation/types": "workspace:*",
+    "@vx-foundation/widgets": "workspace:*",
     "typescript": "^5.8.3"
   },
   "scripts": {
@@ -40,7 +40,7 @@
     "test": "vitest run",
     "lint": "eslint src test",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "bench": "node ../../scripts/noop-bench.mjs @vx/compiler"
+    "bench": "node ../../scripts/noop-bench.mjs @vx-foundation/compiler"
   },
   "license": "MIT",
   "engines": {

@@ -1,4 +1,4 @@
-# @vx/types
+# @vx-foundation/types
 
 VX framework package.
 
@@ -7,7 +7,7 @@ VX framework package.
 ## Installation
 
 ```bash
-pnpm add @vx/types
+pnpm add @vx-foundation/types
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

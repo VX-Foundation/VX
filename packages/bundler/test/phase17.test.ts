@@ -24,6 +24,11 @@ function temporaryDirectory(): string {
   temporaryDirectories.push(directory);
   return directory;
 }
+function workspaceTemporaryDirectory(): string {
+  const directory = fs.mkdtempSync(path.join(process.cwd(), '.vx-phase17-'));
+  temporaryDirectories.push(directory);
+  return directory;
+}
 afterEach(() => {
   for (const directory of temporaryDirectories.splice(0)) fs.rmSync(directory, { recursive: true, force: true });
 });
@@ -174,7 +179,7 @@ describe('Phase 17 build graph and adapters', () => {
   });
 
   it('emits portable deployment contracts', async () => {
-    const outDir = temporaryDirectory();
+    const outDir = workspaceTemporaryDirectory();
     const clientDir = path.join(outDir, 'client');
     const serverDir = path.join(outDir, 'server');
     const edgeDir = path.join(outDir, 'edge');

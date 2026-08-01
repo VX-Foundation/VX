@@ -1,6 +1,6 @@
 {
-  "name": "@vx/tooling",
-  "version": "0.1.0",
+  "name": "@vx-foundation/tooling",
+  "version": "0.1.1",
   "description": "Compiler-backed formatter, language intelligence, inspection, HMR, testing, and migration tools for VX.",
   "type": "module",
   "main": "./dist/index.js",
@@ -21,9 +21,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vx/compiler": "workspace:*",
-    "@vx/language": "workspace:*",
-    "@vx/types": "workspace:*"
+    "@vx-foundation/compiler": "workspace:*",
+    "@vx-foundation/language": "workspace:*",
+    "@vx-foundation/types": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

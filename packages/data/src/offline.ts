@@ -1,4 +1,4 @@
-import type { ActionQueue, QueuedActionRequest } from '@vx/runtime';
+import type { ActionQueue, QueuedActionRequest } from '@vx-foundation/runtime';
 import type { DataPersistenceAdapter } from './persistence.js';
 
 export type MutationQueueStatus = 'queued' | 'running' | 'failed';

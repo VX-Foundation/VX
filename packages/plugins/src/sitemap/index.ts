@@ -1,4 +1,4 @@
-import type { Integration } from '@vx/types';
+import type { Integration } from '@vx-foundation/types';
 
 export interface SitemapOptions {
   site: string;
@@ -10,9 +10,9 @@ export interface SitemapOptions {
 export default function sitemap(options: SitemapOptions): Integration {
   const site = normalizeSite(options?.site);
   return {
-    name: '@vx/sitemap',
+    name: '@vx-foundation/sitemap',
     manifest: {
-      name: '@vx/sitemap', version: '0.1.0', apiVersion: '1',
+      name: '@vx-foundation/sitemap', version: '0.1.1', apiVersion: '1',
       capabilities: ['build', 'emit-file'], permissions: ['read-project', 'write-output'], deterministic: true
     },
     setup(context) {

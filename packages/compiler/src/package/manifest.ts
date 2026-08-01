@@ -3,7 +3,7 @@
  * preserve a closed public boundary without asking library authors to maintain
  * export maps or framework compatibility fields by hand.
  */
-import type { Diagnostic, SourceSpan } from '@vx/types';
+import type { Diagnostic, SourceSpan } from '@vx-foundation/types';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { isAbsolute, join } from 'node:path';

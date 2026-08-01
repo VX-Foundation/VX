@@ -1,7 +1,7 @@
 {
   "vx": {
     "directory": "fixtures/vx",
-    "package": "@vx/runtime",
+    "package": "@vx-foundation/runtime",
     "versionCommand": "node ../../scripts/version.mjs vx"
   },
   "react": {

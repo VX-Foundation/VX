@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, lstatSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { dirname, extname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { PluginManifest } from '@vx/types';
+import type { PluginManifest } from '@vx-foundation/types';
 
 const MAX_FILES = 20_000;
 const MAX_TOTAL_BYTES = 256 * 1024 * 1024;

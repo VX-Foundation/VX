@@ -1,4 +1,4 @@
-import type { RequestRuntime } from '@vx/runtime/server';
+import type { RequestRuntime } from '@vx-foundation/runtime/server';
 
 export type Awaitable<T> = T | Promise<T>;
 

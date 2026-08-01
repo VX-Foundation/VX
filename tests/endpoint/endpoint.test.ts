@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { invokeEndpoint } from '@vx/testing';
+import { invokeEndpoint } from '@vx-foundation/testing';
 
 describe('official endpoint testing', () => {
   it('uses real Request and Response objects', async () => {

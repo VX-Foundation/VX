@@ -2,7 +2,7 @@
   "$schema": "https://vx.dev/schemas/benchmark-fixture/v1",
   "framework": "vx",
   "implementation": "framework-native",
-  "runtimePackage": "@vx/runtime",
+  "runtimePackage": "@vx-foundation/runtime",
   "nativeEntrypoint": "native-runner.mjs",
   "requiredEvidence": [
     "native-runtime",

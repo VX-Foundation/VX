@@ -1,6 +1,6 @@
-import { analyze, lower } from '@vx/compiler/core';
-import { parse } from '@vx/language';
-import type { Diagnostic, ExecutionSide, SourceSpan } from '@vx/types';
+import { analyze, lower } from '@vx-foundation/compiler/core';
+import { parse } from '@vx-foundation/language';
+import type { Diagnostic, ExecutionSide, SourceSpan } from '@vx-foundation/types';
 
 export interface ReactiveInspectionNode {
   name: string;

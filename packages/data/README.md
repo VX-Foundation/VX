@@ -1,4 +1,4 @@
-# @vx/data
+# @vx-foundation/data
 
 VX query persistence, offline mutations, infinite data, realtime subscriptions, and cross-context synchronization.
 
@@ -7,7 +7,7 @@ VX query persistence, offline mutations, infinite data, realtime subscriptions, 
 ## Installation
 
 ```bash
-pnpm add @vx/data
+pnpm add @vx-foundation/data
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

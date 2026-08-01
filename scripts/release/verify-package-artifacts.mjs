@@ -13,6 +13,7 @@ try {
   for (const directory of packages) {
     const manifest = JSON.parse(await readFile(join(directory, 'package.json'), 'utf8'));
     if (manifest.private) continue;
+    console.log(`Inspecting npm artifact for ${manifest.name}...`);
     const policy = validatePackagePolicy(manifest, { expectedRegistry: 'https://registry.npmjs.org/' });
     assert.equal(policy.valid, true, policy.issues.map((issue) => `${issue.packageName}: ${issue.message}`).join('\n'));
     for (const target of exportTargets(manifest.exports)) await assertArtifact(directory, target);
@@ -32,12 +33,13 @@ try {
     assert.ok(entries.some((entry) => entry === 'package/package.json'));
     assert.ok(entries.includes('package/README.md'), `${manifest.name} package is missing README.md.`);
     assert.ok(entries.includes('package/LICENSE'), `${manifest.name} package is missing LICENSE.`);
-    assert.ok(entries.some((entry) => entry.startsWith('package/dist/')) || entries.some((entry) => entry.startsWith('package/bin/')));
+    const runtimeEntries = publishedRuntimeEntries(manifest);
+    assert.ok(runtimeEntries.some((entry) => entries.includes(`package/${entry}`)), `${manifest.name} package is missing a declared runtime entrypoint.`);
     const leaked = entries.filter((entry) => isPrivateArtifactEntry(entry, manifest.name));
     assert.deepEqual(leaked, [], `${manifest.name} leaked source/test/private files: ${leaked.join(', ')}`);
-    if (manifest.name === '@vx/cli') {
+    if (manifest.name === '@vx-foundation/cli') {
       for (const template of ['basic', 'starter', 'fullstack', 'library']) {
-        assert.ok(entries.includes(`package/templates/${template}/package.json`), `@vx/cli package is missing template '${template}'.`);
+        assert.ok(entries.includes(`package/templates/${template}/package.json`), `@vx-foundation/cli package is missing template '${template}'.`);
       }
     }
   }
@@ -48,7 +50,7 @@ try {
 
 async function discoverPackages(rootDirectory) {
   const roots = ['packages', 'apps'];
-  const output = [];
+  const output = [rootDirectory];
   for (const parent of roots) {
     for (const entry of await readdir(join(rootDirectory, parent), { withFileTypes: true })) {
       if (entry.isDirectory()) {
@@ -58,6 +60,22 @@ async function discoverPackages(rootDirectory) {
     }
   }
   return output.sort();
+}
+function publishedRuntimeEntries(manifest) {
+  const entries = [];
+  if (typeof manifest.main === 'string') entries.push(manifest.main);
+  if (typeof manifest.bin === 'string') entries.push(manifest.bin);
+  else if (manifest.bin && typeof manifest.bin === 'object') entries.push(...Object.values(manifest.bin));
+  const visit = (value) => {
+    if (typeof value === 'string') {
+      if (!value.endsWith('.d.ts')) entries.push(value);
+      return;
+    }
+    if (!value || typeof value !== 'object') return;
+    for (const child of Object.values(value)) visit(child);
+  };
+  visit(manifest.exports);
+  return [...new Set(entries.filter((entry) => typeof entry === 'string').map((entry) => entry.replace(/^\.\//u, '')))];
 }
 function exportTargets(value) {
   if (typeof value === 'string') return value.startsWith('./dist/') ? [value] : [];
@@ -74,5 +92,5 @@ function isPrivateArtifactEntry(entry, packageName) {
   const normalized = entry.replaceAll('\\', '/');
   if (/(?:^|\/)(?:node_modules|test|tests|\.env)(?:\/|$)/.test(normalized)) return true;
   if (!/(?:^|\/)src(?:\/|$)/.test(normalized)) return false;
-  return !(packageName === '@vx/cli' && normalized.startsWith('package/templates/'));
+  return !(packageName === '@vx-foundation/cli' && normalized.startsWith('package/templates/'));
 }

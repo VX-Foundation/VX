@@ -14,7 +14,7 @@ import type {
   VisualRoleUseNode,
   WidgetNode,
   WidgetProperty
-} from '@vx/types';
+} from '@vx-foundation/types';
 
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { readLineExpression, readParenExpression } from './expression.js';

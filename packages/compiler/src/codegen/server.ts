@@ -8,7 +8,7 @@ import type {
   VisualProgramIR,
   VisualResolvedNode,
   WidgetNode
-} from '@vx/types';
+} from '@vx-foundation/types';
 import type { ComponentCodegenContext, ComponentCodegenImport } from '../components/codegen-context.js';
 import { componentImport, contentOutletName, isRuntimeDeclaration } from './component-module.js';
 import { bodyContainsAwait, lowerBody, lowerExpression, type JavaScriptBinding } from './javascript.js';
@@ -33,8 +33,8 @@ export function generateServerCode(
   const imports = generateServerImports(component);
   const symbols = collectServerSymbols(scriptBlock, component);
   let code = imports.code;
-  if (data.schemas.length || data.forms.length) code += `import { schema, createForm } from '@vx/forms';\nimport { registerServerForm, serverFormAttributes, serverFieldAttributes, serverFieldErrorAttributes, renderCsrfField, renderMethodOverride, renderErrorSummary } from '@vx/forms/server';\n`;
-  code += `import { registerServerAction, renderText, renderElement, renderComment, renderIsland, renderContent, renderCollection, renderStructuralRange, selectPatternBranch, acquireStore, createComponentScope, provideComponentContext, acquireComponentContext, disposeComponentScope, createCleanupStack, disposeCleanupStack } from '@vx/runtime/server';\n\n`;
+  if (data.schemas.length || data.forms.length) code += `import { schema, createForm } from '@vx-foundation/forms';\nimport { registerServerForm, serverFormAttributes, serverFieldAttributes, serverFieldErrorAttributes, renderCsrfField, renderMethodOverride, renderErrorSummary } from '@vx-foundation/forms/server';\n`;
+  code += `import { registerServerAction, renderText, renderElement, renderComment, renderIsland, renderContent, renderCollection, renderStructuralRange, selectPatternBranch, acquireStore, createComponentScope, provideComponentContext, acquireComponentContext, disposeComponentScope, createCleanupStack, disposeCleanupStack } from '@vx-foundation/runtime/server';\n\n`;
   code += generateActions(scriptBlock, component);
   code += emitSchemas(data.schemas, new Map());
   code += emitServerFormHandlers(data.forms, component?.contract.id ?? 'component');

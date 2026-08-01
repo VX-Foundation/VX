@@ -1,6 +1,6 @@
 import { timingSafeEqual } from 'node:crypto';
-import { env, readServerEnvironment, type ServerPrincipal } from '@vx/server';
-import { createSessionManager, MemorySessionStore, type SessionManager } from '@vx/server/sessions';
+import { env, readServerEnvironment, type ServerPrincipal } from '@vx-foundation/server';
+import { createSessionManager, MemorySessionStore, type SessionManager } from '@vx-foundation/server/sessions';
 
 export interface DashboardSession {
   tenantId?: string;

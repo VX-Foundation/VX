@@ -118,7 +118,7 @@ try {
 
   const runtimeUrl = pathToFileURL(join(workspace, 'packages/runtime/dist/client.js')).href;
   for (const artifact of result.artifacts.values()) {
-    await writeFile(join(root, artifact.outputFileName), artifact.clientCode.replaceAll("'@vx/runtime/client'", JSON.stringify(runtimeUrl)), 'utf8');
+    await writeFile(join(root, artifact.outputFileName), artifact.clientCode.replaceAll("'@vx-foundation/runtime/client'", JSON.stringify(runtimeUrl)), 'utf8');
   }
 
   const fieldModule = await import(`${pathToFileURL(join(root, field.outputFileName)).href}?field=${Date.now()}`);

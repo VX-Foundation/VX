@@ -1,6 +1,6 @@
 {
-  "name": "@vx/data",
-  "version": "0.1.0",
+  "name": "@vx-foundation/data",
+  "version": "0.1.1",
   "type": "module",
   "description": "VX query persistence, offline mutations, infinite data, realtime subscriptions, and cross-context synchronization.",
   "main": "./dist/index.js",
@@ -56,7 +56,7 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@vx/runtime": "workspace:*"
+    "@vx-foundation/runtime": "workspace:*"
   },
   "devDependencies": {
     "vitest": "^3.2.4"

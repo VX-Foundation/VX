@@ -1,4 +1,4 @@
-# @vx/router
+# @vx-foundation/router
 
 VX file-based router and client navigation engine.
 
@@ -7,7 +7,7 @@ VX file-based router and client navigation engine.
 ## Installation
 
 ```bash
-pnpm add @vx/router
+pnpm add @vx-foundation/router
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

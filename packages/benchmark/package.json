@@ -1,6 +1,6 @@
 {
-  "name": "@vx/benchmark",
-  "version": "0.1.0",
+  "name": "@vx-foundation/benchmark",
+  "version": "0.1.1",
   "description": "Framework-neutral benchmark protocol, statistics, fairness rules, budgets, and reports for VX public performance comparisons.",
   "type": "module",
   "main": "./dist/index.js",

@@ -1,4 +1,4 @@
-# @vx/tooling
+# @vx-foundation/tooling
 
 Compiler-backed formatter, language intelligence, inspection, HMR, testing, and migration tools for VX.
 
@@ -7,7 +7,7 @@ Compiler-backed formatter, language intelligence, inspection, HMR, testing, and 
 ## Installation
 
 ```bash
-pnpm add @vx/tooling
+pnpm add @vx-foundation/tooling
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

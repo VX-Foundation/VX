@@ -1,4 +1,4 @@
-import { defineConfig } from '@vx/core';
+import { defineConfig } from '@vx-foundation/core';
 
 export default defineConfig({
   adapter: 'node',

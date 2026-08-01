@@ -1,4 +1,4 @@
-# @vx/shared
+# @vx-foundation/shared
 
 VX framework package.
 
@@ -7,7 +7,7 @@ VX framework package.
 ## Installation
 
 ```bash
-pnpm add @vx/shared
+pnpm add @vx-foundation/shared
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

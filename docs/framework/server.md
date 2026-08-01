@@ -1,6 +1,6 @@
 # Server Platform
 
-`@vx/server` provides request context, cookies, signed sessions, authorization, middleware, endpoint contracts, body parsing, security headers, rate limiting, environment validation, tracing, and Node integration.
+`@vx-foundation/server` provides request context, cookies, signed sessions, authorization, middleware, endpoint contracts, body parsing, security headers, rate limiting, environment validation, tracing, and Node integration.
 
 Keep server-only code behind public server entries and never import it from a client graph.
 
@@ -9,7 +9,7 @@ Keep server-only code behind public server entries and never import it from a cl
 `defineEndpoint()` owns input limits, codecs, allowed methods, response serialization, and the handler contract. File-system endpoint modules receive a web `Request`, so expose a contract through the public bridge instead of exporting `endpoint.handle` directly:
 
 ```ts
-import { createRouteEndpointHandler, defineEndpoint } from '@vx/server';
+import { createRouteEndpointHandler, defineEndpoint } from '@vx-foundation/server';
 
 const createReport = defineEndpoint(
   { id: 'reports.create', methods: ['POST'], body: { maxBytes: 32_768 } },

@@ -11,7 +11,7 @@ import type {
   TypeExpressionNode,
   ViewNode,
   WhenBlockNode
-} from '@vx/types';
+} from '@vx-foundation/types';
 
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { readLineExpression, readParenExpression } from './expression.js';

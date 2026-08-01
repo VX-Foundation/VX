@@ -1,4 +1,4 @@
-import { json, parseRequestBody } from '@vx/server';
+import { json, parseRequestBody } from '@vx-foundation/server';
 import { authenticateDashboardCredentials, dashboardSessionManagerFromEnvironment } from '../../../server/auth.js';
 
 export async function POST(request: Request): Promise<Response> {

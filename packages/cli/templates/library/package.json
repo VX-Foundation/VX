@@ -14,13 +14,13 @@
     "build": "vx build"
   },
   "peerDependencies": {
-    "@vx/runtime": "workspace:*"
+    "@vx-foundation/runtime": "workspace:*"
   },
   "devDependencies": {
-    "@vx/cli": "workspace:*",
-    "@vx/core": "workspace:*",
-    "@vx/runtime": "workspace:*",
-    "@vx/tooling": "workspace:*",
+    "@vx-foundation/cli": "workspace:*",
+    "@vx-foundation/core": "workspace:*",
+    "@vx-foundation/runtime": "workspace:*",
+    "@vx-foundation/tooling": "workspace:*",
     "typescript": "^5.8.3"
   },
   "engines": {

@@ -24,7 +24,7 @@ export async function verifyPhase4Runtime(temporaryRoot) {
     assert(!artifact.outputFileName.includes(':'), 'artifact filenames must be portable across operating systems');
     await writeFile(
       join(outputRoot, artifact.outputFileName),
-      artifact.clientCode.replaceAll("'@vx/runtime/client'", JSON.stringify(runtimeUrl)),
+      artifact.clientCode.replaceAll("'@vx-foundation/runtime/client'", JSON.stringify(runtimeUrl)),
       'utf8'
     );
   }

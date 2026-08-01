@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { renderElement, renderStructuralRange } from '@vx/runtime/server';
+import { renderElement, renderStructuralRange } from '@vx-foundation/runtime/server';
 import { parseRoutePath } from '../src/build/segments.js';
 import { createServerApplication } from '../src/runtime/server.js';
 import type { RuntimeServerRouteRecord, VXServerRouteComponentModule } from '../src/types.js';

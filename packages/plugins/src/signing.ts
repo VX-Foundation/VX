@@ -1,5 +1,5 @@
 import { createPrivateKey, sign, type KeyObject } from 'node:crypto';
-import type { PluginManifest } from '@vx/types';
+import type { PluginManifest } from '@vx-foundation/types';
 import { canonicalPluginManifest } from './host.js';
 
 export function signPluginManifest(manifest: PluginManifest, privateKey: string | KeyObject, signer: string): PluginManifest {

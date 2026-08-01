@@ -1,7 +1,16 @@
 {
-  "name": "vx",
-  "version": "0.1.0",
+  "name": "@vx-foundation/vx",
+  "version": "0.1.1",
   "description": "Compiler-first full-stack web framework with direct DOM rendering, deterministic SSR, typed data primitives, and production deployment adapters.",
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
   "packageManager": "pnpm@11.17.0",
   "engines": {
     "node": ">=22.11.0 <23 || >=24.11.0 <25",
@@ -11,7 +20,7 @@
     "verify:policy": "pnpm verify:package-manager && node scripts/verify-repository-policy.mjs",
     "verify": "pnpm verify:policy && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm verify:package-layout",
     "verify:framework": "node scripts/verify-framework.mjs",
-    "verify:documentation": "pnpm docs:api && pnpm --filter @vx/docs typecheck",
+    "verify:documentation": "pnpm docs:api && pnpm --filter @vx-foundation/docs typecheck",
     "verify:official-apps": "pnpm --filter \"./apps/official-*\" typecheck && node scripts/verify-phase21.mjs && node scripts/verify-phase21-runtime.mjs",
     "verify:official-apps:ci": "pnpm --filter \"./apps/official-*\" verify",
     "verify:stabilization": "node scripts/verify-phase22.mjs && node scripts/release/verify-v1-readiness.mjs --channel next",
@@ -24,10 +33,10 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "test:e2e": "turbo run test:e2e",
-    "test:browser": "pnpm --filter @vx/tests test:e2e",
+    "test:browser": "pnpm --filter @vx-foundation/tests test:e2e",
     "test:security": "turbo run test:security",
     "test:fuzz": "turbo run test:fuzz",
-    "test:official": "pnpm --filter @vx/testing test && pnpm --filter @vx/tests test",
+    "test:official": "pnpm --filter @vx-foundation/testing test && pnpm --filter @vx-foundation/tests test",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "format:vx": "node packages/cli/dist/cli.js format .",
@@ -73,6 +82,9 @@
     "typescript-eslint": "^8.37.0",
     "vitest": "^3.2.4"
   },
+  "dependencies": {
+    "@vx-foundation/core": "workspace:*"
+  },
   "author": {
     "name": "Veelv"
   },
@@ -85,6 +97,17 @@
   "bugs": {
     "url": "https://github.com/VX-Foundation/vx/issues"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
   "keywords": [
     "vx",
     "web-framework",

@@ -1,6 +1,6 @@
 {
-  "name": "@vx/plugins",
-  "version": "0.1.0",
+  "name": "@vx-foundation/plugins",
+  "version": "0.1.1",
   "description": "Versioned, capability-based plugin host and official deterministic VX plugins.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -39,7 +39,7 @@
     "typecheck": "pnpm run build && tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vx/types": "workspace:*"
+    "@vx-foundation/types": "workspace:*"
   },
   "license": "MIT",
   "engines": {

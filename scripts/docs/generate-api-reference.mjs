@@ -1,22 +1,22 @@
-import { readFileSync, readdirSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
-import { basename, join, relative, resolve } from 'node:path';
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '../..');
 const packagesRoot = join(root, 'packages');
+const appsRoot = join(root, 'apps');
 const outputRoot = join(root, 'docs/api');
 mkdirSync(outputRoot, { recursive: true });
 
-const packages = readdirSync(packagesRoot)
-  .map((name) => join(packagesRoot, name))
-  .filter((directory) => statSync(directory).isDirectory())
+const packages = [root, ...listDirectories(packagesRoot), ...listDirectories(appsRoot)]
+  .filter((directory) => existsSync(join(directory, 'package.json')))
   .map((directory) => ({ directory, manifest: readJson(join(directory, 'package.json')) }))
-  .filter(({ manifest }) => typeof manifest.name === 'string' && manifest.name.startsWith('@vx/'))
+  .filter(({ manifest }) => manifest.private !== true && typeof manifest.name === 'string' && manifest.name.startsWith('@vx-foundation/'))
   .sort((a, b) => a.manifest.name.localeCompare(b.manifest.name));
 
 const index = ['# VX API Reference', '', 'This reference is generated from published package manifests and public TypeScript exports. Undeclared subpaths are not public API.', ''];
 for (const item of packages) {
-  const file = `${item.manifest.name.replace('@vx/', '')}.md`;
-  index.push(`- [\`${item.manifest.name}\`](${file}) — ${item.manifest.description ?? 'VX package.'}`);
+  const file = `${item.manifest.name.replace('@vx-foundation/', '')}.md`;
+  index.push(`- [\`${item.manifest.name}\`](${file}) - ${item.manifest.description ?? 'VX package.'}`);
   writePackageReference(item, join(outputRoot, file));
 }
 index.push('', 'Regenerate with `node scripts/docs/generate-api-reference.mjs`.');
@@ -26,13 +26,13 @@ console.log(`Generated API reference for ${packages.length} packages.`);
 function writePackageReference({ directory, manifest }, output) {
   const lines = [`# ${manifest.name}`, '', manifest.description ?? 'VX package.', '', `Current package line: \`${manifest.version}\`.`, '', '## Public entries', ''];
   const entries = normalizeExports(manifest.exports);
-  for (const [entry, target] of entries) lines.push(`- \`${entry}\` → \`${target}\``);
+  for (const [entry, target] of entries) lines.push(`- \`${entry}\` -> \`${target}\``);
   if (entries.length === 0) lines.push('- Package root only.');
 
   const symbols = collectSymbols(join(directory, 'src'));
   lines.push('', '## Exported symbols', '');
   if (symbols.length === 0) lines.push('No statically discoverable named TypeScript exports.');
-  else for (const symbol of symbols) lines.push(`- \`${symbol.name}\` — ${symbol.kind} in \`${symbol.file}\``);
+  else for (const symbol of symbols) lines.push(`- \`${symbol.name}\` - ${symbol.kind} in \`${symbol.file}\``);
 
   lines.push('', '## Stability', '', 'Only entries listed above are public. Imports from `src`, `dist`, or undeclared files are unsupported and rejected by the official-application gate.', '');
   writeFileSync(output, lines.join('\n'));
@@ -78,6 +78,13 @@ function walk(directory) {
     else if (entry.isFile()) output.push(absolute);
   }
   return output;
+}
+
+function listDirectories(directory) {
+  if (!existsDirectory(directory)) return [];
+  return readdirSync(directory)
+    .map((name) => join(directory, name))
+    .filter((candidate) => statSync(candidate).isDirectory());
 }
 
 function existsDirectory(path) {

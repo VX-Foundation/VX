@@ -1,5 +1,5 @@
-import { parse } from '@vx/language';
-import type { Diagnostic } from '@vx/types';
+import { parse } from '@vx-foundation/language';
+import type { Diagnostic } from '@vx-foundation/types';
 
 export interface FormatOptions {
   indent?: number;

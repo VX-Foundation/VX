@@ -5,7 +5,7 @@ import {
   type QueryClient,
   type QueryClientEvent,
   type QueryDehydrateOptions
-} from '@vx/runtime';
+} from '@vx-foundation/runtime';
 
 export interface DataPersistenceAdapter {
   read(key: string): Promise<unknown>;

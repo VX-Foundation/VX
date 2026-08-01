@@ -2,7 +2,7 @@
  * Cross-module contract validation for props, outputs, content, visual parts,
  * exports, and client/server boundaries. Invalid graphs never reach codegen.
  */
-import type { ComponentModuleIR, ComponentProjectIR } from '@vx/types';
+import type { ComponentModuleIR, ComponentProjectIR } from '@vx-foundation/types';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 import { findScriptBlock, findViewBlock } from './contract.js';
 import { validateContractDeclarations, validateHeadlessModule, validateImports } from './validation-contracts.js';

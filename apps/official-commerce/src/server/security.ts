@@ -1,5 +1,5 @@
-import { env, readServerEnvironment } from '@vx/server';
-import { verifyCsrfToken } from '@vx/runtime/server';
+import { env, readServerEnvironment } from '@vx-foundation/server';
+import { verifyCsrfToken } from '@vx-foundation/runtime/server';
 
 export async function verifyCommerceCsrf(request: Request, token: string | undefined, source: Record<string, string | undefined> = process.env): Promise<boolean> {
   const binding = request.headers.get('x-demo-user')?.trim();

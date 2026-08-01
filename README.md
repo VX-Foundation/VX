@@ -6,7 +6,9 @@
 
 VX is a compiler-first, full-stack web framework focused on deterministic execution, direct DOM updates, typed data flows, production SSR, accessibility, secure server boundaries, and portable deployment adapters.
 
-> **Current release line:** `0.1.0` unstable. Publish evaluation builds under `canary` and release candidates under `next`. The `latest` tag is reserved for VX 1.0 after every stabilization criterion is independently satisfied.
+> **Current release line:** `0.1.1` unstable. Publish evaluation builds under `canary` and release candidates under `next`. The `latest` tag is reserved for VX 1.0 after every stabilization criterion is independently satisfied.
+
+> **npm namespace change:** Public packages moved from the legacy `@vx/*` namespace to the VX Foundation-owned `@vx-foundation/*` namespace before the first public release. New code and documentation must use only `@vx-foundation/*` imports.
 
 ## Highlights
 
@@ -31,7 +33,7 @@ After the first `next` release is published:
 
 ```bash
 corepack enable
-pnpm create vx@next my-app
+pnpm create @vx-foundation/vx@next my-app
 cd my-app
 pnpm install
 pnpm dev

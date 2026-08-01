@@ -1,4 +1,4 @@
-import { packageLibrary } from '@vx/core/package';
+import { packageLibrary } from '@vx-foundation/core/package';
 import pc from 'picocolors';
 
 export interface PackageCommandOptions {

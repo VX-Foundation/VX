@@ -144,10 +144,10 @@ try {
   assert.deepEqual(project.diagnostics, []);
   const artifact = [...project.artifacts.values()][0];
   const resolvedServerCode = artifact.serverCode
-    .replace(/'@vx\/forms\/server'/g, `'${pathToFileURL(join(workspace, 'packages/forms/dist/server.js')).href}'`)
-    .replace(/'@vx\/forms'/g, `'${pathToFileURL(join(workspace, 'packages/forms/dist/index.js')).href}'`)
-    .replace(/'@vx\/runtime\/server'/g, `'${pathToFileURL(join(workspace, 'packages/runtime/dist/server.js')).href}'`)
-    .replace(/'@vx\/runtime'/g, `'${pathToFileURL(join(workspace, 'packages/runtime/dist/index.js')).href}'`);
+    .replace(/'@vx-foundation\/forms\/server'/g, `'${pathToFileURL(join(workspace, 'packages/forms/dist/server.js')).href}'`)
+    .replace(/'@vx-foundation\/forms'/g, `'${pathToFileURL(join(workspace, 'packages/forms/dist/index.js')).href}'`)
+    .replace(/'@vx-foundation\/runtime\/server'/g, `'${pathToFileURL(join(workspace, 'packages/runtime/dist/server.js')).href}'`)
+    .replace(/'@vx-foundation\/runtime'/g, `'${pathToFileURL(join(workspace, 'packages/runtime/dist/index.js')).href}'`);
   const serverPath = join(generatedRoot, 'form-page.server.mjs');
   await writeFile(serverPath, resolvedServerCode, 'utf8');
   const module = await import(`${pathToFileURL(serverPath).href}?phase12=${Date.now()}`);

@@ -1,4 +1,4 @@
-# @vx/testing
+# @vx-foundation/testing
 
 Official VX unit, component, DOM, SSR, hydration, route, action, endpoint, visual, accessibility, and performance testing contracts.
 
@@ -7,7 +7,7 @@ Official VX unit, component, DOM, SSR, hydration, route, action, endpoint, visua
 ## Installation
 
 ```bash
-pnpm add @vx/testing
+pnpm add @vx-foundation/testing
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

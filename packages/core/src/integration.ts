@@ -1,6 +1,6 @@
-import { PluginHost } from '@vx/plugins/host';
-import { loadIsolatedIntegration } from '@vx/plugins/sandbox';
-import type { PluginPolicyConfig, VXConfig } from '@vx/types';
+import { PluginHost } from '@vx-foundation/plugins/host';
+import { loadIsolatedIntegration } from '@vx-foundation/plugins/sandbox';
+import type { PluginPolicyConfig, VXConfig } from '@vx-foundation/types';
 
 export class Context extends PluginHost {
   constructor(root: string, policy: PluginPolicyConfig = {}) { super(root, policy); }

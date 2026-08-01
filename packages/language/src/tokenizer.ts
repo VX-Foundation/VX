@@ -1,4 +1,4 @@
-import type { Diagnostic } from '@vx/types';
+import type { Diagnostic } from '@vx-foundation/types';
 
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { Scanner } from './scanner.js';

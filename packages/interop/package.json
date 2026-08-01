@@ -1,6 +1,6 @@
 {
-  "name": "@vx/interop",
-  "version": "0.1.0",
+  "name": "@vx-foundation/interop",
+  "version": "0.1.1",
   "description": "Typed JavaScript and TypeScript interoperability contracts for VX.",
   "type": "module",
   "main": "./dist/index.js",

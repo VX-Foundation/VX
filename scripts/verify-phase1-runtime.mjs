@@ -35,7 +35,7 @@ async function main() {
     const modulePath = join(directory, 'counter.mjs');
     await writeFile(
       modulePath,
-      lowered.clientCode.replace("'@vx/runtime/client'", JSON.stringify(runtimeUrl)),
+      lowered.clientCode.replace("'@vx-foundation/runtime/client'", JSON.stringify(runtimeUrl)),
       'utf8'
     );
 

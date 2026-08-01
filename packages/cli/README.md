@@ -1,4 +1,4 @@
-# @vx/cli
+# @vx-foundation/cli
 
 CLI for VX Framework
 
@@ -7,7 +7,7 @@ CLI for VX Framework
 ## Installation
 
 ```bash
-pnpm add -D @vx/cli@next
+pnpm add -D @vx-foundation/cli@next
 pnpm vx doctor
 pnpm vx dev
 ```

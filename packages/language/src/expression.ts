@@ -1,4 +1,4 @@
-import type { ExpressionNode } from '@vx/types';
+import type { ExpressionNode } from '@vx-foundation/types';
 
 import type { Scanner } from './scanner.js';
 

@@ -3,8 +3,8 @@ import { existsSync, readFileSync, readdirSync, realpathSync, writeFileSync } fr
 import { join, relative, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import pc from 'picocolors';
-import { addPackage, emptyLockfile, removePackage, updateLockedPackage, updatePackage, writeLockfile, type DependencyKind, type VXLockPackage } from '@vx/package-system';
-import { loadConfig, runIntegrations } from '@vx/core';
+import { addPackage, emptyLockfile, removePackage, updateLockedPackage, updatePackage, writeLockfile, type DependencyKind, type VXLockPackage } from '@vx-foundation/package-system';
+import { loadConfig, runIntegrations } from '@vx-foundation/core';
 import { detectPackageManager } from './workspace.js';
 
 export interface DependencyCommandOptions { dev?: boolean; peer?: boolean; optional?: boolean; noInstall?: boolean; }
@@ -21,7 +21,7 @@ export function updateDependencyCommand(specification: string | undefined, optio
   if (specification) transact(root, () => updatePackage(root, specification), options.noInstall ?? false);
   else {
     const manifest = readManifest(root);
-    const names = allDependencies(manifest).filter((name) => name.startsWith('@vx/') || name === 'vx');
+    const names = allDependencies(manifest).filter((name) => name.startsWith('@vx-foundation/') || name === 'vx');
     if (names.length === 0) throw new Error('No VX packages are declared in this project.');
     transact(root, () => {
       const results = names.map((name) => updatePackage(root, `${name}@latest`));

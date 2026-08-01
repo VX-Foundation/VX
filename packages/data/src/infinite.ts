@@ -1,4 +1,4 @@
-import type { QueryClient, QueryDescriptor, QueryError } from '@vx/runtime';
+import type { QueryClient, QueryDescriptor, QueryError } from '@vx-foundation/runtime';
 
 export interface InfiniteQueryOptions<TPageParam, TPage> {
   name: string;

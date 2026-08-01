@@ -1,4 +1,4 @@
-import type { ComponentContract, ComponentModuleIR, ComponentProjectIR, ImportDeclaration, ScriptBlockNode } from '@vx/types';
+import type { ComponentContract, ComponentModuleIR, ComponentProjectIR, ImportDeclaration, ScriptBlockNode } from '@vx-foundation/types';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 import { findScriptBlock, type findViewBlock } from './contract.js';
 import { ALLOWED_PUBLIC_KINDS, RESERVED_IMPORT_NAMES, UNSAFE_MEMBER_NAMES } from './validation-constants.js';

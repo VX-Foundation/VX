@@ -13,7 +13,7 @@ coverage/
 .vx/
 playwright-report/
 test-results/
-*.tsbuildinfo
+*.tsbuildinfo*
 *.tgz
 *.zip
 

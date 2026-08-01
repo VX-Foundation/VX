@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parse } from '@vx/language';
+import { parse } from '@vx-foundation/language';
 
 function random(seed: number): () => number {
   let value = seed >>> 0;

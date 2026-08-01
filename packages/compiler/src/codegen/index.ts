@@ -1,5 +1,5 @@
-import type { ASTNode, DataProgramIR, ProgramNode, ScriptBlockNode, SourceSpan, ViewBlockNode, ViewNode, ViewSourceMapEntry, VisualProgramIR } from '@vx/types';
-import { PRIMITIVE_SOURCES } from '@vx/widgets';
+import type { ASTNode, DataProgramIR, ProgramNode, ScriptBlockNode, SourceSpan, ViewBlockNode, ViewNode, ViewSourceMapEntry, VisualProgramIR } from '@vx-foundation/types';
+import { PRIMITIVE_SOURCES } from '@vx-foundation/widgets';
 import { generateDomCode } from './dom.js';
 import { generateServerCode } from './server.js';
 

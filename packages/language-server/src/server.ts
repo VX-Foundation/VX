@@ -18,9 +18,9 @@ import {
 } from 'vscode-languageserver/node.js';
 import type { CompletionItem, Diagnostic, DocumentSymbol, InitializeParams, InitializeResult, WorkspaceEdit } from 'vscode-languageserver/node.js';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { inspectVX } from '@vx/tooling/inspect';
-import { VXLanguageService, indexVXWorkspaceAsync } from '@vx/tooling';
-import type { CompletionEntry, HierarchyItem, SemanticTokenEntry, VXSymbol, WorkspaceIndexResult } from '@vx/tooling';
+import { inspectVX } from '@vx-foundation/tooling/inspect';
+import { VXLanguageService, indexVXWorkspaceAsync } from '@vx-foundation/tooling';
+import type { CompletionEntry, HierarchyItem, SemanticTokenEntry, VXSymbol, WorkspaceIndexResult } from '@vx-foundation/tooling';
 
 const connection = createConnection(ProposedFeatures.all);
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);

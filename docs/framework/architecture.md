@@ -19,13 +19,13 @@ The compiler owns the relationship between `#script` and `#view`. Runtime code i
 
 ## Package responsibilities
 
-- `@vx/language` owns parsing, source locations, recovery, and formatting-compatible syntax data.
-- `@vx/compiler` owns semantic analysis, accessibility checks, dependency graphs, target lowering, and source maps.
-- `@vx/runtime` owns fine-grained reactivity, scheduling, DOM operations, hydration, transitions, ownership, and cleanup.
-- `@vx/router` owns the application graph, route matching, navigation, metadata, loaders, and route lifecycles.
-- `@vx/server` owns request context, sessions, middleware, endpoint contracts, security boundaries, and server integration.
-- `@vx/bundler` owns build targets, assets, manifests, chunks, integrity, and deployment adapters.
-- `@vx/tooling`, `@vx/language-server`, and the official extensions own diagnostics, inspection, editing, and debugging workflows.
+- `@vx-foundation/language` owns parsing, source locations, recovery, and formatting-compatible syntax data.
+- `@vx-foundation/compiler` owns semantic analysis, accessibility checks, dependency graphs, target lowering, and source maps.
+- `@vx-foundation/runtime` owns fine-grained reactivity, scheduling, DOM operations, hydration, transitions, ownership, and cleanup.
+- `@vx-foundation/router` owns the application graph, route matching, navigation, metadata, loaders, and route lifecycles.
+- `@vx-foundation/server` owns request context, sessions, middleware, endpoint contracts, security boundaries, and server integration.
+- `@vx-foundation/bundler` owns build targets, assets, manifests, chunks, integrity, and deployment adapters.
+- `@vx-foundation/tooling`, `@vx-foundation/language-server`, and the official extensions own diagnostics, inspection, editing, and debugging workflows.
 
 ## Intermediate representations
 

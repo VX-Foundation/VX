@@ -80,7 +80,7 @@ function renderPreview(clientCode: string): void {
   const doc = previewFrame.contentWindow?.document;
   if (!doc) return;
   doc.open();
-  doc.write(`<!doctype html><html><head><meta charset="utf-8"><script type="importmap">{"imports":{"@vx/runtime/client":"/@id/@vx/runtime/client"}}<\/script></head><body><main id="app"></main><script type="module">${clientCode.replace(/<\/script/gi, '<\\/script')}\nmountApp(document.getElementById('app'));<\/script></body></html>`);
+  doc.write(`<!doctype html><html><head><meta charset="utf-8"><script type="importmap">{"imports":{"@vx-foundation/runtime/client":"/@id/@vx-foundation/runtime/client"}}<\/script></head><body><main id="app"></main><script type="module">${clientCode.replace(/<\/script/gi, '<\\/script')}\nmountApp(document.getElementById('app'));<\/script></body></html>`);
   doc.close();
 }
 

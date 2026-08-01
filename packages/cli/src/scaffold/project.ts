@@ -234,7 +234,7 @@ function normalizePackageName(name: string): string {
 
 function copyTemplate(target: string, descriptor: TemplateDescriptor): void {
   const source = templateRoot(descriptor.name);
-  if (!existsSync(source) || !statSync(source).isDirectory()) throw new Error(`Template '${descriptor.name}' is not installed with @vx/cli.`);
+  if (!existsSync(source) || !statSync(source).isDirectory()) throw new Error(`Template '${descriptor.name}' is not installed with @vx-foundation/cli.`);
   mkdirSync(target, { recursive: true });
   cpSync(source, target, {
     recursive: true,
@@ -267,7 +267,7 @@ function normalizeManifest(root: string, packageName: string, frameworkVersion: 
     const dependencies = recordValue(manifest[field]);
     if (Object.keys(dependencies).length === 0) continue;
     for (const dependency of Object.keys(dependencies)) {
-      if (dependency.startsWith('@vx/')) dependencies[dependency] = frameworkDependencyVersion(frameworkVersion);
+      if (dependency.startsWith('@vx-foundation/')) dependencies[dependency] = frameworkDependencyVersion(frameworkVersion);
     }
     manifest[field] = dependencies;
   }

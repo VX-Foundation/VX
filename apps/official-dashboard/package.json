@@ -1,6 +1,6 @@
 {
-  "name": "@vx/official-dashboard",
-  "version": "0.1.0",
+  "name": "@vx-foundation/official-dashboard",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,16 +15,16 @@
     "verify": "pnpm check && pnpm lint && pnpm test && pnpm build"
   },
   "dependencies": {
-    "@vx/core": "workspace:*",
-    "@vx/data": "workspace:*",
-    "@vx/forms": "workspace:*",
-    "@vx/router": "workspace:*",
-    "@vx/runtime": "workspace:*",
-    "@vx/server": "workspace:*"
+    "@vx-foundation/core": "workspace:*",
+    "@vx-foundation/data": "workspace:*",
+    "@vx-foundation/forms": "workspace:*",
+    "@vx-foundation/router": "workspace:*",
+    "@vx-foundation/runtime": "workspace:*",
+    "@vx-foundation/server": "workspace:*"
   },
   "devDependencies": {
-    "@vx/cli": "workspace:*",
-    "@vx/testing": "workspace:*",
+    "@vx-foundation/cli": "workspace:*",
+    "@vx-foundation/testing": "workspace:*",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4",
     "@types/node": "^24.0.15"

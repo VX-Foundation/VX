@@ -5,7 +5,7 @@ import type {
   ViewNode,
   VisualPartBindingNode,
   VisualRoleUseNode
-} from '@vx/types';
+} from '@vx-foundation/types';
 
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { type Scanner } from './scanner.js';

@@ -56,6 +56,7 @@ module.exports = {
 
 function packWorkspacePackages() {
   const packages = new Map();
+  packPackage(root, packages);
   for (const parent of ['packages', 'apps']) {
     const directory = join(root, parent);
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
@@ -64,18 +65,24 @@ function packWorkspacePackages() {
       let manifest;
       try { manifest = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf8')); } catch { continue; }
       if (manifest.private) continue;
-      const before = new Set(readdirSync(archives));
-      run(pnpm, ['pack', '--pack-destination', archives], packageRoot);
-      const archiveName = readdirSync(archives).find((name) => name.endsWith('.tgz') && !before.has(name));
-      assert.ok(archiveName, `No archive was emitted for ${manifest.name}.`);
-      const unique = `${manifest.name.replace(/[@/]/g, '-')}-${archiveName}`;
-      const target = join(archives, unique);
-      renameSync(join(archives, archiveName), target);
-      packages.set(manifest.name, target);
+      packPackage(packageRoot, packages);
     }
   }
-  assert.ok(packages.has('@vx/cli') && packages.has('create-vx'), 'Clean-room artifacts must include @vx/cli and create-vx.');
+  assert.ok(packages.has('@vx-foundation/vx') && packages.has('@vx-foundation/cli') && packages.has('@vx-foundation/create-vx'), 'Clean-room artifacts must include the VX facade, CLI, and project initializer.');
   return packages;
+}
+
+function packPackage(packageRoot, packages) {
+  const manifest = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf8'));
+  if (manifest.private) return;
+  const before = new Set(readdirSync(archives));
+  run(pnpm, ['pack', '--pack-destination', archives], packageRoot);
+  const archiveName = readdirSync(archives).find((name) => name.endsWith('.tgz') && !before.has(name));
+  assert.ok(archiveName, `No archive was emitted for ${manifest.name}.`);
+  const unique = `${manifest.name.replace(/[@/]/g, '-')}-${archiveName}`;
+  const target = join(archives, unique);
+  renameSync(join(archives, archiveName), target);
+  packages.set(manifest.name, target);
 }
 
 function rewriteFrameworkDependencies(project, packages) {

@@ -2,7 +2,7 @@
  * Converts a resolved project graph into the narrow symbol view required by
  * semantic analysis. Filesystem access and module discovery never occur here.
  */
-import type { ComponentModuleIR, ComponentProjectIR, HeadlessExportContract } from '@vx/types';
+import type { ComponentModuleIR, ComponentProjectIR, HeadlessExportContract } from '@vx-foundation/types';
 
 export interface ImportedComponentBinding {
   local: string;

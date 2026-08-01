@@ -1,6 +1,6 @@
-import { analyze, lower } from '@vx/compiler/core';
-import { parse } from '@vx/language';
-import type { Diagnostic, ViewSourceMapEntry } from '@vx/types';
+import { analyze, lower } from '@vx-foundation/compiler/core';
+import { parse } from '@vx-foundation/language';
+import type { Diagnostic, ViewSourceMapEntry } from '@vx-foundation/types';
 
 export interface ComponentHarness {
   filePath: string;

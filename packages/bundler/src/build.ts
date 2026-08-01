@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { build as viteBuild, type LibraryFormats, type UserConfig } from 'vite';
-import { buildApplicationGraph, generateApplicationModules } from '@vx/router';
+import { buildApplicationGraph, generateApplicationModules } from '@vx-foundation/router';
 import { runAssetPipeline } from './assets/pipeline.js';
 import { runDeploymentAdapter } from './adapters/registry.js';
 import type { DeploymentContext, DeploymentResult } from './adapters/types.js';
@@ -284,8 +284,8 @@ function dependencyOptimization(options: NormalizedBuildOptions): NonNullable<Us
 
 function stableManualChunks(id: string): string | undefined {
   const normalized = id.replaceAll('\\', '/');
-  if (normalized.includes('/@vx/runtime/')) return 'vx-runtime';
-  if (normalized.includes('/@vx/router/')) return 'vx-router';
+  if (normalized.includes('/@vx-foundation/runtime/')) return 'vx-runtime';
+  if (normalized.includes('/@vx-foundation/router/')) return 'vx-router';
   const marker = normalized.lastIndexOf('/node_modules/');
   if (marker < 0) return undefined;
   const dependency = normalized.slice(marker + '/node_modules/'.length).split('/');

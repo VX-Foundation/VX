@@ -1,6 +1,6 @@
-import { defineConfig } from '@vx/core';
+import { defineConfig } from '@vx-foundation/core';
 
 export default defineConfig({
   adapter: 'static',
-  integrations: [{ name: '@vx/plugins/sitemap', options: { site: 'https://example.com' } }]
+  integrations: [{ name: '@vx-foundation/plugins/sitemap', options: { site: 'https://example.com' } }]
 });

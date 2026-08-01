@@ -68,7 +68,7 @@ async function main() {
     const modulePath = join(temporary, 'component.mjs');
     await writeFile(
       modulePath,
-      output.clientCode.replace("'@vx/runtime/client'", JSON.stringify(runtimeUrl)),
+      output.clientCode.replace("'@vx-foundation/runtime/client'", JSON.stringify(runtimeUrl)),
       'utf8'
     );
     const { default: mount } = await import(`${pathToFileURL(modulePath).href}?run=${Date.now()}`);

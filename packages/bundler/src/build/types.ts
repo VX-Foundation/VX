@@ -8,7 +8,7 @@ import type {
   DependencyOptimizationConfig,
   LibraryBuildConfig,
   SourceMapPolicy
-} from '@vx/types';
+} from '@vx-foundation/types';
 import type { AssetManifest, ResourceHintManifest } from '../assets/types.js';
 
 export interface BuildOptions {

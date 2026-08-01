@@ -12,7 +12,7 @@ import { createRouteCatalog } from './catalog.js';
 import { executeRoutePipeline, isRedirectResult } from './lifecycle.js';
 import { decodeRouteSearch, normalizeRoutePathname } from './search.js';
 import { loadRouteModules, mountBoundary, mountRouteModules, preloadRouteData, routeActions, type LoadedRouteModules, type MountedRouteBranch } from './module.js';
-import { QueryClient, StoreRegistry, createHydrationRegistry, hydrateQueryClient, installStreamingPatches, readHydrationState, runRouteTransition, type DehydratedQueryState, type HydrationRegistry } from '@vx/runtime/client';
+import { QueryClient, StoreRegistry, createHydrationRegistry, hydrateQueryClient, installStreamingPatches, readHydrationState, runRouteTransition, type DehydratedQueryState, type HydrationRegistry } from '@vx-foundation/runtime/client';
 import {
   HISTORY_KEY,
   assertActive,

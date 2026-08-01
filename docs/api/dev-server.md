@@ -1,16 +1,16 @@
-# @vx/dev-server
+# @vx-foundation/dev-server
 
 Dev server and HMR for VX
 
-Current package line: `0.1.0`.
+Current package line: `0.1.1`.
 
 ## Public entries
 
-- `.` → `./dist/index.d.ts`
+- `.` -> `./dist/index.d.ts`
 
 ## Exported symbols
 
-- `DevServerOptions` — interface in `index.ts`
+- `DevServerOptions` - interface in `index.ts`
 
 ## Stability
 

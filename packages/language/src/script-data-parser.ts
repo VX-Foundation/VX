@@ -1,4 +1,4 @@
-import type { ActionDeclaration, Diagnostic, EffectDeclaration, ExecutionSide, ParameterNode, QueryArgumentNode, QueryDeclaration, QueryPolicyEntryNode, SourcePosition, StoreDeclaration, StoreLifetime, TypeExpressionNode } from '@vx/types';
+import type { ActionDeclaration, Diagnostic, EffectDeclaration, ExecutionSide, ParameterNode, QueryArgumentNode, QueryDeclaration, QueryPolicyEntryNode, SourcePosition, StoreDeclaration, StoreLifetime, TypeExpressionNode } from '@vx-foundation/types';
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { readBraceBody, readLineExpression, readStringLiteralValue } from './expression.js';
 import { type Scanner } from './scanner.js';

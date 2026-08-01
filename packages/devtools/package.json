@@ -1,6 +1,6 @@
 {
-  "name": "@vx/devtools",
-  "version": "0.1.0",
+  "name": "@vx-foundation/devtools",
+  "version": "0.1.1",
   "description": "Browser DevTools protocol, inspector store, performance timeline, and runtime bridge for VX.",
   "type": "module",
   "main": "./dist/index.js",

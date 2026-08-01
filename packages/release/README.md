@@ -1,4 +1,4 @@
-# @vx/release
+# @vx-foundation/release
 
 Public API compatibility, package policy, release channels, and provenance tooling for VX.
 
@@ -7,7 +7,7 @@ Public API compatibility, package policy, release channels, and provenance tooli
 ## Installation
 
 ```bash
-pnpm add @vx/release
+pnpm add @vx-foundation/release
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

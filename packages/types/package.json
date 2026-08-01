@@ -1,6 +1,6 @@
 {
-  "name": "@vx/types",
-  "version": "0.1.0",
+  "name": "@vx-foundation/types",
+  "version": "0.1.1",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -20,7 +20,7 @@
     "test": "vitest run",
     "lint": "eslint src test",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "bench": "node ../../scripts/noop-bench.mjs @vx/types"
+    "bench": "node ../../scripts/noop-bench.mjs @vx-foundation/types"
   },
   "license": "MIT",
   "engines": {

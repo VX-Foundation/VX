@@ -1,4 +1,4 @@
-# @vx/language-server
+# @vx-foundation/language-server
 
 Language Server for the VX framework
 

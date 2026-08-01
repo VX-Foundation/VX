@@ -1,5 +1,5 @@
-import { schema } from '@vx/forms';
-import { createServerForm } from '@vx/forms/server';
+import { schema } from '@vx-foundation/forms';
+import { createServerForm } from '@vx-foundation/forms/server';
 import { verifyCommerceCsrf } from '../../../server/security.js';
 
 const listingSchema = schema.object({

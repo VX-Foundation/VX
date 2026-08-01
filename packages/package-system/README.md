@@ -1,4 +1,4 @@
-# @vx/package-system
+# @vx-foundation/package-system
 
 Deterministic package metadata, lockfiles, workspaces, integrity, signatures, and dependency mutation for VX.
 
@@ -7,7 +7,7 @@ Deterministic package metadata, lockfiles, workspaces, integrity, signatures, an
 ## Installation
 
 ```bash
-pnpm add @vx/package-system
+pnpm add @vx-foundation/package-system
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

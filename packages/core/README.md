@@ -1,4 +1,4 @@
-# @vx/core
+# @vx-foundation/core
 
 VX Core Orchestration
 
@@ -7,7 +7,7 @@ VX Core Orchestration
 ## Installation
 
 ```bash
-pnpm add @vx/core
+pnpm add @vx-foundation/core
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

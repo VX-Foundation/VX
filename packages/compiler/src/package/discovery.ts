@@ -3,7 +3,7 @@
  * by default: only known public source surfaces are exposed, while internal
  * files remain available to the package implementation graph.
  */
-import type { Diagnostic, SourceSpan } from '@vx/types';
+import type { Diagnostic, SourceSpan } from '@vx-foundation/types';
 import { existsSync, lstatSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { join, relative, resolve, sep } from 'node:path';
 

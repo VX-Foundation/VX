@@ -1,4 +1,4 @@
-# @vx/security-testing
+# @vx-foundation/security-testing
 
 Deterministic fuzzing, secret scanning, and supply-chain policy primitives for VX.
 
@@ -7,7 +7,7 @@ Deterministic fuzzing, secret scanning, and supply-chain policy primitives for V
 ## Installation
 
 ```bash
-pnpm add @vx/security-testing
+pnpm add @vx-foundation/security-testing
 ```
 
 Import only the documented public entrypoints declared by this package. Internal source paths are not part of the compatibility contract.

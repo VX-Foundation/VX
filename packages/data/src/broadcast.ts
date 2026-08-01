@@ -1,4 +1,4 @@
-import type { QueryClient, QueryClientEvent } from '@vx/runtime';
+import type { QueryClient, QueryClientEvent } from '@vx-foundation/runtime';
 
 export interface DataBroadcastChannel {
   postMessage(value: unknown): void;

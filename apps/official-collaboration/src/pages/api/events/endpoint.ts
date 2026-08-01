@@ -1,4 +1,4 @@
-import { applySecurityHeaders, createRouteEndpointHandler, defineEndpoint } from '@vx/server';
+import { applySecurityHeaders, createRouteEndpointHandler, defineEndpoint } from '@vx-foundation/server';
 
 const endpoint = defineEndpoint(
   { id: 'collaboration.events', methods: ['POST'], body: { maxBytes: 131_072 } },

@@ -3,7 +3,7 @@
  * explicit ownership and idempotent cleanup; nested visual components remain
  * wrapper-free and are tracked through private node boundaries.
  */
-import type { ComponentContract, VisualProgramIR } from '@vx/types';
+import type { ComponentContract, VisualProgramIR } from '@vx-foundation/types';
 
 /** Emits the lifecycle factory used by headless VX modules. */
 export function generateHeadlessFactory(contract: ComponentContract): string {

@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import type { Diagnostic } from '@vx/types';
+import type { Diagnostic } from '@vx-foundation/types';
 
 import {
   ensureLeadingDotSlash,
@@ -14,7 +14,7 @@ import {
   normalizeToPosixPath
 } from '../src/index.js';
 
-describe('@vx/shared', () => {
+describe('@vx-foundation/shared', () => {
   it('normalizes paths to posix format', () => {
     expect(normalizeToPosixPath('packages\\shared\\src\\index.ts')).toBe('packages/shared/src/index.ts');
   });

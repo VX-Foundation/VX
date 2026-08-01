@@ -39,7 +39,7 @@ describe('VX package system', () => {
   });
 
   it('detects breaking public-contract changes', () => {
-    const metadata = { schema: 'https://vx.dev/schemas/package/v1' as const, version: 1 as const, name: '@vx/demo', packageVersion: '1.0.0', exports: { '.': './dist/index.js', './old': './dist/old.js' }, privateModules: [], publicContracts: { '.': 'sha512-main', './old': 'sha512-old' } };
+    const metadata = { schema: 'https://vx.dev/schemas/package/v1' as const, version: 1 as const, name: '@vx-foundation/demo', packageVersion: '1.0.0', exports: { '.': './dist/index.js', './old': './dist/old.js' }, privateModules: [], publicContracts: { '.': 'sha512-main', './old': 'sha512-old' } };
     const previous = createPublicContractSnapshot(metadata);
     const next = createPublicContractSnapshot({ ...metadata, packageVersion: '2.0.0', publicContracts: { '.': 'sha512-main' } });
     expect(comparePublicContracts(previous, next).recommendedBump).toBe('major');

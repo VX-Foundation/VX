@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
-import { mountComponent } from '@vx/testing';
+import { mountComponent } from '@vx-foundation/testing';
 
 describe('official component testing', () => {
   it('updates state and disposes the mounted component', async () => {

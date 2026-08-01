@@ -1,4 +1,4 @@
-import { createRouteEndpointHandler, defineEndpoint } from '@vx/server';
+import { createRouteEndpointHandler, defineEndpoint } from '@vx-foundation/server';
 
 const updateSettings = defineEndpoint(
   { id: 'dashboard.settings.update', methods: ['POST'], body: { maxBytes: 32_768, maxFields: 16 } },

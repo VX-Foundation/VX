@@ -1,5 +1,5 @@
-import { parse } from '@vx/language';
-import type { ComponentContract, ScriptStatement } from '@vx/types';
+import { parse } from '@vx-foundation/language';
+import type { ComponentContract, ScriptStatement } from '@vx-foundation/types';
 
 export interface HMRSignature {
   componentId: string;

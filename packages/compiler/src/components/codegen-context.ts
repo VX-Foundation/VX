@@ -2,7 +2,7 @@
  * Immutable cross-module information consumed by code generation. Generated
  * imports come only from the previously validated component project graph.
  */
-import type { ComponentContract, ComponentModuleKind, HeadlessExportContract } from '@vx/types';
+import type { ComponentContract, ComponentModuleKind, HeadlessExportContract } from '@vx-foundation/types';
 
 export interface ComponentCodegenImport {
   local: string;

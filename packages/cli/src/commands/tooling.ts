@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { extname, resolve } from 'node:path';
 import pc from 'picocolors';
-import { createComponentHarness, formatVX, inspectVX, migrateVXSource } from '@vx/tooling';
+import { createComponentHarness, formatVX, inspectVX, migrateVXSource } from '@vx-foundation/tooling';
 
 export interface FormatCommandOptions { check?: boolean; }
 export interface InspectCommandOptions { generated?: boolean; }

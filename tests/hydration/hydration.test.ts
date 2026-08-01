@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { compareHydrationMarkup, testHydration } from '@vx/testing';
+import { compareHydrationMarkup, testHydration } from '@vx-foundation/testing';
 
 describe('official hydration testing', () => {
   it('reports deterministic mismatch guidance', async () => {

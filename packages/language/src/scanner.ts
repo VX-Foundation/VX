@@ -1,4 +1,4 @@
-import type { SourcePosition, SourceSpan } from '@vx/types';
+import type { SourcePosition, SourceSpan } from '@vx-foundation/types';
 
 /**
  * A position-tracking cursor over a slice of `.vx` source text.

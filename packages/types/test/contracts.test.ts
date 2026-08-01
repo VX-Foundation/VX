@@ -9,7 +9,7 @@ import type {
   VXConfig
 } from '../src/index.js';
 
-describe('@vx/types', () => {
+describe('@vx-foundation/types', () => {
   it('exposes the minimal diagnostic contract', () => {
     expectTypeOf<Diagnostic>().toMatchTypeOf<{
       code: string;

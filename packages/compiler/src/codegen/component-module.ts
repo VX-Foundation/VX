@@ -2,7 +2,7 @@
  * Generates stable ESM glue for already-resolved VX module dependencies. This
  * file does not resolve source paths or interpret untrusted import specifiers.
  */
-import type { ScriptStatement, VisualResolvedNode, VisualResolvedRole, WidgetNode } from '@vx/types';
+import type { ScriptStatement, VisualResolvedNode, VisualResolvedRole, WidgetNode } from '@vx-foundation/types';
 import type { ComponentCodegenContext, ComponentCodegenImport } from '../components/codegen-context.js';
 
 export interface GeneratedModuleImports {

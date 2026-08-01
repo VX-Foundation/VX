@@ -1,4 +1,4 @@
-import type { ASTNode, DataProgramIR, ScriptBlockNode, ViewBlockNode, ProgramNode, Diagnostic, VisualDesignSystem, VisualProgramIR } from '@vx/types';
+import type { ASTNode, DataProgramIR, ScriptBlockNode, ViewBlockNode, ProgramNode, Diagnostic, VisualDesignSystem, VisualProgramIR } from '@vx-foundation/types';
 import { DiagnosticCollector } from './analyze/diagnostics.js';
 import { buildReactiveGraph } from './analyze/graph-builder.js';
 import type { ReactiveGraph } from './analyze/graph-builder.js';
@@ -37,7 +37,7 @@ export interface AnalyzeResult {
  * The 'Analyze' pass of the VX compilation pipeline.
  * Constructs the reactive graph from the AST, validates boundaries and performs static type-checking.
  *
- * @param ast The AST produced by @vx/language
+ * @param ast The AST produced by @vx-foundation/language
  * @returns The analyzed reactive graph and any diagnostics (errors/warnings)
  */
 export function analyze(ast: ASTNode, options: AnalyzeOptions = {}): AnalyzeResult {

@@ -1,6 +1,6 @@
 {
-  "name": "@vx/shared",
-  "version": "0.1.0",
+  "name": "@vx-foundation/shared",
+  "version": "0.1.1",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,14 +16,14 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@vx/types": "workspace:*"
+    "@vx-foundation/types": "workspace:*"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
     "lint": "eslint src test",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "bench": "node ../../scripts/noop-bench.mjs @vx/shared"
+    "bench": "node ../../scripts/noop-bench.mjs @vx-foundation/shared"
   },
   "license": "MIT",
   "engines": {

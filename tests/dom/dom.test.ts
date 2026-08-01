@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
-import { createDomHarness } from '@vx/testing';
+import { createDomHarness } from '@vx-foundation/testing';
 
 describe('official DOM testing', () => {
   it('queries by semantic role and accessible name', () => {

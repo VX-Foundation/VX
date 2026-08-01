@@ -15,6 +15,7 @@ import { checkCommand, lintCommand } from '../../packages/cli/dist/commands/work
 import { testComponentCommand } from '../../packages/cli/dist/commands/tooling.js';
 
 const workspace = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
+const FRAMEWORK_VERSION = JSON.parse(readFileSync(join(workspace, 'package.json'), 'utf8')).version;
 const temporary = mkdtempSync(join(tmpdir(), 'vx-project-creation-'));
 
 try {
@@ -24,7 +25,7 @@ try {
       cwd: temporary,
       name: `vx-${template}-verification`,
       template,
-      frameworkVersion: '0.1.0'
+      frameworkVersion: FRAMEWORK_VERSION
     });
     const descriptor = resolveTemplate(template);
     assert.deepEqual(result.createdFiles.filter((file) => descriptor.requiredFiles.includes(file)).sort(), [...descriptor.requiredFiles].sort());
@@ -37,7 +38,7 @@ try {
       : join(result.root, 'src/pages/page.vx'));
 
     if (template === 'library') {
-      const staged = packageLibrary(result.root, { outDir: '.vx-package-verification', frameworkVersion: '0.1.0' });
+      const staged = packageLibrary(result.root, { outDir: '.vx-package-verification', frameworkVersion: FRAMEWORK_VERSION });
       assertNoDiagnostics(staged.diagnostics, 'library package staging');
       assert.ok(staged.manifest, 'Library package staging did not emit a manifest.');
       assert.deepEqual(Object.keys(staged.manifest.exports).sort(), ['./card', './labels']);
@@ -65,22 +66,22 @@ try {
 }
 
 function verifyScaffoldSafety() {
-  assert.throws(() => scaffoldProject({ cwd: temporary, name: '../escape', template: 'basic', frameworkVersion: '0.1.0' }), /inside|not allowed/);
+  assert.throws(() => scaffoldProject({ cwd: temporary, name: '../escape', template: 'basic', frameworkVersion: FRAMEWORK_VERSION }), /inside|not allowed/);
   for (const name of ['CON', 'nested/AUX.txt', 'trailing.', 'bad:name', 'C:\\absolute']) {
-    assert.throws(() => scaffoldProject({ cwd: temporary, name, template: 'basic', frameworkVersion: '0.1.0' }), /relative|portable/);
+    assert.throws(() => scaffoldProject({ cwd: temporary, name, template: 'basic', frameworkVersion: FRAMEWORK_VERSION }), /relative|portable/);
   }
 
   const initializedRoot = join(temporary, 'init-existing');
   mkdirSync(initializedRoot, { recursive: true });
   writeFileSync(join(initializedRoot, 'existing.txt'), 'preserve-me');
-  const initialized = initializeProject({ root: initializedRoot, template: 'starter', frameworkVersion: '0.1.0' });
+  const initialized = initializeProject({ root: initializedRoot, template: 'starter', frameworkVersion: FRAMEWORK_VERSION });
   assert.ok(initialized.createdFiles.includes('src/pages/page.vx'));
   assert.equal(readFileSync(join(initializedRoot, 'existing.txt'), 'utf8'), 'preserve-me');
 
   const conflictRoot = join(temporary, 'init-conflict');
   mkdirSync(conflictRoot, { recursive: true });
   writeFileSync(join(conflictRoot, 'src'), 'not-a-directory');
-  assert.throws(() => initializeProject({ root: conflictRoot, template: 'basic', frameworkVersion: '0.1.0' }), /cross existing files/);
+  assert.throws(() => initializeProject({ root: conflictRoot, template: 'basic', frameworkVersion: FRAMEWORK_VERSION }), /cross existing files/);
   assert.equal(readFileSync(join(conflictRoot, 'src'), 'utf8'), 'not-a-directory');
 }
 
@@ -96,7 +97,7 @@ function validateManifest(root, template) {
   for (const name of mandatory) assert.equal(typeof manifest.scripts?.[name], 'string', `${template} is missing script '${name}'.`);
   for (const dependencies of [manifest.dependencies, manifest.devDependencies, manifest.peerDependencies]) {
     for (const [name, version] of Object.entries(dependencies ?? {})) {
-      if (name.startsWith('@vx/')) assert.equal(version, '^0.1.0', `${template} did not pin ${name} to the generated framework line.`);
+      if (name.startsWith('@vx-foundation/')) assert.equal(version, `^${FRAMEWORK_VERSION}`, `${template} did not pin ${name} to the generated framework line.`);
     }
   }
 }
@@ -105,7 +106,7 @@ function compileVXFiles(root) {
   const files = walk(root).filter((file) => file.endsWith('.vx'));
   assert.ok(files.length > 0, `Generated project '${root}' has no VX sources.`);
   for (const file of files) {
-    const result = compileComponentProject(file, { rootDir: root, frameworkVersion: '0.1.0', failFast: true });
+    const result = compileComponentProject(file, { rootDir: root, frameworkVersion: FRAMEWORK_VERSION, failFast: true });
     assertNoDiagnostics(result.diagnostics, relative(root, file));
     assert.ok(result.artifacts.size > 0, `Compiler emitted no artifacts for '${relative(root, file)}'.`);
   }
@@ -122,10 +123,10 @@ function verifyPublishedCliContainsTemplates() {
   const output = JSON.parse(packed.stdout);
   const files = new Set((output[0]?.files ?? []).map((item) => item.path));
   for (const template of PROJECT_TEMPLATES) {
-    assert.ok(files.has(`templates/${template}/package.json`), `Published @vx/cli artifact omits template '${template}'.`);
+    assert.ok(files.has(`templates/${template}/package.json`), `Published @vx-foundation/cli artifact omits template '${template}'.`);
   }
-  assert.ok(files.has('dist/cli.js'), 'Published @vx/cli artifact omits its compiled CLI implementation.');
-  assert.ok(files.has('bin/vx.js'), 'Published @vx/cli artifact omits its stable binary launcher.');
+  assert.ok(files.has('dist/cli.js'), 'Published @vx-foundation/cli artifact omits its compiled CLI implementation.');
+  assert.ok(files.has('bin/vx.js'), 'Published @vx-foundation/cli artifact omits its stable binary launcher.');
 }
 
 function walk(root) {

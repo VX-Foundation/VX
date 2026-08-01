@@ -1,4 +1,4 @@
-import type { ConstDeclaration, DeriveDeclaration, ExecutionSide, PropDeclaration, SourcePosition, StateDeclaration, TypeExpressionNode } from '@vx/types';
+import type { ConstDeclaration, DeriveDeclaration, ExecutionSide, PropDeclaration, SourcePosition, StateDeclaration, TypeExpressionNode } from '@vx-foundation/types';
 import { readLineExpression } from './expression.js';
 import { type Scanner } from './scanner.js';
 

@@ -4,7 +4,7 @@ import type {
   ComponentProjectIR,
   Diagnostic,
   SourceSpan
-} from '@vx/types';
+} from '@vx-foundation/types';
 
 import { analyze } from './index.js';
 import { lower, UnsupportedLoweringError } from './codegen/index.js';

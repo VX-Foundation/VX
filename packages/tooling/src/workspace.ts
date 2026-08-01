@@ -1,6 +1,6 @@
 import { existsSync, readFileSync, readdirSync, statSync, type Dirent } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
-import type { Diagnostic, SourceSpan } from '@vx/types';
+import type { Diagnostic, SourceSpan } from '@vx-foundation/types';
 import type { WorkspaceIndexOptions, WorkspaceIndexResult } from './types.js';
 import type { VXLanguageService } from './language-service.js';
 

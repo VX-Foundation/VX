@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { invokeAction } from '@vx/testing';
+import { invokeAction } from '@vx-foundation/testing';
 
 describe('official action testing', () => {
   it('captures values and typed failures', async () => {

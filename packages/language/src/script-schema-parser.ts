@@ -1,4 +1,4 @@
-import type { Diagnostic, ExecutionSide, FormDeclaration, FormOptionNode, SchemaDeclaration, SchemaFieldNode, SchemaRuleNode, SourcePosition } from '@vx/types';
+import type { Diagnostic, ExecutionSide, FormDeclaration, FormOptionNode, SchemaDeclaration, SchemaFieldNode, SchemaRuleNode, SourcePosition } from '@vx-foundation/types';
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
 import { readBraceBody, readBracketedExpression, readLineExpression } from './expression.js';
 import { Scanner } from './scanner.js';

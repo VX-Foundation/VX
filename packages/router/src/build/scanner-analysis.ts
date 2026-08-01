@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { parse } from '@vx/language';
-import type { ProgramNode, ScriptBlockNode, ViewBlockNode, ViewNode } from '@vx/types';
+import { parse } from '@vx-foundation/language';
+import type { ProgramNode, ScriptBlockNode, ViewBlockNode, ViewNode } from '@vx-foundation/types';
 import type {
   EndpointRecord,
   RouteActionDeclaration,

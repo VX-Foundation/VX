@@ -2,7 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { auditAccessibility, assertDeterministicMarkup, compareHydrationMarkup, compareRgbaSnapshots, contrastRatio, createTestSuite, enforcePerformanceBudget, measurePerformance } from '../src/index.js';
 
-describe('@vx/testing', () => {
+describe('@vx-foundation/testing', () => {
   it('runs deterministic official tests with cleanup', async () => {
     let cleaned = false;
     const suite = createTestSuite('core').add({ id: 'unit:one', name: 'one', kind: 'unit', run(context) { context.cleanup(() => { cleaned = true; }); } });

@@ -1,4 +1,6 @@
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { collectTextFiles, readTextFile } from './repository-policy/files.mjs';
 import { inspectProjectLanguage } from './repository-policy/language-policy.mjs';
@@ -20,6 +22,7 @@ for (const filePath of files) {
 }
 
 violations.push(...await inspectSourcePackageBins(rootDirectory));
+violations.push(...inspectTrackedTypeScriptBuildInfo(rootDirectory));
 
 for (const warning of warnings) console.warn(`Policy warning: ${warning}`);
 
@@ -29,4 +32,17 @@ if (violations.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(`Repository policy passed for ${files.length} text files.`);
+}
+
+function inspectTrackedTypeScriptBuildInfo(directory) {
+  const tracked = execFileSync('git', ['ls-files', '*.tsbuildinfo', '*.tsbuildinfo.*'], {
+    cwd: directory,
+    encoding: 'utf8'
+  }).trim();
+  if (tracked.length === 0) return [];
+  return tracked
+    .split(/\r?\n/u)
+    .filter(Boolean)
+    .filter((file) => existsSync(path.join(directory, file)))
+    .map((file) => `${file}: generated TypeScript build info must not be tracked because it can suppress clean CI output.`);
 }
