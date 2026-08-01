@@ -25,7 +25,7 @@ jobs:
         env:
           VX_FUZZ_SEED: '${{ matrix.seed }}'
           VX_FUZZ_ITERATIONS: '${{ github.event_name == ''schedule'' && ''50000'' || ''3000'' }}'
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: fuzz-crash-node-${{ matrix.node }}-seed-${{ matrix.seed }}

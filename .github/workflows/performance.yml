@@ -47,7 +47,7 @@ jobs:
       - run: node benchmarks/public/scripts/run.mjs --framework '${{ inputs.frameworks }}' --scenario '${{ inputs.scenarios }}'
         env:
           VX_BENCH_BROWSER: chromium-pinned
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: vx-public-benchmark-results
           path: benchmarks/public/results/**
