@@ -15,7 +15,7 @@
     "@vx-foundation/language": "workspace:*",
     "@vx-foundation/runtime": "workspace:*",
     "@vx-foundation/tooling": "workspace:*",
-    "monaco-editor": "^0.55.1"
+    "monaco-editor": "^0.56.0"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
