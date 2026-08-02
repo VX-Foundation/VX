@@ -6,13 +6,22 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-const spawnOptions = { encoding: 'utf8', shell: process.platform === 'win32' };
+const spawnOptions = { encoding: 'utf8', shell: process.platform === 'win32', timeout: 60_000 };
 const version = spawnSync(npm, ['--version'], spawnOptions);
 assert.equal(version.status, 0, 'npm CLI is required.');
 const npmVersion = version.stdout.trim();
 assert.ok(atLeast(npmVersion, [11, 5, 1]), `npm 11.5.1 or newer is required for trusted publishing; found ${npmVersion}.`);
 const whoami = spawnSync(npm, ['whoami', '--registry', 'https://registry.npmjs.org/'], spawnOptions);
-assert.equal(whoami.status, 0, 'Authenticate to npm before running the manual ownership preflight. Trusted publishing itself uses OIDC in GitHub Actions.');
+if (whoami.status !== 0) {
+  const details = [whoami.stderr, whoami.stdout].filter(Boolean).join('\n').trim();
+  throw new Error([
+    'npm authentication failed. The configured credential may be missing, expired, or revoked.',
+    details,
+    'Run `npm logout --registry https://registry.npmjs.org/`, then `npm login --auth-type=web --registry https://registry.npmjs.org/`.',
+    'Confirm the new session with `npm whoami --registry https://registry.npmjs.org/` before retrying this preflight.',
+    'Trusted publishing uses GitHub OIDC after the one-time package bootstrap, but this manual ownership check requires an authenticated maintainer.'
+  ].filter(Boolean).join('\n'));
+}
 const identity = whoami.stdout.trim();
 const packages = await publicPackages();
 for (const manifest of packages) {
@@ -38,7 +47,9 @@ async function publicPackages() {
       try {
         const manifest = JSON.parse(await readFile(path, 'utf8'));
         if (manifest.private !== true) output.push(manifest);
-      } catch {}
+      } catch {
+        continue;
+      }
     }
   }
   return output.sort((a, b) => a.name.localeCompare(b.name));

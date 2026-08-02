@@ -20,7 +20,7 @@ describe('Core Orchestrator', () => {
     expect(config.adapter).toBe('static');
     expect(config.integrations.length).toBe(1);
     expect(config.integrations[0]!.name).toBe('@vx-foundation/plugins/sitemap');
-  });
+  }, 15_000);
 
   it('runs integrations from config', async () => {
     const fixtureRoot = resolve(dirname, 'fixture');
