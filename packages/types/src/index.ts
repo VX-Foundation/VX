@@ -18,5 +18,6 @@ export type {
   ComponentVisualPartContract,
   HeadlessExportContract,
   ResolvedComponentImport,
-  ResolvedImportBinding
+  ResolvedImportBinding,
+  VisualRoleExport
 } from './component-ir.js';

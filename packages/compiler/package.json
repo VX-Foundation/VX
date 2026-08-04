@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/compiler",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Compiler core: Reactive graph, type checking, lowering.",
   "main": "./dist/index.js",

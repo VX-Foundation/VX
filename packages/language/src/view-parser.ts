@@ -13,7 +13,10 @@ import type {
   VisualRoleStateNode,
   VisualRoleUseNode,
   WidgetNode,
-  WidgetProperty
+  WidgetProperty,
+  VisualKeyframeStepNode,
+  VisualPseudoBlockNode,
+  VisualSelectorBlockNode
 } from '@vx-foundation/types';
 
 import { createDiagnostic, DiagnosticCodes } from './errors.js';
@@ -37,8 +40,33 @@ export function parseViewBlock(
     scanner.skipWhitespaceAndComments();
     if (scanner.isAtEnd) break;
 
+    // Handle `export @role { ... }` at the top level of #view
+    if (scanner.lookingAt('export')) {
+      const exportStart = scanner.position();
+      // Peek ahead to check if it's `export @`
+      const saved = scanner.position();
+      for (let i = 0; i < 'export'.length; i++) scanner.advance();
+      scanner.skipInlineWhitespace();
+      if (scanner.peek() === '@') {
+        roles.push(parseRoleDeclaration(scanner, diagnostics, true));
+      } else {
+        // `export` used incorrectly (not before @role)
+        diagnostics.push(
+          createDiagnostic(
+            DiagnosticCodes.VisualExportOutsideScope,
+            "'export' at the top level of #view must be followed by a role declaration '@name { ... }'.",
+            scanner.span(exportStart),
+            { suggestion: "Use 'export @roleName { ... }' to export a visual role." }
+          )
+        );
+        restore(scanner, saved);
+        scanner.advanceUntil('\n');
+      }
+      continue;
+    }
+
     if (scanner.peek() === '@') {
-      roles.push(parseRoleDeclaration(scanner, diagnostics));
+      roles.push(parseRoleDeclaration(scanner, diagnostics, false));
       continue;
     }
 
@@ -55,6 +83,31 @@ function parseNodeList(scanner: Scanner, diagnostics: Diagnostic[]): ViewNode[] 
   while (!scanner.isAtEnd) {
     scanner.skipWhitespaceAndComments();
     if (scanner.isAtEnd || scanner.peek() === '}') break;
+
+    // Detect `export @role` inside a widget body — not allowed
+    if (scanner.lookingAt('export')) {
+      const start = scanner.position();
+      for (let i = 0; i < 'export'.length; i++) scanner.advance();
+      scanner.skipInlineWhitespace();
+      if (scanner.peek() === '@') {
+        diagnostics.push(
+          createDiagnostic(
+            DiagnosticCodes.VisualExportInComponentBody,
+            "'export @role' is only allowed at the top level of #view, not inside a widget body.",
+            scanner.span(start),
+            { suggestion: "Move 'export @roleName { ... }' to the top level of #view, after the widget tree." }
+          )
+        );
+        skipBalancedRoleDeclaration(scanner);
+      } else {
+        // Not `export @`, treat as unknown identifier and recover
+        diagnostics.push(
+          createDiagnostic(DiagnosticCodes.SyntaxError, "Expected a widget or view control block.", scanner.span(start))
+        );
+        scanner.advanceUntil('\n');
+      }
+      continue;
+    }
 
     if (scanner.peek() === '@') {
       const start = scanner.position();
@@ -123,6 +176,48 @@ function parseWidget(scanner: Scanner, tagName: string, start: SourcePosition, d
     while (!scanner.isAtEnd) {
       scanner.skipWhitespaceAndComments();
       if (scanner.peek() === '}') break;
+
+      // Detect `export @role` inside a widget body — not allowed
+      if (scanner.lookingAt('export')) {
+        const exportStart = scanner.position();
+        for (let i = 0; i < 'export'.length; i++) scanner.advance();
+        scanner.skipInlineWhitespace();
+        if (scanner.peek() === '@') {
+          diagnostics.push(
+            createDiagnostic(
+              DiagnosticCodes.VisualExportInComponentBody,
+              "'export @role' is only allowed at the top level of #view, not inside a widget body.",
+              scanner.span(exportStart),
+              { suggestion: "Move 'export @roleName { ... }' to the top level of #view, after the widget tree." }
+            )
+          );
+          skipBalancedRoleDeclaration(scanner);
+        } else {
+          restore(scanner, exportStart);
+          // Fall through to identifier parsing below
+          const position = scanner.position();
+          const identifier = scanner.readIdentifier();
+          scanner.skipInlineWhitespace();
+          if (identifier && (scanner.peek() === ':' || scanner.lookingAt('=>'))) {
+            if (scanner.peek() === ':') {
+              scanner.advance();
+              scanner.skipInlineWhitespace();
+              const expression = readLineExpression(scanner, ['}']);
+              properties.push({ kind: 'PropBinding', name: identifier, expression, span: scanner.span(position) });
+            } else {
+              scanner.match('=>');
+              scanner.skipInlineWhitespace();
+              const expression = readLineExpression(scanner, ['}']);
+              properties.push({ kind: 'EventBinding', name: identifier, expression, span: scanner.span(position) });
+            }
+          } else {
+            restore(scanner, position);
+            const child = parseNode(scanner, diagnostics);
+            if (child) children.push(child);
+          }
+        }
+        continue;
+      }
 
       const position = scanner.position();
       const identifier = scanner.readIdentifier();
@@ -282,9 +377,9 @@ function parseRoleArguments(
   return args;
 }
 
-function parseRoleDeclaration(scanner: Scanner, diagnostics: Diagnostic[]): VisualRoleDeclarationNode {
+function parseRoleDeclaration(scanner: Scanner, diagnostics: Diagnostic[], exported = false): VisualRoleDeclarationNode {
   const start = scanner.position();
-  scanner.advance();
+  scanner.advance(); // consume '@'
   const name = scanner.readIdentifier();
 
   if (!name) {
@@ -305,11 +400,20 @@ function parseRoleDeclaration(scanner: Scanner, diagnostics: Diagnostic[]): Visu
         scanner.span(start)
       )
     );
-    return { kind: 'VisualRoleDeclaration', name, uses, properties: [], states: [], span: scanner.span(start) };
+    return { kind: 'VisualRoleDeclaration', name, uses, properties: [], states: [], exported, span: scanner.span(start) };
   }
 
   const properties: VisualRolePropertyNode[] = [];
   const states: VisualRoleStateNode[] = [];
+  const keyframes: VisualKeyframeStepNode[] = [];
+  const pseudos: VisualPseudoBlockNode[] = [];
+  const selectors: VisualSelectorBlockNode[] = [];
+  let rawCss: string | undefined;
+
+  // Known pseudo-element keywords
+  const PSEUDO_KEYWORDS = new Set(['before', 'after', 'placeholder', 'selection', 'firstLine', 'firstLetter', 'marker', 'backdrop']);
+  // Known relational selector combinators
+  const SELECTOR_KEYWORDS = new Set(['child', 'has', 'not', 'sibling', 'adjacent', 'is', 'where']);
 
   while (!scanner.isAtEnd) {
     scanner.skipWhitespaceAndComments();
@@ -318,17 +422,183 @@ function parseRoleDeclaration(scanner: Scanner, diagnostics: Diagnostic[]): Visu
     const itemStart = scanner.position();
     const word = scanner.readIdentifier();
 
+    // `when <condition> { ... }`
     if (word === 'when') {
       states.push(parseRoleState(scanner, itemStart, diagnostics));
       continue;
     }
 
+    // `keyframes { from { ... } to { ... } 50% { ... } }`
+    if (word === 'keyframes') {
+      scanner.skipWhitespaceAndComments();
+      if (!scanner.match('{')) {
+        diagnostics.push(createDiagnostic(DiagnosticCodes.ExpectedToken, "Expected '{' after 'keyframes'.", scanner.span(itemStart)));
+        scanner.advanceUntil('\n');
+        continue;
+      }
+      while (!scanner.isAtEnd) {
+        scanner.skipWhitespaceAndComments();
+        if (scanner.peek() === '}') break;
+        const stepStart = scanner.position();
+        let stop = '';
+        // Accept: from, to, or a number (percentage)
+        if (scanner.lookingAt('from')) { for (let i = 0; i < 4; i++) scanner.advance(); stop = 'from'; }
+        else if (scanner.lookingAt('to')) { for (let i = 0; i < 2; i++) scanner.advance(); stop = 'to'; }
+        else {
+          const digits = scanner.readWhile((c) => /[0-9]/.test(c));
+          if (digits && scanner.peek() === '%') { scanner.advance(); stop = digits; }
+          else {
+            diagnostics.push(createDiagnostic(DiagnosticCodes.InvalidKeyframeStep, `Keyframe step must be 'from', 'to', or a percentage like '50%'. Got '${digits || scanner.peek()}'.`, scanner.span(stepStart)));
+            scanner.advanceUntil('\n');
+            continue;
+          }
+        }
+        scanner.skipWhitespaceAndComments();
+        if (!scanner.match('{')) {
+          diagnostics.push(createDiagnostic(DiagnosticCodes.ExpectedToken, `Expected '{' after keyframe stop '${stop}'.`, scanner.span(stepStart)));
+          scanner.advanceUntil('\n');
+          continue;
+        }
+        const stepProps: VisualRolePropertyNode[] = [];
+        while (!scanner.isAtEnd) {
+          scanner.skipWhitespaceAndComments();
+          if (scanner.peek() === '}') break;
+          const propStart = scanner.position();
+          const propName = scanner.readIdentifier();
+          scanner.skipInlineWhitespace();
+          if (!propName || !scanner.match(':')) {
+            diagnostics.push(createDiagnostic(DiagnosticCodes.InvalidVisualRoleDeclaration, `Expected 'property: value' inside keyframe stop '${stop}'.`, scanner.span(propStart)));
+            scanner.advanceUntil('\n');
+            continue;
+          }
+          scanner.skipInlineWhitespace();
+          const expr = readLineExpression(scanner, ['}']);
+          stepProps.push({ kind: 'VisualRoleProperty', name: propName, expression: expr, span: scanner.span(propStart) });
+        }
+        scanner.match('}');
+        keyframes.push({ kind: 'VisualKeyframeStep', stop, properties: stepProps, span: scanner.span(stepStart) });
+      }
+      scanner.match('}');
+      continue;
+    }
+
+    // `before { ... }`, `after { ... }`, `placeholder { ... }`, etc.
+    if (PSEUDO_KEYWORDS.has(word)) {
+      scanner.skipWhitespaceAndComments();
+      if (!scanner.match('{')) {
+        diagnostics.push(createDiagnostic(DiagnosticCodes.ExpectedToken, `Expected '{' after pseudo-element '${word}'.`, scanner.span(itemStart)));
+        scanner.advanceUntil('\n');
+        continue;
+      }
+      const pseudoProps: VisualRolePropertyNode[] = [];
+      while (!scanner.isAtEnd) {
+        scanner.skipWhitespaceAndComments();
+        if (scanner.peek() === '}') break;
+        const propStart = scanner.position();
+        const propName = scanner.readIdentifier();
+        scanner.skipInlineWhitespace();
+        if (!propName || !scanner.match(':')) {
+          diagnostics.push(createDiagnostic(DiagnosticCodes.InvalidVisualRoleDeclaration, `Expected 'property: value' inside pseudo-element '${word}'.`, scanner.span(propStart)));
+          scanner.advanceUntil('\n');
+          continue;
+        }
+        scanner.skipInlineWhitespace();
+        const expr = readLineExpression(scanner, ['}']);
+        pseudoProps.push({ kind: 'VisualRoleProperty', name: propName, expression: expr, span: scanner.span(propStart) });
+      }
+      scanner.match('}');
+      pseudos.push({ kind: 'VisualPseudoBlock', pseudo: word, properties: pseudoProps, span: scanner.span(itemStart) });
+      continue;
+    }
+
+    // `child("selector") { ... }`, `has("...") { ... }`, etc.
+    if (SELECTOR_KEYWORDS.has(word)) {
+      scanner.skipInlineWhitespace();
+      let selectorArg = '';
+      if (scanner.peek() === '(') {
+        scanner.advance(); // consume (
+        // Read until closing ) — may contain nested parens
+        let depth = 1;
+        while (!scanner.isAtEnd && depth > 0) {
+          const ch = scanner.peek();
+          if (ch === '(') depth++;
+          if (ch === ')') { depth--; if (depth === 0) { scanner.advance(); break; } }
+          selectorArg += scanner.advance();
+        }
+        selectorArg = selectorArg.trim();
+        // Strip surrounding quotes if present
+        if ((selectorArg.startsWith('"') && selectorArg.endsWith('"')) ||
+            (selectorArg.startsWith("'") && selectorArg.endsWith("'"))) {
+          selectorArg = selectorArg.slice(1, -1);
+        }
+      } else {
+        diagnostics.push(createDiagnostic(DiagnosticCodes.InvalidSelectorCombinator, `Selector combinator '${word}' requires a CSS selector argument, e.g. ${word}("h2") { ... }.`, scanner.span(itemStart)));
+        scanner.advanceUntil('\n');
+        continue;
+      }
+      scanner.skipWhitespaceAndComments();
+      if (!scanner.match('{')) {
+        diagnostics.push(createDiagnostic(DiagnosticCodes.ExpectedToken, `Expected '{' after selector combinator '${word}("${selectorArg}")'.`, scanner.span(itemStart)));
+        scanner.advanceUntil('\n');
+        continue;
+      }
+      const selProps: VisualRolePropertyNode[] = [];
+      while (!scanner.isAtEnd) {
+        scanner.skipWhitespaceAndComments();
+        if (scanner.peek() === '}') break;
+        const propStart = scanner.position();
+        const propName = scanner.readIdentifier();
+        scanner.skipInlineWhitespace();
+        if (!propName || !scanner.match(':')) {
+          diagnostics.push(createDiagnostic(DiagnosticCodes.InvalidVisualRoleDeclaration, `Expected 'property: value' inside selector '${word}'.`, scanner.span(propStart)));
+          scanner.advanceUntil('\n');
+          continue;
+        }
+        scanner.skipInlineWhitespace();
+        const expr = readLineExpression(scanner, ['}']);
+        selProps.push({ kind: 'VisualRoleProperty', name: propName, expression: expr, span: scanner.span(propStart) });
+      }
+      scanner.match('}');
+      selectors.push({ kind: 'VisualSelectorBlock', combinator: word, selector: selectorArg, properties: selProps, span: scanner.span(itemStart) });
+      continue;
+    }
+
+    // `css { "raw css value" }`
+    if (word === 'css') {
+      scanner.skipWhitespaceAndComments();
+      if (!scanner.match('{')) {
+        diagnostics.push(createDiagnostic(DiagnosticCodes.InvalidRawCss, "Expected '{' after 'css'.", scanner.span(itemStart)));
+        scanner.advanceUntil('\n');
+        continue;
+      }
+      scanner.skipWhitespaceAndComments();
+      // Read the raw CSS string (must be a quoted string)
+      const rawStart = scanner.position();
+      let rawValue = '';
+      if (scanner.peek() === '"' || scanner.peek() === "'") {
+        const quote = scanner.advance();
+        while (!scanner.isAtEnd && scanner.peek() !== quote) {
+          if (scanner.peek() === '\\') { scanner.advance(); rawValue += scanner.advance(); }
+          else rawValue += scanner.advance();
+        }
+        if (scanner.peek() === quote) scanner.advance();
+      } else {
+        diagnostics.push(createDiagnostic(DiagnosticCodes.InvalidRawCss, "The 'css { }' block requires a quoted CSS string, e.g. css { \"display: grid\" }.", scanner.span(rawStart)));
+        recoverUntil(scanner, ['}']);
+      }
+      scanner.skipWhitespaceAndComments();
+      scanner.match('}');
+      if (rawValue.trim()) rawCss = (rawCss ? rawCss + '\n  ' : '') + rawValue.trim();
+      continue;
+    }
+
+    // Regular `property: value`
     scanner.skipInlineWhitespace();
     if (!word || !scanner.match(':')) {
       diagnostics.push(
         createDiagnostic(
           DiagnosticCodes.InvalidVisualRoleDeclaration,
-          `Expected a visual property or 'when <condition> { ... }' inside '@${name}'.`,
+          `Expected a visual property, 'when', 'keyframes', 'before', 'after', 'css', or a selector combinator inside '@${name}'.`,
           scanner.span(itemStart)
         )
       );
@@ -347,7 +617,19 @@ function parseRoleDeclaration(scanner: Scanner, diagnostics: Diagnostic[]): Visu
     );
   }
 
-  return { kind: 'VisualRoleDeclaration', name, uses, properties, states, span: scanner.span(start) };
+  return {
+    kind: 'VisualRoleDeclaration',
+    name,
+    uses,
+    properties,
+    states,
+    exported,
+    ...(keyframes.length > 0 ? { keyframes } : {}),
+    ...(pseudos.length > 0 ? { pseudos } : {}),
+    ...(selectors.length > 0 ? { selectors } : {}),
+    ...(rawCss !== undefined ? { rawCss } : {}),
+    span: scanner.span(start)
+  };
 }
 
 function parseRoleComposition(

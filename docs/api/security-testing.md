@@ -2,7 +2,7 @@
 
 Deterministic fuzzing, secret scanning, and supply-chain policy primitives for VX.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

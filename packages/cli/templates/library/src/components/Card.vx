@@ -1,11 +1,61 @@
 #script
   prop title: String
+  prop description: String = ""
+  prop variant: String = "default"
   content default: optional
 #end script
 
 #view
   View @card {
-    Title(title) @title
-    Content(default)
+    View @cardHeader {
+      Text(title) @cardTitle
+      if description != "" {
+        Text(description) @cardDescription
+      }
+    }
+    View @cardBody {
+      Content(default)
+    }
+  }
+
+  @card {
+    flow: vertical
+    surface: raised
+    corner: xl
+    border: subtle
+    elevation: sm
+    overflow: hidden
+    transition: fast
+
+    when hover {
+      elevation: md
+      transform: lift
+    }
+  }
+
+  @cardHeader {
+    flow: vertical
+    gap: xs
+    inset: lg
+    border: subtle
+    borderBottom: subtle
+    surface: highlighted
+  }
+
+  @cardTitle {
+    typography: heading.sm
+    tone: strong
+    letterSpacing: -0.01em
+  }
+
+  @cardDescription {
+    typography: body.sm
+    tone: muted
+  }
+
+  @cardBody {
+    flow: vertical
+    gap: md
+    inset: lg
   }
 #end view

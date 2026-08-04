@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/data",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "VX query persistence, offline mutations, infinite data, realtime subscriptions, and cross-context synchronization.",
   "main": "./dist/index.js",

@@ -48,7 +48,11 @@ export function compileComponentProject(
     }
 
     const bindingContext = createComponentBindingContext(module, project);
-    const result = analyze(module.ast, { component: bindingContext });
+    const result = analyze(module.ast, { 
+      component: bindingContext, 
+      tsCheck: true,
+      rootDir: project.rootDir
+    });
     diagnostics.push(...result.diagnostics);
     if (hasErrors(result.diagnostics)) {
       if (options.failFast) break;

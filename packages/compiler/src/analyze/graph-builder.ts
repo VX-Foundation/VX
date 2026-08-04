@@ -132,11 +132,8 @@ export function buildReactiveGraph(scriptBlock: ScriptBlockNode, diagnostics: Di
   const visiting = new Set<string>();
   const visited = new Set<string>();
   
-  let hasCycle = false;
-
   function visit(nodeId: string, path: string[]) {
     if (visiting.has(nodeId)) {
-      hasCycle = true;
       const cyclePath = [...path, nodeId].join(' -> ');
       const node = nodes.get(nodeId)!;
       diagnostics.error(
@@ -167,7 +164,7 @@ export function buildReactiveGraph(scriptBlock: ScriptBlockNode, diagnostics: Di
   }
 
   for (const nodeId of nodes.keys()) {
-    if (!visited.has(nodeId) && !hasCycle) {
+    if (!visited.has(nodeId)) {
       visit(nodeId, []);
     }
   }

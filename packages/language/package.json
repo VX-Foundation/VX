@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/language",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Tokenizer, parser and AST for the VX .vx single-file component language.",
   "main": "./dist/index.js",

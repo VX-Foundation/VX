@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/language-server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "Language Server for the VX framework",
   "main": "./dist/server.js",

@@ -11,10 +11,11 @@ import type {
   SourceSpan,
   StoreLifetime,
   ViewSourceMapEntry,
-  VisualPartKind
+  VisualPartKind,
+  VisualRoleDeclarationNode
 } from './index.js';
 
-export type ComponentModuleKind = 'component' | 'headless';
+export type ComponentModuleKind = 'component' | 'headless' | 'visual';
 
 export interface ComponentGenericContract {
   name: string;
@@ -61,6 +62,12 @@ export interface HeadlessExportContract {
   span: SourceSpan;
 }
 
+export interface VisualRoleExport {
+  name: string;
+  declaration: VisualRoleDeclarationNode;
+  span: SourceSpan;
+}
+
 export interface ComponentForwardingContract {
   attributes: boolean;
   events: boolean;
@@ -80,6 +87,8 @@ export interface ComponentContract {
   parts: ComponentVisualPartContract[];
   forwarding: ComponentForwardingContract;
   exports: HeadlessExportContract[];
+  /** Exported visual roles — populated only when kind === 'visual'. */
+  visualExports: VisualRoleExport[];
 }
 
 export interface ResolvedImportBinding {

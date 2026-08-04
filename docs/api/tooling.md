@@ -2,7 +2,7 @@
 
 Compiler-backed formatter, language intelligence, inspection, HMR, testing, and migration tools for VX.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

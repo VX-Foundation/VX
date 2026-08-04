@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "VX Core Orchestration",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

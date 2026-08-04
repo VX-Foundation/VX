@@ -37,7 +37,17 @@ export const DiagnosticCodes = {
   InvalidCollectionContract: 'VX1215',
   DuplicateViewBranch: 'VX1216',
   UnreachableViewBranch: 'VX1217',
-  InvalidStructuralTransition: 'VX1218'
+  InvalidStructuralTransition: 'VX1218',
+
+  // Visual module export/import diagnostics
+  VisualExportOutsideScope: 'VX1219',
+  VisualExportInComponentBody: 'VX1220',
+
+  // Visual role advanced syntax diagnostics
+  InvalidKeyframeStep: 'VX1221',
+  InvalidPseudoElement: 'VX1222',
+  InvalidSelectorCombinator: 'VX1223',
+  InvalidRawCss: 'VX1224'
 } as const;
 
 export interface CreateDiagnosticOptions {

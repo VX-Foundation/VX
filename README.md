@@ -6,7 +6,7 @@
 
 VX is a compiler-first, full-stack web framework focused on deterministic execution, direct DOM updates, typed data flows, production SSR, accessibility, secure server boundaries, and portable deployment adapters.
 
-> **Current release line:** `0.1.1` unstable. Publish evaluation builds under `canary` and release candidates under `next`. The `latest` tag is reserved for VX 1.0 after every stabilization criterion is independently satisfied.
+> **Current release line:** `0.1.2` unstable. Publish evaluation builds under `canary` and release candidates under `next`. The `latest` tag is reserved for VX 1.0 after every stabilization criterion is independently satisfied.
 
 > **npm namespace change:** Public packages moved from the legacy `@vx/*` namespace to the VX Foundation-owned `@vx-foundation/*` namespace before the first public release. New code and documentation must use only `@vx-foundation/*` imports.
 
@@ -25,7 +25,7 @@ VX is a compiler-first, full-stack web framework focused on deterministic execut
 ## Requirements
 
 - Node.js 22 LTS or 24 LTS
-- pnpm 11.17.0 through Corepack
+- pnpm 11.19.0 through Corepack
 
 ## Create a project
 
@@ -45,7 +45,7 @@ Available templates: `basic`, `starter`, `fullstack`, and `library`.
 
 ```bash
 corepack enable
-corepack prepare pnpm@11.17.0 --activate
+corepack prepare pnpm@11.19.0 --activate
 pnpm install --frozen-lockfile
 pnpm verify
 pnpm verify:release-candidate

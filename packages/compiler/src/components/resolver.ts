@@ -10,7 +10,8 @@ import type {
   ImportDeclaration,
   ProgramNode,
   ResolvedComponentImport,
-  SourceSpan
+  SourceSpan,
+  ViewBlockNode
 } from '@vx-foundation/types';
 import { parse } from '@vx-foundation/language';
 import { readFileSync, realpathSync, statSync } from 'node:fs';
@@ -158,7 +159,7 @@ function validateImportBindings(
     if (target.contract.kind !== 'component') {
       diagnostics.push(error(
         'VX_COMPONENT_DEFAULT_IMPORT_KIND',
-        `Default import '${declaration.defaultImport}' targets a headless module. Default imports are reserved for visual components.`,
+        `Default import '${declaration.defaultImport}' targets a ${target.contract.kind} module. Default imports are reserved for visual components.`,
         declaration.span
       ));
     } else {
@@ -167,24 +168,64 @@ function validateImportBindings(
   }
 
   for (const specifier of declaration.specifiers) {
-    if (target.contract.kind !== 'headless') {
+    if (target.contract.kind === 'component') {
+      // Named imports from a component are never allowed
       diagnostics.push(error(
         'VX_COMPONENT_NAMED_IMPORT_KIND',
-        `Named import '${specifier.imported}' targets a visual component. Named imports are reserved for headless VX modules.`,
+        `Named import '${specifier.imported}' targets a visual component. Named imports are reserved for headless or visual modules.`,
         specifier.span
       ));
       continue;
     }
-    const exported = target.contract.exports.find((item) => item.name === specifier.imported);
-    if (!exported) {
+
+    if (target.contract.kind === 'headless') {
+      const exported = target.contract.exports.find((item) => item.name === specifier.imported);
+      if (!exported) {
+        diagnostics.push(error(
+          'VX_COMPONENT_UNKNOWN_EXPORT',
+          `Module '${declaration.source}' does not export '${specifier.imported}'.`,
+          specifier.span
+        ));
+        continue;
+      }
+      bindings.push({ local: specifier.local, imported: specifier.imported });
+      continue;
+    }
+
+    if (target.contract.kind === 'visual') {
+      // Validate against the visual module's exported roles
+      const visualExport = target.contract.visualExports.find((item) => item.name === specifier.imported);
+      if (!visualExport) {
+        // Check if the name exists but is not exported (private role)
+        const allRoleNames = (target.ast.blocks
+          .find((b) => b.kind === 'ViewBlock') as ViewBlockNode | undefined)
+          ?.roles.map((r) => r.name) ?? [];
+        const isPrivate = allRoleNames.includes(specifier.imported);
+        diagnostics.push(error(
+          isPrivate ? 'VX_VISUAL_PRIVATE_ROLE' : 'VX_VISUAL_UNKNOWN_EXPORT',
+          isPrivate
+            ? `Visual module '${declaration.source}' declares role '@${specifier.imported}' but it is not exported. Add 'export' before '@${specifier.imported}' to expose it.`
+            : `Visual module '${declaration.source}' does not export role '@${specifier.imported}'.`,
+          specifier.span
+        ));
+        continue;
+      }
+      bindings.push({ local: specifier.local, imported: specifier.imported });
+      continue;
+    }
+  }
+
+  // Validate for duplicate local names across visual imports
+  const seen = new Set<string>();
+  for (const binding of bindings) {
+    if (seen.has(binding.local)) {
       diagnostics.push(error(
-        'VX_COMPONENT_UNKNOWN_EXPORT',
-        `Module '${declaration.source}' does not export '${specifier.imported}'.`,
-        specifier.span
+        'VX_VISUAL_IMPORT_CONFLICT',
+        `Import binding '${binding.local}' is declared more than once in this import statement.`,
+        declaration.span
       ));
-      continue;
     }
-    bindings.push({ local: specifier.local, imported: specifier.imported });
+    seen.add(binding.local);
   }
 
   if (bindings.length === 0) return undefined;

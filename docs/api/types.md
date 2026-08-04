@@ -2,7 +2,7 @@
 
 Public TypeScript contracts for the VX language, compiler, runtime, and platform.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 
@@ -134,12 +134,14 @@ Current package line: `0.1.1`.
 - `VisualDesignRoleDefinition` - interface in `view.ts`
 - `VisualDesignSystem` - interface in `view.ts`
 - `VisualDirection` - type in `view.ts`
+- `VisualKeyframeStepNode` - interface in `view.ts`
 - `VisualLayer` - type in `view.ts`
 - `VisualPartBindingNode` - interface in `view.ts`
 - `VisualPartDeclaration` - interface in `ast.ts`
 - `VisualPartKind` - type in `ast.ts`
 - `VisualProgramIR` - interface in `view.ts`
 - `VisualPropertyMode` - type in `view.ts`
+- `VisualPseudoBlockNode` - interface in `view.ts`
 - `VisualResolvedCondition` - interface in `view.ts`
 - `VisualResolvedNode` - interface in `view.ts`
 - `VisualResolvedPartBinding` - interface in `view.ts`
@@ -149,9 +151,11 @@ Current package line: `0.1.1`.
 - `VisualRoleArgumentNode` - interface in `view.ts`
 - `VisualRoleCategory` - type in `view.ts`
 - `VisualRoleDeclarationNode` - interface in `view.ts`
+- `VisualRoleExport` - interface in `component-ir.ts`
 - `VisualRolePropertyNode` - interface in `view.ts`
 - `VisualRoleStateNode` - interface in `view.ts`
 - `VisualRoleUseNode` - interface in `view.ts`
+- `VisualSelectorBlockNode` - interface in `view.ts`
 - `VisualStyleChunkIR` - interface in `view.ts`
 - `VisualWritingMode` - type in `view.ts`
 - `VXConfig` - interface in `config.ts`

@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/vx",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Compiler-first full-stack web framework with direct DOM rendering, deterministic SSR, typed data primitives, and production deployment adapters.",
   "type": "module",
   "main": "./index.js",
@@ -11,10 +11,10 @@
       "import": "./index.js"
     }
   },
-  "packageManager": "pnpm@11.17.0",
+  "packageManager": "pnpm@11.19.0",
   "engines": {
     "node": ">=22.11.0 <23 || >=24.11.0 <25",
-    "pnpm": ">=11.17.0 <12"
+    "pnpm": ">=11.19.0 <12"
   },
   "scripts": {
     "verify:policy": "pnpm verify:package-manager && node scripts/verify-repository-policy.mjs",
@@ -64,6 +64,7 @@
     "release:github-checks": "node scripts/release/verify-github-checks.mjs",
     "release:canary:prepare": "node scripts/release/prepare-channel-version.mjs --channel canary",
     "release:next:prepare": "node scripts/release/prepare-channel-version.mjs --channel next",
+    "release:sync-version": "node scripts/release/sync-version.mjs",
     "release:stable:check": "node scripts/release/verify-v1-readiness.mjs --channel stable && node packages/cli/dist/cli.js release:check . --channel stable --baseline release/api-baseline.json",
     "release:source-check": "node scripts/release/verify-source-tree.mjs",
     "freeze:update": "node scripts/release/create-freeze-manifests.mjs",

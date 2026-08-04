@@ -60,6 +60,42 @@ export interface VisualRoleDeclarationNode extends BaseNode {
   uses: string[];
   properties: VisualRolePropertyNode[];
   states: VisualRoleStateNode[];
+  /** Whether this role is exported from a visual module. Defaults to false for local roles. */
+  exported?: boolean;
+  /** Keyframe animation steps defined inside this role. */
+  keyframes?: VisualKeyframeStepNode[];
+  /** Pseudo-element blocks defined inside this role. */
+  pseudos?: VisualPseudoBlockNode[];
+  /** Relational selector blocks defined inside this role. */
+  selectors?: VisualSelectorBlockNode[];
+  /** Raw CSS escape hatch — explicit and traceable. */
+  rawCss?: string;
+}
+
+/** A single keyframe step: `from`, `to`, or `N%` */
+export interface VisualKeyframeStepNode extends BaseNode {
+  kind: 'VisualKeyframeStep';
+  /** "from" | "to" | "0" .. "100" (percentage without %) */
+  stop: string;
+  properties: VisualRolePropertyNode[];
+}
+
+/** A pseudo-element block inside a role: `before { ... }`, `placeholder { ... }` */
+export interface VisualPseudoBlockNode extends BaseNode {
+  kind: 'VisualPseudoBlock';
+  /** "before" | "after" | "placeholder" | "selection" | "firstLine" | "firstLetter" | "marker" | "backdrop" */
+  pseudo: string;
+  properties: VisualRolePropertyNode[];
+}
+
+/** A relational selector block inside a role: `child("...") { ... }`, `has("...") { ... }` */
+export interface VisualSelectorBlockNode extends BaseNode {
+  kind: 'VisualSelectorBlock';
+  /** "child" | "has" | "not" | "sibling" | "adjacent" | "is" | "where" */
+  combinator: string;
+  /** The CSS selector argument, e.g. "+ *", ":has(.badge)", "h2" */
+  selector: string;
+  properties: VisualRolePropertyNode[];
 }
 
 
@@ -97,6 +133,14 @@ export interface VisualResolvedRole {
   properties: VisualResolvedProperty[];
   states: VisualResolvedState[];
   sources: string[];
+  /** Generated @keyframes name for this role, if keyframes were declared. */
+  keyframesName?: string;
+  /** CSS rules for pseudo-elements (ready to inject). */
+  pseudoRules?: string[];
+  /** CSS rules for relational selectors (ready to inject). */
+  selectorRules?: string[];
+  /** Raw CSS escape hatch value (ready to inject). */
+  rawCss?: string;
 }
 
 
@@ -144,6 +188,8 @@ export interface VisualProgramIR {
   direction?: VisualDirection;
   writingMode?: VisualWritingMode;
   density?: VisualDensity;
+  /** @keyframes blocks to inject globally (outside component scope). */
+  keyframeBlocks?: string[];
 }
 
 

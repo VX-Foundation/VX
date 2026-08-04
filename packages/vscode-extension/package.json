@@ -2,7 +2,7 @@
   "name": "vx-vscode",
   "displayName": "VX Framework Language Features",
   "description": "Official VS Code extension for the VX framework",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "node": ">=22.11.0 <23 || >=24.11.0 <25"
   },

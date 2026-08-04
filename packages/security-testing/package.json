@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/security-testing",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Deterministic fuzzing, secret scanning, and supply-chain policy primitives for VX.",
   "type": "module",
   "main": "./dist/index.js",

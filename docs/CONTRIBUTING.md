@@ -16,7 +16,7 @@ VX is in the 0.1 stabilization line. Contributions must preserve the frozen spec
 
 ```bash
 corepack enable
-corepack prepare pnpm@11.17.0 --activate
+corepack prepare pnpm@11.19.0 --activate
 pnpm install --frozen-lockfile
 pnpm verify
 pnpm verify:release-candidate

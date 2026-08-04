@@ -8,16 +8,102 @@
 #end script
 
 #view
-  View {
-    Image {
-      src: "/vx.svg"
-      alt: "VX Logo"
+  View @page {
+    View @hero {
+      Image @logo {
+        src: "/vx.svg"
+        alt: "VX"
+      }
+      Text("Welcome to VX Starter") @heading
+      Text("A multi-route application with layout, endpoints, and typed data flows.") @subheading
     }
-    Title("VX Starter")
-    Text("Count: {{ count }}")
-    Text("Doubled: {{ doubled }}")
-    Button("Increment") {
-      click => increment()
+
+    View @card {
+      Text("Reactive Counter") @cardLabel
+      Text("{{ count }}") @countValue
+      Text("doubled: {{ doubled }}") @countMeta
+      Button("Increment") @btn {
+        click => increment()
+      }
+    }
+  }
+
+  @page {
+    flow: vertical
+    gap: 2xl
+  }
+
+  @hero {
+    flow: vertical
+    items: center
+    gap: md
+    insetY: xl
+    textAlign: center
+  }
+
+  @logo {
+    width: 64
+    height: 64
+  }
+
+  @heading {
+    typography: heading.xl
+    tone: strong
+    letterSpacing: -0.02em
+  }
+
+  @subheading {
+    typography: body.md
+    tone: muted
+    maxWidth: prose
+    textAlign: center
+  }
+
+  @card {
+    flow: vertical
+    items: center
+    gap: md
+    surface: raised
+    corner: xl
+    elevation: sm
+    border: subtle
+    inset: xl
+  }
+
+  @cardLabel {
+    typography: label.sm
+    tone: muted
+    textTransform: uppercase
+    letterSpacing: 0.08em
+  }
+
+  @countValue {
+    typography: display.lg
+    tone: strong
+  }
+
+  @countMeta {
+    typography: label.md
+    tone: muted
+  }
+
+  @btn {
+    surface: primary
+    tone: onPrimary
+    corner: md
+    inset: control.md
+    typography: label.md
+    border: none
+    cursor: pointer
+    transition: fast
+
+    when hover {
+      surface: primaryHover
+      transform: lift
+    }
+
+    when pressed {
+      transform: press
     }
   }
 #end view

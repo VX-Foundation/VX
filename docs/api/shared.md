@@ -2,7 +2,7 @@
 
 Shared deterministic utilities used across VX public packages.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

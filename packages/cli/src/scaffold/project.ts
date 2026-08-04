@@ -60,7 +60,7 @@ export function scaffoldProject(options: ScaffoldProjectOptions): ScaffoldResult
 
   try {
     copyTemplate(staging, descriptor);
-    normalizeManifest(staging, packageName, options.frameworkVersion, options.packageManager ?? 'pnpm@11.17.0');
+    normalizeManifest(staging, packageName, options.frameworkVersion, options.packageManager ?? 'pnpm@11.19.0');
     validateScaffold(staging, descriptor);
     renameSync(staging, target);
   } catch (cause) {
@@ -99,7 +99,7 @@ export function initializeProject(options: InitializeProjectOptions): ScaffoldRe
   const installedDirectories: string[] = [];
   try {
     copyTemplate(staging, descriptor);
-    normalizeManifest(staging, packageName, options.frameworkVersion, options.packageManager ?? 'pnpm@11.17.0');
+    normalizeManifest(staging, packageName, options.frameworkVersion, options.packageManager ?? 'pnpm@11.19.0');
     validateScaffold(staging, descriptor);
     const createdFiles = listFiles(staging);
     for (const path of createdFiles) {

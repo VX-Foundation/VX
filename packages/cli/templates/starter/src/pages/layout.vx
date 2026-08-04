@@ -4,25 +4,106 @@
 
 #view
   View @shell {
-    View @navigation {
-      Link("Home") {
-        href: "/"
+    View @nav {
+      View @navBrand {
+        Image @navLogo {
+          src: "/vx.svg"
+          alt: "VX"
+        }
+        Text("VX") @navWordmark
       }
-      Link("About") {
-        href: "/about"
+      View @navLinks {
+        Link("Home") @navLink {
+          href: "/"
+        }
+        Link("About") @navLink {
+          href: "/about"
+        }
       }
     }
-    Content(route)
+    View @main {
+      Content(route)
+    }
+    View @siteFooter {
+      Text("Built with VX · MIT License") @siteFooterText
+    }
   }
 
   @shell {
     flow: vertical
-    space: lg
-    inset: xl
+    minHeight: viewport
+    surface: base
   }
 
-  @navigation {
+  @nav {
     flow: horizontal
-    space: md
+    items: center
+    insetX: xl
+    insetY: md
+    border: subtle
+    borderBottom: subtle
+    surface: raised
+    elevation: xs
+    gap: fill
+  }
+
+  @navBrand {
+    flow: horizontal
+    items: center
+    gap: sm
+  }
+
+  @navLogo {
+    width: 28
+    height: 28
+  }
+
+  @navWordmark {
+    typography: heading.xs
+    tone: strong
+    letterSpacing: -0.02em
+  }
+
+  @navLinks {
+    flow: horizontal
+    gap: xs
+    items: center
+  }
+
+  @navLink {
+    typography: label.md
+    tone: muted
+    inset: control.sm
+    corner: md
+    transition: fast
+    decoration: none
+
+    when hover {
+      surface: highlighted
+      tone: strong
+    }
+  }
+
+  @main {
+    flexGrow: 1
+    flow: vertical
+    inset: xl
+    maxWidth: prose
+    marginX: auto
+    width: fill
+  }
+
+  @siteFooter {
+    flow: horizontal
+    items: center
+    content: center
+    insetY: lg
+    border: subtle
+    borderTop: subtle
+  }
+
+  @siteFooterText {
+    typography: body.xs
+    tone: muted
   }
 #end view

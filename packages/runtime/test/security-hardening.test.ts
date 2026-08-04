@@ -12,6 +12,14 @@ it('blocks executable URL schemes in browser and SSR contracts', () => {
   expect(renderElement('a', { href: 'https://vx.dev', target: '_blank' }, 'Safe', 'x', 'Link')).toContain('rel="noopener noreferrer"');
 });
 
+it('sanitizes srcset, protocol-relative URLs, and data attribute', () => {
+  expect(sanitizeURLAttribute('//cdn.vx.dev/image.png', { attribute: 'src', tagName: 'img' })).toBe('//cdn.vx.dev/image.png');
+  expect(sanitizeURLAttribute('javascript:alert(1)', { attribute: 'data', tagName: 'object' })).toBeUndefined();
+  expect(sanitizeURLAttribute('https://vx.dev/file.pdf', { attribute: 'data', tagName: 'object' })).toBe('https://vx.dev/file.pdf');
+  expect(sanitizeURLAttribute('img1.png 1x, img2.png 2x', { attribute: 'srcset', tagName: 'img' })).toBe('img1.png 1x, img2.png 2x');
+  expect(sanitizeURLAttribute('javascript:alert(1) 1x, img2.png 2x', { attribute: 'srcset', tagName: 'img' })).toBe('img2.png 2x');
+});
+
 describe('bounded server serialization', () => {
   it('rejects excessive depth and source size', () => {
     expect(() => serializeServerValue({ nested: { value: 1 } }, { maxDepth: 1 })).toThrow(/depth/);

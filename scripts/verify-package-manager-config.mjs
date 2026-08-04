@@ -41,7 +41,7 @@ const packageJson = JSON.parse(await readFile(path.join(rootDirectory, 'package.
 const packageManager = packageJson.packageManager;
 const packageManagerMatch = /^pnpm@(\d+\.\d+\.\d+)$/u.exec(packageManager ?? '');
 if (!packageManagerMatch) {
-  throw new Error('package.json#packageManager must pin pnpm with an exact version, for example pnpm@11.17.0.');
+  throw new Error('package.json#packageManager must pin pnpm with an exact version, for example pnpm@11.19.0.');
 }
 
 const pinnedVersionText = packageManagerMatch[1];

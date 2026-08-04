@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const NODE_RANGE = '>=22.11.0 <23 || >=24.11.0 <25';
-const PNPM = '11.17.0';
+const PNPM = '11.19.0';
 const REPOSITORY = 'git+https://github.com/VX-Foundation/vx.git';
 const rootManifest = readJson('package.json');
 const VERSION = rootManifest.version;

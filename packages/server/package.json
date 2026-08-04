@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "VX production server platform with request context, sessions, middleware, security, observability, and Node adapters.",
   "main": "./dist/index.js",

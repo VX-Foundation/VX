@@ -1,10 +1,10 @@
 {
   "schema": "https://vx.dev/schemas/api-freeze/v1",
   "version": 1,
-  "frameworkVersion": "0.1.1",
+  "frameworkVersion": "0.1.2",
   "frozenAt": "2026-07-30",
   "path": "release/api-baseline.json",
   "packages": 25,
   "entrypoints": 91,
-  "sha256": "c883c19429a48caee71d3a36824c9a1823851905ab5250f37951de3b49f651d0"
+  "sha256": "6ef3d6155829f31efd807c6298be585941782aa630c2c6dece2214e661683eeb"
 }

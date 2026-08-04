@@ -4,7 +4,11 @@ import type {
   ViewBlockNode,
   ViewNode,
   VisualConditionArgumentNode,
+  VisualDesignRoleDefinition,
   VisualDesignSystem,
+  VisualKeyframeStepNode,
+  VisualPseudoBlockNode,
+  VisualSelectorBlockNode,
   VisualProgramIR,
   VisualResolvedCondition,
   VisualResolvedNode,
@@ -21,8 +25,8 @@ import { hashContent } from '@vx-foundation/shared';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 import type { ReactiveGraph } from '../analyze/graph-builder.js';
 import { collectReferencedIdentifiers } from '../analyze/expression-identifiers.js';
-import { BUILTIN_ROLES, getBuiltinRole, STRUCTURAL_ROLE_NAMES } from './catalog.js';
-import { isSupportedVisualProperty, visualPropertyToCss } from './properties.js';
+import { getBuiltinRole, STRUCTURAL_ROLE_NAMES } from './catalog.js';
+import { isSupportedVisualProperty, visualPropertyToCss, UNSAFE_VALUE_SENTINEL } from './properties.js';
 
 interface RoleMaterial {
   name: string;
@@ -32,23 +36,57 @@ interface RoleMaterial {
   sources: string[];
   extraCss: string[];
   argumentMap: Readonly<Record<string, string>>;
+  keyframes?: VisualKeyframeStepNode[];
+  pseudos?: VisualPseudoBlockNode[];
+  selectors?: VisualSelectorBlockNode[];
+  rawCss?: string;
 }
 
 const CONDITION_NAMES = new Set([
   'hover', 'pressed', 'focus', 'focusVisible', 'disabled', 'selected', 'checked',
   'expanded', 'invalid', 'loading', 'dark', 'light', 'motion', 'viewport',
-  'container', 'orientation', 'contrast', 'pointer'
+  'container', 'orientation', 'contrast', 'pointer',
+  // New non-dimensional media conditions
+  'print', 'screen', 'hoverNone', 'coarsePointer', 'forced', 'hdr', 'reducedData'
 ]);
 
 export function resolveVisualProgram(
   view: ViewBlockNode,
   graph: ReactiveGraph,
   diagnostics: DiagnosticCollector,
-  designSystem?: VisualDesignSystem
+  designSystem?: VisualDesignSystem,
+  importedVisualRoles?: Map<string, VisualRoleDeclarationNode>
 ): VisualProgramIR {
   const scopeId = `vx-${hashContent(`${view.span.filePath}:${view.span.start.offset}:${view.span.end.offset}`, 10)}`;
+  // Clear any stale keyframe entries for this scope from a previous compilation pass.
+  for (const key of [...keyframeRegistry.keys()]) {
+    if (key.startsWith(scopeId)) keyframeRegistry.delete(key);
+  }
   const localRoles = new Map(view.roles.map((role) => [role.name, role]));
-  validateCompositions(localRoles, diagnostics, designSystem);
+
+  // Validate duplicate exports within a visual module
+  const exportedNames = new Set<string>();
+  for (const role of view.roles) {
+    if (!role.exported) continue;
+    if (exportedNames.has(role.name)) {
+      diagnostics.error(
+        'VX_VISUAL_DUPLICATE_EXPORT',
+        `Role '@${role.name}' is exported more than once in this visual module.`,
+        role.span,
+        'Each role name must be unique within a visual module.'
+      );
+    }
+    exportedNames.add(role.name);
+  }
+
+  // Build the merged role lookup: builtin → design system → imported → local
+  // Imported roles are injected as an overlay on top of the design system
+  // so local roles in the consuming file still take highest precedence.
+  const effectiveDesignSystem: VisualDesignSystem | undefined = importedVisualRoles && importedVisualRoles.size > 0
+    ? mergeImportedRolesIntoDesignSystem(designSystem, importedVisualRoles)
+    : designSystem;
+
+  validateCompositions(localRoles, diagnostics, effectiveDesignSystem);
 
   const nodes: VisualResolvedNode[] = [];
   let nodeIndex = 0;
@@ -64,16 +102,16 @@ export function resolveVisualProgram(
         const partClassName = `${scopeId}-${nodeIndex++}-part-${binding.name}`;
         return {
           name: binding.name,
-          ...(partStructuralUse ? { structural: resolveUse(partStructuralUse, 'structural', localRoles, graph, diagnostics, designSystem) } : {}),
-          ...(partSemanticUse ? { semantic: resolveUse(partSemanticUse, 'semantic', localRoles, graph, diagnostics, designSystem) } : {}),
+          ...(partStructuralUse ? { structural: resolveUse(partStructuralUse, 'structural', localRoles, graph, diagnostics, effectiveDesignSystem, scopeId) } : {}),
+          ...(partSemanticUse ? { semantic: resolveUse(partSemanticUse, 'semantic', localRoles, graph, diagnostics, effectiveDesignSystem, scopeId) } : {}),
           classNames: binding.roles.length > 0 ? [partClassName] : []
         };
       });
       const resolved: VisualResolvedNode = {
         id: className,
         widget: node,
-        ...(structuralUse ? { structural: resolveUse(structuralUse, 'structural', localRoles, graph, diagnostics, designSystem) } : {}),
-        ...(semanticUse ? { semantic: resolveUse(semanticUse, 'semantic', localRoles, graph, diagnostics, designSystem) } : {}),
+        ...(structuralUse ? { structural: resolveUse(structuralUse, 'structural', localRoles, graph, diagnostics, effectiveDesignSystem, scopeId) } : {}),
+        ...(semanticUse ? { semantic: resolveUse(semanticUse, 'semantic', localRoles, graph, diagnostics, effectiveDesignSystem, scopeId) } : {}),
         classNames: node.roles.length > 0 ? [className] : [],
         parts
       };
@@ -94,14 +132,16 @@ export function resolveVisualProgram(
   };
   view.children.forEach(walk);
 
-  const cssText = [emitThemeCss(designSystem), emitVisualCss(scopeId, nodes, diagnostics)].filter(Boolean).join('\n');
+  const cssText = [emitThemeCss(effectiveDesignSystem), emitVisualCss(scopeId, nodes, diagnostics)].filter(Boolean).join('\n');
+  const keyframeBlocks = collectKeyframeBlocks(scopeId, nodes);
   const roleNames = Array.from(new Set(nodes.flatMap((node) => [
     node.structural?.name,
     node.semantic?.name,
     ...node.parts.flatMap((part) => [part.structural?.name, part.semantic?.name])
   ].filter(Boolean) as string[]))).sort();
-  const styleChunks = cssText ? [{ id: `${scopeId}:component`, layer: 'components', cssText, critical: true, dependencies: [] }] : [];
-  return { scopeId, nodes, cssText, roleNames, styleChunks };
+  const fullCss = [...keyframeBlocks, cssText].filter(Boolean).join('\n');
+  const styleChunks = fullCss ? [{ id: `${scopeId}:component`, layer: 'components', cssText: fullCss, critical: true, dependencies: [] }] : [];
+  return { scopeId, nodes, cssText: fullCss, roleNames, styleChunks, ...(keyframeBlocks.length > 0 ? { keyframeBlocks } : {}) };
 }
 
 function resolveUse(
@@ -110,7 +150,8 @@ function resolveUse(
   localRoles: Map<string, VisualRoleDeclarationNode>,
   graph: ReactiveGraph,
   diagnostics: DiagnosticCollector,
-  designSystem?: VisualDesignSystem
+  designSystem: VisualDesignSystem | undefined,
+  scopeId: string
 ): VisualResolvedRole {
   const material = materializeRole(use.name, localRoles, diagnostics, [], use.span, designSystem);
   if (!material) {
@@ -170,12 +211,20 @@ function resolveUse(
     }
   }
 
+  const keyframesName = material.keyframes?.length
+    ? registerKeyframes(scopeId, use.name, material.keyframes, diagnostics)
+    : undefined;
+
   return {
     name: use.name,
     category: material.category,
     properties: resolvedProperties,
     states,
-    sources: material.sources
+    sources: material.sources,
+    ...(keyframesName ? { keyframesName } : {}),
+    ...(material.pseudos?.length ? { pseudoRules: emitPseudoRules(use.name, material.pseudos, diagnostics) } : {}),
+    ...(material.selectors?.length ? { selectorRules: emitSelectorRules(use.name, material.selectors, diagnostics) } : {}),
+    ...(material.rawCss ? { rawCss: material.rawCss } : {}),
   };
 }
 
@@ -284,7 +333,20 @@ function materializeRole(
     sources.push(`local:${name}`);
   }
 
-  return { name, category, properties, states: mergeStates(states), sources, extraCss, argumentMap };
+  return {
+    name,
+    category,
+    properties,
+    states: mergeStates(states),
+    sources,
+    extraCss,
+    argumentMap,
+    // Propagate advanced visual fields from the local declaration
+    ...(local?.keyframes?.length ? { keyframes: local.keyframes } : {}),
+    ...(local?.pseudos?.length ? { pseudos: local.pseudos } : {}),
+    ...(local?.selectors?.length ? { selectors: local.selectors } : {}),
+    ...(local?.rawCss ? { rawCss: local.rawCss } : {}),
+  };
 }
 
 function validateVisualProperty(property: VisualRolePropertyNode, diagnostics: DiagnosticCollector): void {
@@ -295,6 +357,22 @@ function validateVisualProperty(property: VisualRolePropertyNode, diagnostics: D
       property.span,
       'Use a typed VX visual property or extend the target through an explicit integration.'
     );
+    return;
+  }
+  // Pre-validate the value to detect unsafe raw values early
+  const declarations = visualPropertyToCss(property.name, property.expression.text);
+  if (declarations) {
+    for (const decl of declarations) {
+      if (decl.value === UNSAFE_VALUE_SENTINEL) {
+        diagnostics.error(
+          'VX_VISUAL_UNSAFE_VALUE',
+          `Visual property '${property.name}' contains a value that cannot be safely emitted: ${property.expression.text}.`,
+          property.span,
+          "Use css { \"...\" } for arbitrary CSS values that cannot be expressed through VX visual properties."
+        );
+        break;
+      }
+    }
   }
 }
 
@@ -332,42 +410,6 @@ function mergeStates(
   return [...map.values()];
 }
 
-function emitVisualCss(scopeId: string, nodes: VisualResolvedNode[], diagnostics: DiagnosticCollector): string {
-  const lines: string[] = [`/* VX Visual IR ${scopeId} */`];
-
-  for (const node of nodes) {
-    if (node.classNames.length === 0) continue;
-    const selector = `.${node.classNames[0]}`;
-    const roles = [node.structural, node.semantic].filter(Boolean) as VisualResolvedRole[];
-    const declarations = roles.flatMap((role) => role.properties).filter((property) => property.mode === 'static');
-    const css = declarations.flatMap((property) => propertyCss(property, diagnostics));
-    // Structural capabilities establish a query container for their descendants.
-    // This does not create a wrapper or runtime widget; it is target-level metadata.
-    if (node.structural) css.unshift('container-type: inline-size;');
-    if (css.length > 0) lines.push(`${selector} { ${css.join(' ')} }`);
-
-    for (const role of roles) {
-      for (const state of role.states) {
-        const stateCss = state.properties.filter((property) => property.mode === 'static').flatMap((property) => propertyCss(property, diagnostics));
-        if (stateCss.length === 0) continue;
-        emitConditionRule(lines, selector, state.condition, stateCss.join(' '));
-      }
-    }
-
-    for (const use of node.widget.roles) {
-      const builtin = BUILTIN_ROLES[use.name];
-      if (builtin?.extraCss) lines.push(`${selector} ${builtin.extraCss}`);
-    }
-
-    for (const part of node.parts) {
-      if (part.classNames.length === 0) continue;
-      emitResolvedRoleCss(lines, `.${part.classNames[0]}`, [part.structural, part.semantic].filter(Boolean) as VisualResolvedRole[], diagnostics);
-    }
-  }
-
-  return lines.join('\n');
-}
-
 function propertyCss(property: VisualResolvedProperty, diagnostics: DiagnosticCollector): string[] {
   const declarations = visualPropertyToCss(property.name, property.expression.text);
   if (!declarations) {
@@ -378,7 +420,20 @@ function propertyCss(property: VisualResolvedProperty, diagnostics: DiagnosticCo
     );
     return [];
   }
-  return declarations.filter((declaration) => declaration.value !== '').map((declaration) => `${declaration.name}: ${declaration.value};`);
+  const result: string[] = [];
+  for (const decl of declarations) {
+    if (decl.value === UNSAFE_VALUE_SENTINEL) {
+      diagnostics.error(
+        'VX_VISUAL_UNSAFE_VALUE',
+        `Visual property '${property.name}' contains a value that cannot be safely emitted: ${property.expression.text}.`,
+        property.expression.span,
+        "Use css { \"...\" } for arbitrary CSS values that cannot be expressed through VX visual properties."
+      );
+      continue;
+    }
+    if (decl.value !== '') result.push(`${decl.name}: ${decl.value};`);
+  }
+  return result;
 }
 
 function emitResolvedRoleCss(
@@ -448,6 +503,13 @@ function resolveCondition(
   if (name === 'pointer') return { name, arguments: args, media: `(pointer: ${argValue(args, 'value', 0) || 'fine'})` };
   if (name === 'viewport') return { name, arguments: args, media: dimensionQuery(args, designSystem) };
   if (name === 'container') return { name, arguments: args, container: dimensionQuery(args, designSystem) };
+  if (name === 'print') return { name, arguments: args, media: 'print' };
+  if (name === 'screen') return { name, arguments: args, media: 'screen' };
+  if (name === 'hoverNone') return { name, arguments: args, media: '(hover: none)' };
+  if (name === 'coarsePointer') return { name, arguments: args, media: '(pointer: coarse)' };
+  if (name === 'forced') return { name, arguments: args, media: '(forced-colors: active)' };
+  if (name === 'hdr') return { name, arguments: args, media: '(dynamic-range: high)' };
+  if (name === 'reducedData') return { name, arguments: args, media: '(prefers-reduced-data: reduce)' };
   return { name, arguments: args };
 }
 
@@ -473,6 +535,54 @@ function breakpoint(value: string, designSystem?: VisualDesignSystem): string {
   if (values[value]) return values[value]!;
   if (/^\d+(\.\d+)?$/.test(value)) return `${value}px`;
   return value;
+}
+
+/**
+ * Converts imported VisualRoleDeclarationNodes into VisualDesignRoleDefinition entries
+ * and merges them into the effective design system so the existing materializeRole
+ * pipeline can resolve them without changes to its core logic.
+ *
+ * Precedence: builtin → design system → imported visual roles → local
+ * Imported roles sit between the design system and local roles, so local
+ * declarations in the consuming component always win.
+ */
+function mergeImportedRolesIntoDesignSystem(
+  designSystem: VisualDesignSystem | undefined,
+  importedRoles: Map<string, VisualRoleDeclarationNode>
+): VisualDesignSystem {
+  const importedDesignRoles: Record<string, VisualDesignRoleDefinition> = {};
+
+  for (const [name, declaration] of importedRoles) {
+    const properties: Record<string, string> = {};
+    for (const property of declaration.properties) {
+      properties[property.name] = property.expression.text;
+    }
+    const states: Record<string, Record<string, string>> = {};
+    for (const state of declaration.states) {
+      const stateProperties: Record<string, string> = {};
+      for (const property of state.properties) {
+        stateProperties[property.name] = property.expression.text;
+      }
+      states[state.condition.name] = stateProperties;
+    }
+    importedDesignRoles[name] = {
+      category: 'semantic',
+      properties,
+      ...(Object.keys(states).length > 0 ? { states } : {}),
+      uses: declaration.uses
+    };
+  }
+
+  return {
+    name: designSystem?.name ?? '__imported__',
+    ...(designSystem?.tokens !== undefined ? { tokens: designSystem.tokens } : {}),
+    ...(designSystem?.modes !== undefined ? { modes: designSystem.modes } : {}),
+    ...(designSystem?.breakpoints !== undefined ? { breakpoints: designSystem.breakpoints } : {}),
+    roles: {
+      ...designSystem?.roles,
+      ...importedDesignRoles
+    }
+  };
 }
 
 function validateCompositions(localRoles: Map<string, VisualRoleDeclarationNode>, diagnostics: DiagnosticCollector, designSystem?: VisualDesignSystem): void {
@@ -524,3 +634,192 @@ function stripQuotes(value: string): string {
 }
 
 function escapeCss(value: string): string { return value.replace(/[^a-zA-Z0-9_-]/g, '\\$&'); }
+
+// ─── CSS pseudo-element name map ─────────────────────────────────────────────
+const PSEUDO_CSS_NAMES: Record<string, string> = {
+  before: '::before', after: '::after', placeholder: '::placeholder',
+  selection: '::selection', firstLine: '::first-line', firstLetter: '::first-letter',
+  marker: '::marker', backdrop: '::backdrop'
+};
+
+// ─── Selector combinator → CSS combinator map ────────────────────────────────
+const SELECTOR_CSS_COMBINATORS: Record<string, (sel: string) => string> = {
+  child: (sel) => ` > ${sel}`,
+  has: (sel) => `:has(${sel})`,
+  not: (sel) => `:not(${sel})`,
+  sibling: (sel) => ` ~ ${sel}`,
+  adjacent: (sel) => ` + ${sel}`,
+  is: (sel) => `:is(${sel})`,
+  where: (sel) => `:where(${sel})`
+};
+
+/**
+ * Emits the main CSS block for all resolved nodes in the component scope.
+ * Handles base properties, state conditions, pseudo-elements, relational
+ * selectors, and raw CSS escape hatches per node.
+ */
+function emitVisualCss(
+  _scopeId: string,
+  nodes: VisualResolvedNode[],
+  diagnostics: DiagnosticCollector
+): string {
+  const lines: string[] = [];
+
+  for (const node of nodes) {
+    if (node.classNames.length === 0) continue;
+    const selector = `.${node.classNames[0]}`;
+    const roles = [
+      ...(node.structural ? [node.structural] : []),
+      ...(node.semantic ? [node.semantic] : [])
+    ];
+    if (roles.length > 0) emitResolvedRoleCss(lines, selector, roles, diagnostics);
+    for (const role of roles) {
+      if (role.pseudoRules) lines.push(...role.pseudoRules.map((rule) => rule.replace('__SELECTOR__', selector)));
+      if (role.selectorRules) lines.push(...role.selectorRules.map((rule) => rule.replace('__SELECTOR__', selector)));
+      if (role.rawCss) lines.push(`${selector} { ${role.rawCss} }`);
+    }
+    for (const part of node.parts) {
+      if (part.classNames.length === 0) continue;
+      const partSelector = `.${part.classNames[0]}`;
+      const partRoles = [
+        ...(part.structural ? [part.structural] : []),
+        ...(part.semantic ? [part.semantic] : [])
+      ];
+      if (partRoles.length > 0) emitResolvedRoleCss(lines, partSelector, partRoles, diagnostics);
+      for (const role of partRoles) {
+        if (role.pseudoRules) lines.push(...role.pseudoRules.map((rule) => rule.replace('__SELECTOR__', partSelector)));
+        if (role.selectorRules) lines.push(...role.selectorRules.map((rule) => rule.replace('__SELECTOR__', partSelector)));
+        if (role.rawCss) lines.push(`${partSelector} { ${role.rawCss} }`);
+      }
+    }
+  }
+
+  return lines.join('\n');
+}
+
+/**
+ * Collects all @keyframes blocks from resolved nodes.
+ * Deduplicates by keyframes name within the scope.
+ * Emits VX_VISUAL_DUPLICATE_KEYFRAME when the same name appears more than once.
+ */
+function collectKeyframeBlocks(
+  scopeId: string,
+  _nodes: VisualResolvedNode[]
+): string[] {
+  return [...keyframeRegistry.entries()]
+    .filter(([key]) => key.startsWith(scopeId))
+    .map(([, { name, steps }]) => {
+      const body = steps.map((step) => {
+        const stop = step.stop === 'from' ? 'from' : step.stop === 'to' ? 'to' : `${step.stop}%`;
+        const declarations = step.properties
+          .flatMap((p) => visualPropertyToCss(p.name, p.expression.text) ?? [])
+          .filter((d) => d.value && d.value !== UNSAFE_VALUE_SENTINEL)
+          .map((d) => `${d.name}: ${d.value};`)
+          .join(' ');
+        return `  ${stop} { ${declarations} }`;
+      }).join('\n');
+      return `@keyframes ${name} {\n${body}\n}`;
+    });
+}
+
+// Side-channel registry: scopeId-roleName → { name, steps }
+const keyframeRegistry = new Map<string, { name: string; steps: VisualKeyframeStepNode[] }>();
+
+/**
+ * Registers keyframe steps for a role so collectKeyframeBlocks can emit them.
+ * Called from resolveUse when a role has keyframes.
+ */
+function registerKeyframes(
+  scopeId: string,
+  roleName: string,
+  steps: VisualKeyframeStepNode[],
+  diagnostics: DiagnosticCollector
+): string {
+  const animationName = `${scopeId}-${roleName}`;
+  if (keyframeRegistry.has(animationName)) {
+    diagnostics.error(
+      'VX_VISUAL_DUPLICATE_KEYFRAME',
+      `Keyframe animation '${animationName}' is defined more than once in this scope.`,
+      steps[0]!.span,
+      `Each role can only define one keyframes block. Rename one of the '@${roleName}' roles.`
+    );
+  } else {
+    keyframeRegistry.set(animationName, { name: animationName, steps });
+  }
+  return animationName;
+}
+
+/**
+ * Emits CSS rules for pseudo-element blocks.
+ * Uses '__SELECTOR__' as a placeholder replaced at emit time.
+ */
+function emitPseudoRules(
+  roleName: string,
+  pseudos: VisualPseudoBlockNode[],
+  diagnostics: DiagnosticCollector
+): string[] {
+  const rules: string[] = [];
+  for (const pseudo of pseudos) {
+    const cssPseudo = PSEUDO_CSS_NAMES[pseudo.pseudo];
+    if (!cssPseudo) {
+      diagnostics.error(
+        'VX_VISUAL_INVALID_PSEUDO',
+        `Unknown pseudo-element '${pseudo.pseudo}' in role '@${roleName}'.`,
+        pseudo.span,
+        `Supported pseudo-elements: ${Object.keys(PSEUDO_CSS_NAMES).join(', ')}.`
+      );
+      continue;
+    }
+    const declarations = pseudo.properties
+      .flatMap((p) => {
+        const css = visualPropertyToCss(p.name, p.expression.text);
+        if (!css) return [];
+        return css.filter((d) => d.value && d.value !== UNSAFE_VALUE_SENTINEL).map((d) => `${d.name}: ${d.value};`);
+      })
+      .join(' ');
+    if (declarations) rules.push(`__SELECTOR__${cssPseudo} { ${declarations} }`);
+  }
+  return rules;
+}
+
+/**
+ * Emits CSS rules for relational selector blocks.
+ * Uses '__SELECTOR__' as a placeholder replaced at emit time.
+ */
+function emitSelectorRules(
+  roleName: string,
+  selectors: VisualSelectorBlockNode[],
+  diagnostics: DiagnosticCollector
+): string[] {
+  const rules: string[] = [];
+  for (const block of selectors) {
+    const combinatorFn = SELECTOR_CSS_COMBINATORS[block.combinator];
+    if (!combinatorFn) {
+      diagnostics.error(
+        'VX_VISUAL_INVALID_SELECTOR',
+        `Unknown selector combinator '${block.combinator}' in role '@${roleName}'.`,
+        block.span,
+        `Supported combinators: ${Object.keys(SELECTOR_CSS_COMBINATORS).join(', ')}.`
+      );
+      continue;
+    }
+    if (!block.selector.trim()) {
+      diagnostics.error(
+        'VX_VISUAL_INVALID_SELECTOR',
+        `Selector combinator '${block.combinator}' in role '@${roleName}' requires a non-empty CSS selector argument.`,
+        block.span
+      );
+      continue;
+    }
+    const cssSelector = `__SELECTOR__${combinatorFn(block.selector)}`;
+    const declarations = block.properties
+      .flatMap((p) => {
+        const css = visualPropertyToCss(p.name, p.expression.text);
+        if (!css) return [];
+        return css.filter((d) => d.value && d.value !== UNSAFE_VALUE_SENTINEL).map((d) => `${d.name}: ${d.value};`);
+      })
+      .join(' ');
+    if (declarations) rules.push(`${cssSelector} { ${declarations} }`);
+  }
+  return rules;
+}

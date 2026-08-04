@@ -29,6 +29,10 @@ export class DiagnosticCollector {
     this.diagnostics.push(diag);
   }
 
+  public addDiagnostic(diag: Diagnostic) {
+    this.diagnostics.push(diag);
+  }
+
   /**
    * Reports a compilation error that will ultimately fail the build.
    * Examples: Reactive cycles, invalid server/client boundary access.

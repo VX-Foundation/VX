@@ -1,6 +1,75 @@
 #view
-  View {
-    Title("About")
-    Text("This project was created with VX.")
+  View @page {
+    View @header {
+      Text("About") @heading
+      Text("This project was created with VX.") @subheading
+    }
+
+    View @featuresGrid {
+      View @item {
+        Text("Compiler-first") @itemTitle
+        Text("The VX compiler owns diagnostics, source maps, and typed data flows end-to-end.") @itemBody
+      }
+      View @item {
+        Text("Fine-grained reactivity") @itemTitle
+        Text("Direct DOM updates without a Virtual DOM. Only what changed gets updated.") @itemBody
+      }
+      View @item {
+        Text("Production SSR") @itemTitle
+        Text("Deterministic streaming, hydration recovery, islands, and resumable boundaries.") @itemBody
+      }
+      View @item {
+        Text("Portable adapters") @itemTitle
+        Text("Node, Bun, Deno, Cloudflare, Vercel, Netlify, AWS Lambda, and static targets.") @itemBody
+      }
+    }
+  }
+
+  @page {
+    flow: vertical
+    gap: 2xl
+  }
+
+  @header {
+    flow: vertical
+    gap: sm
+    insetY: xl
+  }
+
+  @heading {
+    typography: heading.xl
+    tone: strong
+    letterSpacing: -0.02em
+  }
+
+  @subheading {
+    typography: body.md
+    tone: muted
+  }
+
+  @featuresGrid {
+    columns: 2
+    gap: md
+  }
+
+  @item {
+    flow: vertical
+    gap: xs
+    surface: raised
+    corner: lg
+    border: subtle
+    inset: lg
+    elevation: xs
+  }
+
+  @itemTitle {
+    typography: heading.sm
+    tone: strong
+  }
+
+  @itemBody {
+    typography: body.sm
+    tone: muted
+    lineHeight: 1.6
   }
 #end view

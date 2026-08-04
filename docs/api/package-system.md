@@ -2,7 +2,7 @@
 
 Deterministic package metadata, lockfiles, workspaces, integrity, signatures, and dependency mutation for VX.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

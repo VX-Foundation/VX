@@ -5,20 +5,196 @@
   action increment() {
     count++
   }
+
+  action decrement() {
+    count--
+  }
+
+  action reset() {
+    count = 0
+  }
 #end script
 
 #view
-  View {
-    Image {
-      src: "/vx.svg"
-      alt: "VX Logo"
+  View @root {
+    View @hero {
+      Image @logo {
+        src: "/vx.svg"
+        alt: "VX"
+      }
+      Text("VX") @wordmark
+      Text("Compiler-first full-stack web framework.") @tagline
     }
-    Text("Welcome to VX")
-    Text("Count: " + count)
-    Text("Doubled: " + doubled)
 
-    Button("Increment") {
-      click => increment()
+    View @counter {
+      Text("Counter") @counterLabel
+      View @counterDisplay {
+        Text("{{ count }}") @countValue
+        Text("doubled: {{ doubled }}") @countMeta
+      }
+      View @counterActions {
+        Button("−") @btnSecondary {
+          click => decrement()
+        }
+        Button("Reset") @btnGhost {
+          click => reset()
+        }
+        Button("+") @btnPrimary {
+          click => increment()
+        }
+      }
     }
+
+    View @footer {
+      Text("Built with VX · MIT License") @footerText
+    }
+  }
+
+  @root {
+    flow: vertical
+    items: center
+    minHeight: viewport
+    surface: base
+    inset: xl
+    gap: 2xl
+  }
+
+  @hero {
+    flow: vertical
+    items: center
+    gap: md
+  }
+
+  @logo {
+    width: 72
+    height: 72
+  }
+
+  @wordmark {
+    typography: display.md
+    tone: strong
+    letterSpacing: -0.03em
+  }
+
+  @tagline {
+    typography: body.lg
+    tone: muted
+    textAlign: center
+    maxWidth: prose
+  }
+
+  @counter {
+    flow: vertical
+    items: center
+    gap: lg
+    surface: raised
+    corner: xl
+    elevation: sm
+    border: subtle
+    inset: 2xl
+    minWidth: 320
+  }
+
+  @counterLabel {
+    typography: label.sm
+    tone: muted
+    textTransform: uppercase
+    letterSpacing: 0.08em
+  }
+
+  @counterDisplay {
+    flow: vertical
+    items: center
+    gap: xs
+  }
+
+  @countValue {
+    typography: display.xl
+    tone: strong
+    transition: normal
+  }
+
+  @countMeta {
+    typography: label.md
+    tone: muted
+  }
+
+  @counterActions {
+    flow: horizontal
+    gap: sm
+    items: center
+  }
+
+  @btnPrimary {
+    surface: primary
+    tone: onPrimary
+    corner: md
+    inset: control.md
+    typography: label.md
+    border: none
+    cursor: pointer
+    transition: fast
+    minWidth: 44
+
+    when hover {
+      surface: primaryHover
+      transform: lift
+    }
+
+    when pressed {
+      transform: press
+    }
+  }
+
+  @btnSecondary {
+    surface: secondary
+    tone: body
+    corner: md
+    inset: control.md
+    typography: label.md
+    border: none
+    cursor: pointer
+    transition: fast
+    minWidth: 44
+
+    when hover {
+      surface: secondaryHover
+    }
+
+    when pressed {
+      transform: press
+    }
+  }
+
+  @btnGhost {
+    surface: base
+    tone: muted
+    corner: md
+    inset: control.md
+    typography: label.md
+    border: subtle
+    cursor: pointer
+    transition: fast
+
+    when hover {
+      surface: highlighted
+      tone: strong
+    }
+
+    when pressed {
+      transform: press
+    }
+  }
+
+  @footer {
+    flow: horizontal
+    items: center
+    gap: sm
+    marginY: auto
+  }
+
+  @footerText {
+    typography: body.xs
+    tone: muted
   }
 #end view

@@ -2,7 +2,7 @@
 
 VX production server platform with request context, sessions, middleware, security, observability, and Node adapters.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

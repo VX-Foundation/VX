@@ -22,8 +22,8 @@ describe('VX project scaffolding', () => {
       expect(result.template).toBe(template);
       const manifest = JSON.parse(readFileSync(join(result.root, 'package.json'), 'utf8')) as Record<string, unknown>;
       expect(manifest['name']).toBe(`example-${template}`);
-      expect(manifest['packageManager']).toBe('pnpm@11.17.0');
-      expect((manifest['engines'] as Record<string, unknown>)['pnpm']).toBe('>=11.17.0 <12');
+      expect(manifest['packageManager']).toBe('pnpm@11.19.0');
+      expect((manifest['engines'] as Record<string, unknown>)['pnpm']).toBe('>=11.19.0 <12');
       expect(result.createdFiles).toEqual(expect.arrayContaining([...resolveTemplate(template).requiredFiles]));
     });
   }

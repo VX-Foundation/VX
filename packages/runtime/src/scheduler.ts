@@ -54,6 +54,7 @@ interface InternalTask {
 const PRIORITIES: readonly SchedulerPriority[] = ['immediate', 'user-blocking', 'normal', 'transition', 'idle'];
 const PRIORITY_INDEX = new Map(PRIORITIES.map((priority, index) => [priority, index]));
 const queues = new Map<SchedulerPriority, InternalTask[]>(PRIORITIES.map((priority) => [priority, []]));
+const pendingCounts = new Map<SchedulerPriority, number>(PRIORITIES.map((priority) => [priority, 0]));
 const errorHandlers = new Set<(error: unknown, task: ScheduledTask) => void>();
 
 let nextTaskId = 1;
@@ -98,6 +99,7 @@ export function scheduleTask(callback: SchedulerCallback, options: ScheduleTaskO
   });
 
   if (options.signal?.aborted) {
+    task.state = 'cancelled';
     cancelTask(task, options.signal.reason);
     return publicTask;
   }
@@ -107,6 +109,7 @@ export function scheduleTask(callback: SchedulerCallback, options: ScheduleTaskO
     options.signal.addEventListener('abort', abort, { once: true });
   }
   queues.get(priority)!.push(task);
+  pendingCounts.set(priority, pendingCounts.get(priority)! + 1);
   requestHostFlush();
   return publicTask;
 }
@@ -246,6 +249,7 @@ function executeTask(task: InternalTask, started: number): void {
     return;
   }
   task.state = 'running';
+  pendingCounts.set(task.priority, Math.max(0, pendingCounts.get(task.priority)! - 1));
   const previous = currentPriority;
   currentPriority = task.priority;
   try {
@@ -258,6 +262,7 @@ function executeTask(task: InternalTask, started: number): void {
       task.callback = continuation;
       task.state = 'scheduled';
       queues.get(task.priority)!.push(task);
+      pendingCounts.set(task.priority, pendingCounts.get(task.priority)! + 1);
       return;
     }
     task.state = 'completed';
@@ -275,6 +280,9 @@ function executeTask(task: InternalTask, started: number): void {
 
 function cancelTask(task: InternalTask, reason?: unknown): void {
   if (task.state === 'completed' || task.state === 'cancelled') return;
+  if (task.state === 'scheduled') {
+    pendingCounts.set(task.priority, Math.max(0, pendingCounts.get(task.priority)! - 1));
+  }
   task.state = 'cancelled';
   cancelledTasks += 1;
   if (!task.controller.signal.aborted) {
@@ -284,6 +292,9 @@ function cancelTask(task: InternalTask, reason?: unknown): void {
 }
 
 function finishCancelled(task: InternalTask): void {
+  if (task.state === 'scheduled') {
+    pendingCounts.set(task.priority, Math.max(0, pendingCounts.get(task.priority)! - 1));
+  }
   if (task.state !== 'cancelled') {
     task.state = 'cancelled';
     cancelledTasks += 1;
@@ -323,7 +334,7 @@ function highestPendingPriority(): SchedulerPriority {
 }
 
 function pendingCount(priority: SchedulerPriority): number {
-  return queues.get(priority)!.reduce((count, task) => count + (task.state === 'scheduled' ? 1 : 0), 0);
+  return pendingCounts.get(priority)!;
 }
 
 function hasPendingTasks(): boolean {

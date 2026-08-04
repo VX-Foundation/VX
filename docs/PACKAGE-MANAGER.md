@@ -4,9 +4,9 @@ VX development uses pnpm 11 and keeps one exact toolchain version in the root ma
 
 ```json
 {
-  "packageManager": "pnpm@11.17.0",
+  "packageManager": "pnpm@11.19.0",
   "engines": {
-    "pnpm": ">=11.17.0 <12"
+    "pnpm": ">=11.19.0 <12"
   }
 }
 ```
@@ -17,11 +17,11 @@ VX development uses pnpm 11 and keeps one exact toolchain version in the root ma
 
 ```bash
 corepack enable
-corepack prepare pnpm@11.17.0 --activate
+corepack prepare pnpm@11.19.0 --activate
 pnpm --version
 ```
 
-The expected version for release work is `11.17.0`. pnpm 11 requires Node.js 22 or newer.
+The expected version for release work is `11.19.0`. pnpm 11 requires Node.js 22 or newer.
 
 ## pnpm 11 configuration
 

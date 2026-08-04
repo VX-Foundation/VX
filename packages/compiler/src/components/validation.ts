@@ -5,7 +5,7 @@
 import type { ComponentModuleIR, ComponentProjectIR } from '@vx-foundation/types';
 import type { DiagnosticCollector } from '../analyze/diagnostics.js';
 import { findScriptBlock, findViewBlock } from './contract.js';
-import { validateContractDeclarations, validateHeadlessModule, validateImports } from './validation-contracts.js';
+import { validateContractDeclarations, validateHeadlessModule, validateImports, validateVisualModule } from './validation-contracts.js';
 import { validateComponentView, validateContentOutlets, validateEmits, validatePublicPartMarkers } from './validation-view.js';
 
 export interface ComponentValidationContext {
@@ -28,6 +28,10 @@ export function validateComponentModule(context: ComponentValidationContext, dia
     validateComponentView(module, project, diagnostics);
     validatePublicPartMarkers(module.contract, view.children, diagnostics);
     validateContentOutlets(module.contract, view.children, diagnostics);
+    return;
+  }
+  if (module.contract.kind === 'visual') {
+    validateVisualModule(module, view, diagnostics);
     return;
   }
   validateHeadlessModule(module, script, view, diagnostics);

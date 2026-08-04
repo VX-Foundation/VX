@@ -7,16 +7,266 @@
 #end script
 
 #view
-  View {
-    Image {
-      src: "/vx.svg"
-      alt: "VX Logo"
+  View @page {
+    View @hero {
+      View @heroContent {
+        View @badge {
+          Text("Server-rendered · Edge-ready") @badgeText
+        }
+        Text("Build fast.\nShip with confidence.") @heroHeading
+        Text("VX is a compiler-first full-stack framework with fine-grained reactivity, deterministic SSR, and portable deployment adapters.") @heroBody
+        View @heroActions {
+          Button("Get started") @btnPrimary {
+            click => increment()
+          }
+          Link("Read the docs") @btnOutline {
+            href: "https://vx.dev/docs"
+          }
+        }
+      }
+      View @heroVisual {
+        Image @heroLogo {
+          src: "/vx.svg"
+          alt: "VX"
+        }
+      }
     }
-    Text("Server-rendered VX application")
-    Text("Count: " + count)
 
-    Button("Increment") @primary {
-      click => increment()
+    View @statsRow {
+      View @stat {
+        Text("{{ count }}") @statValue
+        Text("interactions") @statLabel
+      }
+      View @stat {
+        Text("0ms") @statValue
+        Text("hydration overhead") @statLabel
+      }
+      View @stat {
+        Text("25") @statValue
+        Text("packages") @statLabel
+      }
     }
+
+    View @features {
+      Text("Why VX?") @featuresHeading
+      View @featureGrid {
+        View @featureCard {
+          Text("⚡") @featureIcon
+          Text("Compiler-owned") @featureTitle
+          Text("Diagnostics, source maps, and typed data flows are resolved at compile time, not runtime.") @featureBody
+        }
+        View @featureCard {
+          Text("🎯") @featureIcon
+          Text("Fine-grained DOM") @featureTitle
+          Text("Direct DOM updates without a Virtual DOM. Surgical patches, zero diffing overhead.") @featureBody
+        }
+        View @featureCard {
+          Text("🌊") @featureIcon
+          Text("Streaming SSR") @featureTitle
+          Text("Deterministic streaming, hydration recovery, islands, and resumable boundaries built-in.") @featureBody
+        }
+        View @featureCard {
+          Text("🔒") @featureIcon
+          Text("Secure by default") @featureTitle
+          Text("Server boundaries, typed endpoints, security headers, and CSRF protection out of the box.") @featureBody
+        }
+        View @featureCard {
+          Text("📦") @featureIcon
+          Text("Portable adapters") @featureTitle
+          Text("Node, Bun, Deno, Cloudflare, Vercel, Netlify, AWS Lambda, and static targets.") @featureBody
+        }
+        View @featureCard {
+          Text("🎨") @featureIcon
+          Text("Visual system") @featureTitle
+          Text("CSS-free styling with a typed visual vocabulary, design tokens, and scoped roles.") @featureBody
+        }
+      }
+    }
+  }
+
+  @page {
+    flow: vertical
+    gap: 3xl
+  }
+
+  @hero {
+    flow: horizontal
+    items: center
+    gap: 2xl
+    insetY: 2xl
+  }
+
+  @heroContent {
+    flow: vertical
+    gap: lg
+    flexGrow: 1
+  }
+
+  @badge {
+    flow: horizontal
+    items: center
+    width: fit
+    surface: infoSoft
+    corner: pill
+    inset: badge
+  }
+
+  @badgeText {
+    typography: label.sm
+    tone: info
+  }
+
+  @heroHeading {
+    typography: display.lg
+    tone: strong
+    letterSpacing: -0.03em
+    lineHeight: 1.1
+    whiteSpace: pre-line
+  }
+
+  @heroBody {
+    typography: body.lg
+    tone: muted
+    maxWidth: 480
+    lineHeight: 1.6
+  }
+
+  @heroActions {
+    flow: horizontal
+    gap: sm
+    items: center
+  }
+
+  @btnPrimary {
+    surface: primary
+    tone: onPrimary
+    corner: md
+    inset: control.lg
+    typography: label.lg
+    border: none
+    cursor: pointer
+    transition: fast
+    elevation: sm
+
+    when hover {
+      surface: primaryHover
+      transform: lift
+      elevation: md
+    }
+
+    when pressed {
+      transform: press
+    }
+  }
+
+  @btnOutline {
+    surface: base
+    tone: body
+    corner: md
+    inset: control.lg
+    typography: label.lg
+    border: subtle
+    cursor: pointer
+    transition: fast
+    decoration: none
+
+    when hover {
+      surface: highlighted
+      tone: strong
+    }
+  }
+
+  @heroVisual {
+    flow: vertical
+    items: center
+    content: center
+    width: 280
+    height: 280
+    surface: highlighted
+    corner: xl
+    border: subtle
+    flexShrink: 0
+  }
+
+  @heroLogo {
+    width: 160
+    height: 160
+  }
+
+  @statsRow {
+    flow: horizontal
+    gap: md
+    columns: 3
+  }
+
+  @stat {
+    flow: vertical
+    items: center
+    gap: xs
+    surface: raised
+    corner: lg
+    border: subtle
+    inset: lg
+    elevation: xs
+  }
+
+  @statValue {
+    typography: display.md
+    tone: primary
+    letterSpacing: -0.02em
+  }
+
+  @statLabel {
+    typography: label.sm
+    tone: muted
+    textTransform: uppercase
+    letterSpacing: 0.06em
+  }
+
+  @features {
+    flow: vertical
+    gap: xl
+  }
+
+  @featuresHeading {
+    typography: heading.xl
+    tone: strong
+    letterSpacing: -0.02em
+  }
+
+  @featureGrid {
+    columns: 3
+    gap: md
+  }
+
+  @featureCard {
+    flow: vertical
+    gap: sm
+    surface: raised
+    corner: xl
+    border: subtle
+    inset: lg
+    elevation: xs
+    transition: fast
+
+    when hover {
+      elevation: md
+      transform: lift
+    }
+  }
+
+  @featureIcon {
+    size: 2xl
+  }
+
+  @featureTitle {
+    typography: heading.sm
+    tone: strong
+  }
+
+  @featureBody {
+    typography: body.sm
+    tone: muted
+    lineHeight: 1.6
   }
 #end view

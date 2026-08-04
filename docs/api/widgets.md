@@ -2,7 +2,7 @@
 
 Industrial-grade Native Widget Primitives for the VX Framework
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

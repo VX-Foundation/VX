@@ -2,7 +2,7 @@
 
 Compiler core: Reactive graph, type checking, lowering.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 
@@ -17,6 +17,7 @@ Current package line: `0.1.1`.
 - `analyze` - function in `core.ts`
 - `AnalyzeOptions` - interface in `core.ts`
 - `AnalyzeResult` - interface in `core.ts`
+- `analyzeScriptWithTSProgram` - function in `typecheck/ts-program-cache.ts`
 - `bodyContainsAwait` - function in `codegen/javascript.ts`
 - `buildContractTypeEnvironment` - function in `components/contract-types.ts`
 - `buildDataProgram` - function in `data/builder.ts`
@@ -28,6 +29,8 @@ Current package line: `0.1.1`.
 - `BuiltinRoleDefinition` - interface in `visual/catalog.ts`
 - `callProperty` - function in `codegen/dom-helpers.ts`
 - `checkViewTypes` - function in `analyze/type-checker.ts`
+- `classifyModule` - function in `components/contract.ts`
+- `clearTSProgramCache` - function in `typecheck/ts-program-cache.ts`
 - `collectMutatedIdentifiers` - function in `analyze/expression-identifiers.ts`
 - `collectReferencedIdentifiers` - function in `analyze/expression-identifiers.ts`
 - `collectSymbols` - function in `codegen/dom-helpers.ts`
@@ -47,7 +50,9 @@ Current package line: `0.1.1`.
 - `createComponentBindingContext` - function in `components/context.ts`
 - `createFileIntegrity` - function in `package/manifest.ts`
 - `createSetupBindings` - function in `codegen/dom-helpers.ts`
+- `createTSProgramCacheKey` - function in `typecheck/tsconfig-loader.ts`
 - `createViewBindings` - function in `codegen/dom-helpers.ts`
+- `createVirtualCompilerHost` - function in `typecheck/ts-host.ts`
 - `CssDeclaration` - interface in `visual/properties.ts`
 - `cssValueForRuntime` - function in `visual/properties.ts`
 - `declarationsForScope` - function in `javascript-scopes.ts`
@@ -67,6 +72,7 @@ Current package line: `0.1.1`.
 - `ForbiddenAccess` - interface in `analyze/security.ts`
 - `generateApplicationMount` - function in `codegen/component-factory.ts`
 - `generateComponentFactory` - function in `codegen/component-factory.ts`
+- `generateContractDTS` - function in `typecheck/contract-dts.ts`
 - `GeneratedDomCode` - interface in `codegen/dom.ts`
 - `GeneratedModuleImports` - interface in `codegen/component-module.ts`
 - `generateDomCode` - function in `codegen/dom.ts`
@@ -74,11 +80,14 @@ Current package line: `0.1.1`.
 - `generateModuleImports` - function in `codegen/component-module.ts`
 - `generateServerCode` - function in `codegen/server.ts`
 - `generateSetup` - function in `codegen/dom-setup.ts`
+- `generateVirtualTS` - function in `typecheck/virtual-ts.ts`
+- `generateVisualRoleDTS` - function in `typecheck/contract-dts.ts`
 - `getBuiltinRole` - function in `visual/catalog.ts`
 - `getPrimitiveTag` - function in `codegen/dom-helpers.ts`
 - `IdentifierAnalysisOptions` - interface in `analyze/expression-identifiers.ts`
 - `ImportedComponentBinding` - interface in `components/context.ts`
 - `ImportedValueBinding` - interface in `components/context.ts`
+- `ImportedVisualRoleBinding` - interface in `components/context.ts`
 - `indent` - function in `codegen/dom-helpers.ts`
 - `inferExpressionType` - function in `components/contract-types.ts`
 - `InterpolatedExpression` - interface in `interpolation.ts`
@@ -89,11 +98,13 @@ Current package line: `0.1.1`.
 - `isShadowed` - function in `javascript-scopes.ts`
 - `isSupportedVisualProperty` - function in `visual/properties.ts`
 - `JavaScriptBinding` - interface in `codegen/javascript.ts`
+- `loadTSConfig` - function in `typecheck/tsconfig-loader.ts`
 - `lower` - function in `codegen/index.ts`
 - `lowerBody` - function in `codegen/javascript.ts`
 - `lowerExpression` - function in `codegen/javascript.ts`
 - `LowerOptions` - interface in `codegen/index.ts`
 - `LowerResult` - interface in `codegen/index.ts`
+- `mapTSDiagnostic` - function in `typecheck/ts-diagnostic-mapper.ts`
 - `MEDIA_WIDGETS` - const in `components/validation-constants.ts`
 - `normalizeVisualExpression` - function in `visual/expression.ts`
 - `PRIMITIVE_WIDGETS` - const in `components/validation-constants.ts`
@@ -112,6 +123,7 @@ Current package line: `0.1.1`.
 - `rootExportKey` - function in `package/conventions.ts`
 - `satisfiesVersion` - function in `components/semver.ts`
 - `ScopeStack` - type in `javascript-scopes.ts`
+- `ScriptTypeCheckResult` - interface in `typecheck/ts-program-cache.ts`
 - `sourceKind` - function in `codegen/dom-helpers.ts`
 - `SPECIAL_COMPONENT_WIDGETS` - const in `components/validation-constants.ts`
 - `STRUCTURAL_ROLE_NAMES` - const in `visual/catalog.ts`
@@ -119,6 +131,7 @@ Current package line: `0.1.1`.
 - `TEXT_WIDGETS` - const in `components/validation-constants.ts`
 - `TransformJavaScriptOptions` - interface in `codegen/javascript.ts`
 - `UNSAFE_MEMBER_NAMES` - const in `components/validation-constants.ts`
+- `UNSAFE_VALUE_SENTINEL` - const in `visual/properties.ts`
 - `UnsupportedLoweringError` - class in `codegen/index.ts`
 - `validateAccessibility` - function in `analyze/accessibility.ts`
 - `validateActionDeclaration` - function in `analyze/action-semantics.ts`
@@ -137,9 +150,13 @@ Current package line: `0.1.1`.
 - `validateQueryDeclaration` - function in `analyze/query-semantics.ts`
 - `validateScriptSemantics` - function in `analyze/script-semantics.ts`
 - `validateStoreDeclaration` - function in `analyze/store-semantics.ts`
+- `validateVisualModule` - function in `components/validation-contracts.ts`
 - `validateVisualRoles` - function in `analyze/visual-roles.ts`
 - `verifyFileIntegrity` - function in `package/manifest.ts`
 - `ViewBindings` - type in `codegen/dom-helpers.ts`
+- `VirtualFileStore` - interface in `typecheck/ts-host.ts`
+- `VirtualSpanMapping` - interface in `typecheck/virtual-ts.ts`
+- `VirtualTSOutput` - interface in `typecheck/virtual-ts.ts`
 - `visualPropertyToCss` - function in `visual/properties.ts`
 - `VX_GENERATED_MANIFEST_FILE` - const in `package/manifest.ts`
 - `VX_MAX_INTEGRITY_FILES` - const in `package/manifest.ts`

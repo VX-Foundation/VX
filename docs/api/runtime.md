@@ -2,7 +2,7 @@
 
 VX direct-DOM client runtime and request-scoped SSR server platform.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

@@ -3,14 +3,114 @@
 #end script
 
 #view
-  View @page {
-    Title("VX Fullstack") @title
-    Content(route)
+  View @shell {
+    View @topbar {
+      View @topbarInner {
+        View @brand {
+          Image @brandLogo {
+            src: "/vx.svg"
+            alt: "VX"
+          }
+          Text("VX Fullstack") @brandName
+        }
+        View @topbarActions {
+          Link("Docs") @topbarLink {
+            href: "https://vx.dev/docs"
+          }
+          Link("GitHub") @topbarLink {
+            href: "https://github.com/vx-foundation/vx"
+          }
+        }
+      }
+    }
+    View @content {
+      Content(route)
+    }
+    View @footer {
+      Text("Built with VX · MIT License") @footerText
+    }
   }
 
-  @page {
+  @shell {
     flow: vertical
-    space: lg
+    minHeight: viewport
+    surface: base
+  }
+
+  @topbar {
+    surface: raised
+    border: subtle
+    borderBottom: subtle
+    elevation: xs
+  }
+
+  @topbarInner {
+    flow: horizontal
+    items: center
+    gap: fill
+    insetX: xl
+    insetY: md
+    maxWidth: 1200
+    marginX: auto
+    width: fill
+  }
+
+  @brand {
+    flow: horizontal
+    items: center
+    gap: sm
+  }
+
+  @brandLogo {
+    width: 28
+    height: 28
+  }
+
+  @brandName {
+    typography: heading.xs
+    tone: strong
+    letterSpacing: -0.02em
+  }
+
+  @topbarActions {
+    flow: horizontal
+    gap: xs
+    items: center
+  }
+
+  @topbarLink {
+    typography: label.md
+    tone: muted
+    inset: control.sm
+    corner: md
+    decoration: none
+    transition: fast
+
+    when hover {
+      surface: highlighted
+      tone: strong
+    }
+  }
+
+  @content {
+    flexGrow: 1
+    maxWidth: 1200
+    marginX: auto
+    width: fill
     inset: xl
+  }
+
+  @footer {
+    flow: horizontal
+    items: center
+    content: center
+    insetY: lg
+    border: subtle
+    borderTop: subtle
+  }
+
+  @footerText {
+    typography: body.xs
+    tone: muted
   }
 #end view

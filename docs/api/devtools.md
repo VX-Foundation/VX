@@ -2,7 +2,7 @@
 
 Browser DevTools protocol, inspector store, performance timeline, and runtime bridge for VX.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

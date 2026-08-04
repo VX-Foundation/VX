@@ -88,9 +88,9 @@ function verifyScaffoldSafety() {
 function validateManifest(root, template) {
   const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
   assert.equal(manifest.type, 'module');
-  assert.equal(manifest.packageManager, 'pnpm@11.17.0');
+  assert.equal(manifest.packageManager, 'pnpm@11.19.0');
   assert.equal(manifest.engines?.node, '>=22.11.0 <23 || >=24.11.0 <25');
-  assert.equal(manifest.engines?.pnpm, '>=11.17.0 <12');
+  assert.equal(manifest.engines?.pnpm, '>=11.19.0 <12');
   const mandatory = template === 'library'
     ? ['build', 'check', 'lint', 'test', 'doctor', 'package', 'verify']
     : ['dev', 'build', 'preview', 'check', 'lint', 'test', 'doctor', 'verify'];

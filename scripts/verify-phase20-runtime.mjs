@@ -44,7 +44,7 @@ const fuzz = await runFuzzCampaign({
 assert.equal(fuzz.crashes.length, 0);
 assert(scanSecrets(['-----BEGIN ', 'PRIVATE KEY-----'].join('')).some((finding) => finding.rule === 'private-key'));
 assert(reviewPackageManifest({
-  packageManager: 'pnpm@11.17.0',
+  packageManager: 'pnpm@11.19.0',
   scripts: { postinstall: 'node unsafe.js' }
 }).some((issue) => issue.severity === 'error'));
 assert(reviewLockfileText('lockfileVersion: 9').some((issue) => issue.code === 'VX_SUPPLY_INTEGRITY' && issue.severity === 'error'));

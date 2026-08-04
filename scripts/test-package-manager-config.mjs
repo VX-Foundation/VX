@@ -11,8 +11,8 @@ const verifierPath = path.join(scriptDirectory, 'verify-package-manager-config.m
 const validWorkspace = `packages:\n  - packages/*\n\npmOnFail: download\nengineStrict: true\nstrictDepBuilds: true\nminimumReleaseAge: 1440\n\nallowBuilds:\n  esbuild: true\n`;
 
 async function createFixture({
-  packageManager = 'pnpm@11.17.0',
-  engine = '>=11.17.0 <12',
+  packageManager = 'pnpm@11.19.0',
+  engine = '>=11.19.0 <12',
   workspace = validWorkspace,
   workflow = 'steps:\n  - uses: pnpm/action-setup@v6\n',
   npmrc = 'registry=https://registry.npmjs.org/\n',
@@ -47,7 +47,7 @@ async function runCase(name, fixture, expectedStatus, expectedMessage) {
   }
 }
 
-await runCase('accepts pnpm 11.17 policy', {}, 0, /policy passed/u);
+await runCase('accepts pnpm 11.19 policy', {}, 0, /policy passed/u);
 await runCase('rejects legacy onlyBuiltDependencies on modern pnpm', {
   workspace: validWorkspace.replace('allowBuilds:\n  esbuild: true', 'onlyBuiltDependencies:\n  - esbuild'),
 }, 1, /must not be combined with allowBuilds|must use allowBuilds/u);
@@ -55,7 +55,7 @@ await runCase('rejects unresolved placeholders', {
   workspace: validWorkspace.replace('esbuild: true', 'set this to true or false'),
 }, 1, /unresolved placeholder/u);
 await runCase('rejects duplicated workflow versions', {
-  workflow: 'steps:\n  - uses: pnpm/action-setup@v6\n    with:\n      version: 11.17.0\n',
+  workflow: 'steps:\n  - uses: pnpm/action-setup@v6\n    with:\n      version: 11.19.0\n',
 }, 1, /duplicates the pnpm version/u);
 await runCase('rejects global ignore-scripts', {
   npmrc: 'ignore-scripts=true\n',

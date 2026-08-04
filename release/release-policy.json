@@ -29,7 +29,7 @@
     "lifecycleScripts": "forbidden",
     "publicAccess": true
   },
-  "frameworkVersion": "0.1.1",
+  "frameworkVersion": "0.1.2",
   "readiness": "release/v1-readiness.json",
   "stabilizationPolicy": "release/stabilization-policy.json"
 }

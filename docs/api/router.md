@@ -2,7 +2,7 @@
 
 VX file-based router and client navigation engine.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

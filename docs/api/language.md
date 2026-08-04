@@ -2,7 +2,7 @@
 
 Tokenizer, parser and AST for the VX .vx single-file component language.
 
-Current package line: `0.1.1`.
+Current package line: `0.1.2`.
 
 ## Public entries
 

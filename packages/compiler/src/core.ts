@@ -1,4 +1,4 @@
-import type { ASTNode, DataProgramIR, ScriptBlockNode, ViewBlockNode, ProgramNode, Diagnostic, VisualDesignSystem, VisualProgramIR } from '@vx-foundation/types';
+import type { ASTNode, DataProgramIR, ScriptBlockNode, ViewBlockNode, ProgramNode, Diagnostic, VisualDesignSystem, VisualProgramIR, VisualRoleDeclarationNode, ComponentContract } from '@vx-foundation/types';
 import { DiagnosticCollector } from './analyze/diagnostics.js';
 import { buildReactiveGraph } from './analyze/graph-builder.js';
 import type { ReactiveGraph } from './analyze/graph-builder.js';
@@ -12,6 +12,7 @@ import { buildDataProgram } from './data/builder.js';
 import type { ComponentBindingContext } from './components/context.js';
 import { validateComponentModule } from './components/validation.js';
 import { validateForms } from './forms/validation.js';
+import { analyzeScriptWithTSProgram } from './typecheck/ts-program-cache.js';
 
 export type { ReactiveGraph, ReactiveNode } from './analyze/graph-builder.js';
 export { DiagnosticCollector } from './analyze/diagnostics.js';
@@ -20,10 +21,25 @@ export { resolveVisualProgram } from './visual/resolver.js';
 export { buildDataProgram } from './data/builder.js';
 export type { LowerResult, LowerOptions } from './codegen/index.js';
 export { createComponentBindingContext } from './components/context.js';
+export { analyzeScriptWithTSProgram } from './typecheck/ts-program-cache.js';
 
 export interface AnalyzeOptions {
   designSystem?: VisualDesignSystem;
   component?: ComponentBindingContext;
+  /** Visual roles imported from visual modules, keyed by local name. */
+  importedVisualRoles?: Map<string, VisualRoleDeclarationNode>;
+  /** Contracts of imported VX modules for TypeScript .d.ts generation */
+  importedContracts?: Map<string, ComponentContract>;
+  /** Project root directory for loading tsconfig.json */
+  rootDir?: string;
+  /**
+   * When true, runs the full TypeScript Compiler API (ts.createProgram) over
+   * the #script block for deep type inference beyond VX's own semantic passes.
+   *
+   * Defaults to **false** because ts.createProgram has a ~1–3 s cold-start per
+   * unique script. Enable in the bundler, LSP, and explicit type-check invocations.
+   */
+  tsCheck?: boolean;
 }
 
 export interface AnalyzeResult {
@@ -91,7 +107,18 @@ export function analyze(ast: ASTNode, options: AnalyzeOptions = {}): AnalyzeResu
   }
 
   // 8. Resolve compiler-owned visual intent into target-neutral Visual IR.
-  const visual = viewBlock ? resolveVisualProgram(viewBlock, graph, diagnostics, options.designSystem) : undefined;
+  // Merge visual roles from the component binding context with any explicitly passed ones.
+  const effectiveImportedRoles: Map<string, VisualRoleDeclarationNode> | undefined =
+    (() => {
+      const fromContext = options.component?.visualRoles;
+      const fromOptions = options.importedVisualRoles;
+      if (!fromContext?.size && !fromOptions?.size) return undefined;
+      const merged = new Map<string, VisualRoleDeclarationNode>();
+      if (fromContext) for (const [key, binding] of fromContext) merged.set(key, binding.declaration);
+      if (fromOptions) for (const [key, decl] of fromOptions) merged.set(key, decl);
+      return merged.size > 0 ? merged : undefined;
+    })();
+  const visual = viewBlock ? resolveVisualProgram(viewBlock, graph, diagnostics, options.designSystem, effectiveImportedRoles) : undefined;
 
   // 9. Validate component/module contracts and imported use sites.
   if (options.component) validateComponentModule(options.component, diagnostics);
@@ -99,6 +126,32 @@ export function analyze(ast: ASTNode, options: AnalyzeOptions = {}): AnalyzeResu
   // 10. Partition validation (Server vs Client boundaries and security)
   if (scriptBlock) {
     validatePartitioning(scriptBlock, viewBlock, graph, diagnostics);
+  }
+
+  // 11. Real TypeScript Compiler API analysis over #script (opt-in)
+  if (scriptBlock && options.tsCheck) {
+    // Build imported contracts map from component binding context
+    const importedContracts = new Map<string, ComponentContract>();
+    if (options.component) {
+      for (const imported of options.component.module.imports) {
+        const target = options.component.project.modules.get(imported.moduleId);
+        if (target) {
+          importedContracts.set(imported.source, target.contract);
+        }
+      }
+    }
+    
+    const tsResult = analyzeScriptWithTSProgram(
+      scriptBlock,
+      ast.span.filePath,
+      ast.span,
+      undefined,
+      importedContracts,
+      options.rootDir
+    );
+    for (const diag of tsResult.diagnostics) {
+      diagnostics.addDiagnostic(diag);
+    }
   }
 
   return {

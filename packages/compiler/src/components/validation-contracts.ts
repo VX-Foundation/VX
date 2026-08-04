@@ -230,6 +230,79 @@ export function validateImports(
   }
 }
 
+export function validateVisualModule(
+  module: ComponentModuleIR,
+  view: ReturnType<typeof findViewBlock>,
+  diagnostics: DiagnosticCollector
+): void {
+  // A visual module must have a #view
+  if (!view) {
+    diagnostics.error(
+      'VX_VISUAL_MODULE_NO_VIEW',
+      `Visual module '${module.contract.name}' must contain a #view block with exported roles.`,
+      module.ast.span
+    );
+    return;
+  }
+
+  // Must not contain widgets at the top level
+  if (view.children.length > 0) {
+    diagnostics.error(
+      'VX_VISUAL_MODULE_HAS_WIDGETS',
+      `Visual module '${module.contract.name}' cannot contain widgets. Visual modules only export roles.`,
+      view.span,
+      "Remove the widget tree or move it to a component file. Visual modules use 'export @role { ... }' only."
+    );
+  }
+
+  // Must have at least one exported role
+  if (module.contract.visualExports.length === 0) {
+    diagnostics.warning(
+      'VX_VISUAL_NO_EXPORTS',
+      `Visual module '${module.contract.name}' has a #view but exports no roles.`,
+      view.span,
+      "Add 'export' before each '@roleName { ... }' declaration to expose it."
+    );
+  }
+
+  // Visual modules cannot have component contract declarations
+  const script = findScriptBlock(module.ast);
+  for (const statement of script?.statements ?? []) {
+    if (
+      statement.kind === 'PropDeclaration' ||
+      statement.kind === 'OutputDeclaration' ||
+      statement.kind === 'ContentDeclaration' ||
+      statement.kind === 'VisualPartDeclaration' ||
+      statement.kind === 'GenericDeclaration' ||
+      statement.kind === 'ModelDeclarationNode' ||
+      statement.kind === 'ContextProvideDeclaration' ||
+      statement.kind === 'ContextInjectDeclaration' ||
+      statement.kind === 'ForwardDeclaration'
+    ) {
+      diagnostics.error(
+        'VX_VISUAL_COMPONENT_CONTRACT',
+        `Visual module '${module.contract.name}' cannot declare '${statement.kind}'.`,
+        statement.span,
+        'Visual modules only export roles. Move component contracts to a visual component file.'
+      );
+    }
+  }
+
+  // Validate for duplicate export names
+  const seen = new Set<string>();
+  for (const exported of module.contract.visualExports) {
+    if (seen.has(exported.name)) {
+      diagnostics.error(
+        'VX_VISUAL_DUPLICATE_EXPORT',
+        `Role '@${exported.name}' is exported more than once in visual module '${module.contract.name}'.`,
+        exported.span,
+        'Each role name must be unique within a visual module.'
+      );
+    }
+    seen.add(exported.name);
+  }
+}
+
 export function validateHeadlessModule(
   module: ComponentModuleIR,
   script: ScriptBlockNode | undefined,

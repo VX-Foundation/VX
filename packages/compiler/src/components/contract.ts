@@ -4,7 +4,8 @@ import type {
   HeadlessExportContract,
   ProgramNode,
   ScriptBlockNode,
-  ViewBlockNode
+  ViewBlockNode,
+  VisualRoleExport
 } from '@vx-foundation/types';
 import { hashContent } from '@vx-foundation/shared';
 
@@ -12,7 +13,7 @@ import { hashContent } from '@vx-foundation/shared';
 export function extractComponentContract(program: ProgramNode): ComponentContract {
   const script = findScriptBlock(program);
   const view = findViewBlock(program);
-  const kind: ComponentModuleKind = view ? 'component' : 'headless';
+  const kind: ComponentModuleKind = classifyModule(program, view);
   const name = componentName(program.filePath);
 
   const generics: ComponentContract['generics'] = [];
@@ -77,6 +78,16 @@ export function extractComponentContract(program: ProgramNode): ComponentContrac
     }
   }
 
+  // Collect exported visual roles from the #view block (only for visual modules)
+  const visualExports: VisualRoleExport[] = [];
+  if (kind === 'visual' && view) {
+    for (const role of view.roles) {
+      if (role.exported) {
+        visualExports.push({ name: role.name, declaration: role, span: role.span });
+      }
+    }
+  }
+
   return {
     id: `vx:${hashContent(program.filePath, 16)}`,
     name,
@@ -88,7 +99,8 @@ export function extractComponentContract(program: ProgramNode): ComponentContrac
     content,
     parts,
     forwarding,
-    exports
+    exports,
+    visualExports
   };
 }
 
@@ -98,6 +110,23 @@ export function findScriptBlock(program: ProgramNode): ScriptBlockNode | undefin
 
 export function findViewBlock(program: ProgramNode): ViewBlockNode | undefined {
   return program.blocks.find((block): block is ViewBlockNode => block.kind === 'ViewBlock');
+}
+
+/**
+ * Classifies a parsed VX module into one of three kinds:
+ * - 'component': has a #view with widgets (the default for visual files)
+ * - 'visual': has a #view with only exported roles and no widgets
+ * - 'headless': has no #view at all
+ */
+export function classifyModule(program: ProgramNode, view: ViewBlockNode | undefined): ComponentModuleKind {
+  if (!view) return 'headless';
+  // A visual module: #view contains no widgets, has at least one exported role,
+  // and all roles at the top level are exported.
+  const hasWidgets = view.children.length > 0;
+  const exportedRoles = view.roles.filter((role) => role.exported);
+  const allExported = view.roles.length > 0 && view.roles.every((role) => role.exported);
+  if (!hasWidgets && exportedRoles.length > 0 && allExported) return 'visual';
+  return 'component';
 }
 
 function componentName(filePath: string): string {
