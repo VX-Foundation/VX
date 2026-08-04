@@ -2,7 +2,18 @@
 
 All notable VX changes are documented here. The project follows Semantic Versioning and uses Changesets for package-level release notes.
 
-## 0.1.2 - Unreleased
+## 0.1.3 - 2026-08-04
+
+### Security & Vulnerability Hardening
+
+- **Security Audit Resolution**: Resolved all 21 vulnerabilities reported by GitHub CI and `pnpm audit` (4 low, 14 moderate, 3 high).
+- **PostCSS High-Severity Patch (GHSA-r28c-9q8g-f849)**: Upgraded `postcss` to `>=8.5.18` to resolve Path Traversal in Previous Source Map Auto-Loading (`sourceMappingURL`) causing arbitrary `.map` file disclosure.
+- **Brace Expansion High-Severity DoS Patch (GHSA-mh99-v99m-4gvg)**: Upgraded `brace-expansion` to `>=2.1.3` to resolve DoS via unbounded expansion length causing out-of-memory process crashes.
+- **Brace Expansion High-Severity Array DoS Patch (GHSA-rgw5-rvv9-x895)**: Upgraded `brace-expansion` to `>=2.1.4` to resolve DoS via unbounded intermediate arrays bypassing CVE-2026-14257 mitigations.
+- **DOMPurify Sanitization Patch (GHSA-cmwh-pvxp-8882 & GHSA-c2j3-45gr-mqc4)**: Upgraded `dompurify` to `>=3.4.12` to resolve `ALLOWED_ATTR` pollution and custom element sanitization bypasses.
+- **Minimatch & Subdependency Patches**: Upgraded `minimatch` to `>=9.0.5` and updated transitive dependency resolutions.
+
+## 0.1.2
 
 ### Breaking Changes
 

@@ -2,7 +2,7 @@
 
 Compiler-first full-stack web framework with direct DOM rendering, deterministic SSR, typed data primitives, and production deployment adapters.
 
-Current package line: `0.1.2`.
+Current package line: `0.1.3`.
 
 ## Public entries
 

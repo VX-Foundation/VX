@@ -10,3 +10,14 @@ minimumReleaseAge: 1440
 
 allowBuilds:
   esbuild: true
+
+minimumReleaseAgeExclude:
+  - '@typescript-eslint/tsconfig-utils@8.66.0'
+  - '@typescript-eslint/types@8.66.0'
+  - '@typescript-eslint/utils@8.66.0'
+
+overrides:
+  dompurify: "^3.4.12"
+  postcss: "^8.5.18"
+  brace-expansion: "^2.1.4"
+  minimatch: "^9.0.5"

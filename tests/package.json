@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/tests",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
-    "vitest": "^1.0.0",
+    "vitest": "^4.1.10",
     "@vx-foundation/core": "workspace:*",
     "@vx-foundation/cli": "workspace:*",
     "@vx-foundation/language": "workspace:*",
