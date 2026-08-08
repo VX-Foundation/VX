@@ -13,7 +13,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
     "@vx-foundation/bundler": "workspace:*",
     "@vx-foundation/shared": "workspace:*",
     "vite": "^6.0.0"
