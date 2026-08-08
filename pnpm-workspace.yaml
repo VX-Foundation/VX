@@ -8,7 +8,7 @@ catalog:
   "@vitest/coverage-v8": ^4.1.10
   "@types/node": ^24.0.15
   eslint: ^9.31.0
-  typescript: ^5.8.3
+  typescript: ^6.0.3
   vitest: ^4.1.10
 
 pmOnFail: download
