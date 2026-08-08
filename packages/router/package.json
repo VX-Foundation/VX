@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/jsdom": "^28.0.3",
     "memfs": "^4.9.2",
-    "jsdom": "^29.1.1"
+    "jsdom": "^30.0.1"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
