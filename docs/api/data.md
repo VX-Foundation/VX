@@ -2,7 +2,7 @@
 
 VX query persistence, offline mutations, infinite data, realtime subscriptions, and cross-context synchronization.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 

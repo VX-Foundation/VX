@@ -1,0 +1,27 @@
+#script
+  prop activeTab: String = ""
+  prop class: String = ""
+
+  output onTabChange: String
+  content default: optional
+#end script
+
+#view
+  View @tabsWrapper {
+    View @tabsHeader {
+      Content(default)
+    }
+  }
+
+  @tabsWrapper {
+    flow: vertical
+    gap: md
+  }
+
+  @tabsHeader {
+    flow: horizontal
+    gap: sm
+    borderBottom: steel-800
+    inset: sm
+  }
+#end view

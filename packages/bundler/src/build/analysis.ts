@@ -10,7 +10,13 @@ export function analyzeBuild(options: NormalizedBuildOptions): BundleAnalysis {
   for (const [directory, target] of targetDirectories(options.outDir)) {
     if (!fs.existsSync(directory)) continue;
     for (const filePath of walk(directory)) {
-      const content = fs.readFileSync(filePath);
+      let content: Buffer;
+      try {
+        if (!fs.existsSync(filePath)) continue;
+        content = fs.readFileSync(filePath);
+      } catch {
+        continue;
+      }
       const relative = path.relative(options.outDir, filePath).split(path.sep).join('/');
       artifacts.push(Object.freeze({
         path: relative,
@@ -67,10 +73,18 @@ function classifyArtifact(relative: string): BuildArtifact['kind'] {
   return 'asset';
 }
 function walk(directory: string): string[] {
+  if (!fs.existsSync(directory)) return [];
   const output: string[] = [], stack = [directory];
   while (stack.length) {
     const current = stack.pop()!;
-    for (const entry of fs.readdirSync(current, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+    if (!fs.existsSync(current)) continue;
+    let entries: fs.Dirent[] = [];
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
       const full = path.join(current, entry.name);
       if (entry.isDirectory()) stack.push(full); else if (entry.isFile()) output.push(full);
     }

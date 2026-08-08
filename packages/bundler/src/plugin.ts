@@ -353,7 +353,7 @@ const fetchApplication = {
 };
 const running = await startNodeServer(fetchApplication, {
   hostname: process.env.HOST ?? '0.0.0.0',
-  port: positiveInteger(process.env.PORT, 3000),
+  port: positiveInteger(process.env.PORT, 4000),
   requestBodyLimitBytes: positiveInteger(process.env.VX_REQUEST_BODY_LIMIT, 16 * 1024 * 1024),
   gracefulShutdownMs: positiveInteger(process.env.VX_SHUTDOWN_TIMEOUT_MS, 10_000),
   compression: process.env.VX_COMPRESSION !== 'false',

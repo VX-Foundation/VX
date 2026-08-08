@@ -1,0 +1,60 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("VX 1.0 Readiness")
+    Text("VX 1.0 is promoted only by evidence. A maintainer statement, successful local build, or completed implementation phase cannot bypass the stable-release gate.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX 1.0 is promoted only by evidence. A maintainer statement, successful local build, or completed implementation phase cannot bypass the stable-release gate.")
+    }
+    View @section {
+      Title("Completed stabilization foundations") { level: 2 }
+      View @list {
+        Text("• language specification freeze manifest;") @bullet
+        Text("• public API baseline and freeze digest;") @bullet
+        Text("• package metadata, license, repository identity, and npm publishing policy;") @bullet
+        Text("• no symbolic Tailwind or MDX plugins;") @bullet
+        Text("• real sitemap plugin and isolated plugin host;") @bullet
+        Text("• documentation, migration guides, RFC process, maintenance policy, and support policy;") @bullet
+        Text("• official dashboard, commerce, and collaboration conformance applications;") @bullet
+        Text("• CI definitions for Windows, Linux, macOS, Node 22/24, Chromium, Firefox, and WebKit;") @bullet
+        Text("• clean-room package and project creation gates;") @bullet
+        Text("• SemVer compatibility, provenance, security, fuzzing, adapters, and benchmark protocols.") @bullet
+      }
+    }
+    View @section {
+      Title("Remaining stable blockers") { level: 2 }
+      Text("The following evidence cannot be fabricated or replaced by local simulation:")
+      View @list {
+        Text("• A green protected-branch CI history on every supported operating system and runtime.") @bullet
+        Text("• An independent external security audit with findings and remediation status.") @bullet
+        Text("• Native, reproducible public benchmark results for the declared framework matrix.") @bullet
+        Text("• The three official applications deployed and operated in production with evidence.") @bullet
+        Text("• Canary and next releases used for the minimum stabilization duration in release/stabilization-policy.json.") @bullet
+      }
+      Text("Until these conditions are complete, releases use canary or next; latest remains blocked.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

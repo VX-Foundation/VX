@@ -16,7 +16,7 @@ export function createProvenanceManifest(
   const files = inputFiles.map((file) => toFile(file)).sort((left, right) => left.path.localeCompare(right.path));
   const payload = JSON.stringify({ packageName, packageVersion, sourceRevision, files });
   return {
-    schema: 'https://vx.dev/schemas/release-provenance/v1',
+    schema: 'https://vx.veelv.site/schemas/release-provenance/v1',
     version: 1,
     packageName,
     packageVersion,

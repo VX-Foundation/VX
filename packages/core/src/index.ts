@@ -22,7 +22,13 @@ export async function dev(root: string = process.cwd()) {
   try {
     await context.runHook('configResolved', { root: config.root, outDir: config.outDir, mode: 'development', metadata: { config } });
     await context.runHook('devServerStart', { root: config.root, outDir: config.outDir, mode: 'development' });
-    const server = await startDevServer({ root: config.root, srcDir: config.srcDir });
+    const server = await startDevServer({
+      root: config.root,
+      srcDir: config.srcDir,
+      ...(config.server?.port !== undefined ? { port: config.server.port } : {}),
+      ...(config.server?.strictPort !== undefined ? { strictPort: config.server.strictPort } : {}),
+      ...(config.server?.https !== undefined ? { https: config.server.https } : {})
+    });
     const closeServer = server.close.bind(server);
     server.close = async () => { try { await closeServer(); } finally { await closeContext(); } };
     server.httpServer?.once('close', () => { void closeContext(); });

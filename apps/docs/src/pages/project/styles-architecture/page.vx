@@ -1,0 +1,109 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("VX Framework: Dual-Mode Visual CSS Architecture")
+    Text("The VX Framework provides a dual-mode styling architecture that balances extreme native performance with flexible web ecosystem integration.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("The VX Framework provides a dual-mode styling architecture that balances extreme native performance with flexible web ecosystem integration.")
+    }
+    View @section {
+      Title("🏛️ Architecture Overview") { level: 2 }
+      View @codeBlock {
+        Text("┌─────────────────────────────────────────────────────────────────────────────┐")
+        Text("│                       VX DUAL-MODE STYLING PIPELINE                         │")
+        Text("├─────────────────────────────────────────────┬───────────────────────────────┤")
+        Text("│ 1. DEFAULT MODE: Compiler-Scoped            │ 2. OPT-IN MODE: Static CSS    │")
+        Text("│    - mode: \"compiler\" (DEFAULT)             │    - mode: \"static\"           │")
+        Text("│    - Maximum Direct DOM performance         │    - Activated via vx.config.ts │")
+        Text("│    - Zero HTTP requests for .css files      │    - Extracts static .css     │")
+        Text("│    - Compiler-owned visual lowering         │    - Custom CSS & Frameworks  │")
+        Text("└─────────────────────────────────────────────┴───────────────────────────────┘")
+      }
+    }
+    View @section {
+      Title("1. Default Mode: Native VX Compiler Performance (mode: \"compiler\")") { level: 2 }
+      Title("How It Works") { level: 3 }
+      View @list {
+        Text("• Enabled by Default: Requires no additional configuration in vx.config.ts.") @bullet
+        Text("• Zero Static Stylesheets: Visual role declarations (@role) in .vx files are compiled directly into lowering targets for the Direct DOM Reactive Engine.") @bullet
+        Text("• No Extra HTTP Requests: The bundler does not generate extra static .css asset files for visual roles.") @bullet
+      }
+      Title("Key Benefits") { level: 3 }
+      View @list {
+        Text("• Zero FOUC (Flash of Unstyled Content): Styles are immediately applied upon DOM node creation.") @bullet
+        Text("• Extraordinary Performance: Surgical node-level DOM updates without CSS tree comparison or diffing overhead.") @bullet
+        Text("• Instant Load Times: Reduced network payload and immediate browser rendering.") @bullet
+      }
+    }
+    View @section {
+      Title("2. Opt-In Static Mode (mode: \"static\")") { level: 2 }
+      Title("How It Works") { level: 3 }
+      View @list {
+        Text("• Explicitly Activated in vx.config.ts:") @bullet
+      }
+      View @codeBlock {
+        Text("import { defineConfig } from '@vx-foundation/core';")
+        Text(" ")
+        Text("export default defineConfig({")
+        Text("  styles: {")
+        Text("    mode: 'static',")
+        Text("    files: ['src/styles/custom.css']")
+        Text("  }")
+        Text("});")
+      }
+      View @list {
+        Text("• Build-Time Extraction: During compilation and vx build, the visual compiler extracts all visual role declarations (@role) into static physical .css bundle files (dist/assets/vx-[hash].css).") @bullet
+        Text("• Static Asset Serving: The SSR server injects the static stylesheet via a tag in the initial HTML document.") @bullet
+      }
+      Title("Key Benefits") { level: 3 }
+      View @list {
+        Text("• Ecosystem Integration: Allows importing custom .css files or third-party frameworks (Bootstrap, Tailwind v4, global utility classes).") @bullet
+        Text("• Fine-Grained class: Overriding: Allows passing class: \"...\" attributes on widgets to selectively override target visual properties (e.g. background color or shadow) while preserving non-conflicting default widget styles (padding, corners, cursor, transition).") @bullet
+      }
+    }
+    View @section {
+      Title("🎯 Style Cascading Specification") { level: 2 }
+      Text("When a component or widget uses default styles, visual roles, and explicit class: attributes:")
+      View @codeBlock {
+        Text("Cascade Priority:")
+        Text("1. Component Default Styles  (Default properties on Button/View/Text)")
+        Text("       ▼")
+        Text("2. Visual Roles (@role)       (Declared in .vx files via @btnPrimary)")
+        Text("       ▼")
+        Text("3. Explicit class: \"\"         (Targeted attribute overrides)")
+      }
+      Title("Practical Example:") { level: 3 }
+      View @codeBlock {
+        Text("Button(\"Delete Account\") @dangerButton {")
+        Text("  class: \"bg-red-600 shadow-xl\"")
+        Text("}")
+      }
+      View @list {
+        Text("• Result: The background color and shadow are overridden by bg-red-600 shadow-xl, while default button padding, rounded corners, cursor, and micro-animations remain 100% intact.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

@@ -1,0 +1,50 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("Publishing VX")
+    Text("The canonical source repository is https://github.com/VX-Foundation/vx. Release tags use vx-v and must point to a reviewed commit on the protected main branch.") @lead
+    View @section {
+      Title("Repository identity") { level: 2 }
+      Text("The canonical source repository is https://github.com/VX-Foundation/vx. Release tags use vx-v and must point to a reviewed commit on the protected main branch.")
+    }
+    View @section {
+      Title("npm organization") { level: 2 }
+      Text("All public framework packages, including the @vx-foundation/vx facade and @vx-foundation/create-vx project initializer, use the @vx-foundation npm scope. Before the first publish, an npm administrator must confirm ownership of the organization scope, require two-factor authentication, and follow the controlled bootstrap in NPM-BOOTSTRAP.md (NPM-BOOTSTRAP.md). Trusted publishers are configured after the package records exist.")
+    }
+    View @section {
+      Title("Trusted publishing") { level: 2 }
+      Text("After the one-time bootstrap, the release workflow uses GitHub Actions OIDC with id-token: write. It does not require a long-lived npm token. Package archives are built, inspected, installed in a clean consumer, checked against the API baseline, and published only after channel policy succeeds.")
+    }
+    View @section {
+      Title("Commands") { level: 2 }
+      View @codeBlock {
+        Text("pnpm release:repository-check")
+        Text("pnpm release:npm-preflight")
+        Text("pnpm verify:release-candidate")
+      }
+      Text("Publishing is normally started from the GitHub Release workflow. Do not publish a workspace package manually from a developer machine.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

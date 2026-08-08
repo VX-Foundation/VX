@@ -1,0 +1,191 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/server")
+    Text("VX production server platform with request context, sessions, middleware, security, observability, and Node adapters.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/server") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/server") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./cookies, ./sessions, ./middleware, ./security, ./observability, ./node") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/server@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./cookies") @chip
+        Text("./sessions") @chip
+        Text("./middleware") @chip
+        Text("./security") @chip
+        Text("./observability") @chip
+        Text("./node") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX production server platform with request context, sessions, middleware, security, observability, and Node adapters.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./cookies -> ./dist/cookies.d.ts") @bullet
+        Text("• ./middleware -> ./dist/middleware.d.ts") @bullet
+        Text("• ./node -> ./dist/node.d.ts") @bullet
+        Text("• ./observability -> ./dist/observability.d.ts") @bullet
+        Text("• ./security -> ./dist/security.d.ts") @bullet
+        Text("• ./sessions -> ./dist/sessions.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• applyCors - function in security.ts") @bullet
+        Text("• applySecurityHeaders - function in security.ts") @bullet
+        Text("• AuthorizationPolicy - interface in authorization.ts") @bullet
+        Text("• Awaitable - type in types.ts") @bullet
+        Text("• BodyLimits - interface in body.ts") @bullet
+        Text("• composeServerMiddleware - function in middleware.ts") @bullet
+        Text("• CookieJar - class in cookies.ts") @bullet
+        Text("• CookieOptions - interface in cookies.ts") @bullet
+        Text("• CookiePriority - type in cookies.ts") @bullet
+        Text("• CorsOptions - interface in security.ts") @bullet
+        Text("• createLogger - function in observability.ts") @bullet
+        Text("• createMemoryRateLimiter - function in rate-limit.ts") @bullet
+        Text("• createRouteEndpointHandler - function in endpoints.ts") @bullet
+        Text("• createServerApplication - function in application.ts") @bullet
+        Text("• createServerPlatform - function in platform.ts") @bullet
+        Text("• createSessionManager - function in sessions.ts") @bullet
+        Text("• createStaticFileHandler - function in node.ts") @bullet
+        Text("• createTrace - function in observability.ts") @bullet
+        Text("• currentServerContext - function in context.ts") @bullet
+        Text("• DefinedEndpoint - interface in endpoints.ts") @bullet
+        Text("• defineEndpoint - function in endpoints.ts") @bullet
+        Text("• EndpointCodec - interface in endpoints.ts") @bullet
+        Text("• EndpointContract - interface in endpoints.ts") @bullet
+        Text("• EndpointInvocation - interface in endpoints.ts") @bullet
+        Text("• EndpointRouteContext - interface in endpoints.ts") @bullet
+        Text("• EndpointRouteHandler - type in endpoints.ts") @bullet
+        Text("• env - const in environment.ts") @bullet
+        Text("• EnvironmentField - interface in environment.ts") @bullet
+        Text("• EnvironmentParser - type in environment.ts") @bullet
+        Text("• EnvironmentSchema - type in environment.ts") @bullet
+        Text("• FetchApplication - interface in node.ts") @bullet
+        Text("• json - function in responses.ts") @bullet
+        Text("• JsonResponseOptions - interface in responses.ts") @bullet
+        Text("• LoggerOptions - interface in observability.ts") @bullet
+        Text("• MemoryRateLimiterOptions - interface in rate-limit.ts") @bullet
+        Text("• MemorySessionStore - class in sessions.ts") @bullet
+        Text("• noContent - function in responses.ts") @bullet
+        Text("• NodeServerOptions - interface in node.ts") @bullet
+        Text("• optionalServerContext - function in context.ts") @bullet
+        Text("• ParsedEnvironment - type in environment.ts") @bullet
+        Text("• ParsedRequestBody - type in body.ts") @bullet
+        Text("• RateLimitDecision - interface in rate-limit.ts") @bullet
+        Text("• RateLimiter - interface in rate-limit.ts") @bullet
+        Text("• rateLimitKeyFromRequest - function in rate-limit.ts") @bullet
+        Text("• readServerEnvironment - function in environment.ts") @bullet
+        Text("• redirect - function in responses.ts") @bullet
+        Text("• requireAuthorization - function in authorization.ts") @bullet
+        Text("• ResolvedSession - interface in sessions.ts") @bullet
+        Text("• RunningNodeServer - interface in node.ts") @bullet
+        Text("• runWithServerContext - function in context.ts") @bullet
+        Text("• SameSite - type in cookies.ts") @bullet
+        Text("• SecurityHeadersOptions - interface in security.ts") @bullet
+        Text("• serializeCookie - function in cookies.ts") @bullet
+        Text("• ServerErrorContext - interface in types.ts") @bullet
+        Text("• ServerErrorResult - interface in types.ts") @bullet
+        Text("• ServerHandler - interface in types.ts") @bullet
+        Text("• ServerLogger - interface in types.ts") @bullet
+        Text("• ServerLogRecord - interface in types.ts") @bullet
+        Text("• ServerMiddleware - interface in types.ts") @bullet
+        Text("• ServerPlatformApplication - interface in platform.ts") @bullet
+        Text("• ServerPlatformOptions - interface in platform.ts") @bullet
+        Text("• ServerPrincipal - interface in types.ts") @bullet
+        Text("• ServerRequestContext - interface in types.ts") @bullet
+        Text("• ServerSession - interface in types.ts") @bullet
+        Text("• ServerSpan - interface in types.ts") @bullet
+        Text("• ServerTrace - interface in types.ts") @bullet
+        Text("• ServerTraceAttribute - type in types.ts") @bullet
+        Text("• ServerTraceAttributeValue - type in types.ts") @bullet
+        Text("• ServerWaitUntil - interface in types.ts") @bullet
+        Text("• SessionManager - interface in sessions.ts") @bullet
+        Text("• SessionManagerOptions - interface in sessions.ts") @bullet
+        Text("• SessionRecord - interface in sessions.ts") @bullet
+        Text("• SessionStore - interface in sessions.ts") @bullet
+        Text("• StaticFileHandlerOptions - interface in node.ts") @bullet
+        Text("• stream - function in responses.ts") @bullet
+        Text("• text - function in responses.ts") @bullet
+        Text("• toWebRequest - function in node.ts") @bullet
+        Text("• VXServerApplication - interface in application.ts") @bullet
+        Text("• VXServerApplicationOptions - interface in application.ts") @bullet
+        Text("• withTimeout - function in middleware.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

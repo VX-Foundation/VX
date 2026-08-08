@@ -2,7 +2,7 @@
 
 Public API compatibility, package policy, release channels, and provenance tooling for VX.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 

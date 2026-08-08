@@ -1,0 +1,41 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("Support Policy")
+    Text("The latest next release receives security fixes and critical defect corrections. Earlier 0.x release candidates may be superseded without backports. Canary builds receive no support guarantee.") @lead
+    View @section {
+      Title("VX 0.x") { level: 2 }
+      Text("The latest next release receives security fixes and critical defect corrections. Earlier 0.x release candidates may be superseded without backports. Canary builds receive no support guarantee.")
+    }
+    View @section {
+      Title("VX 1.x and later") { level: 2 }
+      Text("After stable release, VX supports the latest minor release and the immediately previous minor for critical security fixes during a published transition window. Patch releases remain API compatible.")
+    }
+    View @section {
+      Title("Runtime support") { level: 2 }
+      Text("The VX 0.2 line supports Node.js 22 and 24 LTS. Browser support covers current stable Chromium, Firefox, and WebKit releases validated by the official Playwright matrix. Adapter support is stated per release and requires conformance tests.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

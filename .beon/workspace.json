@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "projectId": "644b2323-5868-4ce2-a630-f00f074bb579",
+  "name": "VX-0.1.0",
+  "editor": "Beon Code",
+  "createdAt": "2026-08-07T17:17:33.831Z",
+  "security": {
+    "trustAuthority": "local-user-profile"
+  }
+}

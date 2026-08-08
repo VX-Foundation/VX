@@ -1,0 +1,184 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/package-system")
+    Text("Deterministic package metadata, lockfiles, workspaces, integrity, signatures, and dependency mutation for VX.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/package-system") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/package-system") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./contracts, ./exports, ./integrity, ./lockfile, ./metadata, ./publication, ./semver, ./signatures, ./workspace") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/package-system@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./contracts") @chip
+        Text("./exports") @chip
+        Text("./integrity") @chip
+        Text("./lockfile") @chip
+        Text("./metadata") @chip
+        Text("./publication") @chip
+        Text("./semver") @chip
+        Text("./signatures") @chip
+        Text("./workspace") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Deterministic package metadata, lockfiles, workspaces, integrity, signatures, and dependency mutation for VX.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./contracts -> ./dist/contracts.d.ts") @bullet
+        Text("• ./exports -> ./dist/exports.d.ts") @bullet
+        Text("• ./integrity -> ./dist/integrity.d.ts") @bullet
+        Text("• ./lockfile -> ./dist/lockfile.d.ts") @bullet
+        Text("• ./metadata -> ./dist/metadata.d.ts") @bullet
+        Text("• ./publication -> ./dist/publication.d.ts") @bullet
+        Text("• ./semver -> ./dist/semver.d.ts") @bullet
+        Text("• ./signatures -> ./dist/signatures.d.ts") @bullet
+        Text("• ./workspace -> ./dist/workspace.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• addPackage - function in mutations.ts") @bullet
+        Text("• canonicalJson - function in canonical.ts") @bullet
+        Text("• comparePublicContracts - function in contracts.ts") @bullet
+        Text("• compareSemver - function in semver.ts") @bullet
+        Text("• createFileIntegrity - function in integrity.ts") @bullet
+        Text("• createIntegrity - function in integrity.ts") @bullet
+        Text("• createPublicationManifest - function in publication.ts") @bullet
+        Text("• CreatePublicationManifestOptions - interface in publication.ts") @bullet
+        Text("• createPublicContractSnapshot - function in contracts.ts") @bullet
+        Text("• createWorkspaceGraph - function in workspace.ts") @bullet
+        Text("• createWorkspaceLockfile - function in lockfile.ts") @bullet
+        Text("• DependencyKind - type in types.ts") @bullet
+        Text("• discoverWorkspacePackages - function in workspace.ts") @bullet
+        Text("• emptyLockfile - function in lockfile.ts") @bullet
+        Text("• ExportIssue - interface in exports.ts") @bullet
+        Text("• flattenPackageExportTargets - function in exports.ts") @bullet
+        Text("• IntegrityAlgorithm - type in integrity.ts") @bullet
+        Text("• MetadataIssue - interface in metadata.ts") @bullet
+        Text("• MutatePackageOptions - interface in mutations.ts") @bullet
+        Text("• PackageMutation - interface in types.ts") @bullet
+        Text("• PackageMutationResult - interface in types.ts") @bullet
+        Text("• PackageSignature - interface in signatures.ts") @bullet
+        Text("• parseIntegrity - function in integrity.ts") @bullet
+        Text("• parseSemver - function in semver.ts") @bullet
+        Text("• parseSpecification - function in mutations.ts") @bullet
+        Text("• PublicationFile - interface in types.ts") @bullet
+        Text("• PublicationManifest - interface in types.ts") @bullet
+        Text("• PublicContractChange - interface in types.ts") @bullet
+        Text("• PublicContractComparison - interface in types.ts") @bullet
+        Text("• PublicContractSnapshot - interface in types.ts") @bullet
+        Text("• readLockfile - function in lockfile.ts") @bullet
+        Text("• readPackageMetadata - function in metadata.ts") @bullet
+        Text("• removePackage - function in mutations.ts") @bullet
+        Text("• resolvePackageExport - function in exports.ts") @bullet
+        Text("• satisfiesSemver - function in semver.ts") @bullet
+        Text("• SemVer - interface in semver.ts") @bullet
+        Text("• SemVerIdentifier - interface in semver.ts") @bullet
+        Text("• signPackagePayload - function in signatures.ts") @bullet
+        Text("• topologicalWorkspaceOrder - function in workspace.ts") @bullet
+        Text("• updateLockedPackage - function in lockfile.ts") @bullet
+        Text("• updatePackage - function in mutations.ts") @bullet
+        Text("• validateLockfile - function in lockfile.ts") @bullet
+        Text("• validatePackageExports - function in exports.ts") @bullet
+        Text("• validatePackageMetadata - function in metadata.ts") @bullet
+        Text("• validPackageName - function in metadata.ts") @bullet
+        Text("• validRegistrySelector - function in semver.ts") @bullet
+        Text("• validSemver - function in semver.ts") @bullet
+        Text("• validSemverRange - function in semver.ts") @bullet
+        Text("• verifyIntegrity - function in integrity.ts") @bullet
+        Text("• verifyLockfileGraph - function in lockfile.ts") @bullet
+        Text("• verifyPackageSignature - function in signatures.ts") @bullet
+        Text("• verifyPublicationManifest - function in publication.ts") @bullet
+        Text("• VX_LOCKFILE - const in lockfile.ts") @bullet
+        Text("• VXLockedWorkspacePackage - interface in types.ts") @bullet
+        Text("• VXLockfile - interface in types.ts") @bullet
+        Text("• VXLockImporter - interface in types.ts") @bullet
+        Text("• VXLockPackage - interface in types.ts") @bullet
+        Text("• VXPackageDeprecation - interface in types.ts") @bullet
+        Text("• VXPackageExportConditions - interface in types.ts") @bullet
+        Text("• VXPackageExportTarget - type in types.ts") @bullet
+        Text("• VXPackageMetadata - interface in types.ts") @bullet
+        Text("• VXPackageMigration - interface in types.ts") @bullet
+        Text("• VXPackageProvenanceReference - interface in types.ts") @bullet
+        Text("• VXPublicContract - interface in types.ts") @bullet
+        Text("• WorkspaceGraph - interface in types.ts") @bullet
+        Text("• WorkspacePackage - interface in types.ts") @bullet
+        Text("• writeLockfile - function in lockfile.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

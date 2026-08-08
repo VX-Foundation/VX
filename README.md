@@ -6,7 +6,7 @@
 
 VX is a compiler-first, full-stack web framework focused on deterministic execution, direct DOM updates, typed data flows, production SSR, accessibility, secure server boundaries, and portable deployment adapters.
 
-> **Current release line:** `0.1.2` unstable. Publish evaluation builds under `canary` and release candidates under `next`. The `latest` tag is reserved for VX 1.0 after every stabilization criterion is independently satisfied.
+> **Current release line:** `0.2.0` unstable. Publish evaluation builds under `canary` and release candidates under `next`. The `latest` tag is reserved for VX 1.0 after every stabilization criterion is independently satisfied.
 
 > **npm namespace change:** Public packages moved from the legacy `@vx/*` namespace to the VX Foundation-owned `@vx-foundation/*` namespace before the first public release. New code and documentation must use only `@vx-foundation/*` imports.
 
@@ -53,7 +53,7 @@ pnpm verify:release-candidate
 
 ## Release status
 
-VX 0.1 is prepared for GitHub and npm publication, but VX 1.0 remains intentionally blocked until external audit evidence, native public benchmarks, production application evidence, and the required canary/next stabilization period are complete. See [`docs/VX-1.0-READINESS.md`](docs/VX-1.0-READINESS.md).
+VX 0.2 is prepared for GitHub and npm publication, but VX 1.0 remains intentionally blocked until external audit evidence, native public benchmarks, production application evidence, and the required canary/next stabilization period are complete. See [`docs/VX-1.0-READINESS.md`](docs/VX-1.0-READINESS.md).
 
 ## Documentation
 

@@ -1,5 +1,5 @@
 {
-  "schema": "https://vx.dev/schemas/benchmark/v1",
+  "schema": "https://vx.veelv.site/schemas/benchmark/v1",
   "node": "v22.16.0",
   "calibrationMs": 0.00017048460000000033,
   "metrics": {

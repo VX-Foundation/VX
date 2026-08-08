@@ -1,0 +1,64 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("VX Release Process")
+    Text("1. Merge through the protected main branch. 2. Confirm the canonical repository and npm scope ownership. 3. Configure npm trusted publishing for .github/workflows/release.yml. 4. Run pnpm release:npm-preflight from an authenticated maintainer workstation. 5. Start the GitHub Release workflow with canary or next.") @lead
+    View @section {
+      Title("Distribution channels") { level: 2 }
+      View @list {
+        Text("• canary publishes short-lived evaluation builds using versions such as 0.2.0-canary...") @bullet
+        Text("• next publishes compatible release candidates such as 0.2.0-next..") @bullet
+        Text("• latest is reserved for stable releases. VX 1.0 cannot use this tag until every criterion in release/v1-readiness.json passes.") @bullet
+      }
+    }
+    View @section {
+      Title("Required preparation") { level: 2 }
+      View @list {
+        Text("• Merge through the protected main branch.") @bullet
+        Text("• Confirm the canonical repository and npm scope ownership.") @bullet
+        Text("• Configure npm trusted publishing for .github/workflows/release.yml.") @bullet
+        Text("• Run pnpm release:npm-preflight from an authenticated maintainer workstation.") @bullet
+        Text("• Start the GitHub Release workflow with canary or next.") @bullet
+      }
+    }
+    View @section {
+      Title("Automated release gates") { level: 2 }
+      Text("The workflow installs from the frozen lockfile, runs the complete release-candidate gate, executes Chromium/Firefox/WebKit tests, verifies package archives, installs the package set in a clean consumer, validates generated projects, checks API compatibility, generates provenance, and publishes through npm OIDC.")
+      Text("Stable publication additionally verifies protected GitHub checks for Windows, Linux, macOS, Node 22/24, browsers, official applications, security, and CodeQL. It then requires external audit, native benchmark, production application, and stabilization evidence.")
+    }
+    View @section {
+      Title("Post-publish verification") { level: 2 }
+      Text("After npm publication:")
+      View @list {
+        Text("• Install @vx-foundation/create-vx and the package set from the published dist-tag in an empty environment.") @bullet
+        Text("• Create all four official templates.") @bullet
+        Text("• Run doctor, check, lint, test, build, and preview smoke tests.") @bullet
+        Text("• Record the version, source revision, publication time, incidents, and artifact integrity in release/stabilization-log.json.") @bullet
+        Text("• Create the matching GitHub prerelease or release.") @bullet
+      }
+      Text("Never promote a dist-tag to latest manually to bypass the stable gate.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

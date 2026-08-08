@@ -9,13 +9,13 @@ import {
 it('blocks executable URL schemes in browser and SSR contracts', () => {
   expect(sanitizeURLAttribute('java\nscript:alert(1)', { attribute: 'href', tagName: 'a' })).toBeUndefined();
   expect(renderElement('a', { href: 'javascript:alert(1)', target: '_blank' }, 'Unsafe', 'x', 'Link')).not.toContain('javascript:');
-  expect(renderElement('a', { href: 'https://vx.dev', target: '_blank' }, 'Safe', 'x', 'Link')).toContain('rel="noopener noreferrer"');
+  expect(renderElement('a', { href: 'https://vx.veelv.site', target: '_blank' }, 'Safe', 'x', 'Link')).toContain('rel="noopener noreferrer"');
 });
 
 it('sanitizes srcset, protocol-relative URLs, and data attribute', () => {
-  expect(sanitizeURLAttribute('//cdn.vx.dev/image.png', { attribute: 'src', tagName: 'img' })).toBe('//cdn.vx.dev/image.png');
+  expect(sanitizeURLAttribute('//cdn.vx.veelv.site/image.png', { attribute: 'src', tagName: 'img' })).toBe('//cdn.vx.veelv.site/image.png');
   expect(sanitizeURLAttribute('javascript:alert(1)', { attribute: 'data', tagName: 'object' })).toBeUndefined();
-  expect(sanitizeURLAttribute('https://vx.dev/file.pdf', { attribute: 'data', tagName: 'object' })).toBe('https://vx.dev/file.pdf');
+  expect(sanitizeURLAttribute('https://vx.veelv.site/file.pdf', { attribute: 'data', tagName: 'object' })).toBe('https://vx.veelv.site/file.pdf');
   expect(sanitizeURLAttribute('img1.png 1x, img2.png 2x', { attribute: 'srcset', tagName: 'img' })).toBe('img1.png 1x, img2.png 2x');
   expect(sanitizeURLAttribute('javascript:alert(1) 1x, img2.png 2x', { attribute: 'srcset', tagName: 'img' })).toBe('img2.png 2x');
 });

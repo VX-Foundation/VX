@@ -1,0 +1,286 @@
+#view
+  View @page {
+    Text("VISUAL REFERENCE") @eyebrow
+    Title("Visual properties")
+    Text("167 supported properties. Unknown names and unsafe values produce diagnostics instead of silent CSS drift.") @lead
+    View @section {
+      Title("Property groups") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Layout - flex") @cardTitle { href: "/visual/properties/category/layout-flex" }
+          Text("13 properties.") @meta
+        }
+        View @card {
+          Link("Layout - grid") @cardTitle { href: "/visual/properties/category/layout-grid" }
+          Text("11 properties.") @meta
+        }
+        View @card {
+          Link("Sizing") @cardTitle { href: "/visual/properties/category/sizing" }
+          Text("12 properties.") @meta
+        }
+        View @card {
+          Link("Position") @cardTitle { href: "/visual/properties/category/position" }
+          Text("6 properties.") @meta
+        }
+        View @card {
+          Link("Typography") @cardTitle { href: "/visual/properties/category/typography" }
+          Text("15 properties.") @meta
+        }
+        View @card {
+          Link("Color / surface") @cardTitle { href: "/visual/properties/category/color-surface" }
+          Text("5 properties.") @meta
+        }
+        View @card {
+          Link("Border / outline") @cardTitle { href: "/visual/properties/category/border-outline" }
+          Text("12 properties.") @meta
+        }
+        View @card {
+          Link("Effects") @cardTitle { href: "/visual/properties/category/effects" }
+          Text("18 properties.") @meta
+        }
+        View @card {
+          Link("Background / gradient") @cardTitle { href: "/visual/properties/category/background-gradient" }
+          Text("10 properties.") @meta
+        }
+        View @card {
+          Link("Mask / clip") @cardTitle { href: "/visual/properties/category/mask-clip" }
+          Text("6 properties.") @meta
+        }
+        View @card {
+          Link("Transform") @cardTitle { href: "/visual/properties/category/transform" }
+          Text("9 properties.") @meta
+        }
+        View @card {
+          Link("Animation / transition") @cardTitle { href: "/visual/properties/category/animation-transition" }
+          Text("11 properties.") @meta
+        }
+        View @card {
+          Link("Scroll") @cardTitle { href: "/visual/properties/category/scroll" }
+          Text("8 properties.") @meta
+        }
+        View @card {
+          Link("Container / layout context") @cardTitle { href: "/visual/properties/category/container-layout-context" }
+          Text("15 properties.") @meta
+        }
+        View @card {
+          Link("Object") @cardTitle { href: "/visual/properties/category/object" }
+          Text("2 properties.") @meta
+        }
+        View @card {
+          Link("Pointer / interaction") @cardTitle { href: "/visual/properties/category/pointer-interaction" }
+          Text("5 properties.") @meta
+        }
+        View @card {
+          Link("Visibility") @cardTitle { href: "/visual/properties/category/visibility" }
+          Text("1 properties.") @meta
+        }
+        View @card {
+          Link("Writing modes") @cardTitle { href: "/visual/properties/category/writing-modes" }
+          Text("3 properties.") @meta
+        }
+        View @card {
+          Link("Misc") @cardTitle { href: "/visual/properties/category/misc" }
+          Text("3 properties.") @meta
+        }
+        View @card {
+          Link("Special layout helpers") @cardTitle { href: "/visual/properties/category/special-layout-helpers" }
+          Text("2 properties.") @meta
+        }
+      }
+    }
+    View @section {
+      Title("All properties") { level: 2 }
+      View @chipRow {
+        Link("display") @chip { href: "/visual/properties/display" }
+        Link("flow") @chip { href: "/visual/properties/flow" }
+        Link("reverse") @chip { href: "/visual/properties/reverse" }
+        Link("wrap") @chip { href: "/visual/properties/wrap" }
+        Link("gap") @chip { href: "/visual/properties/gap" }
+        Link("space") @chip { href: "/visual/properties/space" }
+        Link("items") @chip { href: "/visual/properties/items" }
+        Link("content") @chip { href: "/visual/properties/content" }
+        Link("place") @chip { href: "/visual/properties/place" }
+        Link("flexGrow") @chip { href: "/visual/properties/flex-grow" }
+        Link("flexShrink") @chip { href: "/visual/properties/flex-shrink" }
+        Link("order") @chip { href: "/visual/properties/order" }
+        Link("basis") @chip { href: "/visual/properties/basis" }
+        Link("columns") @chip { href: "/visual/properties/columns" }
+        Link("minColumn") @chip { href: "/visual/properties/min-column" }
+        Link("dense") @chip { href: "/visual/properties/dense" }
+        Link("autoColumns") @chip { href: "/visual/properties/auto-columns" }
+        Link("autoRows") @chip { href: "/visual/properties/auto-rows" }
+        Link("autoFlow") @chip { href: "/visual/properties/auto-flow" }
+        Link("gridRows") @chip { href: "/visual/properties/grid-rows" }
+        Link("gridAreas") @chip { href: "/visual/properties/grid-areas" }
+        Link("gridColumn") @chip { href: "/visual/properties/grid-column" }
+        Link("gridRow") @chip { href: "/visual/properties/grid-row" }
+        Link("gridArea") @chip { href: "/visual/properties/grid-area" }
+        Link("width") @chip { href: "/visual/properties/width" }
+        Link("height") @chip { href: "/visual/properties/height" }
+        Link("minWidth") @chip { href: "/visual/properties/min-width" }
+        Link("minHeight") @chip { href: "/visual/properties/min-height" }
+        Link("maxWidth") @chip { href: "/visual/properties/max-width" }
+        Link("maxHeight") @chip { href: "/visual/properties/max-height" }
+        Link("inset") @chip { href: "/visual/properties/inset" }
+        Link("insetX") @chip { href: "/visual/properties/inset-x" }
+        Link("insetY") @chip { href: "/visual/properties/inset-y" }
+        Link("margin") @chip { href: "/visual/properties/margin" }
+        Link("marginX") @chip { href: "/visual/properties/margin-x" }
+        Link("marginY") @chip { href: "/visual/properties/margin-y" }
+        Link("position") @chip { href: "/visual/properties/position" }
+        Link("top") @chip { href: "/visual/properties/top" }
+        Link("right") @chip { href: "/visual/properties/right" }
+        Link("bottom") @chip { href: "/visual/properties/bottom" }
+        Link("left") @chip { href: "/visual/properties/left" }
+        Link("stack") @chip { href: "/visual/properties/stack" }
+        Link("typography") @chip { href: "/visual/properties/typography" }
+        Link("size") @chip { href: "/visual/properties/size" }
+        Link("weight") @chip { href: "/visual/properties/weight" }
+        Link("lineHeight") @chip { href: "/visual/properties/line-height" }
+        Link("textAlign") @chip { href: "/visual/properties/text-align" }
+        Link("decoration") @chip { href: "/visual/properties/decoration" }
+        Link("letterSpacing") @chip { href: "/visual/properties/letter-spacing" }
+        Link("wordSpacing") @chip { href: "/visual/properties/word-spacing" }
+        Link("textTransform") @chip { href: "/visual/properties/text-transform" }
+        Link("textOverflow") @chip { href: "/visual/properties/text-overflow" }
+        Link("whiteSpace") @chip { href: "/visual/properties/white-space" }
+        Link("fontFamily") @chip { href: "/visual/properties/font-family" }
+        Link("fontStyle") @chip { href: "/visual/properties/font-style" }
+        Link("fontVariant") @chip { href: "/visual/properties/font-variant" }
+        Link("hyphens") @chip { href: "/visual/properties/hyphens" }
+        Link("surface") @chip { href: "/visual/properties/surface" }
+        Link("tone") @chip { href: "/visual/properties/tone" }
+        Link("accentColor") @chip { href: "/visual/properties/accent-color" }
+        Link("colorScheme") @chip { href: "/visual/properties/color-scheme" }
+        Link("caretColor") @chip { href: "/visual/properties/caret-color" }
+        Link("corner") @chip { href: "/visual/properties/corner" }
+        Link("border") @chip { href: "/visual/properties/border" }
+        Link("borderTop") @chip { href: "/visual/properties/border-top" }
+        Link("borderRight") @chip { href: "/visual/properties/border-right" }
+        Link("borderBottom") @chip { href: "/visual/properties/border-bottom" }
+        Link("borderLeft") @chip { href: "/visual/properties/border-left" }
+        Link("borderColor") @chip { href: "/visual/properties/border-color" }
+        Link("borderStyle") @chip { href: "/visual/properties/border-style" }
+        Link("borderWidth") @chip { href: "/visual/properties/border-width" }
+        Link("outline") @chip { href: "/visual/properties/outline" }
+        Link("outlineOffset") @chip { href: "/visual/properties/outline-offset" }
+        Link("ring") @chip { href: "/visual/properties/ring" }
+        Link("elevation") @chip { href: "/visual/properties/elevation" }
+        Link("opacity") @chip { href: "/visual/properties/opacity" }
+        Link("z") @chip { href: "/visual/properties/z" }
+        Link("shadow") @chip { href: "/visual/properties/shadow" }
+        Link("blur") @chip { href: "/visual/properties/blur" }
+        Link("brightness") @chip { href: "/visual/properties/brightness" }
+        Link("contrast") @chip { href: "/visual/properties/contrast" }
+        Link("saturate") @chip { href: "/visual/properties/saturate" }
+        Link("grayscale") @chip { href: "/visual/properties/grayscale" }
+        Link("sepia") @chip { href: "/visual/properties/sepia" }
+        Link("invert") @chip { href: "/visual/properties/invert" }
+        Link("hueRotate") @chip { href: "/visual/properties/hue-rotate" }
+        Link("backdropBlur") @chip { href: "/visual/properties/backdrop-blur" }
+        Link("backdropBrightness") @chip { href: "/visual/properties/backdrop-brightness" }
+        Link("backdropContrast") @chip { href: "/visual/properties/backdrop-contrast" }
+        Link("backdropSaturate") @chip { href: "/visual/properties/backdrop-saturate" }
+        Link("filter") @chip { href: "/visual/properties/filter" }
+        Link("backdropFilter") @chip { href: "/visual/properties/backdrop-filter" }
+        Link("background") @chip { href: "/visual/properties/background" }
+        Link("backgroundImage") @chip { href: "/visual/properties/background-image" }
+        Link("backgroundSize") @chip { href: "/visual/properties/background-size" }
+        Link("backgroundPosition") @chip { href: "/visual/properties/background-position" }
+        Link("backgroundRepeat") @chip { href: "/visual/properties/background-repeat" }
+        Link("backgroundAttachment") @chip { href: "/visual/properties/background-attachment" }
+        Link("backgroundClip") @chip { href: "/visual/properties/background-clip" }
+        Link("backgroundOrigin") @chip { href: "/visual/properties/background-origin" }
+        Link("backgroundBlend") @chip { href: "/visual/properties/background-blend" }
+        Link("gradient") @chip { href: "/visual/properties/gradient" }
+        Link("mask") @chip { href: "/visual/properties/mask" }
+        Link("maskSize") @chip { href: "/visual/properties/mask-size" }
+        Link("maskPosition") @chip { href: "/visual/properties/mask-position" }
+        Link("maskRepeat") @chip { href: "/visual/properties/mask-repeat" }
+        Link("clip") @chip { href: "/visual/properties/clip" }
+        Link("clipPath") @chip { href: "/visual/properties/clip-path" }
+        Link("transform") @chip { href: "/visual/properties/transform" }
+        Link("transformOrigin") @chip { href: "/visual/properties/transform-origin" }
+        Link("perspective") @chip { href: "/visual/properties/perspective" }
+        Link("perspectiveOrigin") @chip { href: "/visual/properties/perspective-origin" }
+        Link("backfaceVisibility") @chip { href: "/visual/properties/backface-visibility" }
+        Link("rotate") @chip { href: "/visual/properties/rotate" }
+        Link("scale") @chip { href: "/visual/properties/scale" }
+        Link("translate") @chip { href: "/visual/properties/translate" }
+        Link("skew") @chip { href: "/visual/properties/skew" }
+        Link("transition") @chip { href: "/visual/properties/transition" }
+        Link("motion") @chip { href: "/visual/properties/motion" }
+        Link("animation") @chip { href: "/visual/properties/animation" }
+        Link("animationName") @chip { href: "/visual/properties/animation-name" }
+        Link("animationDuration") @chip { href: "/visual/properties/animation-duration" }
+        Link("animationEasing") @chip { href: "/visual/properties/animation-easing" }
+        Link("animationDelay") @chip { href: "/visual/properties/animation-delay" }
+        Link("animationFill") @chip { href: "/visual/properties/animation-fill" }
+        Link("animationIterations") @chip { href: "/visual/properties/animation-iterations" }
+        Link("animationDirection") @chip { href: "/visual/properties/animation-direction" }
+        Link("animationPlay") @chip { href: "/visual/properties/animation-play" }
+        Link("scrollAxis") @chip { href: "/visual/properties/scroll-axis" }
+        Link("snap") @chip { href: "/visual/properties/snap" }
+        Link("snapAlign") @chip { href: "/visual/properties/snap-align" }
+        Link("snapStop") @chip { href: "/visual/properties/snap-stop" }
+        Link("overscroll") @chip { href: "/visual/properties/overscroll" }
+        Link("scrollBehavior") @chip { href: "/visual/properties/scroll-behavior" }
+        Link("scrollPadding") @chip { href: "/visual/properties/scroll-padding" }
+        Link("scrollMargin") @chip { href: "/visual/properties/scroll-margin" }
+        Link("overflow") @chip { href: "/visual/properties/overflow" }
+        Link("overflowX") @chip { href: "/visual/properties/overflow-x" }
+        Link("overflowY") @chip { href: "/visual/properties/overflow-y" }
+        Link("containerType") @chip { href: "/visual/properties/container-type" }
+        Link("containerName") @chip { href: "/visual/properties/container-name" }
+        Link("contain") @chip { href: "/visual/properties/contain" }
+        Link("isolation") @chip { href: "/visual/properties/isolation" }
+        Link("sidebar") @chip { href: "/visual/properties/sidebar" }
+        Link("side") @chip { href: "/visual/properties/side" }
+        Link("split") @chip { href: "/visual/properties/split" }
+        Link("collapse") @chip { href: "/visual/properties/collapse" }
+        Link("control") @chip { href: "/visual/properties/control" }
+        Link("controlSize") @chip { href: "/visual/properties/control-size" }
+        Link("density") @chip { href: "/visual/properties/density" }
+        Link("aspect") @chip { href: "/visual/properties/aspect" }
+        Link("objectFit") @chip { href: "/visual/properties/object-fit" }
+        Link("objectPosition") @chip { href: "/visual/properties/object-position" }
+        Link("cursor") @chip { href: "/visual/properties/cursor" }
+        Link("pointerEvents") @chip { href: "/visual/properties/pointer-events" }
+        Link("touchAction") @chip { href: "/visual/properties/touch-action" }
+        Link("userSelect") @chip { href: "/visual/properties/user-select" }
+        Link("resize") @chip { href: "/visual/properties/resize" }
+        Link("visibility") @chip { href: "/visual/properties/visibility" }
+        Link("direction") @chip { href: "/visual/properties/direction" }
+        Link("writingMode") @chip { href: "/visual/properties/writing-mode" }
+        Link("textOrientation") @chip { href: "/visual/properties/text-orientation" }
+        Link("layer") @chip { href: "/visual/properties/layer" }
+        Link("overlayBehavior") @chip { href: "/visual/properties/overlay-behavior" }
+        Link("scrollbar") @chip { href: "/visual/properties/scrollbar" }
+        Link("center") @chip { href: "/visual/properties/center" }
+        Link("cluster") @chip { href: "/visual/properties/cluster" }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

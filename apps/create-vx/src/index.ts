@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { realpathSync } from 'node:fs';
 import { spawnSync, type SpawnSyncReturns } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
@@ -49,13 +50,26 @@ function defaultRuntime(): CreateVXRuntime {
 
 function isMainModule(): boolean {
   const entry = process.argv[1];
-  if (typeof entry !== 'string') return false;
-  const resolved = resolve(entry);
-  return (
-    resolved === fileURLToPath(import.meta.url) ||
-    resolved.endsWith('bin/create-vx.js') ||
-    resolved.endsWith('bin\\create-vx.js')
-  );
+  if (typeof entry !== 'string' || !entry.trim()) return true;
+  
+  try {
+    const resolved = resolve(entry);
+    const selfPath = fileURLToPath(import.meta.url);
+    if (resolved === selfPath) return true;
+    
+    if (resolved.endsWith('bin/create-vx.js') || resolved.endsWith('bin\\create-vx.js') || resolved.endsWith('create-vx')) {
+      return true;
+    }
+    
+    const realEntry = realpathSync(resolved);
+    const realSelf = realpathSync(selfPath);
+    if (realEntry === realSelf) return true;
+  } catch {
+    // If realpath fails (e.g. virtual environment), fallback to true when entry contains create-vx
+    if (entry.includes('create-vx') || entry.includes('npx') || entry.includes('pnpm')) return true;
+  }
+
+  return false;
 }
 
 if (isMainModule()) process.exitCode = runCreateVX(process.argv.slice(2));

@@ -1,0 +1,74 @@
+#view
+  View @page {
+    Text("VISUAL PROPERTY GROUP") @eyebrow
+    Title("Background / gradient")
+    Text("10 properties in the background / gradient group.") @lead
+    View @section {
+      Title("Properties") { level: 2 }
+      View @cards {
+        View @card {
+          Link("background") @cardTitle { href: "/visual/properties/background" }
+          Text("CSS: background") @meta
+        }
+        View @card {
+          Link("backgroundImage") @cardTitle { href: "/visual/properties/background-image" }
+          Text("CSS: background-image") @meta
+        }
+        View @card {
+          Link("backgroundSize") @cardTitle { href: "/visual/properties/background-size" }
+          Text("CSS: background-size") @meta
+        }
+        View @card {
+          Link("backgroundPosition") @cardTitle { href: "/visual/properties/background-position" }
+          Text("CSS: background-position") @meta
+        }
+        View @card {
+          Link("backgroundRepeat") @cardTitle { href: "/visual/properties/background-repeat" }
+          Text("CSS: background-repeat") @meta
+        }
+        View @card {
+          Link("backgroundAttachment") @cardTitle { href: "/visual/properties/background-attachment" }
+          Text("CSS: background-attachment") @meta
+        }
+        View @card {
+          Link("backgroundClip") @cardTitle { href: "/visual/properties/background-clip" }
+          Text("CSS: background-clip, -webkit-background-clip") @meta
+        }
+        View @card {
+          Link("backgroundOrigin") @cardTitle { href: "/visual/properties/background-origin" }
+          Text("CSS: background-origin") @meta
+        }
+        View @card {
+          Link("backgroundBlend") @cardTitle { href: "/visual/properties/background-blend" }
+          Text("CSS: background-blend-mode") @meta
+        }
+        View @card {
+          Link("gradient") @cardTitle { href: "/visual/properties/gradient" }
+          Text("CSS: background-image") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

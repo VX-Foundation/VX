@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vx.dev/schemas/public-benchmark-suite/v1",
+  "$schema": "https://vx.veelv.site/schemas/public-benchmark-suite/v1",
   "suiteVersion": 1,
   "frameworks": ["vx", "react", "next", "svelte", "sveltekit", "solid", "vue", "nuxt"],
   "scenarios": ["lists", "reorder", "forms", "dashboards", "ssr", "streaming", "hydration", "islands", "cold-build", "incremental-build", "hmr", "memory", "bundle-size"],

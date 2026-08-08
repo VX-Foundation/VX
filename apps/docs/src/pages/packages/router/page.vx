@@ -1,0 +1,283 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/router")
+    Text("VX file-based router and client navigation engine.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/router") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/router") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./server") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/router@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./server") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX file-based router and client navigation engine.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./server -> ./dist/server.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• acceptsHtml - function in runtime/server-http.ts") @bullet
+        Text("• analyzeLayout - function in build/scanner-analysis.ts") @bullet
+        Text("• analyzeVXModule - function in build/scanner-analysis.ts") @bullet
+        Text("• ApplicationGraph - interface in types.ts") @bullet
+        Text("• ApplicationRouter - interface in runtime/client.ts") @bullet
+        Text("• ApplicationRouterConfig - interface in runtime/client.ts") @bullet
+        Text("• applyRouteMetadata - function in runtime/metadata.ts") @bullet
+        Text("• assertActive - function in runtime/client-navigation.ts") @bullet
+        Text("• BeforeNavigationContext - interface in runtime/client.ts") @bullet
+        Text("• buildApplicationGraph - function in build/scanner.ts") @bullet
+        Text("• buildRouteHref - function in runtime/params.ts") @bullet
+        Text("• buildRoutePath - function in runtime/params.ts") @bullet
+        Text("• CachedPage - interface in runtime/server-contract.ts") @bullet
+        Text("• cachedResponse - function in runtime/server-http.ts") @bullet
+        Text("• closestAnchor - function in runtime/client-navigation.ts") @bullet
+        Text("• compareRouteSpecificity - function in build/segments.ts") @bullet
+        Text("• createApplicationRouter - function in runtime/client.ts") @bullet
+        Text("• createFileSystem - function in build/scanner-analysis.ts") @bullet
+        Text("• createHistoryKey - function in runtime/client-navigation.ts") @bullet
+        Text("• createNonce - function in runtime/server-http.ts") @bullet
+        Text("• createRouteCatalog - function in runtime/catalog.ts") @bullet
+        Text("• createRouteLocation - function in runtime/matcher.ts") @bullet
+        Text("• createRouteMatcher - function in runtime/matcher.ts") @bullet
+        Text("• createServerApplication - function in runtime/server.ts") @bullet
+        Text("• CSRF_BINDING_COOKIE - const in runtime/server-http.ts") @bullet
+        Text("• csrfBindingCookie - function in runtime/server-http.ts") @bullet
+        Text("• currentHistoryKey - function in runtime/client-navigation.ts") @bullet
+        Text("• decodeRouteParameter - function in runtime/params.ts") @bullet
+        Text("• decodeRouteSearch - function in runtime/search.ts") @bullet
+        Text("• DEFAULT_ROUTE_POLICY - const in build/config.ts") @bullet
+        Text("• defaultContentSecurityPolicy - function in runtime/server-http.ts") @bullet
+        Text("• detectEndpointConflicts - function in build/scanner-analysis.ts") @bullet
+        Text("• detectRouteConflicts - function in build/scanner-analysis.ts") @bullet
+        Text("• detectRouteNameConflicts - function in build/scanner-analysis.ts") @bullet
+        Text("• emptyData - function in build/scanner-analysis.ts") @bullet
+        Text("• encodeRouteParameter - function in runtime/params.ts") @bullet
+        Text("• EndpointMethod - type in types.ts") @bullet
+        Text("• EndpointRecord - interface in types.ts") @bullet
+        Text("• ensureHistoryKey - function in runtime/client-navigation.ts") @bullet
+        Text("• escapeAttribute - function in runtime/client-navigation.ts") @bullet
+        Text("• escapeAttribute - function in runtime/server-http.ts") @bullet
+        Text("• exclusiveReservedFile - function in build/scanner-analysis.ts") @bullet
+        Text("• executeMatch - function in runtime/matcher.ts") @bullet
+        Text("• ExecuteRoutePipelineOptions - interface in runtime/lifecycle.ts") @bullet
+        Text("• findFocusTarget - function in runtime/client-navigation.ts") @bullet
+        Text("• focusElement - function in runtime/client-navigation.ts") @bullet
+        Text("• focusIdentity - function in runtime/client-navigation.ts") @bullet
+        Text("• focusRouteStart - function in runtime/client-navigation.ts") @bullet
+        Text("• FORM_FLASH_COOKIE - const in runtime/server-http.ts") @bullet
+        Text("• formFlashCookie - function in runtime/server-http.ts") @bullet
+        Text("• formFlashValues - function in runtime/server-http.ts") @bullet
+        Text("• generateApplicationModules - function in build/codegen.ts") @bullet
+        Text("• GeneratedApplicationModules - interface in build/codegen.ts") @bullet
+        Text("• generateStaticEntries - function in build/static-generation.ts") @bullet
+        Text("• HISTORY_KEY - const in runtime/client-navigation.ts") @bullet
+        Text("• initRouter - function in runtime/client.ts") @bullet
+        Text("• interpolateRedirect - function in runtime/client-navigation.ts") @bullet
+        Text("• interpolateRedirect - function in runtime/server-http.ts") @bullet
+        Text("• isCacheFresh - function in runtime/server-http.ts") @bullet
+        Text("• isRecord - function in runtime/client-navigation.ts") @bullet
+        Text("• isRedirectResult - function in runtime/lifecycle.ts") @bullet
+        Text("• isRouteGroup - function in build/scanner-analysis.ts") @bullet
+        Text("• isTextControl - function in runtime/client-navigation.ts") @bullet
+        Text("• LoadedRouteModules - interface in runtime/module.ts") @bullet
+        Text("• MatchedRoute - interface in runtime/matcher.ts") @bullet
+        Text("• matchEndpoint - function in runtime/matcher.ts") @bullet
+        Text("• matchRoute - function in runtime/matcher.ts") @bullet
+        Text("• mergeModuleData - function in build/scanner-analysis.ts") @bullet
+        Text("• mergeRoutePolicy - function in build/config.ts") @bullet
+        Text("• message - function in build/scanner-analysis.ts") @bullet
+        Text("• methodNotAllowed - function in runtime/server-http.ts") @bullet
+        Text("• ModuleData - type in build/scanner-analysis.ts") @bullet
+        Text("• mountBoundary - function in runtime/module.ts") @bullet
+        Text("• MountedRouteBranch - interface in runtime/module.ts") @bullet
+        Text("• mountRouteModules - function in runtime/module.ts") @bullet
+        Text("• NavigationBlocker - type in runtime/client.ts") @bullet
+        Text("• navigationContext - function in runtime/client-navigation.ts") @bullet
+        Text("• NavigationOptions - interface in runtime/client.ts") @bullet
+        Text("• NavigationSnapshot - interface in types.ts") @bullet
+        Text("• normalizeBasePath - function in runtime/client-navigation.ts") @bullet
+        Text("• normalizeBasePath - function in runtime/server-http.ts") @bullet
+        Text("• normalizeEndpointResponse - function in runtime/server-http.ts") @bullet
+        Text("• normalizeRoutePathname - function in runtime/search.ts") @bullet
+        Text("• parentPath - function in runtime/server-http.ts") @bullet
+        Text("• ParsedRoutePath - interface in build/segments.ts") @bullet
+        Text("• parseRoutePath - function in build/segments.ts") @bullet
+        Text("• parseSegment - function in build/segments.ts") @bullet
+        Text("• publicRouteError - function in runtime/server-http.ts") @bullet
+        Text("• readRouteConfig - function in build/config.ts") @bullet
+        Text("• readSource - function in build/scanner-analysis.ts") @bullet
+        Text("• renderRouteMetadata - function in runtime/metadata.ts") @bullet
+        Text("• requestCookie - function in runtime/server-http.ts") @bullet
+        Text("• requestId - function in runtime/server-http.ts") @bullet
+        Text("• reserveGraphEntry - function in build/scanner-analysis.ts") @bullet
+        Text("• resolveRedirect - function in runtime/server-http.ts") @bullet
+        Text("• resolveRouteTitle - function in runtime/metadata.ts") @bullet
+        Text("• resolveURL - function in runtime/client-navigation.ts") @bullet
+        Text("• RouteActionDeclaration - interface in types.ts") @bullet
+        Text("• routeActions - function in runtime/module.ts") @bullet
+        Text("• RouteAlternateLanguage - interface in types.ts") @bullet
+        Text("• RouteBoundaryPaths - interface in types.ts") @bullet
+        Text("• routeCacheKey - function in runtime/client-navigation.ts") @bullet
+        Text("• RouteCatalog - interface in types.ts") @bullet
+        Text("• RouteConfigFile - interface in build/config.ts") @bullet
+        Text("• RouteDataDeclaration - interface in types.ts") @bullet
+        Text("• RouteDef - interface in build/scanner.ts") @bullet
+        Text("• RouteDiagnostic - interface in types.ts") @bullet
+        Text("• RouteDiagnosticSeverity - type in types.ts") @bullet
+        Text("• RouteFormDeclaration - interface in types.ts") @bullet
+        Text("• RouteGenerationMode - type in types.ts") @bullet
+        Text("• RouteGenerationPolicy - interface in types.ts") @bullet
+        Text("• RouteHrefOptions - interface in types.ts") @bullet
+        Text("• RouteHydrationPolicy - type in types.ts") @bullet
+        Text("• routeId - function in build/scanner-analysis.ts") @bullet
+        Text("• RouteLoaderContext - interface in types.ts") @bullet
+        Text("• RouteLoaderDeclaration - interface in types.ts") @bullet
+        Text("• RouteLoaderModule - interface in types.ts") @bullet
+        Text("• RouteLocation - interface in types.ts") @bullet
+        Text("• RouteMatcher - interface in runtime/matcher.ts") @bullet
+        Text("• RouteMetadata - interface in types.ts") @bullet
+        Text("• RouteMiddleware - type in types.ts") @bullet
+        Text("• RouteMiddlewareContext - interface in types.ts") @bullet
+        Text("• RouteMiddlewareDeclaration - interface in types.ts") @bullet
+        Text("• RouteMiddlewareModule - interface in types.ts") @bullet
+        Text("• RouteMiddlewareResult - type in types.ts") @bullet
+        Text("• RouteModuleKind - type in types.ts") @bullet
+        Text("• routeName - function in build/scanner-analysis.ts") @bullet
+        Text("• RouteNavigationKind - type in types.ts") @bullet
+        Text("• RouteNavigationPolicy - interface in types.ts") @bullet
+        Text("• RouteOpenGraphMetadata - interface in types.ts") @bullet
+        Text("• RouteParameter - interface in types.ts") @bullet
+        Text("• RouteParameterKind - type in types.ts") @bullet
+        Text("• RouteParameterValues - type in runtime/params.ts") @bullet
+        Text("• RoutePipelineResult - interface in runtime/lifecycle.ts") @bullet
+        Text("• RoutePolicy - interface in types.ts") @bullet
+        Text("• RoutePreloadPolicy - type in types.ts") @bullet
+        Text("• RoutePreservationPolicy - interface in types.ts") @bullet
+        Text("• routeProps - function in runtime/client-navigation.ts") @bullet
+        Text("• routeProps - function in runtime/server-rendering.ts") @bullet
+        Text("• RouterConfig - interface in runtime/client.ts") @bullet
+        Text("• RouteRecord - interface in types.ts") @bullet
+        Text("• RouteRedirect - interface in types.ts") @bullet
+        Text("• RouteRedirectResult - interface in types.ts") @bullet
+        Text("• RouteReference - interface in types.ts") @bullet
+        Text("• RouteRenderPolicy - type in types.ts") @bullet
+        Text("• RouteSearchParameter - interface in types.ts") @bullet
+        Text("• RouteSegment - interface in types.ts") @bullet
+        Text("• RouteStreamingPolicy - type in types.ts") @bullet
+        Text("• RouteTrailingSlashPolicy - type in types.ts") @bullet
+        Text("• RouteTwitterMetadata - interface in types.ts") @bullet
+        Text("• RuntimeEndpointRecord - interface in types.ts") @bullet
+        Text("• RuntimeRouteRecord - interface in types.ts") @bullet
+        Text("• RuntimeServerEndpointRecord - interface in types.ts") @bullet
+        Text("• RuntimeServerRouteRecord - interface in types.ts") @bullet
+        Text("• safeDecodeHash - function in runtime/client-navigation.ts") @bullet
+        Text("• safeParsePath - function in build/scanner-analysis.ts") @bullet
+        Text("• ScannerFileSystem - interface in build/scanner.ts") @bullet
+        Text("• ScannerOptions - interface in build/scanner.ts") @bullet
+        Text("• scanRoutes - function in build/scanner.ts") @bullet
+        Text("• securityHeaders - function in runtime/server-http.ts") @bullet
+        Text("• selectNotFoundRoute - function in runtime/client-navigation.ts") @bullet
+        Text("• selectNotFoundRoute - function in runtime/server-http.ts") @bullet
+        Text("• serializableGraph - function in build/codegen.ts") @bullet
+        Text("• ServerApplication - interface in runtime/server.ts") @bullet
+        Text("• ServerApplicationOptions - interface in runtime/server.ts") @bullet
+        Text("• ServerEndpointContext - interface in runtime/server.ts") @bullet
+        Text("• shouldHandleAnchor - function in runtime/client-navigation.ts") @bullet
+        Text("• StaticGenerationEntry - interface in build/static-generation.ts") @bullet
+        Text("• staticPrefixLength - function in runtime/client-navigation.ts") @bullet
+        Text("• stripBasePath - function in runtime/client-navigation.ts") @bullet
+        Text("• stripBasePath - function in runtime/server-http.ts") @bullet
+        Text("• validateRouteActionNames - function in build/scanner-analysis.ts") @bullet
+        Text("• validateServerPolicies - function in build/scanner-analysis.ts") @bullet
+        Text("• validateUtilityModule - function in build/scanner-analysis.ts") @bullet
+        Text("• VXRouteComponentInstance - interface in types.ts") @bullet
+        Text("• VXRouteComponentModule - interface in types.ts") @bullet
+        Text("• VXServerRouteComponentModule - interface in types.ts") @bullet
+        Text("• withBasePath - function in runtime/client-navigation.ts") @bullet
+        Text("• withBasePath - function in runtime/server-http.ts") @bullet
+        Text("• withClearedFormFlashCookie - function in runtime/server-http.ts") @bullet
+        Text("• withCookie - function in runtime/server-http.ts") @bullet
+        Text("• withSecurityHeaders - function in runtime/server-http.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

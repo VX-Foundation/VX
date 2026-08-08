@@ -12,7 +12,7 @@ export default function sitemap(options: SitemapOptions): Integration {
   return {
     name: '@vx-foundation/sitemap',
     manifest: {
-      name: '@vx-foundation/sitemap', version: '0.1.2', apiVersion: '1',
+      name: '@vx-foundation/sitemap', version: '0.2.0', apiVersion: '1',
       capabilities: ['build', 'emit-file'], permissions: ['read-project', 'write-output'], deterministic: true
     },
     setup(context) {

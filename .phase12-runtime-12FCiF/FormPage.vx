@@ -1,0 +1,30 @@
+#script
+  schema Person {
+    name: String | min(2)
+    password: String | min(8) | sensitive
+  }
+  server action save(values: Person): Any { return { ok: true, status: 200, data: values } }
+  form person: Person {
+    action: save
+    initial: { name: "Ada", password: "" }
+    method: "post"
+    authorization: "public"
+    csrf: "required"
+  }
+#end script
+#view
+  Form {
+    controller: person
+    Input {
+      field: "name"
+      ariaLabel: "Name"
+    }
+    FieldError { field: "name" }
+    Input {
+      field: "password"
+      type: "password"
+      ariaLabel: "Password"
+    }
+    ErrorSummary { controller: person }
+  }
+#end view

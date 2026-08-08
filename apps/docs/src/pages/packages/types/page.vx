@@ -1,0 +1,258 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/types")
+    Text("Public TypeScript contracts for the VX language, compiler, runtime, and platform.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/types") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/types") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text(".") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/types@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Public TypeScript contracts for the VX language, compiler, runtime, and platform.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• ActionDeclaration - interface in ast.ts") @bullet
+        Text("• ActionIR - interface in data-ir.ts") @bullet
+        Text("• AdapterConfig - interface in config.ts") @bullet
+        Text("• AdapterName - type in config.ts") @bullet
+        Text("• AdapterRegistration - interface in config.ts") @bullet
+        Text("• AssetBuildConfig - interface in config.ts") @bullet
+        Text("• ASTNode - type in view.ts") @bullet
+        Text("• BaseNode - interface in ast.ts") @bullet
+        Text("• BuildConfig - interface in config.ts") @bullet
+        Text("• BuildMode - type in config.ts") @bullet
+        Text("• BuildTarget - type in config.ts") @bullet
+        Text("• ChunkPolicyConfig - interface in config.ts") @bullet
+        Text("• CollectionFallbackKind - type in view.ts") @bullet
+        Text("• CollectionFallbackNode - interface in view.ts") @bullet
+        Text("• ColorShade - type in palette.ts") @bullet
+        Text("• ColorShadeScale - interface in palette.ts") @bullet
+        Text("• ComponentArtifact - interface in component-ir.ts") @bullet
+        Text("• ComponentContentContract - interface in component-ir.ts") @bullet
+        Text("• ComponentContract - interface in component-ir.ts") @bullet
+        Text("• ComponentForwardingContract - interface in component-ir.ts") @bullet
+        Text("• ComponentGenericContract - interface in component-ir.ts") @bullet
+        Text("• ComponentModuleIR - interface in component-ir.ts") @bullet
+        Text("• ComponentModuleKind - type in component-ir.ts") @bullet
+        Text("• ComponentOutputContract - interface in component-ir.ts") @bullet
+        Text("• ComponentProjectBuild - interface in component-ir.ts") @bullet
+        Text("• ComponentProjectIR - interface in component-ir.ts") @bullet
+        Text("• ComponentProjectResult - interface in component-ir.ts") @bullet
+        Text("• ComponentPropContract - interface in component-ir.ts") @bullet
+        Text("• ComponentVisualPartContract - interface in component-ir.ts") @bullet
+        Text("• ConstDeclaration - interface in ast.ts") @bullet
+        Text("• ContentCardinality - type in ast.ts") @bullet
+        Text("• ContentDeclaration - interface in ast.ts") @bullet
+        Text("• ContentRegionUseNode - interface in view.ts") @bullet
+        Text("• ContextInjectDeclaration - interface in ast.ts") @bullet
+        Text("• ContextProvideDeclaration - interface in ast.ts") @bullet
+        Text("• DataDeclarationBase - interface in ast.ts") @bullet
+        Text("• DataProgramIR - interface in data-ir.ts") @bullet
+        Text("• DeclarationVisibility - type in ast.ts") @bullet
+        Text("• DependencyOptimizationConfig - interface in config.ts") @bullet
+        Text("• DeriveDeclaration - interface in ast.ts") @bullet
+        Text("• Diagnostic - interface in ast.ts") @bullet
+        Text("• DiagnosticSeverity - type in ast.ts") @bullet
+        Text("• EffectDeclaration - interface in ast.ts") @bullet
+        Text("• EffectIR - interface in data-ir.ts") @bullet
+        Text("• EventBindingNode - interface in view.ts") @bullet
+        Text("• ExecutionSide - type in ast.ts") @bullet
+        Text("• ExpressionNode - interface in ast.ts") @bullet
+        Text("• FormDeclaration - interface in ast.ts") @bullet
+        Text("• FormIR - interface in data-ir.ts") @bullet
+        Text("• FormOptionNode - interface in ast.ts") @bullet
+        Text("• ForwardDeclaration - interface in ast.ts") @bullet
+        Text("• ForwardKind - type in ast.ts") @bullet
+        Text("• GenericDeclaration - interface in ast.ts") @bullet
+        Text("• HeadlessExportContract - interface in component-ir.ts") @bullet
+        Text("• IdentifierNode - interface in ast.ts") @bullet
+        Text("• IfBlockNode - interface in view.ts") @bullet
+        Text("• IfBranchNode - interface in view.ts") @bullet
+        Text("• ImportDeclaration - interface in ast.ts") @bullet
+        Text("• ImportSpecifierNode - interface in ast.ts") @bullet
+        Text("• Integration - interface in config.ts") @bullet
+        Text("• IntegrationContext - interface in config.ts") @bullet
+        Text("• IntegrationRef - interface in config.ts") @bullet
+        Text("• IsBranchNode - interface in view.ts") @bullet
+        Text("• KeyedCollectionNode - interface in view.ts") @bullet
+        Text("• LibraryBuildConfig - interface in config.ts") @bullet
+        Text("• LifecycleDirective - interface in ast.ts") @bullet
+        Text("• LifecycleDirectiveName - type in ast.ts") @bullet
+        Text("• ModelDeclaration - interface in ast.ts") @bullet
+        Text("• ModelDeclarationNode - interface in ast.ts") @bullet
+        Text("• ModelFieldNode - interface in ast.ts") @bullet
+        Text("• OfficialAdapterName - type in config.ts") @bullet
+        Text("• OutputDeclaration - interface in ast.ts") @bullet
+        Text("• ParameterNode - interface in ast.ts") @bullet
+        Text("• PluginApiVersion - type in config.ts") @bullet
+        Text("• PluginCapability - type in config.ts") @bullet
+        Text("• PluginDiagnostic - interface in config.ts") @bullet
+        Text("• PluginHook - type in config.ts") @bullet
+        Text("• PluginHookContext - interface in config.ts") @bullet
+        Text("• PluginHookName - type in config.ts") @bullet
+        Text("• PluginManifest - interface in config.ts") @bullet
+        Text("• PluginPermission - type in config.ts") @bullet
+        Text("• PluginPolicyConfig - interface in config.ts") @bullet
+        Text("• ProgramNode - interface in view.ts") @bullet
+        Text("• PropBindingNode - interface in view.ts") @bullet
+        Text("• PropDeclaration - interface in ast.ts") @bullet
+        Text("• QueryArgumentNode - interface in ast.ts") @bullet
+        Text("• QueryDeclaration - interface in ast.ts") @bullet
+        Text("• QueryExecutionMode - type in ast.ts") @bullet
+        Text("• QueryIR - interface in data-ir.ts") @bullet
+        Text("• QueryPolicyEntryNode - interface in ast.ts") @bullet
+        Text("• QueryPolicyIR - interface in data-ir.ts") @bullet
+        Text("• ResolvedComponentImport - interface in component-ir.ts") @bullet
+        Text("• ResolvedImportBinding - interface in component-ir.ts") @bullet
+        Text("• resolveVXColor - function in palette.ts") @bullet
+        Text("• ResponsiveImageBuildConfig - interface in config.ts") @bullet
+        Text("• SchemaDeclaration - interface in ast.ts") @bullet
+        Text("• SchemaFieldIR - interface in data-ir.ts") @bullet
+        Text("• SchemaFieldNode - interface in ast.ts") @bullet
+        Text("• SchemaIR - interface in data-ir.ts") @bullet
+        Text("• SchemaRuleNode - interface in ast.ts") @bullet
+        Text("• ScriptBlockNode - interface in view.ts") @bullet
+        Text("• ScriptStatement - type in ast.ts") @bullet
+        Text("• ServerConfig - interface in config.ts") @bullet
+        Text("• SourceMapPolicy - type in config.ts") @bullet
+        Text("• SourcePosition - interface in ast.ts") @bullet
+        Text("• SourceSpan - interface in ast.ts") @bullet
+        Text("• StateDeclaration - interface in ast.ts") @bullet
+        Text("• StateStatement - type in ast.ts") @bullet
+        Text("• StoreDeclaration - interface in ast.ts") @bullet
+        Text("• StoreIR - interface in data-ir.ts") @bullet
+        Text("• StoreLifetime - type in ast.ts") @bullet
+        Text("• StructuralTransitionNode - interface in view.ts") @bullet
+        Text("• StyleConfig - interface in config.ts") @bullet
+        Text("• StyleMode - type in config.ts") @bullet
+        Text("• TextNode - interface in view.ts") @bullet
+        Text("• TopLevelBlock - type in view.ts") @bullet
+        Text("• TypeExpressionNode - interface in ast.ts") @bullet
+        Text("• ViewBlockNode - interface in view.ts") @bullet
+        Text("• ViewNode - type in view.ts") @bullet
+        Text("• ViewPatternCategory - type in view.ts") @bullet
+        Text("• ViewPatternNode - interface in view.ts") @bullet
+        Text("• ViewSourceKind - type in view.ts") @bullet
+        Text("• ViewSourceMapEntry - interface in view.ts") @bullet
+        Text("• VisualAccessibilityIR - interface in view.ts") @bullet
+        Text("• VisualConditionArgumentNode - interface in view.ts") @bullet
+        Text("• VisualConditionNode - interface in view.ts") @bullet
+        Text("• VisualDensity - type in view.ts") @bullet
+        Text("• VisualDesignRoleDefinition - interface in view.ts") @bullet
+        Text("• VisualDesignSystem - interface in view.ts") @bullet
+        Text("• VisualDirection - type in view.ts") @bullet
+        Text("• VisualKeyframeStepNode - interface in view.ts") @bullet
+        Text("• VisualLayer - type in view.ts") @bullet
+        Text("• VisualPartBindingNode - interface in view.ts") @bullet
+        Text("• VisualPartDeclaration - interface in ast.ts") @bullet
+        Text("• VisualPartKind - type in ast.ts") @bullet
+        Text("• VisualProgramIR - interface in view.ts") @bullet
+        Text("• VisualPropertyMode - type in view.ts") @bullet
+        Text("• VisualPseudoBlockNode - interface in view.ts") @bullet
+        Text("• VisualResolvedCondition - interface in view.ts") @bullet
+        Text("• VisualResolvedNode - interface in view.ts") @bullet
+        Text("• VisualResolvedPartBinding - interface in view.ts") @bullet
+        Text("• VisualResolvedProperty - interface in view.ts") @bullet
+        Text("• VisualResolvedRole - interface in view.ts") @bullet
+        Text("• VisualResolvedState - interface in view.ts") @bullet
+        Text("• VisualRoleArgumentNode - interface in view.ts") @bullet
+        Text("• VisualRoleCategory - type in view.ts") @bullet
+        Text("• VisualRoleDeclarationNode - interface in view.ts") @bullet
+        Text("• VisualRoleExport - interface in component-ir.ts") @bullet
+        Text("• VisualRolePropertyNode - interface in view.ts") @bullet
+        Text("• VisualRoleStateNode - interface in view.ts") @bullet
+        Text("• VisualRoleUseNode - interface in view.ts") @bullet
+        Text("• VisualSelectorBlockNode - interface in view.ts") @bullet
+        Text("• VisualStyleChunkIR - interface in view.ts") @bullet
+        Text("• VisualWritingMode - type in view.ts") @bullet
+        Text("• VX_COLOR_PALETTES - const in palette.ts") @bullet
+        Text("• VXConfig - interface in config.ts") @bullet
+        Text("• WhenBlockNode - interface in view.ts") @bullet
+        Text("• WidgetNode - interface in view.ts") @bullet
+        Text("• WidgetProperty - type in view.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

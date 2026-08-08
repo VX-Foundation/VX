@@ -3,7 +3,7 @@ import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
-const forbiddenDirectories = new Set(['node_modules', 'dist', '.turbo', 'coverage', 'playwright-report', 'test-results', '.cache', '.vx']);
+const forbiddenDirectories = new Set(['node_modules', 'dist', '.turbo', 'coverage', 'playwright-report', 'test-results', 'release-artifacts', '.cache', '.vx']);
 const violations = [];
 await visit(root);
 if (violations.length) {
@@ -32,7 +32,7 @@ async function visit(path) {
   }
   if (!details.isFile()) return;
   const name = rel.split('/').at(-1) ?? rel;
-  if (/\.tsbuildinfo$/u.test(name)) violations.push(`TypeScript build state: ${rel}`);
+  if (/\.tsbuildinfo(?:\..+)?$/u.test(name)) violations.push(`TypeScript build state: ${rel}`);
   if (/\.(?:zip|tgz|tar|gz)$/u.test(name)) violations.push(`nested archive: ${rel}`);
   if (/\.(?:pem|key|p12|pfx)$/u.test(name)) violations.push(`sensitive key material: ${rel}`);
   if (/^\.env(?:\..+)?$/u.test(name) && !name.endsWith('.example')) violations.push(`environment secret file: ${rel}`);

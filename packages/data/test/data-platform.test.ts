@@ -74,7 +74,7 @@ describe('VX data platform', () => {
     const connection = createRealtimeConnection();
     const client = new QueryClient();
     client.setData(['posts'], [{ id: 1 }], { tags: ['posts'] });
-    const realtime = new RealtimeClient({ url: 'wss://vx.dev', transport: connection.transport, queryClient: client, heartbeatMs: 0 });
+    const realtime = new RealtimeClient({ url: 'wss://vx.veelv.site', transport: connection.transport, queryClient: client, heartbeatMs: 0 });
     const messages: unknown[] = [];
     realtime.subscribe('posts', (message) => messages.push(message.data));
     await realtime.connect();

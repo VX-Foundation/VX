@@ -1,0 +1,256 @@
+#view
+  View @page {
+    Text("REFERENCE") @eyebrow
+    Title("Native widget reference")
+    Text("All 43 compiler-known widgets, generated from the canonical registry and current .vx contracts.") @lead
+    View @section {
+      Title("Composite") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Accordion") @cardTitle { href: "/widgets/accordion" }
+          Text("details · 4 properties · 1 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Control") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Button") @cardTitle { href: "/widgets/button" }
+          Text("button · 13 properties · 3 events") @meta
+        }
+        View @card {
+          Link("Checkbox") @cardTitle { href: "/widgets/checkbox" }
+          Text("input · 14 properties · 3 events") @meta
+        }
+        View @card {
+          Link("DatePicker") @cardTitle { href: "/widgets/date-picker" }
+          Text("input · 5 properties · 1 events") @meta
+        }
+        View @card {
+          Link("FileUpload") @cardTitle { href: "/widgets/file-upload" }
+          Text("input · 4 properties · 1 events") @meta
+        }
+        View @card {
+          Link("Input") @cardTitle { href: "/widgets/input" }
+          Text("input · 23 properties · 5 events") @meta
+        }
+        View @card {
+          Link("Radio") @cardTitle { href: "/widgets/radio" }
+          Text("input · 11 properties · 1 events") @meta
+        }
+        View @card {
+          Link("Select") @cardTitle { href: "/widgets/select" }
+          Text("select · 14 properties · 3 events") @meta
+        }
+        View @card {
+          Link("Slider") @cardTitle { href: "/widgets/slider" }
+          Text("input · 13 properties · 3 events") @meta
+        }
+        View @card {
+          Link("Switch") @cardTitle { href: "/widgets/switch" }
+          Text("input · 9 properties · 1 events") @meta
+        }
+        View @card {
+          Link("TextArea") @cardTitle { href: "/widgets/text-area" }
+          Text("textarea · 18 properties · 4 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Data") { level: 2 }
+      View @cards {
+        View @card {
+          Link("DataTable") @cardTitle { href: "/widgets/data-table" }
+          Text("table · 1 properties · 0 events") @meta
+        }
+        View @card {
+          Link("List") @cardTitle { href: "/widgets/list" }
+          Text("ul · 10 properties · 2 events") @meta
+        }
+        View @card {
+          Link("VirtualList") @cardTitle { href: "/widgets/virtual-list" }
+          Text("div · 2 properties · 0 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Display") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Avatar") @cardTitle { href: "/widgets/avatar" }
+          Text("span · 4 properties · 0 events") @meta
+        }
+        View @card {
+          Link("Badge") @cardTitle { href: "/widgets/badge" }
+          Text("span · 3 properties · 0 events") @meta
+        }
+        View @card {
+          Link("Icon") @cardTitle { href: "/widgets/icon" }
+          Text("span · 9 properties · 1 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Feedback") { level: 2 }
+      View @cards {
+        View @card {
+          Link("ErrorSummary") @cardTitle { href: "/widgets/error-summary" }
+          Text("div · 3 properties · 0 events") @meta
+        }
+        View @card {
+          Link("FieldError") @cardTitle { href: "/widgets/field-error" }
+          Text("span · 2 properties · 0 events") @meta
+        }
+        View @card {
+          Link("FormError") @cardTitle { href: "/widgets/form-error" }
+          Text("div · 2 properties · 0 events") @meta
+        }
+        View @card {
+          Link("ProgressBar") @cardTitle { href: "/widgets/progress-bar" }
+          Text("progress · 6 properties · 0 events") @meta
+        }
+        View @card {
+          Link("Skeleton") @cardTitle { href: "/widgets/skeleton" }
+          Text("div · 3 properties · 0 events") @meta
+        }
+        View @card {
+          Link("Spinner") @cardTitle { href: "/widgets/spinner" }
+          Text("span · 2 properties · 0 events") @meta
+        }
+        View @card {
+          Link("Toast") @cardTitle { href: "/widgets/toast" }
+          Text("div · 6 properties · 1 events") @meta
+        }
+        View @card {
+          Link("Tooltip") @cardTitle { href: "/widgets/tooltip" }
+          Text("span · 3 properties · 0 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Form") { level: 2 }
+      View @cards {
+        View @card {
+          Link("FieldGroup") @cardTitle { href: "/widgets/field-group" }
+          Text("fieldset · 3 properties · 0 events") @meta
+        }
+        View @card {
+          Link("Form") @cardTitle { href: "/widgets/form" }
+          Text("form · 7 properties · 2 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Layout") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Divider") @cardTitle { href: "/widgets/divider" }
+          Text("hr · 5 properties · 0 events") @meta
+        }
+        View @card {
+          Link("ScrollView") @cardTitle { href: "/widgets/scroll-view" }
+          Text("div · 15 properties · 3 events") @meta
+        }
+        View @card {
+          Link("View") @cardTitle { href: "/widgets/view" }
+          Text("div · 25 properties · 3 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Media") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Audio") @cardTitle { href: "/widgets/audio" }
+          Text("audio · 10 properties · 4 events") @meta
+        }
+        View @card {
+          Link("Canvas") @cardTitle { href: "/widgets/canvas" }
+          Text("canvas · 5 properties · 2 events") @meta
+        }
+        View @card {
+          Link("IFrame") @cardTitle { href: "/widgets/iframe" }
+          Text("iframe · 12 properties · 2 events") @meta
+        }
+        View @card {
+          Link("Image") @cardTitle { href: "/widgets/image" }
+          Text("img · 13 properties · 2 events") @meta
+        }
+        View @card {
+          Link("Video") @cardTitle { href: "/widgets/video" }
+          Text("video · 17 properties · 5 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Navigation") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Breadcrumb") @cardTitle { href: "/widgets/breadcrumb" }
+          Text("nav · 2 properties · 0 events") @meta
+        }
+        View @card {
+          Link("Link") @cardTitle { href: "/widgets/link" }
+          Text("a · 9 properties · 1 events") @meta
+        }
+        View @card {
+          Link("Tabs") @cardTitle { href: "/widgets/tabs" }
+          Text("div · 3 properties · 1 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Overlay") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Drawer") @cardTitle { href: "/widgets/drawer" }
+          Text("aside · 5 properties · 1 events") @meta
+        }
+        View @card {
+          Link("Modal") @cardTitle { href: "/widgets/modal" }
+          Text("dialog · 5 properties · 1 events") @meta
+        }
+        View @card {
+          Link("Popover") @cardTitle { href: "/widgets/popover" }
+          Text("div · 3 properties · 1 events") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Text") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Text") @cardTitle { href: "/widgets/text" }
+          Text("span · 14 properties · 0 events") @meta
+        }
+        View @card {
+          Link("Title") @cardTitle { href: "/widgets/title" }
+          Text("h1 · 3 properties · 0 events") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

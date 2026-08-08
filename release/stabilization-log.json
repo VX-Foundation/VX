@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vx.dev/schemas/stabilization-log/v1",
+  "$schema": "https://vx.veelv.site/schemas/stabilization-log/v1",
   "version": 1,
   "canary": [],
   "next": [],

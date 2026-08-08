@@ -8,8 +8,7 @@ import type { DiagnosticCollector } from './diagnostics.js';
 import type { ReactiveGraph } from './graph-builder.js';
 import type { ComponentBindingContext } from '../components/context.js';
 import { collectReferencedIdentifiers } from './expression-identifiers.js';
-import { parse } from '@vx-foundation/language';
-import { PRIMITIVE_SOURCES } from '@vx-foundation/widgets';
+import { WIDGET_REGISTRY } from '../visual/primitives.js';
 import { expandInterpolatedExpression } from '../interpolation.js';
 
 const primitivePropsCache = new Map<string, Set<string>>();
@@ -18,27 +17,15 @@ const GLOBAL_WIDGET_PROPERTIES = new Set([
   'ariaPressed', 'ariaCurrent', 'ariaLive', 'ariaAtomic', 'ariaHidden', 'dataTestId'
 ]);
 
-/**
- * Parses a primitive through the canonical VX parser and extracts its public props.
- * Widget signatures must never be interpreted by a second regex-based grammar.
- */
+/** Reads the generated public contract produced from the canonical widget registry. */
 function getPrimitiveProps(tagName: string): Set<string> | null {
   const cached = primitivePropsCache.get(tagName);
   if (cached) return cached;
 
-  const source = PRIMITIVE_SOURCES[tagName];
-  if (!source) return null;
+  const definition = WIDGET_REGISTRY[tagName as keyof typeof WIDGET_REGISTRY];
+  if (!definition) return null;
 
-  const parsed = parse(source, `@vx-foundation/widgets/${tagName}.vx`);
-  const script = parsed.ast.blocks.find((block) => block.kind === 'ScriptBlock');
-  const props = new Set<string>();
-
-  if (script?.kind === 'ScriptBlock') {
-    for (const statement of script.statements) {
-      if (statement.kind === 'PropDeclaration') props.add(statement.name);
-    }
-  }
-
+  const props = new Set(definition.properties.map((property) => property.name));
   primitivePropsCache.set(tagName, props);
   return props;
 }

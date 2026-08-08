@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vx.dev/schemas/stabilization-policy/v1",
+  "$schema": "https://vx.veelv.site/schemas/stabilization-policy/v1",
   "version": 1,
   "target": "1.0.0",
   "canary": {

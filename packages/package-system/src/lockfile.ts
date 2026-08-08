@@ -11,7 +11,7 @@ const BASE64 = /^[A-Za-z0-9+/]+={0,2}$/;
 const DEPENDENCY_KINDS: readonly DependencyKind[] = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies'];
 
 export function emptyLockfile(workspace = '.'): VXLockfile {
-  return { schema: 'https://vx.dev/schemas/lockfile/v1', version: 1, lockfileVersion: 1, workspace: normalizeWorkspace(workspace), packages: {} };
+  return { schema: 'https://vx.veelv.site/schemas/lockfile/v1', version: 1, lockfileVersion: 1, workspace: normalizeWorkspace(workspace), packages: {} };
 }
 
 export function createWorkspaceLockfile(root: string, base: VXLockfile = emptyLockfile()): VXLockfile {
@@ -78,7 +78,7 @@ export function verifyLockfileGraph(lockfile: VXLockfile): { valid: boolean; iss
 }
 
 export function validateLockfile(value: unknown): asserts value is VXLockfile {
-  if (!record(value) || value['schema'] !== 'https://vx.dev/schemas/lockfile/v1' || value['version'] !== 1 || value['lockfileVersion'] !== 1 || typeof value['workspace'] !== 'string' || !validWorkspace(value['workspace']) || !record(value['packages'])) throw new TypeError('Unsupported or invalid VX lockfile.');
+  if (!record(value) || value['schema'] !== 'https://vx.veelv.site/schemas/lockfile/v1' || value['version'] !== 1 || value['lockfileVersion'] !== 1 || typeof value['workspace'] !== 'string' || !validWorkspace(value['workspace']) || !record(value['packages'])) throw new TypeError('Unsupported or invalid VX lockfile.');
   for (const [key, candidate] of Object.entries(value['packages'])) validateLockedPackage(key, candidate);
   if (value['importers'] !== undefined) {
     if (!record(value['importers'])) throw new TypeError('VX lockfile importers must be an object.');

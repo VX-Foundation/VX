@@ -1,14 +1,18 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
-import { CodeActionKind, CompletionItemKind, DiagnosticSeverity, DidChangeConfigurationNotification, Location, Position, ProposedFeatures, Range, SymbolKind, TextDocumentSyncKind, TextDocuments, TextEdit, createConnection } from 'vscode-languageserver/node.js';
+import { fileURLToPath } from 'node:url';
+function resolveWorkspaceRoot(params) {
+    const uri = params.workspaceFolders?.[0]?.uri ?? params.rootUri ?? undefined;
+    return uri?.startsWith('file:') ? fileURLToPath(uri) : undefined;
+}
+import { CodeActionKind, DiagnosticSeverity, DidChangeConfigurationNotification, Location, ProposedFeatures, Range, TextDocumentSyncKind, TextDocuments, TextEdit, createConnection } from 'vscode-languageserver/node.js';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { inspectVX } from '@vx-foundation/tooling/inspect';
 import { VXLanguageService, indexVXWorkspaceAsync } from '@vx-foundation/tooling';
+import { encodeSemanticTokens, SEMANTIC_TOKEN_TYPES, toCompletionItem, toLspDiagnostic, toPosition, toRange, toSymbolKind } from './protocol-adapters.js';
 const connection = createConnection(ProposedFeatures.all);
 const documents = new TextDocuments(TextDocument);
 const service = new VXLanguageService();
-const semanticTokenTypes = ['keyword', 'type', 'class', 'function', 'variable', 'property', 'parameter', 'namespace', 'string', 'number', 'comment'];
 let workspaceRoot;
 let workspaceStatus = { indexedFiles: 0, skippedFiles: 0, truncated: false, diagnostics: [] };
 connection.onInitialize((params) => {
@@ -25,7 +29,7 @@ connection.onInitialize((params) => {
             documentFormattingProvider: true,
             documentSymbolProvider: true,
             workspaceSymbolProvider: true,
-            semanticTokensProvider: { legend: { tokenTypes: [...semanticTokenTypes], tokenModifiers: ['declaration', 'definition', 'readonly', 'static', 'deprecated', 'async'] }, full: true },
+            semanticTokensProvider: { legend: { tokenTypes: [...SEMANTIC_TOKEN_TYPES], tokenModifiers: ['declaration', 'definition', 'readonly', 'static', 'deprecated', 'async'] }, full: true },
             inlayHintProvider: true,
             callHierarchyProvider: true,
             typeHierarchyProvider: true
@@ -165,33 +169,6 @@ function typeHierarchyItems(item, direction) {
 function toHierarchyItem(item) {
     return { name: item.symbol.name, kind: toSymbolKind(item.symbol), uri: item.uri, range: toRange(item.symbol.span), selectionRange: toRange(item.symbol.selectionSpan), detail: item.symbol.detail ?? item.symbol.kind, data: { uri: item.uri, offset: item.symbol.selectionSpan.start.offset } };
 }
-function encodeSemanticTokens(tokens) {
-    const data = [];
-    let previousLine = 0;
-    let previousCharacter = 0;
-    for (const token of tokens) {
-        const deltaLine = token.line - previousLine;
-        const deltaCharacter = deltaLine === 0 ? token.character - previousCharacter : token.character;
-        data.push(deltaLine, deltaCharacter, token.length, semanticTokenTypes.indexOf(token.tokenType), modifierBits(token.modifiers));
-        previousLine = token.line;
-        previousCharacter = token.character;
-    }
-    return data;
-}
-function modifierBits(modifiers) { const names = ['declaration', 'definition', 'readonly', 'static', 'deprecated', 'async']; return modifiers.reduce((bits, modifier) => { const index = names.indexOf(modifier); return index >= 0 ? bits | (1 << index) : bits; }, 0); }
-function toLspDiagnostic(diagnostic) { return { severity: diagnostic.severity === 'error' ? DiagnosticSeverity.Error : diagnostic.severity === 'warning' ? DiagnosticSeverity.Warning : DiagnosticSeverity.Information, code: diagnostic.code, source: 'vx', message: diagnostic.suggestion ? `${diagnostic.message}\nSuggestion: ${diagnostic.suggestion}` : diagnostic.message, range: toRange(diagnostic.span) }; }
-function toCompletionItem(entry) { const kind = entry.kind === 'keyword' ? CompletionItemKind.Keyword : entry.kind === 'widget' ? CompletionItemKind.Class : entry.kind === 'role' ? CompletionItemKind.Property : entry.kind === 'action' ? CompletionItemKind.Function : entry.kind === 'model' ? CompletionItemKind.Struct : entry.kind === 'generic' ? CompletionItemKind.TypeParameter : entry.kind === 'import' ? CompletionItemKind.Module : CompletionItemKind.Variable; return { label: entry.label, kind, detail: entry.detail, ...(entry.insertText ? { insertText: entry.insertText } : {}) }; }
-function toSymbolKind(symbol) { if (symbol.kind === 'model' || symbol.kind === 'schema')
-    return SymbolKind.Struct; if (symbol.kind === 'generic')
-    return SymbolKind.TypeParameter; if (symbol.kind === 'import')
-    return SymbolKind.Module; if (symbol.kind === 'action' || symbol.kind === 'effect' || symbol.kind === 'query')
-    return SymbolKind.Function; if (symbol.kind === 'prop' || symbol.kind === 'parameter' || symbol.kind === 'field')
-    return SymbolKind.Field; if (symbol.kind === 'context')
-    return SymbolKind.Namespace; if (symbol.kind === 'role' || symbol.kind === 'part')
-    return SymbolKind.Property; return SymbolKind.Variable; }
-function toRange(span) { return Range.create(toPosition(span.start), toPosition(span.end)); }
-function toPosition(position) { return Position.create(Math.max(0, position.line - 1), Math.max(0, position.column - 1)); }
-function resolveWorkspaceRoot(params) { const uri = params.workspaceFolders?.[0]?.uri ?? params.rootUri ?? undefined; return uri?.startsWith('file:') ? fileURLToPath(uri) : undefined; }
 documents.listen(connection);
 connection.listen();
 //# sourceMappingURL=server.js.map

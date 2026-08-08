@@ -1,0 +1,58 @@
+#view
+  View @page {
+    Text("SECURITY DOCUMENTATION") @eyebrow
+    Title("VX threat model")
+    Text("VX protects source code, package metadata, lockfiles, signing keys, plugin code, build outputs, server credentials, user sessions, request data, serialized state, generated HTML, caches, source maps, and release provenance.") @lead
+    View @section {
+      Title("Assets") { level: 2 }
+      Text("VX protects source code, package metadata, lockfiles, signing keys, plugin code, build outputs, server credentials, user sessions, request data, serialized state, generated HTML, caches, source maps, and release provenance.")
+    }
+    View @section {
+      Title("Trust boundaries") { level: 2 }
+      View @list {
+        Text("• application source to parser and compiler;") @bullet
+        Text("• compiler output to browser runtime;") @bullet
+        Text("• request bytes to server body parsing and routing;") @bullet
+        Text("• server state to serialization and hydration;") @bullet
+        Text("• project filesystem to plugins and tooling;") @bullet
+        Text("• registry packages to package installation and build;") @bullet
+        Text("• CI workers to release signing and publication;") @bullet
+        Text("• browser extensions and third-party scripts to hydration recovery.") @bullet
+      }
+    }
+    View @section {
+      Title("Adversaries") { level: 2 }
+      Text("The model includes malicious request senders, compromised dependencies, malicious or compromised plugins, poisoned caches, hostile project files, compromised CI credentials, malicious browser extensions, accidental secret publication, and maintainers making unsafe configuration changes.")
+    }
+    View @section {
+      Title("Required controls") { level: 2 }
+      Text("Inputs are bounded before deep processing. Parsers return diagnostics instead of process crashes. Serialization rejects executable or prototype-mutating structures. HTTP bodies enforce byte, field, depth, and node limits. Plugins run in bounded Workers with mediated I/O and signed source identity. Install lifecycle scripts are denied by default. Releases require clean provenance and verified publication manifests. Security tests cover every unsafe exception.")
+    }
+    View @section {
+      Title("Out of scope") { level: 2 }
+      Text("The framework cannot protect applications that deliberately expose secrets to client code, disable authorization, run arbitrary untrusted native code, or deploy on a compromised host. VX must diagnose unsafe configuration but cannot make those environments trustworthy.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

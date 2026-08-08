@@ -1,0 +1,140 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/data")
+    Text("VX query persistence, offline mutations, infinite data, realtime subscriptions, and cross-context synchronization.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/data") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/data") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./persistence, ./offline, ./infinite, ./realtime, ./broadcast, ./hub") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/data@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./persistence") @chip
+        Text("./offline") @chip
+        Text("./infinite") @chip
+        Text("./realtime") @chip
+        Text("./broadcast") @chip
+        Text("./hub") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX query persistence, offline mutations, infinite data, realtime subscriptions, and cross-context synchronization.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./broadcast -> ./dist/broadcast.d.ts") @bullet
+        Text("• ./hub -> ./dist/hub.d.ts") @bullet
+        Text("• ./infinite -> ./dist/infinite.d.ts") @bullet
+        Text("• ./offline -> ./dist/offline.d.ts") @bullet
+        Text("• ./persistence -> ./dist/persistence.d.ts") @bullet
+        Text("• ./realtime -> ./dist/realtime.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• createInfiniteQuery - function in infinite.ts") @bullet
+        Text("• createMemoryPersistenceAdapter - function in persistence.ts") @bullet
+        Text("• createWebStoragePersistenceAdapter - function in persistence.ts") @bullet
+        Text("• DataBroadcastChannel - interface in broadcast.ts") @bullet
+        Text("• DataPersistenceAdapter - interface in persistence.ts") @bullet
+        Text("• EventSourceTransport - class in realtime.ts") @bullet
+        Text("• InfiniteQuery - interface in infinite.ts") @bullet
+        Text("• InfiniteQueryOptions - interface in infinite.ts") @bullet
+        Text("• InfiniteQuerySnapshot - interface in infinite.ts") @bullet
+        Text("• MutationQueueSnapshot - interface in offline.ts") @bullet
+        Text("• MutationQueueStatus - type in offline.ts") @bullet
+        Text("• OfflineMutation - interface in offline.ts") @bullet
+        Text("• OfflineMutationQueue - class in offline.ts") @bullet
+        Text("• OfflineMutationQueueOptions - interface in offline.ts") @bullet
+        Text("• persistQueryClient - function in persistence.ts") @bullet
+        Text("• QueryBroadcastOptions - interface in broadcast.ts") @bullet
+        Text("• QueryPersistenceController - interface in persistence.ts") @bullet
+        Text("• QueryPersistenceOptions - interface in persistence.ts") @bullet
+        Text("• RealtimeBackplane - interface in hub.ts") @bullet
+        Text("• RealtimeClient - class in realtime.ts") @bullet
+        Text("• RealtimeClientOptions - interface in realtime.ts") @bullet
+        Text("• RealtimeConnection - interface in realtime.ts") @bullet
+        Text("• RealtimeHub - class in hub.ts") @bullet
+        Text("• RealtimeMessage - interface in realtime.ts") @bullet
+        Text("• RealtimePeer - interface in hub.ts") @bullet
+        Text("• RealtimeStatus - type in realtime.ts") @bullet
+        Text("• RealtimeTransport - interface in realtime.ts") @bullet
+        Text("• synchronizeQueryClient - function in broadcast.ts") @bullet
+        Text("• WebSocketTransport - class in realtime.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

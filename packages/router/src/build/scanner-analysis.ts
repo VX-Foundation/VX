@@ -1,5 +1,65 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+interface NodeFs {
+  readdirSync?: (...args: unknown[]) => string[];
+  statSync?: (...args: unknown[]) => { isDirectory: () => boolean; isFile: () => boolean };
+  readFileSync?: (...args: unknown[]) => string;
+  realpathSync?: (...args: unknown[]) => string;
+}
+
+interface NodePath {
+  join?: (...args: string[]) => string;
+  posix?: {
+    join?: (...args: string[]) => string;
+  };
+}
+
+function getNodeFs(): NodeFs | null {
+  try {
+    if (typeof process !== 'undefined' && process.versions?.node) {
+      if (typeof process.getBuiltinModule === 'function') {
+        const fsMod = process.getBuiltinModule('node:fs');
+        if (fsMod) return fsMod as unknown as NodeFs;
+      }
+      const fn = new Function('m', 'try { return typeof require !== "undefined" ? require(m) : (typeof process !== "undefined" && process.mainModule ? process.mainModule.require(m) : null); } catch { return null; }');
+      return (fn('node:fs') ?? fn('fs')) as NodeFs | null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function getNodePath(): NodePath | null {
+  try {
+    if (typeof process !== 'undefined' && process.versions?.node) {
+      if (typeof process.getBuiltinModule === 'function') {
+        const pathMod = process.getBuiltinModule('node:path');
+        if (pathMod) return pathMod as unknown as NodePath;
+      }
+      const fn = new Function('m', 'try { return typeof require !== "undefined" ? require(m) : (typeof process !== "undefined" && process.mainModule ? process.mainModule.require(m) : null); } catch { return null; }');
+      return (fn('node:path') ?? fn('path')) as NodePath | null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+const fs = {
+  readdirSync: (...args: unknown[]) => getNodeFs()?.readdirSync?.(...args) ?? [],
+  statSync: (...args: unknown[]) => getNodeFs()?.statSync?.(...args) ?? { isDirectory: () => false, isFile: () => false },
+  readFileSync: (...args: unknown[]) => getNodeFs()?.readFileSync?.(...args) ?? '',
+  realpathSync: (...args: unknown[]) => {
+    const res = (getNodeFs()?.realpathSync?.(...args) ?? (args[0] as string)) as string;
+    return typeof res === 'string' ? res.replace(/\\/g, '/') : res;
+  }
+};
+
+const path = {
+  join: (...args: string[]) => getNodePath()?.join?.(...args) ?? args.join('/').replace(/\/+/g, '/'),
+  posix: {
+    join: (...args: string[]) => getNodePath()?.posix?.join?.(...args) ?? args.join('/').replace(/\/+/g, '/')
+  }
+};
 import { parse } from '@vx-foundation/language';
 import type { ProgramNode, ScriptBlockNode, ViewBlockNode, ViewNode } from '@vx-foundation/types';
 import type {

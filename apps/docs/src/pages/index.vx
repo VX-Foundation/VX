@@ -1,62 +1,108 @@
-#script
-  state searchQuery: String = ""
-  state activeSection: String = "specification"
-
-  action selectSection(section: String) {
-    activeSection = section
-  }
-
-  action updateSearch(value: String) {
-    searchQuery = value
-  }
-#end script
-
 #view
-  View @docsPage {
-    View @docsSidebar {
-      Title("VX Documentation") @brand
-      Text("Specification, guides, API and conformance applications.")
-
-      Input {
-        label: "Search documentation"
-        value: searchQuery
-        placeholder: "Search by topic"
-        change => updateSearch($event)
+  View @page {
+    Text("VX 0.2.0") @eyebrow
+    Title("VX documentation")
+    Text("Build typed web applications through a compiler-owned language, Visual IR, runtime, router, server, data, forms, package system, and production tooling.") @lead
+    View @section {
+      Title("Explore the framework") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Learn VX") @cardTitle { href: "/learn" }
+          Text("Follow a progressive path from first page to production.") @meta
+        }
+        View @card {
+          Link("Complete reference") @cardTitle { href: "/reference" }
+          Text("Exact contracts for language, widgets, Visual IR, packages, and tools.") @meta
+        }
+        View @card {
+          Link("Production guides") @cardTitle { href: "/guides" }
+          Text("Accessibility, performance, security, deployment, packages, and plugins.") @meta
+        }
+        View @card {
+          Link("Cookbook") @cardTitle { href: "/cookbook" }
+          Text("Authentication, tables, uploads, optimistic mutations, SEO, realtime, and offline conflicts.") @meta
+        }
+        View @card {
+          Link("Tutorials") @cardTitle { href: "/tutorials" }
+          Text("Build routed applications, data flows, and component packages.") @meta
+        }
+        View @card {
+          Link("Framework internals") @cardTitle { href: "/internals" }
+          Text("Architecture, rendering, server, data, forms, and official applications.") @meta
+        }
       }
-
-      Button("Language specification") { click => selectSection("specification") }
-      Button("Framework") { click => selectSection("framework") }
-      Button("API reference") { click => selectSection("api") }
-      Button("Security") { click => selectSection("security") }
-      Button("Deployment") { click => selectSection("deployment") }
-      Button("Accessibility") { click => selectSection("accessibility") }
     }
-
-    View @content {
-      Title("VX Phase 21")
-      Text("The documentation is normative where explicitly marked.")
-      Text("Selected section: " + activeSection)
-
-      View @featureGrid {
-        View @feature {
-          Title("Language specification") { level: 2 }
-          Text("Lexical structure, types, modules, reactivity, components, views, routing and server boundaries.")
+    View @section {
+      Title("Framework surface") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
         }
-        View @feature {
-          Title("Production guides") { level: 2 }
-          Text("Security, deployment, performance, accessibility, packages and plugins.")
+        View @tableRow {
+          Text("Native widgets") @propertyName
+          Text("43") @propertyDescription
         }
-        View @feature {
-          Title("Official applications") { level: 2 }
-          Text("Dashboard, commerce and collaboration workloads use only public VX APIs.")
+        View @tableRow {
+          Text("Visual properties") @propertyName
+          Text("167") @propertyDescription
+        }
+        View @tableRow {
+          Text("Built-in roles") @propertyName
+          Text("52") @propertyDescription
+        }
+        View @tableRow {
+          Text("Visual conditions") @propertyName
+          Text("25") @propertyDescription
+        }
+        View @tableRow {
+          Text("Public packages") @propertyName
+          Text("25") @propertyDescription
+        }
+        View @tableRow {
+          Text("Canonical domain") @propertyName
+          Text("vx.veelv.site") @propertyDescription
         }
       }
+    }
+    View @section {
+      Title("Compiler-first workflow") { level: 2 }
+      View @codeBlock {
+        Text("corepack enable")
+        Text("pnpm install")
+        Text("pnpm vx create my-app")
+        Text("cd my-app")
+        Text("pnpm dev")
+        Text("pnpm check")
+        Text("pnpm test")
+        Text("pnpm build")
+      }
+    }
+    View @section {
+      Title("Source-driven documentation") { level: 2 }
+      Text("Widget pages are generated from the canonical widget registry and .vx contracts. Visual pages are generated from compiler-owned property, role, and condition registries. Package pages combine manifests, subpath exports, and generated API references. CI rejects stale documentation artifacts.")
     }
   }
 
-  @docsPage { flow: horizontal surface: base minHeight: viewport }
-  @docsSidebar { flow: vertical space: md inset: lg width: 300 surface: raised }
-  @content { flow: vertical space: xl inset: xl width: fill }
-  @featureGrid { flow: grid columns: 3 space: lg }
-  @feature { surface: raised corner: lg inset: lg }
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
 #end view

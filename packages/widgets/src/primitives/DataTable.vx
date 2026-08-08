@@ -1,0 +1,19 @@
+#script
+  prop class: String = ""
+  content default: optional
+#end script
+
+#view
+  View @tableContainer {
+    Content(default)
+  }
+
+  @tableContainer {
+    flow: vertical
+    width: fill
+    surface: steel-900
+    border: steel-800
+    corner: lg
+    inset: md
+  }
+#end view

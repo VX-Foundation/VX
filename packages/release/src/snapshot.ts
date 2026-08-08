@@ -14,7 +14,7 @@ export function createWorkspaceApiSnapshot(rootDir: string, options: CreateWorks
     .map((path) => snapshotPackage(path, options.includePrivate ?? false))
     .filter((value): value is PublicPackageSnapshot => Boolean(value))
     .sort((left, right) => left.name.localeCompare(right.name));
-  return { schema: 'https://vx.dev/schemas/public-api-snapshot/v1', version: 1, packages };
+  return { schema: 'https://vx.veelv.site/schemas/public-api-snapshot/v1', version: 1, packages };
 }
 
 export function snapshotPackage(packageJsonPath: string, includePrivate = false): PublicPackageSnapshot | undefined {

@@ -1,0 +1,30 @@
+#script
+  prop value: String = ""
+  prop placeholder: String = "Select date..."
+  prop label: String = "Select date"
+  prop class: String = ""
+
+  output onChange: String
+
+  action notifyChange(nextValue: String) {
+    emit("onChange", nextValue)
+  }
+#end script
+
+#view
+  Input @dateInput {
+    value: value
+    placeholder: placeholder
+    ariaLabel: label
+    type: "date"
+    change => notifyChange($event)
+  }
+
+  @dateInput {
+    surface: steel-900
+    border: steel-800
+    tone: cloud-50
+    corner: md
+    inset: control.md
+  }
+#end view

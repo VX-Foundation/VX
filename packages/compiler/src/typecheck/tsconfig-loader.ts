@@ -1,5 +1,10 @@
-import * as path from 'node:path';
 import ts from 'typescript';
+
+function getDirname(filePath: string): string {
+  const normalized = filePath.replaceAll('\\', '/');
+  const lastIndex = normalized.lastIndexOf('/');
+  return lastIndex >= 0 ? normalized.slice(0, lastIndex) : '.';
+}
 
 const defaultCompilerOptions: ts.CompilerOptions = {
   target: ts.ScriptTarget.ES2022,
@@ -34,7 +39,7 @@ export function loadTSConfig(rootDir: string): ts.CompilerOptions {
     const parsed = ts.parseJsonConfigFileContent(
       configFile.config,
       ts.sys,
-      path.dirname(configPath)
+      getDirname(configPath)
     );
 
     if (parsed.errors.length > 0) {

@@ -1,18 +1,59 @@
-import { readFile } from 'node:fs/promises';
-const files = {
-  design: await readFile(new URL('../packages/runtime/src/design-system.ts', import.meta.url), 'utf8'),
-  styling: await readFile(new URL('../packages/runtime/src/styling.ts', import.meta.url), 'utf8'),
-  a11y: await readFile(new URL('../packages/runtime/src/accessibility.ts', import.meta.url), 'utf8'),
-  visual: await readFile(new URL('../packages/compiler/src/visual/catalog.ts', import.meta.url), 'utf8')
-};
-const required = [
-  ['typed tokens', files.design, 'TypedToken'], ['token inheritance', files.design, 'extends?: DesignSystemDefinition'],
-  ['breaking changes', files.design, 'compareDesignSystems'], ['package distribution', files.design, 'packageDesignSystem'],
-  ['cascade layers', files.styling, '@layer vx.'], ['critical CSS', files.styling, 'criticalCss'],
-  ['dead styles', files.styling, 'eliminateDeadStyles'], ['code splitting', files.styling, 'splitStyleChunks'],
-  ['focus traps', files.a11y, 'createFocusTrap'], ['keyboard models', files.a11y, 'createRovingTabIndex'],
-  ['announcements', files.a11y, 'announce'], ['contrast', files.a11y, 'contrast'],
-  ['overlays', files.visual, 'popover'], ['writing modes', files.visual, "writing: 'writingMode'"]
+import assert from 'node:assert/strict';
+import {
+  compareDesignSystems,
+  contrast,
+  createCssModule,
+  defineDesignSystem,
+  eliminateDeadStyles,
+  extractStyles,
+  packageDesignSystem,
+  resolveDesignTokens,
+  serializeKeyframes,
+  splitStyleChunks
+} from '../packages/runtime/dist/index.js';
+import { getBuiltinRole } from '../packages/compiler/dist/visual/catalog.js';
+
+const base = defineDesignSystem({
+  name: 'vx-base',
+  version: '1.0.0',
+  tokens: {
+    'color.surface': { kind: 'color', value: '#ffffff' },
+    'color.action': { kind: 'color', value: '#2563eb' },
+    'space.md': { kind: 'length', value: '1rem' }
+  }
+});
+const product = defineDesignSystem({
+  name: 'vx-product',
+  version: '1.1.0',
+  extends: base,
+  tokens: { 'color.link': '{color.action}' },
+  modes: { dark: { 'color.surface': '#111827' } }
+});
+const tokens = resolveDesignTokens(product, { mode: 'dark' });
+assert.equal(tokens['color.surface'], '#111827');
+assert.equal(tokens['color.link'], '#2563eb');
+assert.match(packageDesignSystem(product).cssText, /--vx-color-link:#2563eb/);
+const breaking = compareDesignSystems(product, defineDesignSystem({ name: 'vx-product', version: '2.0.0', tokens: { 'color.link': '#2563eb' } }));
+assert.ok(breaking.some((change) => change.kind === 'removed' && change.breaking));
+
+const cssModule = createCssModule('.button{display:block}.label{color:red}', 'phase16');
+assert.match(cssModule.classes['button'] ?? '', /^button_/);
+const chunks = [
+  { id: 'tokens', cssText: ':root{--vx-a:1}', critical: true, layer: 'tokens' },
+  { id: 'shell', cssText: '.shell{display:grid}', dependencies: ['tokens'], layer: 'components' },
+  { id: 'unused', cssText: '.unused{display:none}' }
 ];
-for (const [name, source, marker] of required) if (!source.includes(marker)) throw new Error(`Phase 16 missing ${name}.`);
-console.log(`Phase 16 structural verification passed (${required.length} contracts).`);
+const selected = eliminateDeadStyles(chunks, new Set(['shell']));
+assert.deepEqual(selected.map((chunk) => chunk.id), ['tokens', 'shell']);
+const manifest = extractStyles(chunks, new Set(['shell']));
+assert.match(manifest.criticalCss, /@layer vx\.tokens/);
+assert.match(manifest.deferredCss, /shell/);
+const routes = splitStyleChunks(chunks, { '/': ['shell'], '/empty': [] });
+assert.equal(routes['/']?.chunks.length, 2);
+assert.equal(routes['/empty']?.chunks.length, 0);
+assert.match(serializeKeyframes('fade', { from: { opacity: 0 }, to: { opacity: 1 } }), /@keyframes fade/);
+assert.equal(contrast('#000000', '#ffffff').level, 'aaa');
+
+assert.equal(getBuiltinRole('popover')?.properties['z'], 'overlay');
+assert.equal(getBuiltinRole('region')?.arguments?.['writing'], 'writingMode');
+console.log('Phase 16 behavioral verification passed (tokens, CSS pipeline, accessibility contrast, overlays, and writing modes).');

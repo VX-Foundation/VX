@@ -1,0 +1,93 @@
+#view
+  View @page {
+    Text("BUILD WITH VX") @eyebrow
+    Title("Language basics")
+    Text("VX source files divide behavior and visual intent into two explicit sections. The compiler owns the connection between them.") @lead
+
+    View @section {
+      Title("The two sections") { level: 2 }
+      View @codeBlock {
+        Text("#script")
+        Text("  const productName: String = \"Camera\"")
+        Text("  state quantity: Int = 1")
+        Text("  derive total: Int = quantity * 849")
+        Text("")
+        Text("  action increase() {")
+        Text("    quantity++")
+        Text("  }")
+        Text("#end script")
+        Text("")
+        Text("#view")
+        Text("  View @card {")
+        Text("    Title(productName)")
+        Text("    Text(\"Total: \" + total)")
+        Text("    Button(\"Add one\") { click => increase() }")
+        Text("  }")
+        Text("")
+        Text("  @card { flow: vertical gap: md inset: lg }")
+        Text("#end view")
+      }
+      Text("#script declares typed application responsibilities. #view declares the widget tree, bindings, control flow, content projection, events, and visual roles.")
+    }
+
+    View @section {
+      Title("Script declarations") { level: 2 }
+      Text("• import and export define module boundaries.")
+      Text("• prop is typed, parent-owned component input.")
+      Text("• output declares a closed event channel.")
+      Text("• content declares a named projection region.")
+      Text("• part declares a public visual customization boundary.")
+      Text("• const is immutable and non-reactive.")
+      Text("• state is owned mutable reactive data.")
+      Text("• derive is a pure synchronous reactive value.")
+      Text("• query is a managed external read.")
+      Text("• action is the mutation and operation boundary.")
+      Text("• effect synchronizes with an external system.")
+      Text("• store owns shared reactive state with explicit lifetime.")
+    }
+
+    View @section {
+      Title("Types") { level: 2 }
+      View @codeBlock {
+        Text("prop title: String")
+        Text("prop count: Optional<Int> = 0")
+        Text("state products: List<Product> = []")
+        Text("output selected: Product")
+      }
+      Text("Declarations are typed. Optional values are explicit, collection element types are explicit, and output payloads must match their declared channel.")
+    }
+
+    View @section {
+      Title("View control flow") { level: 2 }
+      View @codeBlock {
+        Text("if products.length > 0 {")
+        Text("  for product in products keyed(product.id) {")
+        Text("    ProductCard { product: product }")
+        Text("  } empty {")
+        Text("    Text(\"No products found.\")")
+        Text("  }")
+        Text("} else {")
+        Text("  Text(\"Catalog unavailable.\")")
+        Text("}")
+      }
+      Text("Control flow is part of the VX view language. HTML templates, JSX, #state, #logic, and #style are not the current language model.")
+    }
+
+    View @section {
+      Title("Compiler rules") { level: 2 }
+      Text("State mutation outside an action is rejected. Props, constants, derives, query results, and consumed store values remain read-only. Client graphs cannot import server-only modules or secrets.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Build reusable components") { href: "/components" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

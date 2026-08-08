@@ -1,0 +1,166 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/forms")
+    Text("Typed VX forms, schema validation, progressive enhancement, and multipart handling.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/forms") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/forms") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./client, ./server") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/forms@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./client") @chip
+        Text("./server") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Typed VX forms, schema validation, progressive enhancement, and multipart handling.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./client -> ./dist/client.d.ts") @bullet
+        Text("• ./server -> ./dist/server.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• announceFormResult - function in accessibility.ts") @bullet
+        Text("• applyFieldAccessibility - function in accessibility.ts") @bullet
+        Text("• bindErrorSummary - function in client.ts") @bullet
+        Text("• bindFieldError - function in client.ts") @bullet
+        Text("• bindFormElement - function in client.ts") @bullet
+        Text("• bindFormError - function in client.ts") @bullet
+        Text("• bindFormField - function in client.ts") @bullet
+        Text("• cloneValue - function in path.ts") @bullet
+        Text("• createForm - function in controller.ts") @bullet
+        Text("• createMemoryFormFlashStore - function in server.ts") @bullet
+        Text("• createServerForm - function in server.ts") @bullet
+        Text("• decodeFormData - function in decode.ts") @bullet
+        Text("• DecodeFormDataOptions - interface in decode.ts") @bullet
+        Text("• deletePath - function in path.ts") @bullet
+        Text("• DispatchServerFormOptions - interface in server.ts") @bullet
+        Text("• encodeFormData - function in decode.ts") @bullet
+        Text("• enhanceForm - function in client.ts") @bullet
+        Text("• EnhanceFormOptions - interface in client.ts") @bullet
+        Text("• errorSummaryId - function in accessibility.ts") @bullet
+        Text("• fieldControlId - function in accessibility.ts") @bullet
+        Text("• fieldError - function in server.ts") @bullet
+        Text("• fieldErrorId - function in accessibility.ts") @bullet
+        Text("• FieldSnapshot - interface in types.ts") @bullet
+        Text("• FileLike - interface in types.ts") @bullet
+        Text("• focusFirstError - function in accessibility.ts") @bullet
+        Text("• FormController - class in controller.ts") @bullet
+        Text("• FormControllerOptions - interface in types.ts") @bullet
+        Text("• FormFlashState - interface in server.ts") @bullet
+        Text("• FormFlashStore - interface in server.ts") @bullet
+        Text("• FormHydrationState - interface in types.ts") @bullet
+        Text("• FormPath - type in types.ts") @bullet
+        Text("• FormSnapshot - interface in types.ts") @bullet
+        Text("• FormStatus - type in types.ts") @bullet
+        Text("• FormSubmissionFailure - interface in types.ts") @bullet
+        Text("• FormSubmissionResult - type in types.ts") @bullet
+        Text("• FormSubmissionSuccess - interface in types.ts") @bullet
+        Text("• getPath - function in path.ts") @bullet
+        Text("• parsePath - function in path.ts") @bullet
+        Text("• redirect - function in server.ts") @bullet
+        Text("• refine - function in schema.ts") @bullet
+        Text("• registerServerForm - function in server.ts") @bullet
+        Text("• renderCsrfField - function in server.ts") @bullet
+        Text("• renderErrorSummary - function in server.ts") @bullet
+        Text("• renderMethodOverride - function in server.ts") @bullet
+        Text("• schema - const in schema.ts") @bullet
+        Text("• Schema - interface in types.ts") @bullet
+        Text("• SchemaDescription - interface in types.ts") @bullet
+        Text("• serverFieldAttributes - function in server.ts") @bullet
+        Text("• serverFieldErrorAttributes - function in server.ts") @bullet
+        Text("• serverFormAttributes - function in server.ts") @bullet
+        Text("• ServerFormAuthorization - type in server.ts") @bullet
+        Text("• ServerFormContext - interface in server.ts") @bullet
+        Text("• ServerFormContract - interface in server.ts") @bullet
+        Text("• ServerFormCsrfPolicy - type in server.ts") @bullet
+        Text("• ServerFormExecution - interface in server.ts") @bullet
+        Text("• ServerFormOptions - interface in server.ts") @bullet
+        Text("• ServerFormSecurityContext - interface in server.ts") @bullet
+        Text("• setPath - function in path.ts") @bullet
+        Text("• SubmitContext - interface in types.ts") @bullet
+        Text("• ValidationContext - interface in types.ts") @bullet
+        Text("• ValidationIssue - interface in types.ts") @bullet
+        Text("• ValidationPhase - type in types.ts") @bullet
+        Text("• ValidationResult - interface in types.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

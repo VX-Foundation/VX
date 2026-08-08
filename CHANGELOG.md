@@ -2,6 +2,32 @@
 
 All notable VX changes are documented here. The project follows Semantic Versioning and uses Changesets for package-level release notes.
 
+## 0.2.0 - 2026-08-06
+
+### Major Architecture Milestone — Dual-Mode Visual CSS Pipeline
+
+- **Dual-Mode Visual CSS Architecture**: Introduced a dual-mode styling architecture (`styles.mode`) in `@vx-foundation/compiler` and `@vx-foundation/bundler`:
+  - **`compiler` Mode (Default)**: Preserves maximum native Direct-DOM lowering performance with compiler-scoped visual roles (`@role`), zero extra `.css` asset HTTP requests, zero FOUC, and surgical node-level DOM reactivity.
+  - **`static` Mode (Opt-In)**: Extracts all visual role declarations (`@role`) into static physical `.css` bundle assets (`dist/assets/vx-[hash].css`) during `vx build`, injected via `<link rel="stylesheet">` tags in SSR HTML.
+- **Fine-Grained `class:` Attribute Cascading**: Added fine-grained `class:` attribute cascading overrides for widgets (`View`, `Text`, `Button`, `Input`, `Title`, `Image`, `Link`). Explicit classes (e.g. `class: "bg-red-600 shadow-xl"`) selectively override target visual properties while preserving default widget styles (padding, corners, cursor, transition).
+- **External Stylesheet Integration**: Supported `styles: { mode: 'compiler' | 'static', files: [...] }` in `vx.config.ts` (`VXConfig` / `loadConfig()`) for seamless integration with custom `.css` files and external frameworks (Bootstrap, Tailwind v4, global utilities).
+- **Multi-Framework Interop Support**: Added native support for importing and resolving external framework components (`.tsx`, `.jsx`, `.vue`, `.svelte`) in `@vx-foundation/language` and `@vx-foundation/compiler`. Interop components are resolved as integration islands within `.vx` view structures while preserving strict zero-static CSS guarantees in `compiler` mode.
+- **Native Industrial Color Palette System**: Integrated native industrial color palettes (`VX_COLOR_PALETTES` in `@vx-foundation/types` and `colorToken` resolution in `@vx-foundation/compiler`) featuring curated 50-950 shade scales across 22 color families (`cloud`, `smoke`, `steel`, `charcoal`, `rock`, `cherry`, `coral`, `sunset`, `lemon`, `mint`, `forest`, `emerald`, `turquoise`, `sky`, `ocean`, `sapphire`, `lavender`, `plum`, `violet`, `blossom`, `rose`, `ruby`, `white`, `black`).
+- **Decoupled Widgets Architecture**: Decoupled `@vx-foundation/widgets` from `@vx-foundation/compiler` dependencies. Integrated native HTML primitives catalog in `@vx-foundation/compiler` (`primitives.ts`), allowing the VX compiler core to remain 100% lightweight, zero-bloat, and independent of external UI component libraries.
+
+### Industrial-Grade CLI & Universal Package Manager Support
+
+- **Interactive Scaffolding Prompts**: Added zero-dependency TTY-aware interactive prompts (`prompt.ts`) for project creation (`vx create`, `vx new`, `create-vx`) supporting interactive template and package manager selection.
+- **Universal Package Manager Support**: Upgraded project scaffolding (`normalizeManifest` in `project.ts`) to dynamically configure `packageManager` and `engines` for `npm`, `yarn`, `bun`, and `pnpm`.
+- **Progressive Port Allocation & Default Port 4000**: Updated default dev/production server port from `3000` to `4000`. Enabled progressive port searching (`strictPort: false`), automatically falling back to `4001`, `4002`, `4003`, etc., if port `4000` is currently occupied. Added `server: { port, strictPort, host, https }` configuration in `vx.config.ts`.
+
+### Security & Compiler Hardening
+
+- **URL Sanitization XSS Defense**: Hardened `sanitizeSingleURL` in `@vx-foundation/runtime` (`url.ts`) to validate protocol-relative URLs (`//`) and reject embedded executable protocol schemes (`//javascript:`).
+- **Prototype Pollution Prevention**: Added `FORBIDDEN_PROPERTY_KEYS` filtering (`__proto__`, `constructor`, `prototype`) in `@vx-foundation/cli` (`project.ts`) during manifest parsing.
+- **CORS Origin Reflection Hardening**: Sanitized control characters and validated Origin headers in `@vx-foundation/server` (`security.ts`).
+- **Compiler Resolver Modularization**: Extracted media query and environment condition resolution into `resolver-media.ts`.
+
 ## 0.1.3 - 2026-08-04
 
 ### Security & Vulnerability Hardening

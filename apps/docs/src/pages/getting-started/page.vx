@@ -1,0 +1,90 @@
+#view
+  View @page {
+    Text("START HERE") @eyebrow
+    Title("Getting started with VX")
+    Text("Create a VX 0.2.0 application, validate the environment, add the first page, and produce a deterministic build.") @lead
+
+    View @section {
+      Title("Requirements") { level: 2 }
+      Text("VX development uses Node.js 22 LTS or 24 LTS, pnpm 11.19.0, Corepack, and an ESM-only project.")
+      View @codeBlock {
+        Text("node --version")
+        Text("corepack enable")
+        Text("corepack prepare pnpm@11.19.0 --activate")
+        Text("pnpm --version")
+      }
+      View @note {
+        Text("Use the exact pnpm version for framework and release work. The repository configuration can download the pinned version when another pnpm starts the workspace.")
+      }
+    }
+
+    View @section {
+      Title("Create an application") { level: 2 }
+      View @codeBlock {
+        Text("pnpm create @vx-foundation/vx@next my-app")
+        Text("cd my-app")
+        Text("pnpm install")
+      }
+      Text("The create command delegates to the official VX CLI and installs the framework packages selected by the template.")
+    }
+
+    View @section {
+      Title("Validate before development") { level: 2 }
+      View @codeBlock {
+        Text("pnpm vx doctor")
+        Text("pnpm vx check src")
+        Text("pnpm dev")
+      }
+      Text("doctor verifies the environment and project contract. check parses and validates VX sources without producing a deployable build. dev starts the development server.")
+    }
+
+    View @section {
+      Title("Create your first page") { level: 2 }
+      Text("Create src/pages/page.vx. The root page maps to the slash route.")
+      View @codeBlock {
+        Text("#script")
+        Text("  state name: String = \"VX\"")
+        Text("")
+        Text("  action rename(value: String) {")
+        Text("    name = value")
+        Text("  }")
+        Text("#end script")
+        Text("")
+        Text("#view")
+        Text("  View @page {")
+        Text("    Title(\"Hello \" + name)")
+        Text("    Input {")
+        Text("      label: \"Project name\"")
+        Text("      value: name")
+        Text("      change => rename($event)")
+        Text("    }")
+        Text("  }")
+        Text("")
+        Text("  @page { flow: vertical gap: lg inset: xl }")
+        Text("#end view")
+      }
+    }
+
+    View @section {
+      Title("Build and preview") { level: 2 }
+      View @codeBlock {
+        Text("pnpm vx build")
+        Text("pnpm vx preview")
+      }
+      Text("Build validates configuration, route policies, client and server boundaries, generated artifacts, and adapter requirements before writing output to dist.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Understand the project structure") { href: "/project-structure" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @note { surface: sapphire-50 border: sapphire-200 corner: lg inset: lg }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

@@ -1,0 +1,67 @@
+#view
+  View @page {
+    Text("SHIP AND MAINTAIN") @eyebrow
+    Title("Testing VX applications")
+    Text("A VX application should be verified from language parsing through compiler output, DOM behavior, server rendering, hydration, routes, endpoints, accessibility, and performance budgets.") @lead
+
+    View @section {
+      Title("Test layers") { level: 2 }
+      Text("1. Unit tests verify isolated pure contracts.")
+      Text("2. Component tests mount compiled components and verify deterministic disposal.")
+      Text("3. DOM tests query by semantic role and accessible name.")
+      Text("4. SSR tests assert deterministic markup.")
+      Text("5. Hydration tests compare server and client token streams.")
+      Text("6. Route, action, and endpoint tests invoke production contracts.")
+      Text("7. Browser tests run Chromium, Firefox, and WebKit.")
+      Text("8. Accessibility, visual regression, and performance tests protect user-facing quality.")
+    }
+
+    View @section {
+      Title("Project commands") { level: 2 }
+      View @codeBlock {
+        Text("pnpm test")
+        Text("pnpm vx test:component src/components/ProductCard.vx")
+        Text("pnpm vx test:browser")
+        Text("pnpm vx test:a11y")
+        Text("pnpm vx test:visual")
+      }
+      Text("Use the scripts exposed by the generated project when their names differ. The official testing packages share compiler, route, action, and hydration contracts with production.")
+    }
+
+    View @section {
+      Title("Write stable tests") { level: 2 }
+      Text("Tests must not depend on execution order, external network access, wall-clock time, global random state, or shared mutable fixtures. Randomized tests must record their seed.")
+      Text("Prefer semantic behavior over private implementation details. A DOM test should locate a Save button by role and name, not by generated class or internal node order.")
+    }
+
+    View @section {
+      Title("Cross-layer conformance") { level: 2 }
+      View @codeBlock {
+        Text("parser")
+        Text("  -> type checker")
+        Text("  -> compiler")
+        Text("  -> client DOM")
+        Text("  -> SSR markup")
+        Text("  -> hydration")
+      }
+      Text("Important framework behavior should pass through this complete chain. A test that only searches source text is not proof that the feature works.")
+    }
+
+    View @section {
+      Title("Coverage policy") { level: 2 }
+      Text("The VX repository targets 90 percent for compiler, parser, and type checking; 85 percent for runtime, router, and server; 80 percent for widgets; and 75 percent for CLI and tooling. Critical application flows require explicit tests regardless of percentages.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Use the integrated toolchain") { href: "/tooling" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

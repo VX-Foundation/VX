@@ -1,0 +1,142 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/interop")
+    Text("Typed JavaScript and TypeScript interoperability contracts for VX.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/interop") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/interop") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./browser, ./contracts, ./node, ./resolver, ./runtime") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/interop@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./browser") @chip
+        Text("./contracts") @chip
+        Text("./node") @chip
+        Text("./resolver") @chip
+        Text("./runtime") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Typed JavaScript and TypeScript interoperability contracts for VX.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./browser -> ./dist/browser.d.ts") @bullet
+        Text("• ./contracts -> ./dist/contracts.d.ts") @bullet
+        Text("• ./node -> ./dist/node.d.ts") @bullet
+        Text("• ./resolver -> ./dist/resolver.d.ts") @bullet
+        Text("• ./runtime -> ./dist/runtime.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• assertBrowserModule - function in browser.ts") @bullet
+        Text("• assertInteropBoundary - function in contracts.ts") @bullet
+        Text("• assertNodeModule - function in node.ts") @bullet
+        Text("• browserApi - function in browser.ts") @bullet
+        Text("• callback - function in runtime.ts") @bullet
+        Text("• clientOnly - function in runtime.ts") @bullet
+        Text("• construct - function in runtime.ts") @bullet
+        Text("• defineInteropModule - function in contracts.ts") @bullet
+        Text("• defineJSClass - function in runtime.ts") @bullet
+        Text("• defineJSFunction - function in runtime.ts") @bullet
+        Text("• DisposableCallback - interface in types.ts") @bullet
+        Text("• environmentCompatible - function in contracts.ts") @bullet
+        Text("• FFIOptions - interface in types.ts") @bullet
+        Text("• InteropDeclaration - interface in types.ts") @bullet
+        Text("• InteropDiagnostic - interface in types.ts") @bullet
+        Text("• InteropEnvironment - type in types.ts") @bullet
+        Text("• InteropErrorPolicy - type in types.ts") @bullet
+        Text("• InteropExportKind - type in types.ts") @bullet
+        Text("• InteropModuleContract - interface in types.ts") @bullet
+        Text("• InteropParameter - interface in types.ts") @bullet
+        Text("• InteropTypeContract - interface in types.ts") @bullet
+        Text("• InteropValueKind - type in types.ts") @bullet
+        Text("• JSClass - interface in runtime.ts") @bullet
+        Text("• JSFunction - interface in runtime.ts") @bullet
+        Text("• normalizeInteropError - function in runtime.ts") @bullet
+        Text("• promiseFrom - function in runtime.ts") @bullet
+        Text("• readableStreamFrom - function in runtime.ts") @bullet
+        Text("• ResolvedInteropPackage - interface in types.ts") @bullet
+        Text("• ResolveInteropPackageOptions - interface in resolver.ts") @bullet
+        Text("• resolveNpmInteropPackage - function in resolver.ts") @bullet
+        Text("• serverOnly - function in runtime.ts") @bullet
+        Text("• treeShakeInterop - function in contracts.ts") @bullet
+        Text("• validateInteropModule - function in contracts.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

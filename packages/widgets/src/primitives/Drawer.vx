@@ -1,0 +1,73 @@
+#script
+  prop open: Bool = false
+  prop title: String = ""
+  prop side: String = "right"
+  prop class: String = ""
+
+  output onClose: Void
+  content default: optional
+
+  action close() {
+    emit("onClose")
+  }
+#end script
+
+#view
+  if open {
+    View @drawerOverlay {
+      View @drawerPanel {
+        View @drawerHeader {
+          Title(title) @drawerTitle
+          Button("✕") @closeBtn {
+            click => close()
+          }
+        }
+        View @drawerBody {
+          Content(default)
+        }
+      }
+    }
+  }
+
+  @drawerOverlay {
+    flow: horizontal
+    content: end
+    surface: rock-950
+    z: modal
+  }
+
+  @drawerPanel {
+    flow: vertical
+    gap: md
+    inset: xl
+    surface: steel-900
+    border: steel-800
+    height: fill
+    width: dialog
+    elevation: lg
+  }
+
+  @drawerHeader {
+    flow: horizontal
+    content: space-between
+    items: center
+  }
+
+  @drawerTitle {
+    tone: cloud-50
+  }
+
+  @closeBtn {
+    surface: transparent
+    tone: cloud-400
+    when hover {
+      tone: cloud-50
+    }
+  }
+
+  @drawerBody {
+    flow: vertical
+    gap: md
+    tone: cloud-200
+  }
+#end view

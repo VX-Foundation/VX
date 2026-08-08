@@ -1,3 +1,5 @@
+import { resolveVXColor } from '@vx-foundation/types';
+
 // ─── Spacing / sizing tokens ────────────────────────────────────────────────
 const SPACING: Record<string, string> = {
   none: '0', xs: '0.25rem', sm: '0.5rem', md: '1rem', lg: '1.5rem', xl: '2rem', '2xl': '3rem', '3xl': '4rem',
@@ -398,6 +400,18 @@ function colorToken(kind: string, value: string): string {
   if (/^(#|rgb|hsl|oklch|lch|lab|color\(|hwb\()/.test(value)) return safe(value);
   if (value === 'transparent') return 'transparent';
   if (value === 'currentColor') return 'currentColor';
+
+  const parts = value.split(/[-.]/);
+  if (parts.length === 2) {
+    const [paletteName, shade] = parts;
+    if (paletteName !== undefined && shade !== undefined) {
+      const paletteHex = resolveVXColor(paletteName, shade);
+      if (paletteHex) return paletteHex;
+    }
+  }
+  const directHex = resolveVXColor(value);
+  if (directHex) return directHex;
+
   const fallback: Record<string, string> = {
     base: '#ffffff', raised: '#ffffff', overlay: '#ffffff', highlighted: '#f8fafc',
     input: '#ffffff', code: '#0f172a',

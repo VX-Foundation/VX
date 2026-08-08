@@ -106,7 +106,9 @@ const token = await createCsrfToken({ secret, binding: sessionId });
 const routed = await application.handle(new Request('http://vx.local/_vx/form/' + encodeURIComponent(routerFormId), { method: 'POST', headers: { origin: 'http://vx.local', 'x-vx-csrf': token }, body: new URLSearchParams({ name: 'Ada' }) }));
 assert.equal(routed.status, 200);
 
-const generatedRoot = await mkdtemp(join(workspace, '.phase12-runtime-'));
+import { tmpdir } from 'node:os';
+
+const generatedRoot = await mkdtemp(join(tmpdir(), 'vx-phase12-runtime-'));
 try {
   const sourcePath = join(generatedRoot, 'FormPage.vx');
   await writeFile(sourcePath, `#script
@@ -208,7 +210,7 @@ try {
 
   context.dispose(); runtime.dispose();
 } finally {
-  await rm(generatedRoot, { recursive: true, force: true });
+  await rm(generatedRoot, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 }).catch(() => {});
 }
 
 console.log('Phase 12 schema, controller, multipart, security, registry, router dispatch, and SSR verification passed.');

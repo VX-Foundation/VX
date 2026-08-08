@@ -252,24 +252,43 @@ function templateRoot(template: ProjectTemplate): string {
   return resolve(dirname(fileURLToPath(import.meta.url)), '../../templates', template);
 }
 
-function normalizeManifest(root: string, packageName: string, frameworkVersion: string, packageManager: string): void {
+const FORBIDDEN_PROPERTY_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
+function normalizeManifest(root: string, packageName: string, frameworkVersion: string, packageManagerInput: string): void {
   const path = join(root, 'package.json');
   const manifest = parseRecord(readFileSync(path, 'utf8'), path);
   manifest['name'] = packageName;
-  manifest['packageManager'] = packageManager;
-  const packageManagerVersion = packageManager.startsWith('pnpm@') ? packageManager.slice(5) : undefined;
-  const packageManagerMajor = packageManagerVersion ? Number.parseInt(packageManagerVersion.split('.')[0] ?? '', 10) : Number.NaN;
-  manifest['engines'] = {
-    node: '>=22.11.0 <23 || >=24.11.0 <25',
-    pnpm: packageManagerVersion && Number.isInteger(packageManagerMajor) ? `>=${packageManagerVersion} <${packageManagerMajor + 1}` : undefined
-  };
+
+  const pmName = packageManagerInput.split('@')[0]?.toLowerCase().trim() || 'pnpm';
+  let pinnedPm = packageManagerInput;
+  const engines: Record<string, string> = { node: '>=22.11.0 <23 || >=24.11.0 <25' };
+
+  if (pmName === 'npm') {
+    pinnedPm = packageManagerInput.includes('@') ? packageManagerInput : 'npm@10.8.0';
+    engines['npm'] = '>=10.0.0';
+  } else if (pmName === 'yarn') {
+    pinnedPm = packageManagerInput.includes('@') ? packageManagerInput : 'yarn@1.22.22';
+    engines['yarn'] = '>=1.22.0';
+  } else if (pmName === 'bun') {
+    pinnedPm = packageManagerInput.includes('@') ? packageManagerInput : 'bun@1.1.0';
+    engines['bun'] = '>=1.1.0';
+  } else {
+    pinnedPm = packageManagerInput.includes('@') ? packageManagerInput : 'pnpm@11.19.0';
+    engines['pnpm'] = '>=11.19.0 <12';
+  }
+
+  manifest['packageManager'] = pinnedPm;
+  manifest['engines'] = engines;
   for (const field of ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']) {
-    const dependencies = recordValue(manifest[field]);
-    if (Object.keys(dependencies).length === 0) continue;
-    for (const dependency of Object.keys(dependencies)) {
-      if (dependency.startsWith('@vx-foundation/')) dependencies[dependency] = frameworkDependencyVersion(frameworkVersion);
+    const rawDeps = recordValue(manifest[field]);
+    const dependencies: Record<string, string> = {};
+    for (const [key, value] of Object.entries(rawDeps)) {
+      if (FORBIDDEN_PROPERTY_KEYS.has(key)) continue;
+      dependencies[key] = key.startsWith('@vx-foundation/') ? frameworkDependencyVersion(frameworkVersion) : String(value);
     }
-    manifest[field] = dependencies;
+    if (Object.keys(dependencies).length > 0) {
+      manifest[field] = dependencies;
+    }
   }
   writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
 }

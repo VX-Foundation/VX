@@ -1,0 +1,185 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/bundler")
+    Text("VX deterministic asset pipeline, multi-target build system, and official deployment adapters") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/bundler") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/bundler") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./assets, ./build, ./adapters") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/bundler@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./assets") @chip
+        Text("./build") @chip
+        Text("./adapters") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX deterministic asset pipeline, multi-target build system, and official deployment adapters")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./adapters -> ./dist/adapters/index.d.ts") @bullet
+        Text("• ./assets -> ./dist/assets/index.d.ts") @bullet
+        Text("• ./build -> ./dist/build/index.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• adapterCapabilities - function in adapters/registry.ts") @bullet
+        Text("• AdapterCapabilities - interface in adapters/types.ts") @bullet
+        Text("• analyzeBuild - function in build/analysis.ts") @bullet
+        Text("• artifactFingerprint - function in build/fingerprint.ts") @bullet
+        Text("• AssetKind - type in assets/types.ts") @bullet
+        Text("• AssetManifest - interface in assets/types.ts") @bullet
+        Text("• AssetMetadata - interface in assets/types.ts") @bullet
+        Text("• AssetPipelineOptions - interface in assets/types.ts") @bullet
+        Text("• AssetPipelineResult - interface in assets/pipeline.ts") @bullet
+        Text("• AssetRecord - interface in assets/types.ts") @bullet
+        Text("• awsLambdaAdapter - const in adapters/aws-lambda.ts") @bullet
+        Text("• BrowserAssetGraph - interface in build/browser-manifest.ts") @bullet
+        Text("• BuildArtifact - interface in build/types.ts") @bullet
+        Text("• BuildCacheRecord - interface in build/cache.ts") @bullet
+        Text("• BuildMetadata - interface in build/types.ts") @bullet
+        Text("• BuildOptions - interface in build/types.ts") @bullet
+        Text("• BuildResult - interface in build/types.ts") @bullet
+        Text("• bunAdapter - const in adapters/bun.ts") @bullet
+        Text("• BundleAnalysis - interface in build/types.ts") @bullet
+        Text("• classifyAsset - function in assets/classify.ts") @bullet
+        Text("• cloudflarePagesAdapter - const in adapters/cloudflare.ts") @bullet
+        Text("• cloudflareWorkersAdapter - const in adapters/cloudflare.ts") @bullet
+        Text("• consumeBrowserAssetGraph - function in build/browser-manifest.ts") @bullet
+        Text("• contentHash - function in assets/hash.ts") @bullet
+        Text("• copyDirectory - function in adapters/files.ts") @bullet
+        Text("• createResourceHints - function in assets/hints.ts") @bullet
+        Text("• denoAdapter - const in adapters/deno.ts") @bullet
+        Text("• DeploymentAdapter - interface in adapters/types.ts") @bullet
+        Text("• DeploymentBootstrap - interface in adapters/bootstrap.ts") @bullet
+        Text("• DeploymentContext - interface in adapters/types.ts") @bullet
+        Text("• deploymentDirectory - function in adapters/files.ts") @bullet
+        Text("• DeploymentResult - interface in adapters/types.ts") @bullet
+        Text("• dockerAdapter - const in adapters/docker.ts") @bullet
+        Text("• edgeRuntimeAdapter - const in adapters/edge.ts") @bullet
+        Text("• fetchAdapterEntry - function in adapters/fetch-entry.ts") @bullet
+        Text("• fileHash - function in build/fingerprint.ts") @bullet
+        Text("• genericServerlessAdapter - const in adapters/serverless.ts") @bullet
+        Text("• ImageTransformer - type in assets/types.ts") @bullet
+        Text("• ImageTransformRequest - interface in assets/types.ts") @bullet
+        Text("• inspectAssetMetadata - function in assets/metadata.ts") @bullet
+        Text("• IntegrityAlgorithm - type in assets/types.ts") @bullet
+        Text("• integrityHash - function in assets/hash.ts") @bullet
+        Text("• LibraryBuildOptions - type in build/types.ts") @bullet
+        Text("• mediaTypeFor - function in assets/classify.ts") @bullet
+        Text("• netlifyAdapter - const in adapters/serverless.ts") @bullet
+        Text("• nodeAdapter - const in adapters/node-deployment.ts") @bullet
+        Text("• NodeAdapterOptions - interface in adapters/node.ts") @bullet
+        Text("• normalizeAdapterName - function in adapters/registry.ts") @bullet
+        Text("• normalizeBuildOptions - function in build/options.ts") @bullet
+        Text("• NormalizedBuildOptions - interface in build/types.ts") @bullet
+        Text("• normalizeLibraryEntries - function in build/library.ts") @bullet
+        Text("• normalizeLibraryFileName - function in build/library.ts") @bullet
+        Text("• officialAdapters - function in adapters/registry.ts") @bullet
+        Text("• optimizeAsset - function in assets/optimize.ts") @bullet
+        Text("• readBuildCache - function in build/cache.ts") @bullet
+        Text("• readDeploymentBootstrap - function in adapters/bootstrap.ts") @bullet
+        Text("• relativeImport - function in adapters/files.ts") @bullet
+        Text("• renderResourceHints - function in assets/hints.ts") @bullet
+        Text("• requireEntry - function in adapters/files.ts") @bullet
+        Text("• ResourceHint - interface in assets/types.ts") @bullet
+        Text("• ResourceHintManifest - interface in assets/types.ts") @bullet
+        Text("• ResponsiveImageManifestEntry - interface in assets/types.ts") @bullet
+        Text("• ResponsiveImageRequest - interface in assets/types.ts") @bullet
+        Text("• ResponsiveImageVariant - interface in assets/types.ts") @bullet
+        Text("• responsiveSrcSet - function in assets/responsive.ts") @bullet
+        Text("• runNodeAdapter - function in adapters/node.ts") @bullet
+        Text("• sourceFingerprint - function in build/fingerprint.ts") @bullet
+        Text("• stableId - function in assets/hash.ts") @bullet
+        Text("• StaticAdapterOptions - interface in adapters/static.ts") @bullet
+        Text("• staticDeploymentAdapter - const in adapters/static-deployment.ts") @bullet
+        Text("• validateBuildOptionsInput - function in build/validation.ts") @bullet
+        Text("• vercelAdapter - const in adapters/serverless.ts") @bullet
+        Text("• ViteLibraryEntry - type in build/library.ts") @bullet
+        Text("• ViteLibraryFileName - type in build/library.ts") @bullet
+        Text("• vitePluginVX - function in plugin.ts") @bullet
+        Text("• VXPluginOptions - interface in plugin.ts") @bullet
+        Text("• writeBuildCache - function in build/cache.ts") @bullet
+        Text("• writeBuildMetadata - function in build/cache.ts") @bullet
+        Text("• writeBundleAnalysis - function in build/analysis.ts") @bullet
+        Text("• writeDeploymentFile - function in adapters/files.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

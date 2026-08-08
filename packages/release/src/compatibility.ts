@@ -97,7 +97,7 @@ function add(
 }
 
 function validateSnapshot(snapshot: WorkspaceApiSnapshot): void {
-  if (snapshot.schema !== 'https://vx.dev/schemas/public-api-snapshot/v1' || snapshot.version !== 1 || !Array.isArray(snapshot.packages)) {
+  if (snapshot.schema !== 'https://vx.veelv.site/schemas/public-api-snapshot/v1' || snapshot.version !== 1 || !Array.isArray(snapshot.packages)) {
     throw new TypeError('Unsupported VX public API snapshot.');
   }
 }

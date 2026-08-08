@@ -2,7 +2,7 @@
 
 Typed VX forms, schema validation, progressive enhancement, and multipart handling.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 

@@ -2,7 +2,7 @@
 
 VX Core Orchestration
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 

@@ -1,0 +1,87 @@
+#view
+  View @page {
+    Text("BUILD WITH VX") @eyebrow
+    Title("Components")
+    Text("VX components are architectural units with explicit inputs, outputs, content regions, visual parts, and deterministic lifecycle behavior.") @lead
+
+    View @section {
+      Title("A reusable component") { level: 2 }
+      View @codeBlock {
+        Text("#script")
+        Text("  prop title: String")
+        Text("  prop price: Float")
+        Text("  output add: String")
+        Text("  content footer: optional")
+        Text("")
+        Text("  action addProduct() {")
+        Text("    emit(\"add\", title)")
+        Text("  }")
+        Text("#end script")
+        Text("")
+        Text("#view")
+        Text("  View @card {")
+        Text("    Title(title) { level: 2 }")
+        Text("    Text(\"Price: \" + price)")
+        Text("    Button(\"Add to cart\") { click => addProduct() }")
+        Text("    Content(footer)")
+        Text("  }")
+        Text("")
+        Text("  @card { flow: vertical gap: md surface: raised corner: lg inset: lg }")
+        Text("#end view")
+      }
+    }
+
+    View @section {
+      Title("Consume the component") { level: 2 }
+      View @codeBlock {
+        Text("ProductCard {")
+        Text("  title: product.name")
+        Text("  price: product.price")
+        Text("  add => addToCart($event)")
+        Text("")
+        Text("  content footer {")
+        Text("    Text(\"Ships today\")")
+        Text("  }")
+        Text("}")
+      }
+      Text("Props remain owned by the parent. Outputs are closed channels and only declared payloads may be emitted. Projected content retains the lexical ownership of its parent.")
+    }
+
+    View @section {
+      Title("Headless modules") { level: 2 }
+      Text("A .vx file without #view is a headless module. Use headless modules for reusable state, queries, actions, stores, policies, and domain behavior that should not own visual output.")
+    }
+
+    View @section {
+      Title("Visual parts") { level: 2 }
+      Text("Public parts are explicit styling boundaries. A consumer may customize declared parts without reaching private internal nodes or depending on implementation selectors.")
+      View @codeBlock {
+        Text("part title")
+        Text("")
+        Text("Title(title) { part title @productTitle }")
+      }
+    }
+
+    View @section {
+      Title("Component design rules") { level: 2 }
+      Text("• Keep contracts small and typed.")
+      Text("• Prefer outputs over mutating parent state indirectly.")
+      Text("• Use named content only when the consumer owns the projected structure.")
+      Text("• Keep private helpers and internal visual roles private.")
+      Text("• Avoid wrapper elements that exist only for component identity.")
+      Text("• Dispose resources deterministically through effects and managed contracts.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Understand state and reactivity") { href: "/reactivity" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

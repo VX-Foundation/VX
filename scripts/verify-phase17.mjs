@@ -1,45 +1,48 @@
-import { readFile } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { contentHash, integrityHash } from '../packages/bundler/dist/assets/index.js';
+import { normalizeBuildOptions } from '../packages/bundler/dist/build/index.js';
+import { officialAdapters } from '../packages/bundler/dist/adapters/registry.js';
+import { createRequestRuntime } from '../packages/runtime/dist/request-runtime.js';
+import { createServerRenderContext, renderDocument } from '../packages/runtime/dist/server.js';
 
-const files = {
-  types: await readFile(new URL('../packages/types/src/config.ts', import.meta.url), 'utf8'),
-  assets: await readFile(new URL('../packages/bundler/src/assets/pipeline.ts', import.meta.url), 'utf8'),
-  responsive: await readFile(new URL('../packages/bundler/src/assets/responsive.ts', import.meta.url), 'utf8'),
-  build: await readFile(new URL('../packages/bundler/src/build.ts', import.meta.url), 'utf8'),
-  browserManifest: await readFile(new URL('../packages/bundler/src/build/browser-manifest.ts', import.meta.url), 'utf8'),
-  hints: await readFile(new URL('../packages/bundler/src/assets/hints.ts', import.meta.url), 'utf8'),
-  options: await readFile(new URL('../packages/bundler/src/build/options.ts', import.meta.url), 'utf8'),
-  adapters: await readFile(new URL('../packages/bundler/src/adapters/registry.ts', import.meta.url), 'utf8'),
-  render: await readFile(new URL('../packages/runtime/src/server-platform/render.ts', import.meta.url), 'utf8'),
-  cli: await readFile(new URL('../packages/cli/src/cli.ts', import.meta.url), 'utf8')
-};
+const bytes = new TextEncoder().encode('vx-phase-17');
+assert.equal(contentHash(bytes), contentHash(bytes));
+assert.match(integrityHash(bytes, 'sha384'), /^sha384-/);
+const options = normalizeBuildOptions({
+  root: process.cwd(),
+  targets: ['browser', 'server'],
+  sourceMaps: 'hidden',
+  incremental: true,
+  bundleAnalysis: true,
+  chunkPolicy: { maxInitialBytes: 1024 }
+});
+assert.deepEqual(options.targets, ['browser', 'server']);
+const staticOptions = normalizeBuildOptions({ root: process.cwd(), adapter: 'static', targets: ['browser', 'server', 'static'] });
+assert.deepEqual(staticOptions.targets, ['browser', 'server', 'static']);
+const edgeOptions = normalizeBuildOptions({ root: process.cwd(), adapter: 'edge', targets: ['browser', 'edge'] });
+assert.deepEqual(edgeOptions.targets, ['browser', 'edge']);
+const libraryOptions = normalizeBuildOptions({ root: process.cwd(), targets: ['library'], library: { entry: 'src/index.ts' } });
+assert.deepEqual(libraryOptions.targets, ['library']);
+assert.equal(options.sourceMaps, 'hidden');
+assert.equal(options.chunkPolicy.maxInitialBytes, 1024);
+assert.deepEqual(officialAdapters().map((adapter) => adapter.name).sort(), [
+  'aws-lambda', 'bun', 'cloudflare-pages', 'cloudflare-workers', 'deno', 'docker',
+  'edge', 'netlify', 'node', 'serverless', 'static', 'vercel'
+]);
 
-const required = [
-  ['asset kinds', files.types, 'ResponsiveImageBuildConfig'],
-  ['public assets', files.assets, 'copyPublicAssets'],
-  ['content hashing', files.assets, 'contentHash'],
-  ['subresource integrity', files.assets, 'integrityHash'],
-  ['responsive images', files.responsive, 'generateResponsiveImageVariants'],
-  ['browser build', files.build, 'browserConfig'],
-  ['entry graph', files.browserManifest, 'consumeBrowserAssetGraph'],
-  ['critical asset hints', files.hints, 'criticalAssets'],
-  ['server build', files.build, 'serverConfig'],
-  ['edge build', files.build, 'edgeConfig'],
-  ['static build', files.options, "targets.includes('static')"],
-  ['library build', files.build, 'buildLibrary'],
-  ['incremental build', files.build, 'reuseCachedBuild'],
-  ['deterministic build', files.build, 'SOURCE_DATE_EPOCH'],
-  ['reproducible build', files.build, 'Reproducible build violation'],
-  ['source maps', files.build, 'viteSourceMap'],
-  ['bundle analysis', files.build, 'analyzeBuild'],
-  ['chunk policy', files.options, 'maxInitialBytes'],
-  ['dependency optimization', files.build, 'dependencyOptimization'],
-  ['SSR integrity', files.render, 'clientEntryIntegrity'],
-  ['resource hints', files.render, 'resourceHints'],
-  ['CLI build targets', files.cli, '--target <targets>']
-];
-for (const [name, source, marker] of required) if (!source.includes(marker)) throw new Error(`Phase 17 missing ${name}.`);
-
-for (const adapter of ['nodeAdapter', 'dockerAdapter', 'staticDeploymentAdapter', 'cloudflareWorkersAdapter', 'cloudflarePagesAdapter', 'vercelAdapter', 'netlifyAdapter', 'awsLambdaAdapter', 'genericServerlessAdapter', 'bunAdapter', 'denoAdapter', 'edgeRuntimeAdapter']) {
-  if (!files.adapters.includes(adapter)) throw new Error(`Phase 17 missing adapter ${adapter}.`);
-}
-console.log(`Phase 17 structural verification passed (${required.length} build contracts, 12 official adapters).`);
+const runtime = createRequestRuntime({ requestId: 'phase17-contract', applicationId: 'vx' });
+const context = createServerRenderContext({ runtime, routeId: 'home', requestURL: new URL('https://vx.veelv.site/'), hydration: 'full' });
+const result = renderDocument({
+  context,
+  html: '<main>VX</main>',
+  clientEntry: '/assets/client.js',
+  clientEntryIntegrity: 'sha384-client',
+  styleAssets: [{ href: '/assets/app.css', integrity: 'sha384-style', crossOrigin: 'anonymous' }],
+  resourceHints: [{ relation: 'preload', href: '/assets/font.woff2', as: 'font', crossOrigin: 'anonymous' }]
+});
+assert.match(result.html, /integrity="sha384-client"/);
+assert.match(result.html, /rel="preload"/);
+assert.match(result.html, /app\.css/);
+context.dispose();
+runtime.dispose();
+console.log('Phase 17 behavioral verification passed (hashing, target normalization, adapters, SRI, SSR, and resource hints).');

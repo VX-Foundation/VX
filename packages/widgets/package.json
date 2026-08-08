@@ -1,18 +1,24 @@
 {
   "name": "@vx-foundation/widgets",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Industrial-grade Native Widget Primitives for the VX Framework",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json"
+    "build": "node ../../scripts/widgets/generate-widget-registry.mjs --check && tsc -p tsconfig.build.json",
+    "generate": "node ../../scripts/widgets/generate-widget-registry.mjs",
+    "check:registry": "node ../../scripts/widgets/generate-widget-registry.mjs --check",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
     "@vx-foundation/types": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "^5.4.5"
+    "typescript": "catalog:",
+    "@vx-foundation/language": "workspace:*",
+    "vitest": "catalog:"
   },
   "license": "MIT",
   "engines": {

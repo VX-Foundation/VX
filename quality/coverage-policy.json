@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vx.veelv.site/schemas/coverage-policy/v1",
+  "version": 1,
+  "provider": "v8",
+  "targets": [
+    {
+      "name": "compiler-parser-typechecker",
+      "packages": ["@vx-foundation/compiler", "@vx-foundation/language"],
+      "lines": 90,
+      "functions": 90,
+      "statements": 90,
+      "branches": 85
+    },
+    {
+      "name": "runtime-router-server",
+      "packages": ["@vx-foundation/runtime", "@vx-foundation/router", "@vx-foundation/server"],
+      "lines": 85,
+      "functions": 85,
+      "statements": 85,
+      "branches": 80
+    },
+    {
+      "name": "widgets",
+      "packages": ["@vx-foundation/widgets"],
+      "lines": 80,
+      "functions": 80,
+      "statements": 80,
+      "branches": 75
+    },
+    {
+      "name": "cli-tooling",
+      "packages": ["@vx-foundation/cli", "@vx-foundation/tooling"],
+      "lines": 75,
+      "functions": 75,
+      "statements": 75,
+      "branches": 70
+    }
+  ],
+  "requiredBehavioralSuites": [
+    "@vx-foundation/widgets",
+    "@vx-foundation/language-server",
+    "vx-vscode",
+    "@vx-foundation/devtools",
+    "@vx-foundation/server",
+    "@vx-foundation/package-system"
+  ],
+  "officialApplicationGate": "verify:official-apps:ci"
+}

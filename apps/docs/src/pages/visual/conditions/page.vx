@@ -1,0 +1,153 @@
+#view
+  View @page {
+    Text("VISUAL REFERENCE") @eyebrow
+    Title("Visual conditions")
+    Text("25 supported interaction states and environment queries.") @lead
+    View @section {
+      Title("Interaction conditions") { level: 2 }
+      View @cards {
+        View @card {
+          Link("hover") @cardTitle { href: "/visual/conditions" }
+          Text("Pointer hover state.") @meta
+        }
+        View @card {
+          Link("pressed") @cardTitle { href: "/visual/conditions" }
+          Text("Active or pressed state.") @meta
+        }
+        View @card {
+          Link("focus") @cardTitle { href: "/visual/conditions" }
+          Text("Focused element.") @meta
+        }
+        View @card {
+          Link("focusVisible") @cardTitle { href: "/visual/conditions" }
+          Text("Keyboard-relevant visible focus.") @meta
+        }
+        View @card {
+          Link("disabled") @cardTitle { href: "/visual/conditions" }
+          Text("Native or ARIA disabled state.") @meta
+        }
+        View @card {
+          Link("selected") @cardTitle { href: "/visual/conditions" }
+          Text("Selected item state.") @meta
+        }
+        View @card {
+          Link("checked") @cardTitle { href: "/visual/conditions" }
+          Text("Checked control state.") @meta
+        }
+        View @card {
+          Link("expanded") @cardTitle { href: "/visual/conditions" }
+          Text("Expanded disclosure state.") @meta
+        }
+        View @card {
+          Link("invalid") @cardTitle { href: "/visual/conditions" }
+          Text("Native or ARIA invalid state.") @meta
+        }
+        View @card {
+          Link("loading") @cardTitle { href: "/visual/conditions" }
+          Text("Busy or loading state.") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Environment conditions") { level: 2 }
+      View @cards {
+        View @card {
+          Link("dark") @cardTitle { href: "/visual/conditions" }
+          Text("Dark color-scheme preference.") @meta
+        }
+        View @card {
+          Link("light") @cardTitle { href: "/visual/conditions" }
+          Text("Light color-scheme preference.") @meta
+        }
+        View @card {
+          Link("motion") @cardTitle { href: "/visual/conditions" }
+          Text("Reduced-motion or no-preference query.") @meta
+        }
+        View @card {
+          Link("viewport") @cardTitle { href: "/visual/conditions" }
+          Text("Viewport width query with min or max.") @meta
+        }
+        View @card {
+          Link("container") @cardTitle { href: "/visual/conditions" }
+          Text("Container width query with min or max.") @meta
+        }
+        View @card {
+          Link("orientation") @cardTitle { href: "/visual/conditions" }
+          Text("Portrait or landscape query.") @meta
+        }
+        View @card {
+          Link("contrast") @cardTitle { href: "/visual/conditions" }
+          Text("User contrast preference.") @meta
+        }
+        View @card {
+          Link("pointer") @cardTitle { href: "/visual/conditions" }
+          Text("Pointer precision query.") @meta
+        }
+        View @card {
+          Link("print") @cardTitle { href: "/visual/conditions" }
+          Text("Print media.") @meta
+        }
+        View @card {
+          Link("screen") @cardTitle { href: "/visual/conditions" }
+          Text("Screen media.") @meta
+        }
+        View @card {
+          Link("hoverNone") @cardTitle { href: "/visual/conditions" }
+          Text("Devices without hover.") @meta
+        }
+        View @card {
+          Link("coarsePointer") @cardTitle { href: "/visual/conditions" }
+          Text("Coarse pointer devices.") @meta
+        }
+        View @card {
+          Link("forced") @cardTitle { href: "/visual/conditions" }
+          Text("Forced-colors mode.") @meta
+        }
+        View @card {
+          Link("hdr") @cardTitle { href: "/visual/conditions" }
+          Text("High dynamic-range displays.") @meta
+        }
+        View @card {
+          Link("reducedData") @cardTitle { href: "/visual/conditions" }
+          Text("Reduced-data preference.") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Examples") { level: 2 }
+      View @codeBlock {
+        Text("@control {")
+        Text("  surface: primary")
+        Text("  when hover { surface: primaryHover }")
+        Text("  when focusVisible { outline: focus }")
+        Text("  when disabled { opacity: disabled }")
+        Text("  when dark { surface: steel-900 }")
+        Text("  when viewport(min: lg) { width: dialog }")
+        Text("  when container(min: md) { columns: 3 }")
+        Text("}")
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

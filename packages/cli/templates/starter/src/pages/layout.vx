@@ -10,7 +10,8 @@
           src: "/vx.svg"
           alt: "VX"
         }
-        Text("VX") @navWordmark
+        Text("VX App") @navWordmark
+        Text("v0.2.0") @navBadge
       }
       View @navLinks {
         Link("Home") @navLink {
@@ -21,11 +22,13 @@
         }
       }
     }
+
     View @main {
       Content(route)
     }
+
     View @siteFooter {
-      Text("Built with VX · MIT License") @siteFooterText
+      Text("Built with VX Framework · Production Quality Engine") @siteFooterText
     }
   }
 
@@ -38,13 +41,13 @@
   @nav {
     flow: horizontal
     items: center
+    content: between
     insetX: xl
     insetY: md
     border: subtle
     borderBottom: subtle
     surface: raised
-    elevation: xs
-    gap: fill
+    elevation: sm
   }
 
   @navBrand {
@@ -54,19 +57,27 @@
   }
 
   @navLogo {
-    width: 28
-    height: 28
+    width: 32
+    height: 32
   }
 
   @navWordmark {
-    typography: heading.xs
+    typography: heading.sm
     tone: strong
     letterSpacing: -0.02em
   }
 
+  @navBadge {
+    typography: label.xs
+    tone: muted
+    surface: highlighted
+    corner: sm
+    inset: control.sm
+  }
+
   @navLinks {
     flow: horizontal
-    gap: xs
+    gap: sm
     items: center
   }
 
@@ -88,7 +99,7 @@
     flexGrow: 1
     flow: vertical
     inset: xl
-    maxWidth: prose
+    maxWidth: 960
     marginX: auto
     width: fill
   }
@@ -100,6 +111,7 @@
     insetY: lg
     border: subtle
     borderTop: subtle
+    surface: raised
   }
 
   @siteFooterText {

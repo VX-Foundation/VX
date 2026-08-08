@@ -1,0 +1,36 @@
+#script
+  prop name: String = "User"
+  prop src: String = ""
+  prop size: String = "md"
+  prop class: String = ""
+#end script
+
+#view
+  View @avatarWrapper {
+    if src != "" {
+      Image @avatarImage {
+        src: src
+        alt: name
+      }
+    } else {
+      Text(name) @avatarInitials
+    }
+  }
+
+  @avatarWrapper {
+    flow: horizontal
+    items: center
+    content: center
+    corner: round
+    surface: steel-800
+    border: steel-700
+  }
+
+  @avatarImage {
+    corner: round
+  }
+
+  @avatarInitials {
+    tone: cloud-50
+  }
+#end view

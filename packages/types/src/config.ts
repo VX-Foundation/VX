@@ -87,10 +87,26 @@ export interface PluginPolicyConfig {
   defaultTimeoutMs?: number;
 }
 
+export interface ServerConfig {
+  port?: number;
+  strictPort?: boolean;
+  host?: string | boolean;
+  https?: boolean;
+}
+
+export type StyleMode = 'compiler' | 'static';
+
+export interface StyleConfig {
+  mode?: StyleMode;
+  files?: readonly string[];
+}
+
 export interface VXConfig {
   root: string;
   srcDir: string;
   outDir: string;
+  styles?: StyleConfig | readonly string[];
+  server?: ServerConfig;
   adapter: AdapterName | AdapterConfig;
   integrations: IntegrationRef[];
   build?: BuildConfig;

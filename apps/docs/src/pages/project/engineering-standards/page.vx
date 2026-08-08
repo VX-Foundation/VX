@@ -1,0 +1,158 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("VX Engineering Standards")
+    Text("Status: mandatory repository policy") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Status: mandatory repository policy")
+      Text("These rules apply to source code, tests, examples, diagnostics, comments, documentation, configuration, and generated source committed to the VX repository.")
+    }
+    View @section {
+      Title("1. Project language") { level: 2 }
+      Text("English is the only project language.")
+      Text("This includes:")
+      View @list {
+        Text("• identifiers and public APIs;") @bullet
+        Text("• source comments;") @bullet
+        Text("• diagnostics and internal messages;") @bullet
+        Text("• tests and fixtures;") @bullet
+        Text("• examples and templates;") @bullet
+        Text("• documentation and architecture records;") @bullet
+        Text("• commit-facing scripts and CI output.") @bullet
+      }
+      Text("Localized product content belongs in explicit localization fixtures or application-level translation resources. It must not appear as the default language of framework source or documentation.")
+      Text("The repository policy scanner checks committed text for disallowed language markers. CI fails when a violation is found.")
+    }
+    View @section {
+      Title("2. File-size limits") { level: 2 }
+      Text("An authored file must never exceed 1000 lines.")
+      Text("The limit is a failure boundary, not a design target. Files should normally remain within these ranges:")
+      View @tableRow {
+        Text("File role · Preferred range") @propertyDescription
+      }
+      View @tableRow {
+        Text("focused utility or value object · 40–200 lines") @propertyDescription
+      }
+      View @tableRow {
+        Text("parser or compiler domain module · 100–400 lines") @propertyDescription
+      }
+      View @tableRow {
+        Text("orchestration module · 50–250 lines") @propertyDescription
+      }
+      View @tableRow {
+        Text("normative specification · 100–500 lines") @propertyDescription
+      }
+      View @tableRow {
+        Text("test file · 80–400 lines") @propertyDescription
+      }
+      Text("A file at 700 lines enters mandatory review. Reviewers must decide whether the file still owns one coherent responsibility or should be split before additional work is accepted.")
+      Text("Package-manager lockfiles are generated dependency graphs and cannot be split into modules. They are the only current line-limit exception. Generated source remains subject to the 1000-line limit and must be sharded by its generator when necessary.")
+    }
+    View @section {
+      Title("3. Responsibility boundaries") { level: 2 }
+      Text("Every module must have one primary reason to change.")
+      Text("Examples:")
+      View @list {
+        Text("• scanners read characters and produce lexical facts;") @bullet
+        Text("• parsers build syntax nodes;") @bullet
+        Text("• analyzers resolve symbols and validate semantics;") @bullet
+        Text("• IR builders convert validated syntax into target-neutral programs;") @bullet
+        Text("• emitters translate IR into target output;") @bullet
+        Text("• runtime modules execute only behavior that cannot be removed at build time;") @bullet
+        Text("• orchestrators sequence domain services but do not contain domain algorithms.") @bullet
+      }
+      Text("A module must not combine unrelated concerns merely because they are used by the same phase.")
+    }
+    View @section {
+      Title("4. Orchestration rules") { level: 2 }
+      Text("Orchestration must be explicit and shallow.")
+      Text("An orchestrator may:")
+      View @list {
+        Text("• establish execution order;") @bullet
+        Text("• create and pass typed contexts;") @bullet
+        Text("• collect diagnostics and results;") @bullet
+        Text("• select an implementation through a defined interface;") @bullet
+        Text("• coordinate cleanup and failure propagation.") @bullet
+      }
+      Text("An orchestrator must not:")
+      View @list {
+        Text("• contain parser rules;") @bullet
+        Text("• implement type inference;") @bullet
+        Text("• generate target code directly;") @bullet
+        Text("• mutate hidden global state;") @bullet
+        Text("• duplicate validation owned by another layer;") @bullet
+        Text("• swallow failures and continue with placeholder behavior.") @bullet
+      }
+    }
+    View @section {
+      Title("5. Module contracts") { level: 2 }
+      Text("Cross-package communication uses exported contracts from the owning package.")
+      Text("Rules:")
+      View @list {
+        Text("• package internals must not be imported through private paths;") @bullet
+        Text("• target-specific types must not leak into target-neutral layers;") @bullet
+        Text("• public contracts must not depend on implementation classes;") @bullet
+        Text("• ownership and cleanup must be visible in the contract;") @bullet
+        Text("• optional behavior must be modeled explicitly rather than inferred from missing values;") @bullet
+        Text("• circular package dependencies are forbidden.") @bullet
+      }
+    }
+    View @section {
+      Title("6. Index modules and registries") { level: 2 }
+      Text("An index.ts file should normally be a public export surface. It must not become a catch-all implementation module.")
+      Text("Generated registries are allowed when they are reproducible and verified. If a generated registry approaches the line limit, the generator must emit multiple deterministic shards and a small top-level index.")
+    }
+    View @section {
+      Title("7. Tests follow ownership") { level: 2 }
+      Text("Tests should be colocated with the responsibility they verify.")
+      View @list {
+        Text("• parser tests verify syntax and spans;") @bullet
+        Text("• analyzer tests verify semantic rules and diagnostics;") @bullet
+        Text("• IR tests verify target-neutral representation;") @bullet
+        Text("• emitter tests verify generated output;") @bullet
+        Text("• runtime tests verify lifecycle and direct updates;") @bullet
+        Text("• integration tests verify package boundaries;") @bullet
+        Text("• policy tests verify repository constraints.") @bullet
+      }
+      Text("A large end-to-end test does not replace focused tests for each layer.")
+    }
+    View @section {
+      Title("8. Automated enforcement") { level: 2 }
+      Text("Run:")
+      View @codeBlock {
+        Text("pnpm verify:policy")
+      }
+      Text("The command validates:")
+      View @list {
+        Text("• English-only project language markers;") @bullet
+        Text("• the 1000-line hard limit for authored files;") @bullet
+        Text("• the review threshold for files approaching the limit;") @bullet
+        Text("• explicit reporting of generated-file exceptions.") @bullet
+      }
+      Text("The same check runs in CI before dependency installation, so policy violations fail quickly and do not consume the full build pipeline.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

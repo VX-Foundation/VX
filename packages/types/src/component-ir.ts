@@ -15,7 +15,7 @@ import type {
   VisualRoleDeclarationNode
 } from './index.js';
 
-export type ComponentModuleKind = 'component' | 'headless' | 'visual';
+export type ComponentModuleKind = 'component' | 'headless' | 'visual' | 'interop';
 
 export interface ComponentGenericContract {
   name: string;

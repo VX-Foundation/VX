@@ -2,7 +2,7 @@
 
 VX direct-DOM client runtime and request-scoped SSR server platform.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 
@@ -355,6 +355,7 @@ Current package line: `0.1.2`.
 - `VisualPartDynamicProperty` - interface in `component.ts`
 - `VisualPartOverride` - interface in `component.ts`
 - `VisualPartOverrides` - type in `component.ts`
+- `WIDGET_DEFAULT_ATTRIBUTES` - const in `widget-metadata.generated.ts`
 
 ## Stability
 

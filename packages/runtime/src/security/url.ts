@@ -30,7 +30,15 @@ function sanitizeSingleURL(source: string, context: URLSanitizationContext): str
   // eslint-disable-next-line no-control-regex
   const normalizedForScheme = source.replace(/[\u0000-\u0020\u007f]+/g, '');
 
-  if (normalizedForScheme.startsWith('//')) return source;
+  if (normalizedForScheme.startsWith('//')) {
+    const afterSlashes = normalizedForScheme.slice(2).trim();
+    const subSchemeMatch = /^([a-z][a-z0-9+.-]*:)/i.exec(afterSlashes);
+    if (subSchemeMatch) {
+      const subScheme = subSchemeMatch[1]!.toLowerCase();
+      if (EXECUTABLE_PROTOCOLS.has(subScheme) || subScheme === 'data:') return undefined;
+    }
+    return source;
+  }
 
   const schemeMatch = /^([a-z][a-z0-9+.-]*:)/i.exec(normalizedForScheme);
   if (!schemeMatch) return source;

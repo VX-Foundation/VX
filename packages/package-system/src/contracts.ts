@@ -4,7 +4,7 @@ import type { PublicContractComparison, PublicContractSnapshot, VXPackageMetadat
 export function createPublicContractSnapshot(metadata: VXPackageMetadata): PublicContractSnapshot {
   const exports = Object.fromEntries(Object.entries(metadata.publicContracts).sort(([left], [right]) => left.localeCompare(right)).map(([subpath, contract]) => [subpath, normalize(contract)]));
   return Object.freeze({
-    schema: 'https://vx.dev/schemas/public-contract/v1',
+    schema: 'https://vx.veelv.site/schemas/public-contract/v1',
     version: 1,
     packageName: metadata.name,
     packageVersion: metadata.packageVersion,

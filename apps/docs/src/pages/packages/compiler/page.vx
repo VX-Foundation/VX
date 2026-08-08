@@ -1,0 +1,325 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/compiler")
+    Text("Compiler core: Reactive graph, type checking, lowering.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/compiler") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/compiler") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./core, ./project, ./package") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/compiler@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./core") @chip
+        Text("./project") @chip
+        Text("./package") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Compiler core: Reactive graph, type checking, lowering.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./core -> ./dist/core.d.ts") @bullet
+        Text("• ./package -> ./dist/package/index.d.ts") @bullet
+        Text("• ./project -> ./dist/project.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• ALLOWED_PUBLIC_KINDS - const in components/validation-constants.ts") @bullet
+        Text("• analyze - function in core.ts") @bullet
+        Text("• AnalyzeOptions - interface in core.ts") @bullet
+        Text("• AnalyzeResult - interface in core.ts") @bullet
+        Text("• analyzeScriptWithTSProgram - function in typecheck/ts-program-cache.ts") @bullet
+        Text("• bodyContainsAwait - function in codegen/javascript.ts") @bullet
+        Text("• buildContractTypeEnvironment - function in components/contract-types.ts") @bullet
+        Text("• buildDataProgram - function in data/builder.ts") @bullet
+        Text("• buildReactiveGraph - function in analyze/graph-builder.ts") @bullet
+        Text("• buildVXPackage - function in package/builder.ts") @bullet
+        Text("• BuildVXPackageOptions - interface in package/types.ts") @bullet
+        Text("• BuildVXPackageResult - interface in package/types.ts") @bullet
+        Text("• BUILTIN_ROLES - const in visual/catalog.ts") @bullet
+        Text("• BuiltinRoleDefinition - interface in visual/catalog.ts") @bullet
+        Text("• callProperty - function in codegen/dom-helpers.ts") @bullet
+        Text("• checkViewTypes - function in analyze/type-checker.ts") @bullet
+        Text("• classifyModule - function in components/contract.ts") @bullet
+        Text("• clearTSProgramCache - function in typecheck/ts-program-cache.ts") @bullet
+        Text("• collectKeyframeBlocks - function in visual/resolver-css.ts") @bullet
+        Text("• collectMutatedIdentifiers - function in analyze/expression-identifiers.ts") @bullet
+        Text("• collectReferencedIdentifiers - function in analyze/expression-identifiers.ts") @bullet
+        Text("• collectSymbols - function in codegen/dom-helpers.ts") @bullet
+        Text("• compileComponentProject - function in project.ts") @bullet
+        Text("• CompileComponentProjectOptions - interface in project.ts") @bullet
+        Text("• CompilerWidgetDefinition - interface in visual/generated/contracts.ts") @bullet
+        Text("• ComponentBindingContext - interface in components/context.ts") @bullet
+        Text("• ComponentCodegenContext - interface in components/codegen-context.ts") @bullet
+        Text("• ComponentCodegenImport - interface in components/codegen-context.ts") @bullet
+        Text("• componentImport - function in codegen/component-module.ts") @bullet
+        Text("• ComponentSymbols - interface in codegen/dom-helpers.ts") @bullet
+        Text("• ComponentValidationContext - interface in components/validation.ts") @bullet
+        Text("• CONDITION_NAMES - const in visual/resolver-media.ts") @bullet
+        Text("• CONTAINER_WIDGETS - const in components/validation-constants.generated.ts") @bullet
+        Text("• contentOutletName - function in codegen/component-module.ts") @bullet
+        Text("• ContractType - type in components/contract-types.ts") @bullet
+        Text("• CONTROL_WIDGETS - const in components/validation-constants.generated.ts") @bullet
+        Text("• countLines - function in codegen/dom-helpers.ts") @bullet
+        Text("• createComponentBindingContext - function in components/context.ts") @bullet
+        Text("• createFileIntegrity - function in package/manifest.ts") @bullet
+        Text("• createSetupBindings - function in codegen/dom-helpers.ts") @bullet
+        Text("• createTSProgramCacheKey - function in typecheck/tsconfig-loader.ts") @bullet
+        Text("• createViewBindings - function in codegen/dom-helpers.ts") @bullet
+        Text("• createVirtualCompilerHost - function in typecheck/ts-host.ts") @bullet
+        Text("• CssDeclaration - interface in visual/properties.ts") @bullet
+        Text("• cssValueForRuntime - function in visual/properties.ts") @bullet
+        Text("• declarationsForScope - function in javascript-scopes.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Accordion.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Audio.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Avatar.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Badge.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Breadcrumb.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Button.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Canvas.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Checkbox.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/DataTable.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/DatePicker.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Divider.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Drawer.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/ErrorSummary.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/FieldError.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/FieldGroup.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/FileUpload.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Form.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/FormError.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Icon.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/IFrame.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Image.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Input.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Link.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/List.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Modal.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Popover.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/ProgressBar.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Radio.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/ScrollView.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Select.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Skeleton.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Slider.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Spinner.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Switch.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Tabs.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Text.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/TextArea.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Title.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Toast.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Tooltip.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/Video.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/View.ts") @bullet
+        Text("• definition - const in visual/generated/definitions/VirtualList.ts") @bullet
+        Text("• DiagnosticCollector - class in analyze/diagnostics.ts") @bullet
+        Text("• discoverVXPackagePublicAPI - function in package/discovery.ts") @bullet
+        Text("• DomEmitter - class in codegen/dom-emitter.ts") @bullet
+        Text("• emitClientForms - function in forms/codegen.ts") @bullet
+        Text("• emitPartOverride - function in codegen/component-module.ts") @bullet
+        Text("• emitPseudoRules - function in visual/resolver-css.ts") @bullet
+        Text("• emitSchemas - function in forms/codegen.ts") @bullet
+        Text("• emitSelectorRules - function in visual/resolver-css.ts") @bullet
+        Text("• emitServerFormHandlers - function in forms/codegen.ts") @bullet
+        Text("• emitThemeCss - function in visual/resolver-css.ts") @bullet
+        Text("• emitVisualCss - function in visual/resolver-css.ts") @bullet
+        Text("• expandInterpolatedExpression - function in interpolation.ts") @bullet
+        Text("• expressionContainsMutationOrAwait - function in analyze/expression-identifiers.ts") @bullet
+        Text("• extractComponentContract - function in components/contract.ts") @bullet
+        Text("• findForbiddenClientAccess - function in analyze/security.ts") @bullet
+        Text("• findScriptBlock - function in components/contract.ts") @bullet
+        Text("• findViewBlock - function in components/contract.ts") @bullet
+        Text("• ForbiddenAccess - interface in analyze/security.ts") @bullet
+        Text("• FORM_CONTROL_WIDGETS - const in components/validation-constants.generated.ts") @bullet
+        Text("• generateApplicationMount - function in codegen/component-factory.ts") @bullet
+        Text("• generateComponentFactory - function in codegen/component-factory.ts") @bullet
+        Text("• generateContractDTS - function in typecheck/contract-dts.ts") @bullet
+        Text("• GeneratedDomCode - interface in codegen/dom.ts") @bullet
+        Text("• GeneratedModuleImports - interface in codegen/component-module.ts") @bullet
+        Text("• generateDomCode - function in codegen/dom.ts") @bullet
+        Text("• generateHeadlessFactory - function in codegen/component-factory.ts") @bullet
+        Text("• generateModuleImports - function in codegen/component-module.ts") @bullet
+        Text("• generateServerCode - function in codegen/server.ts") @bullet
+        Text("• generateSetup - function in codegen/dom-setup.ts") @bullet
+        Text("• generateVirtualTS - function in typecheck/virtual-ts.ts") @bullet
+        Text("• generateVisualRoleDTS - function in typecheck/contract-dts.ts") @bullet
+        Text("• getBuiltinRole - function in visual/catalog.ts") @bullet
+        Text("• getPrimitiveTag - function in codegen/dom-helpers.ts") @bullet
+        Text("• IdentifierAnalysisOptions - interface in analyze/expression-identifiers.ts") @bullet
+        Text("• ImportedComponentBinding - interface in components/context.ts") @bullet
+        Text("• ImportedValueBinding - interface in components/context.ts") @bullet
+        Text("• ImportedVisualRoleBinding - interface in components/context.ts") @bullet
+        Text("• indent - function in codegen/dom-helpers.ts") @bullet
+        Text("• inferExpressionType - function in components/contract-types.ts") @bullet
+        Text("• INTERACTIVE_WIDGETS - const in components/validation-constants.generated.ts") @bullet
+        Text("• InterpolatedExpression - interface in interpolation.ts") @bullet
+        Text("• isContractTypeAssignable - function in components/contract-types.ts") @bullet
+        Text("• isFunctionScope - function in javascript-scopes.ts") @bullet
+        Text("• isPrivatePackagePath - function in package/conventions.ts") @bullet
+        Text("• isRuntimeDeclaration - function in codegen/component-module.ts") @bullet
+        Text("• isShadowed - function in javascript-scopes.ts") @bullet
+        Text("• isSupportedVisualProperty - function in visual/properties.ts") @bullet
+        Text("• JavaScriptBinding - interface in codegen/javascript.ts") @bullet
+        Text("• loadTSConfig - function in typecheck/tsconfig-loader.ts") @bullet
+        Text("• lower - function in codegen/index.ts") @bullet
+        Text("• lowerBody - function in codegen/javascript.ts") @bullet
+        Text("• lowerExpression - function in codegen/javascript.ts") @bullet
+        Text("• LowerOptions - interface in codegen/index.ts") @bullet
+        Text("• LowerResult - interface in codegen/index.ts") @bullet
+        Text("• mapTSDiagnostic - function in typecheck/ts-diagnostic-mapper.ts") @bullet
+        Text("• MEDIA_WIDGETS - const in components/validation-constants.generated.ts") @bullet
+        Text("• NATIVE_PRIMITIVE_TAGS - const in visual/primitives.ts") @bullet
+        Text("• normalizeVisualExpression - function in visual/expression.ts") @bullet
+        Text("• PRIMITIVE_CALL_PROPERTIES - const in codegen/primitive-metadata.generated.ts") @bullet
+        Text("• PRIMITIVE_NAMES - const in visual/generated/registry.ts") @bullet
+        Text("• PRIMITIVE_NATIVE_ELEMENTS - const in codegen/primitive-metadata.generated.ts") @bullet
+        Text("• PRIMITIVE_SOURCES - const in visual/generated/registry.ts") @bullet
+        Text("• PRIMITIVE_WIDGETS - const in components/validation-constants.generated.ts") @bullet
+        Text("• PrimitiveName - type in visual/generated/registry.ts") @bullet
+        Text("• publicExportKey - function in package/conventions.ts") @bullet
+        Text("• ReactiveGraph - interface in analyze/graph-builder.ts") @bullet
+        Text("• ReactiveNode - interface in analyze/graph-builder.ts") @bullet
+        Text("• ReadGeneratedManifestResult - interface in package/manifest.ts") @bullet
+        Text("• readGeneratedVXPackageManifest - function in package/manifest.ts") @bullet
+        Text("• registerKeyframes - function in visual/resolver-css.ts") @bullet
+        Text("• RESERVED_IMPORT_NAMES - const in components/validation-constants.ts") @bullet
+        Text("• resetKeyframesForScope - function in visual/resolver-css.ts") @bullet
+        Text("• resolveComponentProject - function in components/resolver.ts") @bullet
+        Text("• ResolveComponentProjectOptions - interface in components/resolver.ts") @bullet
+        Text("• resolveCondition - function in visual/resolver-media.ts") @bullet
+        Text("• ResolvedVXPackageImport - interface in components/package-resolver.ts") @bullet
+        Text("• resolveQueryPolicy - function in data/policy.ts") @bullet
+        Text("• resolveVisualProgram - function in visual/resolver.ts") @bullet
+        Text("• resolveVXPackageImport - function in components/package-resolver.ts") @bullet
+        Text("• rootExportKey - function in package/conventions.ts") @bullet
+        Text("• satisfiesVersion - function in components/semver.ts") @bullet
+        Text("• ScopeStack - type in javascript-scopes.ts") @bullet
+        Text("• ScriptTypeCheckResult - interface in typecheck/ts-program-cache.ts") @bullet
+        Text("• sourceKind - function in codegen/dom-helpers.ts") @bullet
+        Text("• SPECIAL_COMPONENT_WIDGETS - const in components/validation-constants.ts") @bullet
+        Text("• STRUCTURAL_ROLE_NAMES - const in visual/catalog.ts") @bullet
+        Text("• SUPPORTED_VISUAL_PROPERTIES - const in visual/properties.ts") @bullet
+        Text("• TEXT_WIDGETS - const in components/validation-constants.generated.ts") @bullet
+        Text("• TransformJavaScriptOptions - interface in codegen/javascript.ts") @bullet
+        Text("• UNSAFE_MEMBER_NAMES - const in components/validation-constants.ts") @bullet
+        Text("• UNSAFE_VALUE_SENTINEL - const in visual/properties.ts") @bullet
+        Text("• UnsupportedLoweringError - class in codegen/index.ts") @bullet
+        Text("• validateAccessibility - function in analyze/accessibility.ts") @bullet
+        Text("• validateActionDeclaration - function in analyze/action-semantics.ts") @bullet
+        Text("• validateComponentModule - function in components/validation.ts") @bullet
+        Text("• validateComponentPropTypes - function in components/contract-types.ts") @bullet
+        Text("• validateComponentView - function in components/validation-view.ts") @bullet
+        Text("• validateContentOutlets - function in components/validation-view.ts") @bullet
+        Text("• validateContractDeclarations - function in components/validation-contracts.ts") @bullet
+        Text("• validateEffectDeclaration - function in analyze/effect-semantics.ts") @bullet
+        Text("• validateEmits - function in components/validation-view.ts") @bullet
+        Text("• validateForms - function in forms/validation.ts") @bullet
+        Text("• validateHeadlessModule - function in components/validation-contracts.ts") @bullet
+        Text("• validateImports - function in components/validation-contracts.ts") @bullet
+        Text("• validatePartitioning - function in analyze/partition.ts") @bullet
+        Text("• validatePublicPartMarkers - function in components/validation-view.ts") @bullet
+        Text("• validateQueryDeclaration - function in analyze/query-semantics.ts") @bullet
+        Text("• validateScriptSemantics - function in analyze/script-semantics.ts") @bullet
+        Text("• validateStoreDeclaration - function in analyze/store-semantics.ts") @bullet
+        Text("• validateVisualModule - function in components/validation-contracts.ts") @bullet
+        Text("• validateVisualRoles - function in analyze/visual-roles.ts") @bullet
+        Text("• verifyFileIntegrity - function in package/manifest.ts") @bullet
+        Text("• ViewBindings - type in codegen/dom-helpers.ts") @bullet
+        Text("• VirtualFileStore - interface in typecheck/ts-host.ts") @bullet
+        Text("• VirtualSpanMapping - interface in typecheck/virtual-ts.ts") @bullet
+        Text("• VirtualTSOutput - interface in typecheck/virtual-ts.ts") @bullet
+        Text("• visualPropertyToCss - function in visual/properties.ts") @bullet
+        Text("• VX_GENERATED_MANIFEST_FILE - const in package/manifest.ts") @bullet
+        Text("• VX_MAX_INTEGRITY_FILES - const in package/manifest.ts") @bullet
+        Text("• VX_MAX_MANIFEST_BYTES - const in package/manifest.ts") @bullet
+        Text("• VX_MAX_PACKAGE_EXPORTS - const in package/manifest.ts") @bullet
+        Text("• VX_PACKAGE_MANIFEST_SCHEMA - const in package/types.ts") @bullet
+        Text("• VX_PACKAGE_MANIFEST_VERSION - const in package/types.ts") @bullet
+        Text("• VX_PRIVATE_SEGMENTS - const in package/conventions.ts") @bullet
+        Text("• VX_PUBLIC_SOURCE_DIRECTORIES - const in package/conventions.ts") @bullet
+        Text("• VXGeneratedPackageManifest - interface in package/types.ts") @bullet
+        Text("• VXPackageDiscoveryOptions - interface in package/types.ts") @bullet
+        Text("• VXPackageDiscoveryResult - interface in package/types.ts") @bullet
+        Text("• VXPackagePublicEntry - interface in package/types.ts") @bullet
+        Text("• WIDGET_REGISTRY - const in visual/generated/registry.ts") @bullet
+        Text("• withNodeScope - function in javascript-scopes.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

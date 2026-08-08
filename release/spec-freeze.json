@@ -1,14 +1,14 @@
 {
-  "schema": "https://vx.dev/schemas/spec-freeze/v1",
+  "schema": "https://vx.veelv.site/schemas/spec-freeze/v1",
   "version": 1,
-  "frameworkVersion": "0.1.3",
-  "specificationVersion": "0.1",
-  "frozenAt": "2026-07-30",
+  "frameworkVersion": "0.2.0",
+  "specificationVersion": "0.2",
+  "frozenAt": "2026-08-06",
   "files": [
     {
       "path": "docs/spec/FROZEN.md",
       "size": 672,
-      "sha256": "a0f6dad075f564beea37da2af200e5a48e2c492a7862cac05fa236b883466b12"
+      "sha256": "bf435b6264855cf3c65c0a86c13bc29949009c26821e84cd8acd63ffb016c397"
     },
     {
       "path": "docs/spec/README.md",
@@ -71,5 +71,5 @@
       "sha256": "1680581eabbbf017ea392f59d3ddd98a5b78b8ab448fefe53b153e20ff47838e"
     }
   ],
-  "integrity": "f7680d16ab1de6721d0deaf9b68fd3a9af59f338dcd2b4b2f695146a9b1c2b58"
+  "integrity": "71ba5fcf3dc94b27f89ef0d35d9887ce110bc7e56d083943d495dd3c52942903"
 }

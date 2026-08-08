@@ -1,0 +1,45 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("Migrating to VX 0.1")
+    Text("VX 0.1 makes the following previously implicit requirements enforceable:") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX 0.1 makes the following previously implicit requirements enforceable:")
+      View @list {
+        Text("• Informative Image widgets require alt; decorative images require decorative: true.") @bullet
+        Text("• Form controls require label, ariaLabel, or ariaLabelledBy.") @bullet
+        Text("• IFrame requires a title.") @bullet
+        Text("• Positive tabIndex and nested interactive widgets are rejected.") @bullet
+        Text("• Executable and unsupported URL schemes are removed on both SSR and client updates.") @bullet
+        Text("• Server actions default to authenticated access and required CSRF verification.") @bullet
+        Text("• Action contracts cannot be replaced by a different contract under the same stable ID.") @bullet
+        Text("• Serialized request/action data is bounded and rejects dangerous object keys.") @bullet
+        Text("• Public packages must publish only dist, must not contain install lifecycle scripts, and must use the configured registry.") @bullet
+      }
+      Text("Run vx format, vx inspect, the component harness, and pnpm verify:release-candidate before creating a release candidate.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

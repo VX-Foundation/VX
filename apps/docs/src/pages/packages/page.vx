@@ -1,0 +1,134 @@
+#view
+  View @page {
+    Text("REFERENCE") @eyebrow
+    Title("Package API reference")
+    Text("25 public VX packages, their supported subpath exports, responsibilities, and generated API surfaces.") @lead
+    View @section {
+      Title("Public packages") { level: 2 }
+      View @cards {
+        View @card {
+          Link("@vx-foundation/benchmark") @cardTitle { href: "/packages/benchmark" }
+          Text("5 export surfaces · Framework-neutral benchmark protocol, statistics, fairness rules, budgets, and reports for VX public performance comparisons.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/bundler") @cardTitle { href: "/packages/bundler" }
+          Text("4 export surfaces · VX deterministic asset pipeline, multi-target build system, and official deployment adapters") @meta
+        }
+        View @card {
+          Link("@vx-foundation/cli") @cardTitle { href: "/packages/cli" }
+          Text("1 export surfaces · CLI for VX Framework") @meta
+        }
+        View @card {
+          Link("@vx-foundation/compiler") @cardTitle { href: "/packages/compiler" }
+          Text("4 export surfaces · Compiler core: Reactive graph, type checking, lowering.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/core") @cardTitle { href: "/packages/core" }
+          Text("2 export surfaces · VX Core Orchestration") @meta
+        }
+        View @card {
+          Link("@vx-foundation/create-vx") @cardTitle { href: "/packages/create-vx" }
+          Text("1 export surfaces · Scaffolding tool for VX framework") @meta
+        }
+        View @card {
+          Link("@vx-foundation/data") @cardTitle { href: "/packages/data" }
+          Text("7 export surfaces · VX query persistence, offline mutations, infinite data, realtime subscriptions, and cross-context synchronization.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/dev-server") @cardTitle { href: "/packages/dev-server" }
+          Text("1 export surface · Dev server and HMR for VX") @meta
+        }
+        View @card {
+          Link("@vx-foundation/devtools") @cardTitle { href: "/packages/devtools" }
+          Text("3 export surfaces · Browser DevTools protocol, inspector store, performance timeline, and runtime bridge for VX.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/forms") @cardTitle { href: "/packages/forms" }
+          Text("3 export surfaces · Typed VX forms, schema validation, progressive enhancement, and multipart handling.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/interop") @cardTitle { href: "/packages/interop" }
+          Text("6 export surfaces · Typed JavaScript and TypeScript interoperability contracts for VX.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/language") @cardTitle { href: "/packages/language" }
+          Text("1 export surface · Tokenizer, parser and AST for the VX .vx single-file component language.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/package-system") @cardTitle { href: "/packages/package-system" }
+          Text("10 export surfaces · Deterministic package metadata, lockfiles, workspaces, integrity, signatures, and dependency mutation for VX.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/plugins") @cardTitle { href: "/packages/plugins" }
+          Text("6 export surfaces · Versioned, capability-based plugin host and official deterministic VX plugins.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/release") @cardTitle { href: "/packages/release" }
+          Text("5 export surfaces · Public API compatibility, package policy, release channels, and provenance tooling for VX.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/router") @cardTitle { href: "/packages/router" }
+          Text("2 export surfaces · VX file-based router and client navigation engine.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/runtime") @cardTitle { href: "/packages/runtime" }
+          Text("4 export surfaces · VX direct-DOM client runtime and request-scoped SSR server platform.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/security-testing") @cardTitle { href: "/packages/security-testing" }
+          Text("6 export surfaces · Deterministic fuzzing, secret scanning, and supply-chain policy primitives for VX.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/server") @cardTitle { href: "/packages/server" }
+          Text("7 export surfaces · VX production server platform with request context, sessions, middleware, security, observability, and Node adapters.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/shared") @cardTitle { href: "/packages/shared" }
+          Text("1 export surface · Shared deterministic utilities used across VX public packages.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/testing") @cardTitle { href: "/packages/testing" }
+          Text("10 export surfaces · Official VX unit, component, DOM, SSR, hydration, route, action, endpoint, visual, accessibility, and performance testing contracts.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/tooling") @cardTitle { href: "/packages/tooling" }
+          Text("7 export surfaces · Compiler-backed formatter, language intelligence, inspection, HMR, testing, and migration tools for VX.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/types") @cardTitle { href: "/packages/types" }
+          Text("1 export surface · Public TypeScript contracts for the VX language, compiler, runtime, and platform.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/vx") @cardTitle { href: "/packages/vx" }
+          Text("1 export surface · Compiler-first full-stack web framework with direct DOM rendering, deterministic SSR, typed data primitives, and production deployment adapters.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/widgets") @cardTitle { href: "/packages/widgets" }
+          Text("1 export surface · Industrial-grade Native Widget Primitives for the VX Framework") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

@@ -37,18 +37,18 @@ describe('VX forms', () => {
 
   it('runs authoritative server validation', async () => {
     const handle = createServerForm({ schema: registration, sameOrigin: false, authorization: 'public', csrf: 'disabled', action: ({ values }) => ({ ok: true, status: 200, data: values.name }) });
-    const response = await handle(new Request('https://vx.dev/register', { method: 'POST', body: new URLSearchParams({ name: 'VX', email: 'vx@example.com', age: '18', tags: 'compiler' }) }));
+    const response = await handle(new Request('https://vx.veelv.site/register', { method: 'POST', body: new URLSearchParams({ name: 'VX', email: 'vx@example.com', age: '18', tags: 'compiler' }) }));
     expect(response.status).toBe(200);
   });
 
   it('supports secure native method overrides and generic action failures', async () => {
     const patch = createServerForm({
       schema: schema.object({ name: schema.string().min(2) }),
-      method: 'PATCH', authorization: 'public', csrf: 'same-origin', expectedOrigin: 'https://vx.dev',
+      method: 'PATCH', authorization: 'public', csrf: 'same-origin', expectedOrigin: 'https://vx.veelv.site',
       action: ({ values }) => ({ ok: true, status: 200, data: values })
     });
-    const patched = await patch(new Request('https://vx.dev/profile', {
-      method: 'POST', headers: { origin: 'https://vx.dev' },
+    const patched = await patch(new Request('https://vx.veelv.site/profile', {
+      method: 'POST', headers: { origin: 'https://vx.veelv.site' },
       body: new URLSearchParams({ _vx_method: 'PATCH', name: 'VX' })
     }));
     expect(patched.status).toBe(200);
@@ -57,7 +57,7 @@ describe('VX forms', () => {
       schema: schema.object({ name: schema.string() }), authorization: 'public', csrf: 'disabled', sameOrigin: false,
       action: () => { throw new Error('private database detail'); }
     });
-    const failed = await failing(new Request('https://vx.dev/fail', { method: 'POST', body: new URLSearchParams({ name: 'VX' }) }));
+    const failed = await failing(new Request('https://vx.veelv.site/fail', { method: 'POST', body: new URLSearchParams({ name: 'VX' }) }));
     expect(await failed.json()).toEqual(expect.objectContaining({ formError: 'Form action failed.' }));
   });
 

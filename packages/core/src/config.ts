@@ -1,6 +1,6 @@
 import { createJiti } from 'jiti';
 import { resolve } from 'node:path';
-import type { VXConfig } from '@vx-foundation/types';
+import type { StyleConfig, VXConfig } from '@vx-foundation/types';
 import { fileURLToPath } from 'node:url';
 
 /**
@@ -31,6 +31,18 @@ export async function loadConfig(root: string = process.cwd()): Promise<VXConfig
       root,
       srcDir: rawConfig.srcDir ?? 'src',
       outDir: rawConfig.outDir ?? 'dist',
+      styles: Array.isArray(rawConfig.styles)
+        ? { mode: 'compiler', files: rawConfig.styles }
+        : {
+            mode: (rawConfig.styles && !Array.isArray(rawConfig.styles) ? (rawConfig.styles as StyleConfig).mode : undefined) ?? 'compiler',
+            files: (rawConfig.styles && !Array.isArray(rawConfig.styles) ? (rawConfig.styles as StyleConfig).files : undefined) ?? []
+          },
+      server: {
+        port: rawConfig.server?.port ?? 4000,
+        strictPort: rawConfig.server?.strictPort ?? false,
+        ...(rawConfig.server?.host !== undefined ? { host: rawConfig.server.host } : {}),
+        https: rawConfig.server?.https ?? false
+      },
       adapter: rawConfig.adapter ?? 'node',
       integrations: rawConfig.integrations ?? [],
       ...(rawConfig.build ? { build: rawConfig.build } : {}),
@@ -44,6 +56,11 @@ export async function loadConfig(root: string = process.cwd()): Promise<VXConfig
         root,
         srcDir: 'src',
         outDir: 'dist',
+        server: {
+          port: 4000,
+          strictPort: false,
+          https: false
+        },
         adapter: 'node',
         integrations: [],
       };

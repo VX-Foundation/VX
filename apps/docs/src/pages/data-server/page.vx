@@ -1,0 +1,72 @@
+#view
+  View @page {
+    Text("BUILD WITH VX") @eyebrow
+    Title("Data and server boundaries")
+    Text("VX separates managed reads, mutations, route endpoints, and server-only capabilities so secrets and trusted operations cannot leak into browser bundles.") @lead
+
+    View @section {
+      Title("Client data") { level: 2 }
+      Text("QueryClient manages query identity, shared cache, deduplication, cancellation, retries, invalidation, retention, dehydration, and hydration. The data package adds persistence, broadcast synchronization, infinite queries, realtime clients, and offline queues.")
+    }
+
+    View @section {
+      Title("Server-only modules") { level: 2 }
+      View @codeBlock {
+        Text("src/server/database.ts")
+        Text("src/server/auth.ts")
+        Text("src/pages/api/reports/endpoint.ts")
+      }
+      View @warning {
+        Text("Never import environment secrets, filesystem APIs, database clients, or Node-only modules into a client component graph.")
+      }
+    }
+
+    View @section {
+      Title("Typed endpoint") { level: 2 }
+      View @codeBlock {
+        Text("import {")
+        Text("  createRouteEndpointHandler,")
+        Text("  defineEndpoint")
+        Text("} from '@vx-foundation/server';")
+        Text("")
+        Text("const createReport = defineEndpoint(")
+        Text("  {")
+        Text("    id: 'reports.create',")
+        Text("    methods: ['POST'],")
+        Text("    body: { maxBytes: 32768 }")
+        Text("  },")
+        Text("  async ({ input, context, params }) => {")
+        Text("    context.responseHeaders.set('cache-control', 'no-store');")
+        Text("    return { accepted: true, input, reportId: params['id'] ?? null };")
+        Text("  }")
+        Text(");")
+        Text("")
+        Text("export const POST = createRouteEndpointHandler(createReport);")
+      }
+    }
+
+    View @section {
+      Title("Request security") { level: 2 }
+      Text("The server owns request IDs, tracing, locals, sessions, middleware, body limits, rate limits, CORS, security headers, endpoint dispatch, streaming, and deferred work.")
+      Text("Authentication establishes a principal. Authorization must be evaluated on the server for every protected query, action, form, endpoint, and resource operation.")
+    }
+
+    View @section {
+      Title("Safe errors") { level: 2 }
+      Text("Return stable public error codes and safe messages. Internal causes, stack traces, secrets, database details, and operational metadata belong in structured server logs and traces.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Build secure forms") { href: "/forms" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @warning { surface: amber-50 border: amber-300 corner: lg inset: lg }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

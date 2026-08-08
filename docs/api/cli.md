@@ -2,7 +2,7 @@
 
 CLI for VX Framework
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 
@@ -13,17 +13,17 @@ Current package line: `0.1.2`.
 - `addDependencyCommand` - function in `commands/dependencies.ts`
 - `checkCommand` - function in `commands/workspace.ts`
 - `collectVXFiles` - function in `commands/workspace.ts`
-- `create` - function in `commands/create.ts`
 - `CreateOptions` - interface in `commands/create.ts`
 - `DependencyCommandOptions` - interface in `commands/dependencies.ts`
 - `detectPackageManager` - function in `commands/workspace.ts`
+- `detectPackageManager` - function in `scaffold/prompt.ts`
 - `formatCommand` - function in `commands/tooling.ts`
 - `FormatCommandOptions` - interface in `commands/tooling.ts`
-- `init` - function in `commands/create.ts`
 - `initializeProject` - function in `scaffold/project.ts`
 - `InitializeProjectOptions` - interface in `scaffold/project.ts`
 - `inspectCommand` - function in `commands/tooling.ts`
 - `InspectCommandOptions` - interface in `commands/tooling.ts`
+- `InteractivePromptOptions` - interface in `scaffold/prompt.ts`
 - `isProjectTemplate` - function in `scaffold/templates.ts`
 - `lintCommand` - function in `commands/workspace.ts`
 - `LintCommandOptions` - interface in `commands/workspace.ts`
@@ -33,6 +33,7 @@ Current package line: `0.1.2`.
 - `PackageCommandOptions` - interface in `commands/package.ts`
 - `PROJECT_TEMPLATES` - const in `scaffold/templates.ts`
 - `ProjectTemplate` - type in `scaffold/templates.ts`
+- `PromptResult` - interface in `scaffold/prompt.ts`
 - `publishCommand` - function in `commands/publish.ts`
 - `PublishCommandOptions` - interface in `commands/publish.ts`
 - `releaseCheckCommand` - function in `commands/release.ts`
@@ -44,6 +45,7 @@ Current package line: `0.1.2`.
 - `scaffoldProject` - function in `scaffold/project.ts`
 - `ScaffoldProjectOptions` - interface in `scaffold/project.ts`
 - `ScaffoldResult` - interface in `scaffold/project.ts`
+- `TEMPLATE_DESCRIPTIONS` - const in `scaffold/prompt.ts`
 - `templateDescriptor` - function in `scaffold/templates.ts`
 - `TemplateDescriptor` - interface in `scaffold/templates.ts`
 - `testCommand` - function in `commands/workspace.ts`

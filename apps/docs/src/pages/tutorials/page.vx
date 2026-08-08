@@ -1,0 +1,54 @@
+#view
+  View @page {
+    Text("DOCUMENTATION") @eyebrow
+    Title("Tutorials")
+    Text("1. Create a routed application (01-routed-application.md) 2. Add server data and a mutation (02-data-and-mutation.md) 3. Publish a component package (03-component-package.md)") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      View @list {
+        Text("• Create a routed application (01-routed-application.md)") @bullet
+        Text("• Add server data and a mutation (02-data-and-mutation.md)") @bullet
+        Text("• Publish a component package (03-component-package.md)") @bullet
+      }
+    }
+    View @section {
+      Title("Documents") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Create a Routed Application") @cardTitle { href: "/tutorials/01-routed-application" }
+          Text("Run vx new my-app --template starter, install locked dependencies, then run vx doctor, vx check src, and vx dev.") @meta
+        }
+        View @card {
+          Link("Add Server Data and a Mutation") @cardTitle { href: "/tutorials/02-data-and-mutation" }
+          Text("Create a managed query for the read path and an action for the write path. Give the query a deterministic input and tags. In the action, apply an optimistic update only when rollback is defined, then invalidate or refresh the affected query.") @meta
+        }
+        View @card {
+          Link("Publish a Component Package") @cardTitle { href: "/tutorials/03-component-package" }
+          Text("Run vx new my-ui --template library. Add typed props, outputs, named content, and public parts. Keep helper modules private.") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

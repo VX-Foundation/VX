@@ -156,10 +156,10 @@ function validateImportBindings(
   const bindings: ResolvedComponentImport['bindings'] = [];
 
   if (declaration.defaultImport) {
-    if (target.contract.kind !== 'component') {
+    if (target.contract.kind !== 'component' && target.contract.kind !== 'interop') {
       diagnostics.push(error(
         'VX_COMPONENT_DEFAULT_IMPORT_KIND',
-        `Default import '${declaration.defaultImport}' targets a ${target.contract.kind} module. Default imports are reserved for visual components.`,
+        `Default import '${declaration.defaultImport}' targets a ${target.contract.kind} module. Default imports are reserved for visual and interop components.`,
         declaration.span
       ));
     } else {
@@ -314,6 +314,8 @@ function readSource(
   }
 }
 
+const SUPPORTED_INTEROP_EXTENSIONS = new Set(['.vx', '.tsx', '.jsx', '.vue', '.svelte']);
+
 function canonicalVXFile(
   candidate: string,
   boundary: string,
@@ -321,8 +323,9 @@ function canonicalVXFile(
   diagnostics: Diagnostic[],
   boundaryLabel: string
 ): string | undefined {
-  if (extname(candidate).toLowerCase() !== '.vx') {
-    diagnostics.push(error('VX_COMPONENT_EXTENSION', `VX imports must resolve to a '.vx' file: '${candidate}'.`, span));
+  const ext = extname(candidate).toLowerCase();
+  if (!SUPPORTED_INTEROP_EXTENSIONS.has(ext)) {
+    diagnostics.push(error('VX_COMPONENT_EXTENSION', `VX imports must resolve to a supported component file (.vx, .tsx, .jsx, .vue, .svelte): '${candidate}'.`, span));
     return undefined;
   }
   try {

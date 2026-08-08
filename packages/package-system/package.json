@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/package-system",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Deterministic package metadata, lockfiles, workspaces, integrity, signatures, and dependency mutation for VX.",
   "type": "module",
   "main": "./dist/index.js",
@@ -54,9 +54,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "typescript": "^5.8.0",
-    "vitest": "^3.2.0"
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "license": "MIT",
   "engines": {

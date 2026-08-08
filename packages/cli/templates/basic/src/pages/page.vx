@@ -17,36 +17,67 @@
 
 #view
   View @root {
-    View @hero {
+    View @header {
+      View @badge {
+        Text("Compiler-First Reactive Engine") @badgeText
+      }
       Image @logo {
         src: "/vx.svg"
         alt: "VX"
       }
-      Text("VX") @wordmark
-      Text("Compiler-first full-stack web framework.") @tagline
+      Text("VX Framework") @title
+      Text("High-performance web architecture with direct DOM lowering and zero Virtual DOM overhead.") @subtitle
     }
 
-    View @counter {
-      Text("Counter") @counterLabel
-      View @counterDisplay {
-        Text("{{ count }}") @countValue
-        Text("doubled: {{ doubled }}") @countMeta
+    View @dashboardCard {
+      View @cardHeader {
+        Text("Reactive Signals Engine") @cardTitle
+        Text("Real-time State Inspector") @cardBadge
       }
-      View @counterActions {
-        Button("−") @btnSecondary {
+
+      View @metricsGrid {
+        View @metricCard {
+          Text("CURRENT COUNT") @metricLabel
+          Text("{{ count }}") @metricValue
+          Text("State Primitive") @metricMeta
+        }
+        View @metricCard {
+          Text("DERIVED VALUE") @metricLabel
+          Text("{{ doubled }}") @metricValueAccented
+          Text("Signal Memo (2x)") @metricMeta
+        }
+      }
+
+      View @controls {
+        Button("− Decrement") @btnSecondary {
           click => decrement()
         }
         Button("Reset") @btnGhost {
           click => reset()
         }
-        Button("+") @btnPrimary {
+        Button("+ Increment") @btnPrimary {
           click => increment()
         }
       }
     }
 
+    View @featuresRow {
+      View @featureItem {
+        Text("Direct DOM") @featureTitle
+        Text("No virtual diffing cost") @featureDesc
+      }
+      View @featureItem {
+        Text("Type-Safe") @featureTitle
+        Text("End-to-end contract validation") @featureDesc
+      }
+      View @featureItem {
+        Text("Zero CSS Runtime") @featureTitle
+        Text("Compiled visual roles") @featureDesc
+      }
+    }
+
     View @footer {
-      Text("Built with VX · MIT License") @footerText
+      Text("Powered by VX Framework · Production Ready") @footerText
     }
   }
 
@@ -59,82 +90,135 @@
     gap: 2xl
   }
 
-  @hero {
+  @header {
     flow: vertical
     items: center
     gap: md
+    textAlign: center
+  }
+
+  @badge {
+    surface: highlighted
+    corner: xl
+    inset: control.sm
+    border: subtle
+  }
+
+  @badgeText {
+    typography: label.xs
+    tone: strong
+    letterSpacing: 0.04em
+    textTransform: uppercase
   }
 
   @logo {
-    width: 72
-    height: 72
+    width: 64
+    height: 64
+    margin: sm
   }
 
-  @wordmark {
-    typography: display.md
+  @title {
+    typography: display.lg
     tone: strong
     letterSpacing: -0.03em
   }
 
-  @tagline {
-    typography: body.lg
+  @subtitle {
+    typography: body.md
     tone: muted
-    textAlign: center
     maxWidth: prose
+    textAlign: center
   }
 
-  @counter {
+  @dashboardCard {
     flow: vertical
-    items: center
-    gap: lg
+    gap: xl
     surface: raised
     corner: xl
-    elevation: sm
+    elevation: md
     border: subtle
     inset: 2xl
-    minWidth: 320
+    minWidth: 360
+    maxWidth: 640
   }
 
-  @counterLabel {
-    typography: label.sm
-    tone: muted
-    textTransform: uppercase
-    letterSpacing: 0.08em
-  }
-
-  @counterDisplay {
-    flow: vertical
+  @cardHeader {
+    flow: horizontal
+    content: between
     items: center
-    gap: xs
+    border: subtle
+    borderBottom: subtle
   }
 
-  @countValue {
+  @cardTitle {
+    typography: heading.md
+    tone: strong
+  }
+
+  @cardBadge {
+    typography: label.xs
+    tone: muted
+    surface: highlighted
+    corner: sm
+    inset: control.sm
+  }
+
+  @metricsGrid {
+    flow: grid
+    columns: 2
+    gap: lg
+  }
+
+  @metricCard {
+    flow: vertical
+    gap: xs
+    surface: base
+    corner: xl
+    inset: lg
+    border: subtle
+  }
+
+  @metricLabel {
+    typography: label.xs
+    tone: muted
+    letterSpacing: 0.08em
+    textTransform: uppercase
+  }
+
+  @metricValue {
     typography: display.xl
     tone: strong
-    transition: normal
+    transition: fast
   }
 
-  @countMeta {
-    typography: label.md
+  @metricValueAccented {
+    typography: display.xl
+    tone: strong
+    transition: fast
+  }
+
+  @metricMeta {
+    typography: body.xs
     tone: muted
   }
 
-  @counterActions {
+  @controls {
     flow: horizontal
-    gap: sm
+    content: center
+    gap: md
     items: center
   }
 
   @btnPrimary {
     surface: primary
     tone: onPrimary
-    corner: md
+    corner: lg
     inset: control.md
     typography: label.md
     border: none
     cursor: pointer
     transition: fast
-    minWidth: 44
+    minWidth: 110
 
     when hover {
       surface: primaryHover
@@ -149,16 +233,17 @@
   @btnSecondary {
     surface: secondary
     tone: body
-    corner: md
+    corner: lg
     inset: control.md
     typography: label.md
     border: none
     cursor: pointer
     transition: fast
-    minWidth: 44
+    minWidth: 110
 
     when hover {
       surface: secondaryHover
+      transform: lift
     }
 
     when pressed {
@@ -169,7 +254,7 @@
   @btnGhost {
     surface: base
     tone: muted
-    corner: md
+    corner: lg
     inset: control.md
     typography: label.md
     border: subtle
@@ -186,10 +271,34 @@
     }
   }
 
+  @featuresRow {
+    flow: horizontal
+    gap: xl
+    items: center
+    content: center
+    wrap: wrap
+  }
+
+  @featureItem {
+    flow: vertical
+    gap: xs
+    items: center
+    textAlign: center
+  }
+
+  @featureTitle {
+    typography: heading.xs
+    tone: strong
+  }
+
+  @featureDesc {
+    typography: body.xs
+    tone: muted
+  }
+
   @footer {
     flow: horizontal
     items: center
-    gap: sm
     marginY: auto
   }
 

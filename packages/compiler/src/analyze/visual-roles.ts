@@ -1,10 +1,8 @@
 import type { ViewBlockNode, ViewNode, VisualRoleUseNode, WidgetNode } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
 import { STRUCTURAL_ROLE_NAMES } from '../visual/catalog.js';
-import { PRIMITIVE_SOURCES } from '@vx-foundation/widgets';
-
-const CONTAINER_WIDGETS = new Set(['View', 'List', 'ScrollView', 'Form']);
-const INTERACTIVE_WIDGETS = new Set(['Button', 'Input', 'TextArea', 'Select', 'Checkbox', 'Radio', 'Slider', 'Switch', 'Link']);
+import { PRIMITIVE_SOURCES } from '../visual/primitives.js';
+import { CONTAINER_WIDGETS, INTERACTIVE_WIDGETS, TEXT_WIDGETS } from '../components/validation-constants.generated.js';
 const INTERACTIVE_ROLES = new Set(['primary', 'secondary', 'link', 'field']);
 const TEXT_ROLES = new Set(['title', 'subtitle', 'body', 'muted', 'metadata', 'price', 'code']);
 
@@ -122,7 +120,7 @@ function validateWidgetRoles(widget: WidgetNode, diagnostics: DiagnosticCollecto
       );
     }
 
-    if (widget.tagName in PRIMITIVE_SOURCES && TEXT_ROLES.has(role.name) && !['Text', 'Title', 'Link', 'Button'].includes(widget.tagName)) {
+    if (widget.tagName in PRIMITIVE_SOURCES && TEXT_ROLES.has(role.name) && !TEXT_WIDGETS.has(widget.tagName)) {
       diagnostics.warning(
         'VX_VISUAL_TEXT_ROLE_MISMATCH',
         `Text role '@${role.name}' is attached to '${widget.tagName}'.`,

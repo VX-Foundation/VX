@@ -1,0 +1,17 @@
+#script
+  prop itemHeight: Int = 40
+  prop class: String = ""
+  content default: optional
+#end script
+
+#view
+  ScrollView @virtualScroll {
+    Content(default)
+  }
+
+  @virtualScroll {
+    flow: vertical
+    height: fill
+    width: fill
+  }
+#end view

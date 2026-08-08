@@ -1,6 +1,6 @@
 # Contributing to VX
 
-VX is in the 0.1 stabilization line. Contributions must preserve the frozen specification, public API baseline, security boundaries, and release evidence model.
+VX is in the 0.2 stabilization line. Contributions must preserve the frozen specification, public API baseline, security boundaries, and release evidence model.
 
 ## Required reading
 

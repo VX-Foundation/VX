@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/bundler",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "VX deterministic asset pipeline, multi-target build system, and official deployment adapters",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

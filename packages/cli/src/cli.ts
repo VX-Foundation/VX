@@ -18,11 +18,17 @@ const pkg = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8'))
 const cli = cac('vx');
 
 cli.command('new <name>', 'Create a new VX project or library')
-  .option('-t, --template <template>', 'Template: basic, starter, fullstack, library', { default: 'basic' })
+  .option('-t, --template <template>', 'Template: basic, starter, fullstack, library')
+  .option('-pm, --package-manager <pm>', 'Package manager: pnpm, npm, yarn, bun')
+  .option('-y, --yes', 'Use non-interactive defaults')
+  .option('--overwrite', 'Overwrite target directory if not empty')
   .option('--library', 'Create a convention-based VX library')
   .action(create);
 cli.command('create <name>', 'Alias for vx new')
-  .option('-t, --template <template>', 'Choose a template', { default: 'basic' })
+  .option('-t, --template <template>', 'Template: basic, starter, fullstack, library')
+  .option('-pm, --package-manager <pm>', 'Package manager: pnpm, npm, yarn, bun')
+  .option('-y, --yes', 'Use non-interactive defaults')
+  .option('--overwrite', 'Overwrite target directory if not empty')
   .option('--library', 'Create a convention-based VX library')
   .action(create);
 cli.command('init', 'Initialize VX in the current directory')

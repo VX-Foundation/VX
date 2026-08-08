@@ -1,0 +1,183 @@
+#view
+  View @page {
+    Text("WIDGET REFERENCE") @eyebrow
+    Title("List")
+    Text("List is a data widget lowered consistently to <ul> in client and SSR output.") @lead
+    View @section {
+      Title("Contract summary") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Category") @propertyName
+          Text("data") @propertyDescription
+        }
+        View @tableRow {
+          Text("Native element") @propertyName
+          Text("<ul>") @propertyDescription
+        }
+        View @tableRow {
+          Text("Call property") @propertyName
+          Text("none") @propertyDescription
+        }
+        View @tableRow {
+          Text("Semantic groups") @propertyName
+          Text("container") @propertyDescription
+        }
+        View @tableRow {
+          Text("Runtime defaults") @propertyName
+          Text("{\"role\":\"list\"}") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Properties") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Property") @propertyName
+          Text("Type / default") @propertyValue
+          Text("Requirement") @propertyDescription
+        }
+        View @tableRow {
+          Text("items") @propertyName
+          Text("List<Any>") @propertyValue
+          Text("required") @propertyDescription
+        }
+        View @tableRow {
+          Text("emptyText") @propertyName
+          Text("Optional<String>") @propertyValue
+          Text("optional") @propertyDescription
+        }
+        View @tableRow {
+          Text("spacing") @propertyName
+          Text("Optional<String> = \"0px\"") @propertyValue
+          Text("optional") @propertyDescription
+        }
+        View @tableRow {
+          Text("layout") @propertyName
+          Text("Optional<String> = \"column\"") @propertyValue
+          Text("optional") @propertyDescription
+        }
+        View @tableRow {
+          Text("wrap") @propertyName
+          Text("Optional<Bool> = false") @propertyValue
+          Text("optional") @propertyDescription
+        }
+        View @tableRow {
+          Text("keyExtractor") @propertyName
+          Text("Optional<String>") @propertyValue
+          Text("optional") @propertyDescription
+        }
+        View @tableRow {
+          Text("onEndReachedThreshold") @propertyName
+          Text("Optional<Float> = 0.5") @propertyValue
+          Text("optional") @propertyDescription
+        }
+        View @tableRow {
+          Text("refreshing") @propertyName
+          Text("Optional<Bool> = false") @propertyValue
+          Text("optional") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Events and outputs") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Event") @propertyName
+          Text("Payload") @propertyValue
+          Text("Use") @propertyDescription
+        }
+        View @tableRow {
+          Text("onEndReached") @propertyName
+          Text("Void") @propertyValue
+          Text("Bind with onEndReached => action().") @propertyDescription
+        }
+        View @tableRow {
+          Text("onRefresh") @propertyName
+          Text("Void") @propertyValue
+          Text("Bind with onRefresh => action().") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Content regions") { level: 2 }
+      Text("This widget does not project content regions.")
+    }
+    View @section {
+      Title("Minimal usage") { level: 2 }
+      View @codeBlock {
+        Text("#view")
+        Text("  List {")
+        Text("    items: []")
+        Text("  }")
+        Text("#end view")
+      }
+    }
+    View @section {
+      Title("Accessibility") { level: 2 }
+      Text("Data widgets must preserve reading order, row or item identity, keyboard access where interactive, and an accessible empty state.")
+      View @list {
+        Text("• Provide a meaningful accessible name.") @bullet
+        Text("• Verify keyboard-only operation and visible focus.") @bullet
+        Text("• Test invalid, disabled, loading, and empty states where supported.") @bullet
+      }
+    }
+    View @section {
+      Title("SSR, hydration, and performance") { level: 2 }
+      Text("Keep row or item identity stable, paginate or virtualize large datasets, and avoid rebuilding derived collections during every render.")
+      View @list {
+        Text("• Keep property values deterministic between server and client.") @bullet
+        Text("• Avoid unnecessary client hydration for static output.") @bullet
+        Text("• Dispose event, observer, timer, and subscription ownership when the widget leaves the tree.") @bullet
+        Text("• Use keyed children when collection identity matters.") @bullet
+      }
+    }
+    View @section {
+      Title("Best practices") { level: 2 }
+      View @list {
+        Text("• Prefer List over recreating its contract through an untyped wrapper.") @bullet
+        Text("• Use Visual roles for appearance and layout instead of introducing independent widget-specific CSS maps.") @bullet
+        Text("• Bind only documented properties and events; unknown inputs are compiler diagnostics.") @bullet
+        Text("• Cover normal, loading, empty, error, disabled, and reduced-motion behavior when relevant.") @bullet
+      }
+    }
+    View @section {
+      Title("Related widgets") { level: 2 }
+      View @cards {
+        View @card {
+          Link("DataTable") @cardTitle { href: "/widgets/data-table" }
+          Text("data widget lowered to the native table element.") @meta
+        }
+        View @card {
+          Link("VirtualList") @cardTitle { href: "/widgets/virtual-list" }
+          Text("data widget lowered to the native div element.") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

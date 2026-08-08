@@ -2,7 +2,7 @@
 
 Compiler core: Reactive graph, type checking, lowering.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 
@@ -31,21 +31,24 @@ Current package line: `0.1.2`.
 - `checkViewTypes` - function in `analyze/type-checker.ts`
 - `classifyModule` - function in `components/contract.ts`
 - `clearTSProgramCache` - function in `typecheck/ts-program-cache.ts`
+- `collectKeyframeBlocks` - function in `visual/resolver-css.ts`
 - `collectMutatedIdentifiers` - function in `analyze/expression-identifiers.ts`
 - `collectReferencedIdentifiers` - function in `analyze/expression-identifiers.ts`
 - `collectSymbols` - function in `codegen/dom-helpers.ts`
 - `compileComponentProject` - function in `project.ts`
 - `CompileComponentProjectOptions` - interface in `project.ts`
+- `CompilerWidgetDefinition` - interface in `visual/generated/contracts.ts`
 - `ComponentBindingContext` - interface in `components/context.ts`
 - `ComponentCodegenContext` - interface in `components/codegen-context.ts`
 - `ComponentCodegenImport` - interface in `components/codegen-context.ts`
 - `componentImport` - function in `codegen/component-module.ts`
 - `ComponentSymbols` - interface in `codegen/dom-helpers.ts`
 - `ComponentValidationContext` - interface in `components/validation.ts`
-- `CONTAINER_WIDGETS` - const in `components/validation-constants.ts`
+- `CONDITION_NAMES` - const in `visual/resolver-media.ts`
+- `CONTAINER_WIDGETS` - const in `components/validation-constants.generated.ts`
 - `contentOutletName` - function in `codegen/component-module.ts`
 - `ContractType` - type in `components/contract-types.ts`
-- `CONTROL_WIDGETS` - const in `components/validation-constants.ts`
+- `CONTROL_WIDGETS` - const in `components/validation-constants.generated.ts`
 - `countLines` - function in `codegen/dom-helpers.ts`
 - `createComponentBindingContext` - function in `components/context.ts`
 - `createFileIntegrity` - function in `package/manifest.ts`
@@ -56,13 +59,60 @@ Current package line: `0.1.2`.
 - `CssDeclaration` - interface in `visual/properties.ts`
 - `cssValueForRuntime` - function in `visual/properties.ts`
 - `declarationsForScope` - function in `javascript-scopes.ts`
+- `definition` - const in `visual/generated/definitions/Accordion.ts`
+- `definition` - const in `visual/generated/definitions/Audio.ts`
+- `definition` - const in `visual/generated/definitions/Avatar.ts`
+- `definition` - const in `visual/generated/definitions/Badge.ts`
+- `definition` - const in `visual/generated/definitions/Breadcrumb.ts`
+- `definition` - const in `visual/generated/definitions/Button.ts`
+- `definition` - const in `visual/generated/definitions/Canvas.ts`
+- `definition` - const in `visual/generated/definitions/Checkbox.ts`
+- `definition` - const in `visual/generated/definitions/DataTable.ts`
+- `definition` - const in `visual/generated/definitions/DatePicker.ts`
+- `definition` - const in `visual/generated/definitions/Divider.ts`
+- `definition` - const in `visual/generated/definitions/Drawer.ts`
+- `definition` - const in `visual/generated/definitions/ErrorSummary.ts`
+- `definition` - const in `visual/generated/definitions/FieldError.ts`
+- `definition` - const in `visual/generated/definitions/FieldGroup.ts`
+- `definition` - const in `visual/generated/definitions/FileUpload.ts`
+- `definition` - const in `visual/generated/definitions/Form.ts`
+- `definition` - const in `visual/generated/definitions/FormError.ts`
+- `definition` - const in `visual/generated/definitions/Icon.ts`
+- `definition` - const in `visual/generated/definitions/IFrame.ts`
+- `definition` - const in `visual/generated/definitions/Image.ts`
+- `definition` - const in `visual/generated/definitions/Input.ts`
+- `definition` - const in `visual/generated/definitions/Link.ts`
+- `definition` - const in `visual/generated/definitions/List.ts`
+- `definition` - const in `visual/generated/definitions/Modal.ts`
+- `definition` - const in `visual/generated/definitions/Popover.ts`
+- `definition` - const in `visual/generated/definitions/ProgressBar.ts`
+- `definition` - const in `visual/generated/definitions/Radio.ts`
+- `definition` - const in `visual/generated/definitions/ScrollView.ts`
+- `definition` - const in `visual/generated/definitions/Select.ts`
+- `definition` - const in `visual/generated/definitions/Skeleton.ts`
+- `definition` - const in `visual/generated/definitions/Slider.ts`
+- `definition` - const in `visual/generated/definitions/Spinner.ts`
+- `definition` - const in `visual/generated/definitions/Switch.ts`
+- `definition` - const in `visual/generated/definitions/Tabs.ts`
+- `definition` - const in `visual/generated/definitions/Text.ts`
+- `definition` - const in `visual/generated/definitions/TextArea.ts`
+- `definition` - const in `visual/generated/definitions/Title.ts`
+- `definition` - const in `visual/generated/definitions/Toast.ts`
+- `definition` - const in `visual/generated/definitions/Tooltip.ts`
+- `definition` - const in `visual/generated/definitions/Video.ts`
+- `definition` - const in `visual/generated/definitions/View.ts`
+- `definition` - const in `visual/generated/definitions/VirtualList.ts`
 - `DiagnosticCollector` - class in `analyze/diagnostics.ts`
 - `discoverVXPackagePublicAPI` - function in `package/discovery.ts`
 - `DomEmitter` - class in `codegen/dom-emitter.ts`
 - `emitClientForms` - function in `forms/codegen.ts`
 - `emitPartOverride` - function in `codegen/component-module.ts`
+- `emitPseudoRules` - function in `visual/resolver-css.ts`
 - `emitSchemas` - function in `forms/codegen.ts`
+- `emitSelectorRules` - function in `visual/resolver-css.ts`
 - `emitServerFormHandlers` - function in `forms/codegen.ts`
+- `emitThemeCss` - function in `visual/resolver-css.ts`
+- `emitVisualCss` - function in `visual/resolver-css.ts`
 - `expandInterpolatedExpression` - function in `interpolation.ts`
 - `expressionContainsMutationOrAwait` - function in `analyze/expression-identifiers.ts`
 - `extractComponentContract` - function in `components/contract.ts`
@@ -70,6 +120,7 @@ Current package line: `0.1.2`.
 - `findScriptBlock` - function in `components/contract.ts`
 - `findViewBlock` - function in `components/contract.ts`
 - `ForbiddenAccess` - interface in `analyze/security.ts`
+- `FORM_CONTROL_WIDGETS` - const in `components/validation-constants.generated.ts`
 - `generateApplicationMount` - function in `codegen/component-factory.ts`
 - `generateComponentFactory` - function in `codegen/component-factory.ts`
 - `generateContractDTS` - function in `typecheck/contract-dts.ts`
@@ -90,6 +141,7 @@ Current package line: `0.1.2`.
 - `ImportedVisualRoleBinding` - interface in `components/context.ts`
 - `indent` - function in `codegen/dom-helpers.ts`
 - `inferExpressionType` - function in `components/contract-types.ts`
+- `INTERACTIVE_WIDGETS` - const in `components/validation-constants.generated.ts`
 - `InterpolatedExpression` - interface in `interpolation.ts`
 - `isContractTypeAssignable` - function in `components/contract-types.ts`
 - `isFunctionScope` - function in `javascript-scopes.ts`
@@ -105,17 +157,26 @@ Current package line: `0.1.2`.
 - `LowerOptions` - interface in `codegen/index.ts`
 - `LowerResult` - interface in `codegen/index.ts`
 - `mapTSDiagnostic` - function in `typecheck/ts-diagnostic-mapper.ts`
-- `MEDIA_WIDGETS` - const in `components/validation-constants.ts`
+- `MEDIA_WIDGETS` - const in `components/validation-constants.generated.ts`
+- `NATIVE_PRIMITIVE_TAGS` - const in `visual/primitives.ts`
 - `normalizeVisualExpression` - function in `visual/expression.ts`
-- `PRIMITIVE_WIDGETS` - const in `components/validation-constants.ts`
+- `PRIMITIVE_CALL_PROPERTIES` - const in `codegen/primitive-metadata.generated.ts`
+- `PRIMITIVE_NAMES` - const in `visual/generated/registry.ts`
+- `PRIMITIVE_NATIVE_ELEMENTS` - const in `codegen/primitive-metadata.generated.ts`
+- `PRIMITIVE_SOURCES` - const in `visual/generated/registry.ts`
+- `PRIMITIVE_WIDGETS` - const in `components/validation-constants.generated.ts`
+- `PrimitiveName` - type in `visual/generated/registry.ts`
 - `publicExportKey` - function in `package/conventions.ts`
 - `ReactiveGraph` - interface in `analyze/graph-builder.ts`
 - `ReactiveNode` - interface in `analyze/graph-builder.ts`
 - `ReadGeneratedManifestResult` - interface in `package/manifest.ts`
 - `readGeneratedVXPackageManifest` - function in `package/manifest.ts`
+- `registerKeyframes` - function in `visual/resolver-css.ts`
 - `RESERVED_IMPORT_NAMES` - const in `components/validation-constants.ts`
+- `resetKeyframesForScope` - function in `visual/resolver-css.ts`
 - `resolveComponentProject` - function in `components/resolver.ts`
 - `ResolveComponentProjectOptions` - interface in `components/resolver.ts`
+- `resolveCondition` - function in `visual/resolver-media.ts`
 - `ResolvedVXPackageImport` - interface in `components/package-resolver.ts`
 - `resolveQueryPolicy` - function in `data/policy.ts`
 - `resolveVisualProgram` - function in `visual/resolver.ts`
@@ -128,7 +189,7 @@ Current package line: `0.1.2`.
 - `SPECIAL_COMPONENT_WIDGETS` - const in `components/validation-constants.ts`
 - `STRUCTURAL_ROLE_NAMES` - const in `visual/catalog.ts`
 - `SUPPORTED_VISUAL_PROPERTIES` - const in `visual/properties.ts`
-- `TEXT_WIDGETS` - const in `components/validation-constants.ts`
+- `TEXT_WIDGETS` - const in `components/validation-constants.generated.ts`
 - `TransformJavaScriptOptions` - interface in `codegen/javascript.ts`
 - `UNSAFE_MEMBER_NAMES` - const in `components/validation-constants.ts`
 - `UNSAFE_VALUE_SENTINEL` - const in `visual/properties.ts`
@@ -170,6 +231,7 @@ Current package line: `0.1.2`.
 - `VXPackageDiscoveryOptions` - interface in `package/types.ts`
 - `VXPackageDiscoveryResult` - interface in `package/types.ts`
 - `VXPackagePublicEntry` - interface in `package/types.ts`
+- `WIDGET_REGISTRY` - const in `visual/generated/registry.ts`
 - `withNodeScope` - function in `javascript-scopes.ts`
 
 ## Stability

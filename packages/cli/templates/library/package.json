@@ -10,7 +10,7 @@
     "doctor": "vx doctor",
     "test": "vx test:component src/components/Card.vx",
     "package": "vx package",
-    "verify": "pnpm doctor && pnpm check && pnpm lint && pnpm test && pnpm build && pnpm package",
+    "verify": "vx doctor && vx check src && vx lint src && vx test:component src/components/Card.vx && vx build && vx package",
     "build": "vx build"
   },
   "peerDependencies": {

@@ -20,7 +20,7 @@
             click => increment()
           }
           Link("Read the docs") @btnOutline {
-            href: "https://vx.dev/docs"
+            href: "https://vx.veelv.site/docs"
           }
         }
       }
@@ -51,32 +51,26 @@
       Text("Why VX?") @featuresHeading
       View @featureGrid {
         View @featureCard {
-          Text("⚡") @featureIcon
           Text("Compiler-owned") @featureTitle
           Text("Diagnostics, source maps, and typed data flows are resolved at compile time, not runtime.") @featureBody
         }
         View @featureCard {
-          Text("🎯") @featureIcon
           Text("Fine-grained DOM") @featureTitle
           Text("Direct DOM updates without a Virtual DOM. Surgical patches, zero diffing overhead.") @featureBody
         }
         View @featureCard {
-          Text("🌊") @featureIcon
           Text("Streaming SSR") @featureTitle
           Text("Deterministic streaming, hydration recovery, islands, and resumable boundaries built-in.") @featureBody
         }
         View @featureCard {
-          Text("🔒") @featureIcon
           Text("Secure by default") @featureTitle
           Text("Server boundaries, typed endpoints, security headers, and CSRF protection out of the box.") @featureBody
         }
         View @featureCard {
-          Text("📦") @featureIcon
           Text("Portable adapters") @featureTitle
           Text("Node, Bun, Deno, Cloudflare, Vercel, Netlify, AWS Lambda, and static targets.") @featureBody
         }
         View @featureCard {
-          Text("🎨") @featureIcon
           Text("Visual system") @featureTitle
           Text("CSS-free styling with a typed visual vocabulary, design tokens, and scoped roles.") @featureBody
         }

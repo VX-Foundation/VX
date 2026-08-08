@@ -1,0 +1,54 @@
+#view
+  View @page {
+    Text("LANGUAGE SPECIFICATION") @eyebrow
+    Title("Modules and Packages")
+    Text("A visual module contains #view. A headless module omits it. Visual components use default imports; headless declarations use named imports.") @lead
+    View @section {
+      Title("Modules") { level: 2 }
+      Text("A visual module contains #view. A headless module omits it. Visual components use default imports; headless declarations use named imports.")
+      Text("Imports MUST be static when they participate in the compiler-owned application graph. Cycles are rejected before lowering.")
+    }
+    View @section {
+      Title("Package boundaries") { level: 2 }
+      Text("A package exposes only entries declared by its generated or authored public contract. src, dist, private modules, and undeclared subpaths are not public API.")
+      Text("Consumers MUST import a public package entry, for example:")
+      View @codeBlock {
+        Text("import { QueryClient } from '@vx-foundation/runtime';")
+        Text("import { OfflineMutationQueue } from '@vx-foundation/data/offline';")
+      }
+      Text("They MUST NOT import implementation files.")
+    }
+    View @section {
+      Title("Public contracts") { level: 2 }
+      Text("A public contract records exports, declarations, component props, outputs, content regions, visual parts, runtime conditions, deprecations, migrations, integrity, and framework compatibility.")
+      Text("Removing or changing the type of a public contract is a breaking change.")
+    }
+    View @section {
+      Title("Locking and integrity") { level: 2 }
+      Text("Resolved package identities, versions, sources, integrity, and dependency edges are recorded in vx.lock. Lockfiles MUST be deterministic and MUST NOT contain machine-specific absolute paths.")
+      Text("Published artifacts MAY carry provenance and Ed25519 signatures. A failed integrity or signature check is fatal.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

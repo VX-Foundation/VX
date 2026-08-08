@@ -1,0 +1,78 @@
+#view
+  View @page {
+    Text("VISUAL PROPERTY GROUP") @eyebrow
+    Title("Animation / transition")
+    Text("11 properties in the animation / transition group.") @lead
+    View @section {
+      Title("Properties") { level: 2 }
+      View @cards {
+        View @card {
+          Link("transition") @cardTitle { href: "/visual/properties/transition" }
+          Text("CSS: transition") @meta
+        }
+        View @card {
+          Link("motion") @cardTitle { href: "/visual/properties/motion" }
+          Text("CSS: transition") @meta
+        }
+        View @card {
+          Link("animation") @cardTitle { href: "/visual/properties/animation" }
+          Text("CSS: animation") @meta
+        }
+        View @card {
+          Link("animationName") @cardTitle { href: "/visual/properties/animation-name" }
+          Text("CSS: animation-name") @meta
+        }
+        View @card {
+          Link("animationDuration") @cardTitle { href: "/visual/properties/animation-duration" }
+          Text("CSS: animation-duration") @meta
+        }
+        View @card {
+          Link("animationEasing") @cardTitle { href: "/visual/properties/animation-easing" }
+          Text("CSS: animation-timing-function") @meta
+        }
+        View @card {
+          Link("animationDelay") @cardTitle { href: "/visual/properties/animation-delay" }
+          Text("CSS: animation-delay") @meta
+        }
+        View @card {
+          Link("animationFill") @cardTitle { href: "/visual/properties/animation-fill" }
+          Text("CSS: animation-fill-mode") @meta
+        }
+        View @card {
+          Link("animationIterations") @cardTitle { href: "/visual/properties/animation-iterations" }
+          Text("CSS: animation-iteration-count") @meta
+        }
+        View @card {
+          Link("animationDirection") @cardTitle { href: "/visual/properties/animation-direction" }
+          Text("CSS: animation-direction") @meta
+        }
+        View @card {
+          Link("animationPlay") @cardTitle { href: "/visual/properties/animation-play" }
+          Text("CSS: animation-play-state") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

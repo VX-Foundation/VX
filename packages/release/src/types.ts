@@ -21,7 +21,7 @@ export interface PublicPackageSnapshot {
 }
 
 export interface WorkspaceApiSnapshot {
-  schema: 'https://vx.dev/schemas/public-api-snapshot/v1';
+  schema: 'https://vx.veelv.site/schemas/public-api-snapshot/v1';
   version: 1;
   packages: PublicPackageSnapshot[];
 }
@@ -79,7 +79,7 @@ export interface ProvenanceFile {
 }
 
 export interface ProvenanceManifest {
-  schema: 'https://vx.dev/schemas/release-provenance/v1';
+  schema: 'https://vx.veelv.site/schemas/release-provenance/v1';
   version: 1;
   packageName: string;
   packageVersion: string;

@@ -1,0 +1,75 @@
+#view
+  View @page {
+    Text("REFERENCE") @eyebrow
+    Title("Visual system")
+    Text("The VX Visual IR exposes 167 validated properties, 52 built-in roles, and 25 state or environment conditions.") @lead
+    View @section {
+      Title("Reference areas") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Visual properties") @cardTitle { href: "/visual/properties" }
+          Text("167 compiler-validated properties and their CSS lowering.") @meta
+        }
+        View @card {
+          Link("Built-in roles") @cardTitle { href: "/visual/roles" }
+          Text("52 structural and semantic roles.") @meta
+        }
+        View @card {
+          Link("Conditions") @cardTitle { href: "/visual/conditions" }
+          Text("25 interaction and environment conditions.") @meta
+        }
+        View @card {
+          Link("Color system") @cardTitle { href: "/project/color-system" }
+          Text("Palettes, semantic tones, surfaces, and contrast rules.") @meta
+        }
+        View @card {
+          Link("Styles architecture") @cardTitle { href: "/project/styles-architecture" }
+          Text("Visual IR, scoped styling, critical CSS, and code splitting.") @meta
+        }
+        View @card {
+          Link("Accessibility guide") @cardTitle { href: "/guides/accessibility" }
+          Text("Focus, keyboard, contrast, names, and reduced motion.") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Core model") { level: 2 }
+      Text("Visual roles express intent. The compiler validates each property, resolves tokens and conditions, rejects unsafe raw values, and emits deterministic scoped CSS.")
+      View @codeBlock {
+        Text("#view")
+        Text("  View @catalog {")
+        Text("    Text(\"Products\")")
+        Text("  }")
+        Text(" ")
+        Text("  @catalog uses @grid(min: 18rem, gap: lg) {")
+        Text("    surface: raised")
+        Text("    when hover { elevation: sm }")
+        Text("    when viewport(min: md) { columns: 3 }")
+        Text("  }")
+        Text("#end view")
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

@@ -42,7 +42,7 @@ export function createPublicationManifest(root: string, packageName: string, pac
   const ordered = files.sort((left, right) => left.path.localeCompare(right.path));
   const payload = canonicalJson({ packageName, packageVersion, files: ordered });
   return Object.freeze({
-    schema: 'https://vx.dev/schemas/publication/v1', version: 1,
+    schema: 'https://vx.veelv.site/schemas/publication/v1', version: 1,
     packageName, packageVersion,
     files: Object.freeze(ordered.map((file) => Object.freeze(file))),
     integrity: createIntegrity(payload, 'sha512')

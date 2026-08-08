@@ -1,0 +1,155 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/tooling")
+    Text("Compiler-backed formatter, language intelligence, inspection, HMR, testing, and migration tools for VX.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/tooling") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/tooling") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./formatter, ./language, ./inspect, ./hmr, ./testing, ./migration") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/tooling@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./formatter") @chip
+        Text("./language") @chip
+        Text("./inspect") @chip
+        Text("./hmr") @chip
+        Text("./testing") @chip
+        Text("./migration") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Compiler-backed formatter, language intelligence, inspection, HMR, testing, and migration tools for VX.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.js") @bullet
+        Text("• ./formatter -> ./dist/formatter.js") @bullet
+        Text("• ./hmr -> ./dist/hmr.js") @bullet
+        Text("• ./inspect -> ./dist/inspect.js") @bullet
+        Text("• ./language -> ./dist/language-service.js") @bullet
+        Text("• ./migration -> ./dist/migration.js") @bullet
+        Text("• ./testing -> ./dist/testing.js") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• BoundaryInspection - interface in inspect.ts") @bullet
+        Text("• CallHierarchyNode - interface in types.ts") @bullet
+        Text("• CodeAction - interface in types.ts") @bullet
+        Text("• collectReferences - function in symbols.ts") @bullet
+        Text("• collectSemanticTokens - function in semantic.ts") @bullet
+        Text("• collectSymbols - function in symbols.ts") @bullet
+        Text("• compareHMRSignatures - function in hmr.ts") @bullet
+        Text("• CompletionEntry - interface in types.ts") @bullet
+        Text("• ComponentHarness - interface in testing.ts") @bullet
+        Text("• createCallHierarchy - function in hierarchy.ts") @bullet
+        Text("• createComponentHarness - function in testing.ts") @bullet
+        Text("• createHMRSignature - function in hmr.ts") @bullet
+        Text("• createTypeHierarchy - function in hierarchy.ts") @bullet
+        Text("• FormatOptions - interface in formatter.ts") @bullet
+        Text("• FormatResult - interface in formatter.ts") @bullet
+        Text("• formatVX - function in formatter.ts") @bullet
+        Text("• HierarchyItem - interface in types.ts") @bullet
+        Text("• HMRCompatibility - interface in hmr.ts") @bullet
+        Text("• HMRSignature - interface in hmr.ts") @bullet
+        Text("• indexVXWorkspace - function in workspace.ts") @bullet
+        Text("• InlayHintEntry - interface in types.ts") @bullet
+        Text("• inspectVX - function in inspect.ts") @bullet
+        Text("• migrateVXSource - function in migration.ts") @bullet
+        Text("• MigrationChange - interface in migration.ts") @bullet
+        Text("• MigrationResult - interface in migration.ts") @bullet
+        Text("• offsetToPosition - function in symbols.ts") @bullet
+        Text("• pathToUri - function in workspace.ts") @bullet
+        Text("• printCanonicalVX - function in formatter.ts") @bullet
+        Text("• ReactiveInspectionNode - interface in inspect.ts") @bullet
+        Text("• SemanticTokenEntry - interface in types.ts") @bullet
+        Text("• SemanticTokenType - type in types.ts") @bullet
+        Text("• SymbolKind - type in types.ts") @bullet
+        Text("• SymbolReference - interface in types.ts") @bullet
+        Text("• TextEdit - interface in types.ts") @bullet
+        Text("• TypeHierarchyNode - interface in types.ts") @bullet
+        Text("• VXDocumentSnapshot - interface in types.ts") @bullet
+        Text("• VXInspection - interface in inspect.ts") @bullet
+        Text("• VXLanguageService - class in language-service.ts") @bullet
+        Text("• VXSymbol - interface in types.ts") @bullet
+        Text("• WIDGET_COMPLETIONS - const in widget-registry.generated.ts") @bullet
+        Text("• wordAtOffset - function in symbols.ts") @bullet
+        Text("• WorkspaceDocument - interface in hierarchy.ts") @bullet
+        Text("• WorkspaceIndexOptions - interface in types.ts") @bullet
+        Text("• WorkspaceIndexResult - interface in types.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSync, unlinkSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '../..');
@@ -12,6 +12,11 @@ const packages = [root, ...listDirectories(packagesRoot), ...listDirectories(app
   .map((directory) => ({ directory, manifest: readJson(join(directory, 'package.json')) }))
   .filter(({ manifest }) => manifest.private !== true && typeof manifest.name === 'string' && manifest.name.startsWith('@vx-foundation/'))
   .sort((a, b) => a.manifest.name.localeCompare(b.manifest.name));
+
+const generatedFiles = new Set(packages.map((item) => `${item.manifest.name.replace('@vx-foundation/', '')}.md`));
+for (const entry of readdirSync(outputRoot, { withFileTypes: true })) {
+  if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'README.md' && !generatedFiles.has(entry.name)) unlinkSync(join(outputRoot, entry.name));
+}
 
 const index = ['# VX API Reference', '', 'This reference is generated from published package manifests and public TypeScript exports. Undeclared subpaths are not public API.', ''];
 for (const item of packages) {

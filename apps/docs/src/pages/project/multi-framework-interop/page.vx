@@ -1,0 +1,133 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("VX Framework: Multi-Framework Interop Architecture")
+    Text("The VX Framework provides native multi-framework component interoperability, allowing existing TypeScript JSX/TSX, Vue, and Svelte components to be imported directly into .vx files and rendered as Integration Islands.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("The VX Framework provides native multi-framework component interoperability, allowing existing TypeScript JSX/TSX, Vue, and Svelte components to be imported directly into .vx files and rendered as Integration Islands.")
+    }
+    View @section {
+      Title("🏛️ Architecture Overview") { level: 2 }
+      View @codeBlock {
+        Text("┌─────────────────────────────────────────────────────────────────────────────┐")
+        Text("│                       VX MULTI-FRAMEWORK RENDER TREE                        │")
+        Text("├─────────────────────────────────────────────────────────────────────────────┤")
+        Text("│ 1. Core Application (.vx) ➔ Direct DOM Lowering (0ms overhead)              │")
+        Text("│    ├── View @header                                                         │")
+        Text("│    ├── Title(\"Dashboard\")                                                   │")
+        Text("│    │                                                                        │")
+        Text("│    └── 🛑 INTEGRATION ISLAND BOUNDARY (Signal-to-Props Bridge)              │")
+        Text("│         ├── TSX Component   (React / Preact / Solid)                        │")
+        Text("│         ├── Vue Component   (Single File Component .vue)                    │")
+        Text("│         └── Svelte Component (Svelte .svelte)                               │")
+        Text("└─────────────────────────────────────────────────────────────────────────────┘")
+      }
+    }
+    View @section {
+      Title("Supported Component Extensions") { level: 2 }
+      Text("The VX script parser (#script) and module resolver recognize and validate the following component extensions:")
+      View @list {
+        Text("• .vx: Native VX Compiler-First components (Direct DOM lowering).") @bullet
+        Text("• .tsx / .jsx: React, Preact, or Solid TSX/JSX component trees.") @bullet
+        Text("• .vue: Vue 3 Single File Components.") @bullet
+        Text("• .svelte: Svelte components.") @bullet
+      }
+    }
+    View @section {
+      Title("Usage Example in .vx Files") { level: 2 }
+      Text("Import external framework components in the #script block and invoke them as widgets in the #view block:")
+      View @codeBlock {
+        Text("#script")
+        Text("  import { UserAvatar } from \"../components/UserAvatar.tsx\"")
+        Text("  import MetricChart from \"../components/MetricChart.vue\"")
+        Text("  import BadgeCounter from \"../components/BadgeCounter.svelte\"")
+        Text(" ")
+        Text("  state activeUser: String = \"Alex\"")
+        Text("  state metricValue: Int = 85")
+        Text("  state notifications: Int = 3")
+        Text("#end script")
+        Text(" ")
+        Text("#view")
+        Text("  View @dashboard {")
+        Text("    View @interopHeader {")
+        Text("      UserAvatar {")
+        Text("        name: activeUser")
+        Text("        size: \"lg\"")
+        Text("      }")
+        Text("      BadgeCounter {")
+        Text("        count: notifications")
+        Text("      }")
+        Text("    }")
+        Text(" ")
+        Text("    View @interopContent {")
+        Text("      MetricChart {")
+        Text("        title: \"Server Efficiency\"")
+        Text("        value: metricValue")
+        Text("      }")
+        Text("    }")
+        Text("  }")
+        Text(" ")
+        Text("  @dashboard {")
+        Text("    flow: vertical")
+        Text("    gap: lg")
+        Text("    inset: xl")
+        Text("    surface: raised")
+        Text("  }")
+        Text(" ")
+        Text("  @interopHeader {")
+        Text("    flow: horizontal")
+        Text("    items: center")
+        Text("    content: between")
+        Text("    gap: md")
+        Text("  }")
+        Text(" ")
+        Text("  @interopContent {")
+        Text("    flow: vertical")
+        Text("    gap: lg")
+        Text("  }")
+        Text("#end view")
+      }
+    }
+    View @section {
+      Title("Styling Rules per Execution Mode") { level: 2 }
+      Text("Multi-framework components strictly adhere to the project's styling mode configured in vx.config.ts:")
+      Title("1. Default Mode (mode: \"compiler\")") { level: 3 }
+      View @list {
+        Text("• Zero Static CSS: The .vx application layer emits 0% static CSS files, preserving native Direct DOM performance.") @bullet
+        Text("• External framework components operate as functional integration islands without injecting unmanaged global styles.") @bullet
+      }
+      Title("2. Static Opt-In Mode (mode: \"static\")") { level: 3 }
+      Text("```ts import { defineConfig } from '@vx-foundation/core';")
+      View @list {
+        Text("• Activated explicitly in vx.config.ts:") @bullet
+      }
+      Text("export default defineConfig({ styles: { mode: 'static' } }); ```")
+      View @list {
+        Text("• Scoped styles from Vue (), Svelte (), and TSX CSS imports are consolidated into the build output CSS bundle (dist/assets/vx-[hash].css).") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

@@ -1,0 +1,91 @@
+#view
+  View @page {
+    Text("BUILD WITH VX") @eyebrow
+    Title("State and reactivity")
+    Text("Reactivity is part of the VX language. The compiler builds the dependency graph and emits direct updates instead of requiring manual subscriptions or dependency arrays.") @lead
+
+    View @section {
+      Title("Choose the correct declaration") { level: 2 }
+      View @table {
+        View @definitionRow { Text("prop") @key Text("Read-only input owned by the parent") }
+        View @definitionRow { Text("const") @key Text("Immutable non-reactive value") }
+        View @definitionRow { Text("state") @key Text("Owned mutable reactive value") }
+        View @definitionRow { Text("derive") @key Text("Pure synchronous reactive computation") }
+        View @definitionRow { Text("query") @key Text("Managed external read") }
+        View @definitionRow { Text("action") @key Text("Mutation and async operation boundary") }
+        View @definitionRow { Text("effect") @key Text("Synchronization with an external system") }
+        View @definitionRow { Text("store") @key Text("Shared reactive graph with explicit lifetime") }
+      }
+    }
+
+    View @section {
+      Title("State, derive, and action") { level: 2 }
+      View @codeBlock {
+        Text("state quantity: Int = 1")
+        Text("const unitPrice: Int = 849")
+        Text("derive total: Int = quantity * unitPrice")
+        Text("")
+        Text("action increase() {")
+        Text("  quantity++")
+        Text("}")
+      }
+      Text("Only actions may mutate state. A derive cannot mutate values, perform asynchronous work, or depend on hidden runtime discovery.")
+    }
+
+    View @section {
+      Title("Managed queries") { level: 2 }
+      View @codeBlock {
+        Text("query products from productLoader {")
+        Text("  category: category")
+        Text("  page: page")
+        Text("")
+        Text("  policy {")
+        Text("    stale: 30s")
+        Text("    retain: 5m")
+        Text("    retry: 2")
+        Text("    backoff: exponential")
+        Text("  }")
+        Text("}")
+      }
+      Text("Queries own deterministic identity, cache sharing, request deduplication, cancellation, retries, invalidation, retention, dehydration, and hydration.")
+    }
+
+    View @section {
+      Title("Actions and optimistic work") { level: 2 }
+      View @codeBlock {
+        Text("action save(name: String) {")
+        Text("  optimistic(profile, current => { ...current, name })")
+        Text("  await api.save(name)")
+        Text("  invalidate(profile)")
+        Text("}")
+      }
+      Text("Managed actions can coordinate status, cancellation, optimistic changes, rollback, invalidation, refresh transactions, concurrency, and offline queues.")
+    }
+
+    View @section {
+      Title("Effects") { level: 2 }
+      View @codeBlock {
+        Text("effect observeViewport {")
+        Text("  window.addEventListener(\"resize\", updateViewport)")
+        Text("  return () => window.removeEventListener(\"resize\", updateViewport)")
+        Text("}")
+      }
+      Text("Use effects only when synchronizing with an external system. Dependencies are compiler-derived and cleanup is deterministic.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Declare views and visual intent") { href: "/views-styling" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @table { flow: vertical border: subtle corner: lg overflow: hidden }
+  @definitionRow { flow: grid columns: 2 gap: lg inset: md borderBottom: subtle }
+  @key { typography: mono.md color: sapphire-700 }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

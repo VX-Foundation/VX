@@ -27,7 +27,7 @@ export function validatePackageMetadata(value: unknown): { valid: boolean; metad
   const warning = (code: string, message: string, suggestion?: string): void => { issues.push({ code, severity: 'warning', message, ...(suggestion ? { suggestion } : {}) }); };
   if (!record(value)) return { valid: false, issues: [{ code: 'VX_PACKAGE_METADATA_OBJECT', severity: 'error', message: 'Package metadata must be an object.' }] };
 
-  if (value['schema'] !== 'https://vx.dev/schemas/package/v1' || value['version'] !== 1) error('VX_PACKAGE_METADATA_SCHEMA', 'Unsupported VX package metadata schema.');
+  if (value['schema'] !== 'https://vx.veelv.site/schemas/package/v1' || value['version'] !== 1) error('VX_PACKAGE_METADATA_SCHEMA', 'Unsupported VX package metadata schema.');
   if (typeof value['name'] !== 'string' || !validPackageName(value['name'])) error('VX_PACKAGE_METADATA_NAME', 'Package metadata requires a valid npm-compatible package name.');
   if (typeof value['packageVersion'] !== 'string' || !validSemver(value['packageVersion'])) error('VX_PACKAGE_METADATA_VERSION', 'Package metadata requires a valid semantic version.');
 

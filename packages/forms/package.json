@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/forms",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "type": "module",
   "description": "Typed VX forms, schema validation, progressive enhancement, and multipart handling.",
   "main": "./dist/index.js",
@@ -40,7 +40,7 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "vitest": "^3.2.4"
+    "vitest": "catalog:"
   },
   "author": {
     "name": "Veelv"

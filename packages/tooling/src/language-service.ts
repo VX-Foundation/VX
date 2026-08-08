@@ -6,6 +6,7 @@ import { collectReferences, collectSymbols, wordAtOffset } from './symbols.js';
 import { collectSemanticTokens } from './semantic.js';
 import { createCallHierarchy, createTypeHierarchy } from './hierarchy.js';
 import type { CallHierarchyNode, CodeAction, CompletionEntry, InlayHintEntry, SemanticTokenEntry, SymbolReference, TextEdit, TypeHierarchyNode, VXDocumentSnapshot, VXSymbol } from './types.js';
+import { WIDGET_COMPLETIONS } from './widget-registry.generated.js';
 
 const KEYWORDS: CompletionEntry[] = [
   ['#script', 'VX behavior and contract region'], ['#view', 'VX declarative view region'],
@@ -40,8 +41,9 @@ const DATA_POLICY_COMPLETIONS: CompletionEntry[] = [
   ['enabled', 'Reactive query activation expression']
 ].map(([label, detail]) => ({ label: label!, kind: 'keyword', detail: detail! }));
 
-const WIDGETS = ['View', 'Text', 'Title', 'Button', 'Input', 'Image', 'Link', 'List', 'Form', 'Content', 'Dynamic', 'Portal', 'Self']
-  .map((label): CompletionEntry => ({ label, kind: 'widget', detail: `VX ${label} visual primitive` }));
+const SPECIAL_WIDGETS: readonly CompletionEntry[] = ['Content', 'Dynamic', 'Portal', 'Self']
+  .map((label): CompletionEntry => ({ label, kind: 'widget', detail: `VX ${label} compiler component` }));
+const WIDGETS: readonly CompletionEntry[] = Object.freeze([...WIDGET_COMPLETIONS, ...SPECIAL_WIDGETS]);
 
 export class VXLanguageService {
   readonly #documents = new Map<string, InternalDocument>();

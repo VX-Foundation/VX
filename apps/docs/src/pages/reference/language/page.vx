@@ -1,0 +1,104 @@
+#view
+  View @page {
+    Text("DOCUMENTATION") @eyebrow
+    Title("Language specification")
+    Text("This directory is the normative specification for the VX language and framework source model.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("This directory is the normative specification for the VX language and framework source model.")
+      Text("Normative keywords such as MUST, MUST NOT, SHOULD, and MAY have their usual requirements meaning. A conforming compiler must implement every requirement marked as normative and must emit diagnostics for invalid source instead of silently changing its meaning.")
+    }
+    View @section {
+      Title("Documents") { level: 2 }
+      View @list {
+        Text("• Lexical structure (lexical-structure.md)") @bullet
+        Text("• Types and values (types-and-values.md)") @bullet
+        Text("• Modules and packages (modules-and-packages.md)") @bullet
+        Text("• Reactive execution (reactive-execution.md)") @bullet
+        Text("• Components (components.md)") @bullet
+        Text("• View language and Visual IR (view-language.md)") @bullet
+        Text("• Routing and application graph (routing.md)") @bullet
+        Text("• Server boundaries (server-boundaries.md)") @bullet
+        Text("• JavaScript interoperability (javascript-interoperability.md)") @bullet
+        Text("• Diagnostics (diagnostics.md)") @bullet
+        Text("• Conformance (conformance.md)") @bullet
+      }
+      Text("The implementation remains the executable reference, but implementation behavior that contradicts this specification is a defect.")
+    }
+    View @section {
+      Title("Documents") { level: 2 }
+      View @cards {
+        View @card {
+          Link("VX 0.2 Specification Freeze") @cardTitle { href: "/reference/language/frozen" }
+          Text("The VX language and framework specification is frozen for the 0.2 stabilization line as of 2026-08-06.") @meta
+        }
+        View @card {
+          Link("Components") @cardTitle { href: "/reference/language/components" }
+          Text("A component contract consists of props, models, outputs, content regions, visual parts, contexts, references, and lifecycle behavior.") @meta
+        }
+        View @card {
+          Link("Conformance") @cardTitle { href: "/reference/language/conformance" }
+          Text("A VX implementation is conforming when it:") @meta
+        }
+        View @card {
+          Link("Diagnostics") @cardTitle { href: "/reference/language/diagnostics" }
+          Text("Every diagnostic has a stable code, severity, message, source span when available, and a suggested correction when one can be stated safely.") @meta
+        }
+        View @card {
+          Link("JavaScript and TypeScript Interoperability") @cardTitle { href: "/reference/language/javascript-interoperability" }
+          Text("VX resolves npm packages through installed package metadata and conditional exports.") @meta
+        }
+        View @card {
+          Link("Lexical Structure") @cardTitle { href: "/reference/language/lexical-structure" }
+          Text("A VX source file MUST be valid UTF-8. A byte-order mark MAY be accepted and MUST NOT affect source offsets after normalization.") @meta
+        }
+        View @card {
+          Link("Modules and Packages") @cardTitle { href: "/reference/language/modules-and-packages" }
+          Text("A visual module contains #view. A headless module omits it. Visual components use default imports; headless declarations use named imports.") @meta
+        }
+        View @card {
+          Link("Reactive Execution") @cardTitle { href: "/reference/language/reactive-execution" }
+          Text("state, derive, query, action, effect, and store form the reactive program.") @meta
+        }
+        View @card {
+          Link("Routing and Application Graph") @cardTitle { href: "/reference/language/routing" }
+          Text("Routes are discovered from src/pages. Static segments, parameters, optional parameters, and catch-all parameters form a deterministic matcher.") @meta
+        }
+        View @card {
+          Link("Server Boundaries") @cardTitle { href: "/reference/language/server-boundaries" }
+          Text("Server code executes with request-scoped context. Client bundles MUST NOT contain server-only modules, environment secrets, filesystem access, or Node-only APIs.") @meta
+        }
+        View @card {
+          Link("Types and Values") @cardTitle { href: "/reference/language/types-and-values" }
+          Text("VX is statically typed. Every declaration has an inferred or explicit type, and public contracts SHOULD use explicit types.") @meta
+        }
+        View @card {
+          Link("View Language and Visual IR") @cardTitle { href: "/reference/language/view-language" }
+          Text("The #view region describes semantic and visual intent with native widgets, component uses, control flow, collections, content projection, and @roles.") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

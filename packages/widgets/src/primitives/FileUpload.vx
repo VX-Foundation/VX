@@ -1,0 +1,42 @@
+#script
+  prop accept: String = "*/*"
+  prop label: String = "Drag and drop files here, or click to browse"
+  prop class: String = ""
+
+  output onSelect: Void
+
+  action selectFiles() {
+    emit("onSelect")
+  }
+#end script
+
+#view
+  View @uploadZone {
+    Text(label) @uploadLabel
+    Input @fileInput {
+      type: "file"
+      accept: accept
+      ariaLabel: label
+      change => selectFiles()
+    }
+  }
+
+  @uploadZone {
+    flow: vertical
+    items: center
+    content: center
+    inset: xl
+    corner: lg
+    surface: steel-900
+    border: steel-700
+    borderStyle: dashed
+  }
+
+  @uploadLabel {
+    tone: cloud-300
+  }
+
+  @fileInput {
+    opacity: hidden
+  }
+#end view

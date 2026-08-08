@@ -1,31 +1,33 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+function resolveWorkspaceRoot(params: Pick<InitializeParams, 'workspaceFolders' | 'rootUri'>): string | undefined {
+  const uri = params.workspaceFolders?.[0]?.uri ?? params.rootUri ?? undefined;
+  return uri?.startsWith('file:') ? fileURLToPath(uri) : undefined;
+}
 import {
   CodeActionKind,
-  CompletionItemKind,
   DiagnosticSeverity,
   DidChangeConfigurationNotification,
   Location,
-  Position,
   ProposedFeatures,
   Range,
-  SymbolKind,
   TextDocumentSyncKind,
   TextDocuments,
   TextEdit,
   createConnection
 } from 'vscode-languageserver/node.js';
-import type { CompletionItem, Diagnostic, DocumentSymbol, InitializeParams, InitializeResult, WorkspaceEdit } from 'vscode-languageserver/node.js';
+import type { CompletionItem, DocumentSymbol, InitializeParams, InitializeResult, Position, SymbolKind, WorkspaceEdit } from 'vscode-languageserver/node.js';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { inspectVX } from '@vx-foundation/tooling/inspect';
 import { VXLanguageService, indexVXWorkspaceAsync } from '@vx-foundation/tooling';
-import type { CompletionEntry, HierarchyItem, SemanticTokenEntry, VXSymbol, WorkspaceIndexResult } from '@vx-foundation/tooling';
+import type { HierarchyItem, WorkspaceIndexResult } from '@vx-foundation/tooling';
+import { encodeSemanticTokens, SEMANTIC_TOKEN_TYPES, toCompletionItem, toLspDiagnostic, toPosition, toRange, toSymbolKind } from './protocol-adapters.js';
 
 const connection = createConnection(ProposedFeatures.all);
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 const service = new VXLanguageService();
-const semanticTokenTypes = ['keyword', 'type', 'class', 'function', 'variable', 'property', 'parameter', 'namespace', 'string', 'number', 'comment'] as const;
 let workspaceRoot: string | undefined;
 let workspaceStatus: WorkspaceIndexResult = { indexedFiles: 0, skippedFiles: 0, truncated: false, diagnostics: [] };
 
@@ -43,7 +45,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
       documentFormattingProvider: true,
       documentSymbolProvider: true,
       workspaceSymbolProvider: true,
-      semanticTokensProvider: { legend: { tokenTypes: [...semanticTokenTypes], tokenModifiers: ['declaration', 'definition', 'readonly', 'static', 'deprecated', 'async'] }, full: true },
+      semanticTokensProvider: { legend: { tokenTypes: [...SEMANTIC_TOKEN_TYPES], tokenModifiers: ['declaration', 'definition', 'readonly', 'static', 'deprecated', 'async'] }, full: true },
       inlayHintProvider: true,
       callHierarchyProvider: true,
       typeHierarchyProvider: true
@@ -80,7 +82,7 @@ connection.onRenameRequest((params): WorkspaceEdit | null => withDocument(params
 connection.onCodeAction((params) => withDocument(params.textDocument.uri, (document) => service.codeActions(document.uri).map((action) => ({
   title: action.title,
   kind: action.kind === 'source' ? CodeActionKind.Source : action.kind === 'refactor' ? CodeActionKind.Refactor : CodeActionKind.QuickFix,
-  diagnostics: params.context.diagnostics.filter((diagnostic: Diagnostic) => action.diagnostics?.includes(String(diagnostic.code))),
+  diagnostics: params.context.diagnostics.filter((diagnostic) => action.diagnostics?.includes(String(diagnostic.code))),
   edit: { changes: { [document.uri]: action.edits.map((edit) => TextEdit.replace(toRange(edit.span), edit.newText)) } }
 })), []));
 connection.onDocumentFormatting((params) => withDocument(params.textDocument.uri, (document) => service.codeActions(document.uri).find((candidate) => candidate.title === 'Format VX document')?.edits.map((edit) => TextEdit.replace(toRange(edit.span), edit.newText)) ?? [], []));
@@ -176,24 +178,6 @@ function typeHierarchyItems(item: HierarchyLspItem, direction: 'parents' | 'chil
 function toHierarchyItem(item: HierarchyItem): HierarchyLspItem {
   return { name: item.symbol.name, kind: toSymbolKind(item.symbol), uri: item.uri, range: toRange(item.symbol.span), selectionRange: toRange(item.symbol.selectionSpan), detail: item.symbol.detail ?? item.symbol.kind, data: { uri: item.uri, offset: item.symbol.selectionSpan.start.offset } };
 }
-function encodeSemanticTokens(tokens: readonly SemanticTokenEntry[]): number[] {
-  const data: number[] = []; let previousLine = 0; let previousCharacter = 0;
-  for (const token of tokens) {
-    const deltaLine = token.line - previousLine;
-    const deltaCharacter = deltaLine === 0 ? token.character - previousCharacter : token.character;
-    data.push(deltaLine, deltaCharacter, token.length, semanticTokenTypes.indexOf(token.tokenType), modifierBits(token.modifiers));
-    previousLine = token.line; previousCharacter = token.character;
-  }
-  return data;
-}
-function modifierBits(modifiers: readonly string[]): number { const names = ['declaration', 'definition', 'readonly', 'static', 'deprecated', 'async']; return modifiers.reduce((bits, modifier) => { const index = names.indexOf(modifier); return index >= 0 ? bits | (1 << index) : bits; }, 0); }
-function toLspDiagnostic(diagnostic: ReturnType<VXLanguageService['diagnostics']>[number]): Diagnostic { return { severity: diagnostic.severity === 'error' ? DiagnosticSeverity.Error : diagnostic.severity === 'warning' ? DiagnosticSeverity.Warning : DiagnosticSeverity.Information, code: diagnostic.code, source: 'vx', message: diagnostic.suggestion ? `${diagnostic.message}\nSuggestion: ${diagnostic.suggestion}` : diagnostic.message, range: toRange(diagnostic.span) }; }
-function toCompletionItem(entry: CompletionEntry): CompletionItem { const kind = entry.kind === 'keyword' ? CompletionItemKind.Keyword : entry.kind === 'widget' ? CompletionItemKind.Class : entry.kind === 'role' ? CompletionItemKind.Property : entry.kind === 'action' ? CompletionItemKind.Function : entry.kind === 'model' ? CompletionItemKind.Struct : entry.kind === 'generic' ? CompletionItemKind.TypeParameter : entry.kind === 'import' ? CompletionItemKind.Module : CompletionItemKind.Variable; return { label: entry.label, kind, detail: entry.detail, ...(entry.insertText ? { insertText: entry.insertText } : {}) }; }
-function toSymbolKind(symbol: VXSymbol): SymbolKind { if (symbol.kind === 'model' || symbol.kind === 'schema') return SymbolKind.Struct; if (symbol.kind === 'generic') return SymbolKind.TypeParameter; if (symbol.kind === 'import') return SymbolKind.Module; if (symbol.kind === 'action' || symbol.kind === 'effect' || symbol.kind === 'query') return SymbolKind.Function; if (symbol.kind === 'prop' || symbol.kind === 'parameter' || symbol.kind === 'field') return SymbolKind.Field; if (symbol.kind === 'context') return SymbolKind.Namespace; if (symbol.kind === 'role' || symbol.kind === 'part') return SymbolKind.Property; return SymbolKind.Variable; }
-function toRange(span: { start: { line: number; column: number }; end: { line: number; column: number } }): Range { return Range.create(toPosition(span.start), toPosition(span.end)); }
-function toPosition(position: { line: number; column: number }): Position { return Position.create(Math.max(0, position.line - 1), Math.max(0, position.column - 1)); }
-function resolveWorkspaceRoot(params: InitializeParams): string | undefined { const uri = params.workspaceFolders?.[0]?.uri ?? params.rootUri ?? undefined; return uri?.startsWith('file:') ? fileURLToPath(uri) : undefined; }
-
 interface CancellationLike { isCancellationRequested: boolean; onCancellationRequested?(listener: () => void): { dispose(): void }; }
 interface PositionParams { textDocument: { uri: string }; position: Position; }
 interface HierarchyLspItem { name: string; kind: SymbolKind; uri: string; range: Range; selectionRange: Range; detail: string; data: { uri: string; offset: number }; }

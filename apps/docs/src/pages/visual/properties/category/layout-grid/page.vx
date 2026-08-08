@@ -1,0 +1,78 @@
+#view
+  View @page {
+    Text("VISUAL PROPERTY GROUP") @eyebrow
+    Title("Layout - grid")
+    Text("11 properties in the layout - grid group.") @lead
+    View @section {
+      Title("Properties") { level: 2 }
+      View @cards {
+        View @card {
+          Link("columns") @cardTitle { href: "/visual/properties/columns" }
+          Text("CSS: grid-template-columns") @meta
+        }
+        View @card {
+          Link("minColumn") @cardTitle { href: "/visual/properties/min-column" }
+          Text("CSS: --vx-grid-min") @meta
+        }
+        View @card {
+          Link("dense") @cardTitle { href: "/visual/properties/dense" }
+          Text("CSS: grid-auto-flow") @meta
+        }
+        View @card {
+          Link("autoColumns") @cardTitle { href: "/visual/properties/auto-columns" }
+          Text("CSS: grid-auto-columns") @meta
+        }
+        View @card {
+          Link("autoRows") @cardTitle { href: "/visual/properties/auto-rows" }
+          Text("CSS: grid-auto-rows") @meta
+        }
+        View @card {
+          Link("autoFlow") @cardTitle { href: "/visual/properties/auto-flow" }
+          Text("CSS: grid-auto-flow") @meta
+        }
+        View @card {
+          Link("gridRows") @cardTitle { href: "/visual/properties/grid-rows" }
+          Text("CSS: grid-template-rows") @meta
+        }
+        View @card {
+          Link("gridAreas") @cardTitle { href: "/visual/properties/grid-areas" }
+          Text("CSS: grid-template-areas") @meta
+        }
+        View @card {
+          Link("gridColumn") @cardTitle { href: "/visual/properties/grid-column" }
+          Text("CSS: grid-column") @meta
+        }
+        View @card {
+          Link("gridRow") @cardTitle { href: "/visual/properties/grid-row" }
+          Text("CSS: grid-row") @meta
+        }
+        View @card {
+          Link("gridArea") @cardTitle { href: "/visual/properties/grid-area" }
+          Text("CSS: grid-area") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

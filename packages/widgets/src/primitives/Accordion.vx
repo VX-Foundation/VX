@@ -1,0 +1,57 @@
+#script
+  prop title: String = ""
+  prop expanded: Bool = false
+  prop class: String = ""
+
+  output onToggle: Void
+  content default: optional
+
+  action toggle() {
+    emit("onToggle")
+  }
+#end script
+
+#view
+  View @accordionCard {
+    View @accordionHeader {
+      Text(title) @accordionTitle
+      Button("▼") @accordionIcon {
+        click => toggle()
+      }
+    }
+    if expanded {
+      View @accordionBody {
+        Content(default)
+      }
+    }
+  }
+
+  @accordionCard {
+    flow: vertical
+    surface: steel-900
+    border: steel-800
+    corner: lg
+    inset: md
+  }
+
+  @accordionHeader {
+    flow: horizontal
+    content: space-between
+    items: center
+  }
+
+  @accordionTitle {
+    tone: cloud-50
+  }
+
+  @accordionIcon {
+    surface: transparent
+    tone: cloud-400
+  }
+
+  @accordionBody {
+    flow: vertical
+    inset: md
+    tone: cloud-200
+  }
+#end view

@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/official-commerce",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -25,9 +25,9 @@
   "devDependencies": {
     "@vx-foundation/cli": "workspace:*",
     "@vx-foundation/testing": "workspace:*",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4",
-    "@types/node": "^24.0.15"
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "@types/node": "catalog:"
   },
   "engines": {
     "node": ">=22.11.0 <23 || >=24.11.0 <25"

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vx.veelv.site/schemas/source-allowlist/v1",
+  "version": 1,
+  "includeFiles": [
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+    ".node-version",
+    ".npmrc",
+    ".nvmrc",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "GOVERNANCE.md",
+    "LICENSE",
+    "MAINTENANCE.md",
+    "README.md",
+    "SECURITY.md",
+    "SUPPORT.md",
+    "VERSION",
+    "commitlint.config.cjs",
+    "eslint.config.mjs",
+    "index.d.ts",
+    "index.js",
+    "package.json",
+    "packages.md",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "tsconfig.json",
+    "turbo.json",
+    "vx.svg"
+  ],
+  "includeDirectories": [
+    ".beon",
+    ".changeset",
+    ".github",
+    "apps",
+    "benchmarks",
+    "docs",
+    "packages",
+    "quality",
+    "release",
+    "rfcs",
+    "scripts",
+    "tests"
+  ],
+  "excludePrefixes": [
+    "docs/api/",
+    "docs/reference/widgets.generated.md",
+    "release-artifacts/"
+  ],
+  "forbiddenSegments": [
+    ".cache",
+    ".git",
+    ".turbo",
+    ".vx",
+    "coverage",
+    "dist",
+    "node_modules",
+    "playwright-report",
+    "release-artifacts",
+    "test-results"
+  ],
+  "forbiddenSuffixes": [
+    ".tsbuildinfo",
+    ".tgz",
+    ".zip"
+  ]
+}

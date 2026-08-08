@@ -1,0 +1,79 @@
+#view
+  View @page {
+    Text("BUILD WITH VX") @eyebrow
+    Title("Routing")
+    Text("VX discovers routes from src/pages and compiles the route tree, layout boundaries, data policies, rendering strategy, and endpoint contracts together.") @lead
+
+    View @section {
+      Title("Filesystem routes") { level: 2 }
+      View @codeBlock {
+        Text("src/pages/page.vx                    /")
+        Text("src/pages/reports/page.vx            /reports")
+        Text("src/pages/products/[id]/page.vx      /products/:id")
+        Text("src/pages/docs/[...path]/page.vx     /docs/*path")
+      }
+      Text("Static segments, required parameters, optional parameters, and catch-all parameters form a deterministic matcher.")
+    }
+
+    View @section {
+      Title("Shared layouts") { level: 2 }
+      View @codeBlock {
+        Text("#script")
+        Text("  content route: required")
+        Text("#end script")
+        Text("")
+        Text("#view")
+        Text("  View @shell {")
+        Text("    View @navigation {")
+        Text("      Link(\"Home\") { href: \"/\" }")
+        Text("      Link(\"Reports\") { href: \"/reports\" }")
+        Text("    }")
+        Text("    Content(route)")
+        Text("  }")
+        Text("#end view")
+      }
+      Text("A layout owns shared route structure without wrapping child components only for framework identity.")
+    }
+
+    View @section {
+      Title("Rendering policy") { level: 2 }
+      View @codeBlock {
+        Text("{")
+        Text("  \"render\": \"server\",")
+        Text("  \"preload\": \"intent\",")
+        Text("  \"hydration\": \"islands\",")
+        Text("  \"streaming\": \"blocking\",")
+        Text("  \"generation\": { \"mode\": \"dynamic\" }")
+        Text("}")
+      }
+      Text("render may be client, server, or static. Generation may be dynamic, static, or incremental. Session-dependent forms require dynamic generation, and streamed output requires a dynamic route.")
+    }
+
+    View @section {
+      Title("Route states") { level: 2 }
+      Text("Use loading.vx for pending navigation, error.vx for route failures, and not-found.vx for missing resources. Keep state-specific behavior at the closest route boundary that owns it.")
+    }
+
+    View @section {
+      Title("Inspect the route graph") { level: 2 }
+      View @codeBlock {
+        Text("pnpm vx inspect")
+        Text("pnpm vx check src")
+        Text("pnpm vx build")
+      }
+      Text("Navigation is cancellable and preserves route boundaries, focus, scroll ownership, transition ownership, and data invalidation. Unrelated lazy chunks must not be preloaded.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Connect data and server code") { href: "/data-server" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

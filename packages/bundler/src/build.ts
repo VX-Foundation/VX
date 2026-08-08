@@ -25,8 +25,8 @@ export async function build(input: BuildOptions): Promise<BuildResult> {
   const reused = reuseCachedBuild(options, cached, sourceHash);
   if (reused) return reused;
 
-  const previousSourceMatch = cached?.sourceFingerprint === sourceHash ? cached.artifactFingerprint : undefined;
-  fs.rmSync(options.outDir, { recursive: true, force: true });
+  const previousSourceMatch = (cached?.sourceFingerprint === sourceHash && fs.existsSync(options.outDir) && artifactFingerprint(options.outDir) === cached.artifactFingerprint) ? cached.artifactFingerprint : undefined;
+  fs.rmSync(options.outDir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
   fs.mkdirSync(options.outDir, { recursive: true });
 
   const previousEpoch = process.env['SOURCE_DATE_EPOCH'];

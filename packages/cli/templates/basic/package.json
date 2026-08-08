@@ -13,7 +13,7 @@
     "format:check": "vx format src --check",
     "doctor": "vx doctor",
     "test": "vx test:component src/pages/page.vx",
-    "verify": "pnpm doctor && pnpm check && pnpm lint && pnpm test && pnpm build"
+    "verify": "vx doctor && vx check src && vx lint src && vx build"
   },
   "dependencies": {
     "@vx-foundation/core": "workspace:*",

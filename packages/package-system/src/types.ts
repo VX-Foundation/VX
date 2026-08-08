@@ -33,7 +33,7 @@ export interface VXPackageProvenanceReference {
 }
 
 export interface VXPackageMetadata {
-  schema: 'https://vx.dev/schemas/package/v1';
+  schema: 'https://vx.veelv.site/schemas/package/v1';
   version: 1;
   name: string;
   packageVersion: string;
@@ -77,7 +77,7 @@ export interface VXLockedWorkspacePackage {
 }
 
 export interface VXLockfile {
-  schema: 'https://vx.dev/schemas/lockfile/v1';
+  schema: 'https://vx.veelv.site/schemas/lockfile/v1';
   version: 1;
   lockfileVersion: 1;
   workspace: string;
@@ -117,7 +117,7 @@ export interface PackageMutationResult {
 }
 
 export interface PublicContractSnapshot {
-  schema: 'https://vx.dev/schemas/public-contract/v1';
+  schema: 'https://vx.veelv.site/schemas/public-contract/v1';
   version: 1;
   packageName: string;
   packageVersion: string;
@@ -144,7 +144,7 @@ export interface PublicationFile {
 }
 
 export interface PublicationManifest {
-  schema: 'https://vx.dev/schemas/publication/v1';
+  schema: 'https://vx.veelv.site/schemas/publication/v1';
   version: 1;
   packageName: string;
   packageVersion: string;

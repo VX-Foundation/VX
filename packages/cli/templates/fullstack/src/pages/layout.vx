@@ -15,7 +15,7 @@
         }
         View @topbarActions {
           Link("Docs") @topbarLink {
-            href: "https://vx.dev/docs"
+            href: "https://vx.veelv.site/docs"
           }
           Link("GitHub") @topbarLink {
             href: "https://github.com/vx-foundation/vx"

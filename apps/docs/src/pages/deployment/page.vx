@@ -1,0 +1,61 @@
+#view
+  View @page {
+    Text("SHIP AND MAINTAIN") @eyebrow
+    Title("Deployment")
+    Text("Deployment starts with an explicit adapter and rendering policy. Production output must be reproducible, verified, previewed, and deployed with provider-owned secrets.") @lead
+
+    View @section {
+      Title("Choose an adapter") { level: 2 }
+      Text("Official targets include Node standalone, Docker, Static, Cloudflare Workers, Cloudflare Pages, Vercel, Netlify, AWS Lambda, generic serverless, Bun, Deno, and generic edge environments.")
+      Text("Choose the adapter that matches route behavior. Static output cannot serve request-specific sessions or dynamic form processing without an external server boundary.")
+    }
+
+    View @section {
+      Title("Production build") { level: 2 }
+      View @codeBlock {
+        Text("pnpm install --frozen-lockfile")
+        Text("pnpm vx check src")
+        Text("pnpm test")
+        Text("pnpm vx build")
+        Text("pnpm vx preview")
+      }
+      Text("Preview the exact production artifacts, not the development server. Verify health checks, route behavior, security headers, asset loading, caching, and error boundaries.")
+    }
+
+    View @section {
+      Title("Secrets and environment") { level: 2 }
+      View @warning {
+        Text("Never commit production secrets or expose server environment values through client state.")
+      }
+      Text("Use the deployment provider secret manager. Validate required environment values at startup and fail safely before serving traffic when a critical secret is missing.")
+    }
+
+    View @section {
+      Title("Release integrity") { level: 2 }
+      Text("Store checksums, provenance, package metadata, build identity, source version, adapter version, and migration requirements with the release. Rollback must identify the exact previous artifact rather than rebuilding from a moving branch.")
+    }
+
+    View @section {
+      Title("Operational checklist") { level: 2 }
+      Text("• Run frozen installation and all required gates.")
+      Text("• Verify server and client boundary analysis.")
+      Text("• Confirm CSP, cookies, CORS, CSRF, and security headers.")
+      Text("• Test static assets, cache behavior, and route fallback.")
+      Text("• Configure logs, traces, metrics, alerts, and health checks.")
+      Text("• Exercise rollback before the release is considered complete.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Review every CLI command") { href: "/commands" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @warning { surface: amber-50 border: amber-300 corner: lg inset: lg }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

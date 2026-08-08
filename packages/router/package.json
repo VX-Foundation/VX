@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/router",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "type": "module",
   "description": "VX file-based router and client navigation engine.",
   "main": "./dist/index.js",

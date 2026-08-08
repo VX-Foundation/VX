@@ -1,0 +1,80 @@
+#view
+  View @page {
+    Text("FRAMEWORK INTERNALS") @eyebrow
+    Title("Framework Architecture")
+    Text("VX is a compiler-first web application platform. A .vx source module is analyzed into explicit semantic, reactive, data, view, visual, and boundary representations before target code is emitted.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX is a compiler-first web application platform. A .vx source module is analyzed into explicit semantic, reactive, data, view, visual, and boundary representations before target code is emitted.")
+    }
+    View @section {
+      Title("Compilation pipeline") { level: 2 }
+      View @codeBlock {
+        Text(".vx source")
+        Text("  → lexical and syntax analysis")
+        Text("  → symbols, scopes, and types")
+        Text("  → reactive and data dependency graphs")
+        Text("  → View IR and Visual IR")
+        Text("  → client/server boundary analysis")
+        Text("  → DOM, SSR, server, and package lowering")
+        Text("  → bundling, manifests, and deployment adapters")
+      }
+      Text("The compiler owns the relationship between #script and #view. Runtime code is emitted only for behavior that cannot be completed statically or during server rendering.")
+    }
+    View @section {
+      Title("Package responsibilities") { level: 2 }
+      View @list {
+        Text("• @vx-foundation/language owns parsing, source locations, recovery, and formatting-compatible syntax data.") @bullet
+        Text("• @vx-foundation/compiler owns semantic analysis, accessibility checks, dependency graphs, target lowering, and source maps.") @bullet
+        Text("• @vx-foundation/runtime owns fine-grained reactivity, scheduling, DOM operations, hydration, transitions, ownership, and cleanup.") @bullet
+        Text("• @vx-foundation/router owns the application graph, route matching, navigation, metadata, loaders, and route lifecycles.") @bullet
+        Text("• @vx-foundation/server owns request context, sessions, middleware, endpoint contracts, security boundaries, and server integration.") @bullet
+        Text("• @vx-foundation/bundler owns build targets, assets, manifests, chunks, integrity, and deployment adapters.") @bullet
+        Text("• @vx-foundation/tooling, @vx-foundation/language-server, and the official extensions own diagnostics, inspection, editing, and debugging workflows.") @bullet
+      }
+    }
+    View @section {
+      Title("Intermediate representations") { level: 2 }
+      Text("VX uses explicit IR layers so validation and optimization happen before code generation:")
+      View @list {
+        Text("• Semantic IR for resolved declarations, contracts, scopes, and types.") @bullet
+        Text("• Reactive IR for state, derives, effects, queries, actions, and bindings.") @bullet
+        Text("• Data Program IR for cache, mutation, persistence, realtime, and lifetime policies.") @bullet
+        Text("• View IR for interface structure, conditions, keyed collections, events, and content regions.") @bullet
+        Text("• Visual IR for roles, tokens, layout intent, responsive behavior, states, motion, and accessibility semantics.") @bullet
+        Text("• Boundary IR for static, client, server, request-scoped, and serializable values.") @bullet
+      }
+    }
+    View @section {
+      Title("Execution ownership") { level: 2 }
+      Text("Every resource has an explicit owner. Component, route, request, query, effect, plugin, and server lifecycles must provide deterministic cleanup. Cancellation is propagated through AbortSignal, and stale work must not commit results after ownership has ended.")
+    }
+    View @section {
+      Title("Public boundaries") { level: 2 }
+      Text("Applications and official examples use only package entries declared through exports. Internal source paths, generated implementation paths, and private modules are not public contracts.")
+      Text("The normative language contract is maintained in ../spec (../spec/README.md). Public package surfaces are documented in ../api (../api/README.md).")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

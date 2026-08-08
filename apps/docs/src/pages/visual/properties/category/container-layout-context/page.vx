@@ -1,0 +1,94 @@
+#view
+  View @page {
+    Text("VISUAL PROPERTY GROUP") @eyebrow
+    Title("Container / layout context")
+    Text("15 properties in the container / layout context group.") @lead
+    View @section {
+      Title("Properties") { level: 2 }
+      View @cards {
+        View @card {
+          Link("overflow") @cardTitle { href: "/visual/properties/overflow" }
+          Text("CSS: overflow") @meta
+        }
+        View @card {
+          Link("overflowX") @cardTitle { href: "/visual/properties/overflow-x" }
+          Text("CSS: overflow-x") @meta
+        }
+        View @card {
+          Link("overflowY") @cardTitle { href: "/visual/properties/overflow-y" }
+          Text("CSS: overflow-y") @meta
+        }
+        View @card {
+          Link("containerType") @cardTitle { href: "/visual/properties/container-type" }
+          Text("CSS: container-type") @meta
+        }
+        View @card {
+          Link("containerName") @cardTitle { href: "/visual/properties/container-name" }
+          Text("CSS: container-name") @meta
+        }
+        View @card {
+          Link("contain") @cardTitle { href: "/visual/properties/contain" }
+          Text("CSS: contain") @meta
+        }
+        View @card {
+          Link("isolation") @cardTitle { href: "/visual/properties/isolation" }
+          Text("CSS: isolation") @meta
+        }
+        View @card {
+          Link("sidebar") @cardTitle { href: "/visual/properties/sidebar" }
+          Text("CSS: grid-template-columns") @meta
+        }
+        View @card {
+          Link("side") @cardTitle { href: "/visual/properties/side" }
+          Text("Compiler-owned layout helper.") @meta
+        }
+        View @card {
+          Link("split") @cardTitle { href: "/visual/properties/split" }
+          Text("CSS: grid-template-columns") @meta
+        }
+        View @card {
+          Link("collapse") @cardTitle { href: "/visual/properties/collapse" }
+          Text("Compiler-owned layout helper.") @meta
+        }
+        View @card {
+          Link("control") @cardTitle { href: "/visual/properties/control" }
+          Text("Compiler-owned layout helper.") @meta
+        }
+        View @card {
+          Link("controlSize") @cardTitle { href: "/visual/properties/control-size" }
+          Text("Compiler-owned layout helper.") @meta
+        }
+        View @card {
+          Link("density") @cardTitle { href: "/visual/properties/density" }
+          Text("Compiler-owned layout helper.") @meta
+        }
+        View @card {
+          Link("aspect") @cardTitle { href: "/visual/properties/aspect" }
+          Text("CSS: aspect-ratio") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

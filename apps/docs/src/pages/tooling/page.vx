@@ -1,0 +1,63 @@
+#view
+  View @page {
+    Text("SHIP AND MAINTAIN") @eyebrow
+    Title("Tooling")
+    Text("VX treats tooling as part of the framework. The CLI, formatter, linter, language server, editor extension, inspector, tests, and Browser DevTools consume shared public diagnostics and graph contracts.") @lead
+
+    View @section {
+      Title("Daily development loop") { level: 2 }
+      View @codeBlock {
+        Text("pnpm vx doctor")
+        Text("pnpm vx dev")
+        Text("pnpm vx check src")
+        Text("pnpm vx format src")
+        Text("pnpm vx lint src")
+        Text("pnpm vx inspect")
+      }
+    }
+
+    View @section {
+      Title("Diagnostics") { level: 2 }
+      Text("Every public diagnostic has a stable code, severity, message, source span when available, and a suggested correction when it can be stated safely. Diagnostic codes are a compatibility surface.")
+    }
+
+    View @section {
+      Title("Language server and editor") { level: 2 }
+      Text("The language server provides syntax diagnostics, type information, widget and property completion, route awareness, navigation, and shared formatting contracts. The VS Code extension consumes those capabilities instead of maintaining an independent parser.")
+    }
+
+    View @section {
+      Title("Inspect compiler decisions") { level: 2 }
+      Text("Use inspect to understand routes, component graphs, dependency direction, client and server partitions, generated chunks, visual lowering, data dependencies, and diagnostics. Inspection should explain why the compiler made a decision, not only show emitted code.")
+    }
+
+    View @section {
+      Title("Browser DevTools") { level: 2 }
+      Text("Browser DevTools visualize runtime graphs and diagnostics without changing application semantics. Keep production behavior independent of the extension and never expose secrets or unrestricted server data to inspection channels.")
+    }
+
+    View @section {
+      Title("Framework repository verification") { level: 2 }
+      View @codeBlock {
+        Text("pnpm verify:policy")
+        Text("pnpm verify")
+        Text("pnpm verify:conformance")
+        Text("pnpm verify:quality")
+        Text("pnpm verify:release-candidate")
+      }
+      Text("Run the narrowest relevant gate during development and the complete release-candidate gate before publication work.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Author packages and plugins") { href: "/packages-plugins" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

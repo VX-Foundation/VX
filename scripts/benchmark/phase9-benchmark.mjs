@@ -24,7 +24,7 @@ const metrics = {
   })
 };
 const normalized = Object.fromEntries(Object.entries(metrics).map(([key, value]) => [key, Number((value / Math.max(calibration, 0.0001)).toFixed(6))]));
-const result = { schema: 'https://vx.dev/schemas/benchmark/v1', node: process.version, calibrationMs: calibration, metrics, normalized };
+const result = { schema: 'https://vx.veelv.site/schemas/benchmark/v1', node: process.version, calibrationMs: calibration, metrics, normalized };
 if (update) {
   await writeFile(baselinePath, `${JSON.stringify({ ...result, tolerance: 1.75 }, null, 2)}\n`);
   console.log('Phase 9 benchmark baseline updated.');

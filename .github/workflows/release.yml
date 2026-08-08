@@ -30,9 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: node scripts/release/verify-source-tree.mjs
         with:
           fetch-depth: 0
+      - run: node scripts/release/verify-source-tree.mjs
+      - run: node scripts/release/verify-version-sync.mjs
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
@@ -61,9 +62,10 @@ jobs:
     environment: npm
     steps:
       - uses: actions/checkout@v6
-      - run: node scripts/release/verify-source-tree.mjs
         with:
           fetch-depth: 0
+      - run: node scripts/release/verify-source-tree.mjs
+      - run: node scripts/release/verify-version-sync.mjs
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:

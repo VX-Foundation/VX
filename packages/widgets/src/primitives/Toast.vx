@@ -1,0 +1,69 @@
+#script
+  prop title: String = ""
+  prop message: String = ""
+  prop variant: String = "info"
+  prop visible: Bool = true
+  prop class: String = ""
+
+  output onDismiss: Void
+
+  action dismiss() {
+    emit("onDismiss")
+  }
+#end script
+
+#view
+  if visible {
+    View @toastContainer {
+      View @toastCard {
+        View @toastContent {
+          Text(title) @toastTitle
+          Text(message) @toastMessage
+        }
+        Button("✕") @dismissBtn {
+          click => dismiss()
+        }
+      }
+    }
+  }
+
+  @toastContainer {
+    flow: horizontal
+    items: center
+    content: end
+    inset: md
+    z: toast
+  }
+
+  @toastCard {
+    flow: horizontal
+    items: center
+    content: space-between
+    gap: md
+    inset: md
+    corner: lg
+    elevation: md
+    surface: steel-900
+    border: steel-800
+  }
+
+  @toastContent {
+    flow: vertical
+  }
+
+  @toastTitle {
+    tone: cloud-50
+  }
+
+  @toastMessage {
+    tone: cloud-300
+  }
+
+  @dismissBtn {
+    surface: transparent
+    tone: cloud-400
+    when hover {
+      tone: cloud-50
+    }
+  }
+#end view

@@ -1,0 +1,152 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/language")
+    Text("Tokenizer, parser and AST for the VX .vx single-file component language.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/language") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/language") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text(".") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/language@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Tokenizer, parser and AST for the VX .vx single-file component language.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• BLOCK_KINDS - const in tokens.ts") @bullet
+        Text("• BlockKind - type in tokens.ts") @bullet
+        Text("• createDiagnostic - function in errors.ts") @bullet
+        Text("• CreateDiagnosticOptions - interface in errors.ts") @bullet
+        Text("• DiagnosticCodes - const in errors.ts") @bullet
+        Text("• extractPublicPart - function in component-view-parser.ts") @bullet
+        Text("• isBlockKind - function in tokens.ts") @bullet
+        Text("• parse - function in parser.ts") @bullet
+        Text("• parseAction - function in script-data-parser.ts") @bullet
+        Text("• parseAttachedRoles - function in view-role-parser.ts") @bullet
+        Text("• ParseAttachedVisualRoles - type in component-view-parser.ts") @bullet
+        Text("• parseComputed - function in script-state-parser.ts") @bullet
+        Text("• parseConst - function in script-state-parser.ts") @bullet
+        Text("• parseContentDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• parseContentRegionUse - function in component-view-parser.ts") @bullet
+        Text("• parseContextInjectDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• parseContextProvideDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• ParsedViewPattern - interface in view-pattern.ts") @bullet
+        Text("• parseEffect - function in script-data-parser.ts") @bullet
+        Text("• parseFormDeclaration - function in script-schema-parser.ts") @bullet
+        Text("• parseForwardDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• parseGenericDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• parseIfBlock - function in view-control-parser.ts") @bullet
+        Text("• parseImportDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• parseKeyedCollection - function in view-control-parser.ts") @bullet
+        Text("• parseLifecycleDirective - function in script-lifecycle-parser.ts") @bullet
+        Text("• parseModelDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• parseOutputDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• parseProp - function in script-state-parser.ts") @bullet
+        Text("• parseQuery - function in script-data-parser.ts") @bullet
+        Text("• parseRoleDeclaration - function in view-role-parser.ts") @bullet
+        Text("• parseSchemaDeclaration - function in script-schema-parser.ts") @bullet
+        Text("• parseScriptBlock - function in script-parser.ts") @bullet
+        Text("• parseState - function in script-state-parser.ts") @bullet
+        Text("• parseStore - function in script-data-parser.ts") @bullet
+        Text("• parseViewBlock - function in view-parser.ts") @bullet
+        Text("• ParseViewChildren - type in component-view-parser.ts") @bullet
+        Text("• ParseViewNodeList - type in view-control-parser.ts") @bullet
+        Text("• parseViewPattern - function in view-pattern.ts") @bullet
+        Text("• parseVisualPartBinding - function in component-view-parser.ts") @bullet
+        Text("• parseVisualPartDeclaration - function in component-contract-parser.ts") @bullet
+        Text("• parseWhenBlock - function in view-control-parser.ts") @bullet
+        Text("• readBraceBody - function in expression.ts") @bullet
+        Text("• readBracketedExpression - function in expression.ts") @bullet
+        Text("• readLineExpression - function in expression.ts") @bullet
+        Text("• readParenExpression - function in expression.ts") @bullet
+        Text("• readStringLiteralRaw - function in expression.ts") @bullet
+        Text("• readStringLiteralValue - function in expression.ts") @bullet
+        Text("• recoverToNextLine - function in script-parser-utils.ts") @bullet
+        Text("• Scanner - class in scanner.ts") @bullet
+        Text("• skipBalancedRoleDeclaration - function in view-role-parser.ts") @bullet
+        Text("• Token - type in tokens.ts") @bullet
+        Text("• tokenize - function in tokenizer.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

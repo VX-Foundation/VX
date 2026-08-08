@@ -1,0 +1,157 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/testing")
+    Text("Official VX unit, component, DOM, SSR, hydration, route, action, endpoint, visual, accessibility, and performance testing contracts.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/testing") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/testing") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./runner, ./dom, ./ssr, ./visual, ./accessibility, ./performance, ./browser, ./component, ./routes") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/testing@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./runner") @chip
+        Text("./dom") @chip
+        Text("./ssr") @chip
+        Text("./visual") @chip
+        Text("./accessibility") @chip
+        Text("./performance") @chip
+        Text("./browser") @chip
+        Text("./component") @chip
+        Text("./routes") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Official VX unit, component, DOM, SSR, hydration, route, action, endpoint, visual, accessibility, and performance testing contracts.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./accessibility -> ./dist/accessibility.d.ts") @bullet
+        Text("• ./browser -> ./dist/browser.d.ts") @bullet
+        Text("• ./component -> ./dist/component.d.ts") @bullet
+        Text("• ./dom -> ./dist/dom.d.ts") @bullet
+        Text("• ./performance -> ./dist/performance.d.ts") @bullet
+        Text("• ./routes -> ./dist/routes.d.ts") @bullet
+        Text("• ./runner -> ./dist/runner.d.ts") @bullet
+        Text("• ./ssr -> ./dist/ssr.d.ts") @bullet
+        Text("• ./visual -> ./dist/visual.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• AccessibilityAudit - interface in accessibility.ts") @bullet
+        Text("• AccessibilityAuditOptions - interface in accessibility.ts") @bullet
+        Text("• AccessibilityIssue - interface in accessibility.ts") @bullet
+        Text("• accessibleName - function in dom.ts") @bullet
+        Text("• auditAccessibility - function in accessibility.ts") @bullet
+        Text("• BrowserDriver - interface in browser.ts") @bullet
+        Text("• BrowserScenario - interface in browser.ts") @bullet
+        Text("• BrowserScenarioResult - interface in browser.ts") @bullet
+        Text("• BrowserScreenshotOptions - interface in browser.ts") @bullet
+        Text("• compareHydrationMarkup - function in ssr.ts") @bullet
+        Text("• compareRgbaSnapshots - function in visual.ts") @bullet
+        Text("• ComponentTestHarness - interface in component.ts") @bullet
+        Text("• contrastRatio - function in accessibility.ts") @bullet
+        Text("• createDomHarness - function in dom.ts") @bullet
+        Text("• createRouteHarness - function in routes.ts") @bullet
+        Text("• createTestSuite - function in runner.ts") @bullet
+        Text("• DomHarness - interface in dom.ts") @bullet
+        Text("• enforcePerformanceBudget - function in performance.ts") @bullet
+        Text("• HydrationTestResult - interface in ssr.ts") @bullet
+        Text("• InvocationResult - interface in routes.ts") @bullet
+        Text("• MarkupMismatch - interface in ssr.ts") @bullet
+        Text("• MountedComponent - interface in component.ts") @bullet
+        Text("• OfficialTestCase - interface in types.ts") @bullet
+        Text("• OfficialTestKind - type in types.ts") @bullet
+        Text("• OfficialTestReport - interface in types.ts") @bullet
+        Text("• OfficialTestResult - interface in types.ts") @bullet
+        Text("• OfficialTestSuite - interface in runner.ts") @bullet
+        Text("• PerformanceBudget - interface in performance.ts") @bullet
+        Text("• PerformanceBudgetResult - interface in performance.ts") @bullet
+        Text("• PerformanceSample - interface in performance.ts") @bullet
+        Text("• PerformanceStatistics - interface in performance.ts") @bullet
+        Text("• queryByLabelText - function in dom.ts") @bullet
+        Text("• queryByRole - function in dom.ts") @bullet
+        Text("• RoleQueryOptions - interface in dom.ts") @bullet
+        Text("• RouteHarness - interface in routes.ts") @bullet
+        Text("• TestContext - interface in types.ts") @bullet
+        Text("• TestDiagnostic - interface in types.ts") @bullet
+        Text("• TestRunOptions - interface in types.ts") @bullet
+        Text("• VisualComparisonOptions - interface in visual.ts") @bullet
+        Text("• VisualComparisonResult - interface in visual.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

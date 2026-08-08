@@ -1,0 +1,96 @@
+#view
+  View @page {
+    Text("FOUNDATIONS") @eyebrow
+    Title("Project structure")
+    Text("VX uses filesystem conventions so the compiler can discover routes, components, modules, server boundaries, and public package surfaces without excessive configuration.") @lead
+
+    View @section {
+      Title("Application layout") { level: 2 }
+      View @codeBlock {
+        Text("my-app/")
+        Text("  src/")
+        Text("    pages/          route tree")
+        Text("    components/     reusable visual components")
+        Text("    modules/        headless VX modules")
+        Text("    server/         server-only TypeScript")
+        Text("  public/           static assets")
+        Text("  vx.config.ts      framework configuration")
+        Text("  package.json")
+        Text("  tsconfig.json")
+      }
+    }
+
+    View @section {
+      Title("Route files") { level: 2 }
+      Text("Directories under src/pages form the application URL tree. A route directory may contain:")
+      Text("• page.vx - visual route content")
+      Text("• layout.vx - shared route shell")
+      Text("• loading.vx - pending route state")
+      Text("• error.vx - route error boundary")
+      Text("• not-found.vx - missing resource view")
+      Text("• endpoint.ts - HTTP endpoint handlers")
+      Text("• route.json - rendering and generation policy")
+    }
+
+    View @section {
+      Title("Components and modules") { level: 2 }
+      Text("A .vx module with #view is a visual component. A .vx module without #view is headless. Keep reusable UI in src/components and reusable application logic in src/modules.")
+      View @codeBlock {
+        Text("src/components/ProductCard.vx")
+        Text("src/modules/cart.vx")
+        Text("src/server/catalog.ts")
+      }
+    }
+
+    View @section {
+      Title("Generated directories") { level: 2 }
+      View @warning {
+        Text("Do not treat .vx or dist as source directories.")
+      }
+      Text("The .vx directory contains generated and incremental build state. dist contains deployable output. Both must be reproducible from source and should not be manually edited.")
+    }
+
+    View @section {
+      Title("Configuration") { level: 2 }
+      View @codeBlock {
+        Text("import { defineConfig } from '@vx-foundation/core';")
+        Text("")
+        Text("export default defineConfig({")
+        Text("  adapter: 'static',")
+        Text("  build: {")
+        Text("    targets: ['browser', 'server', 'static'],")
+        Text("    deterministic: true,")
+        Text("    reproducible: true")
+        Text("  }")
+        Text("});")
+      }
+      Text("vx.config.ts is the central configuration point. Build paths are validated and the output directory cannot escape or replace the project root.")
+    }
+
+    View @section {
+      Title("Repository layout for VX contributors") { level: 2 }
+      Text("The framework monorepo separates applications, packages, tests, scripts, specifications, release evidence, benchmarks, and RFCs. Public package dependencies must remain acyclic and every source file should stay below 1,000 lines.")
+      View @codeBlock {
+        Text("apps/       official applications and documentation")
+        Text("packages/   compiler, runtime, router, server, tooling")
+        Text("tests/      cross-package conformance suites")
+        Text("docs/       normative and production documentation")
+        Text("scripts/    verification, generation, release, quality")
+        Text("release/    version source, freezes, evidence, snapshots")
+      }
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Learn the VX language") { href: "/language" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @warning { surface: amber-50 border: amber-300 corner: lg inset: lg }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

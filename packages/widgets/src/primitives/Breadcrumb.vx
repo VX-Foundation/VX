@@ -1,0 +1,18 @@
+#script
+  prop separator: String = "/"
+  prop class: String = ""
+  content default: optional
+#end script
+
+#view
+  View @breadcrumbPath {
+    Content(default)
+  }
+
+  @breadcrumbPath {
+    flow: horizontal
+    items: center
+    gap: sm
+    tone: cloud-400
+  }
+#end view

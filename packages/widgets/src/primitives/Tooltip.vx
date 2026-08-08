@@ -1,0 +1,33 @@
+#script
+  prop contentText: String = ""
+  prop position: String = "top"
+  prop class: String = ""
+  content default: optional
+#end script
+
+#view
+  View @tooltipContainer {
+    Content(default)
+    View @tooltipBubble {
+      Text(contentText) @tooltipText
+    }
+  }
+
+  @tooltipContainer {
+    display: inline-flex
+    stack: true
+  }
+
+  @tooltipBubble {
+    inset: badge
+    corner: sm
+    surface: rock-950
+    border: steel-800
+    elevation: xs
+    z: toast
+  }
+
+  @tooltipText {
+    tone: cloud-50
+  }
+#end view

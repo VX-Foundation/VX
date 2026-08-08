@@ -10,20 +10,41 @@
 #view
   View @page {
     View @hero {
-      Image @logo {
-        src: "/vx.svg"
-        alt: "VX"
+      View @badge {
+        Text("Multi-Route App Shell") @badgeText
       }
       Text("Welcome to VX Starter") @heading
-      Text("A multi-route application with layout, endpoints, and typed data flows.") @subheading
+      Text("Full-stack web application structure featuring typed layouts, server endpoints, and fine-grained reactive signals.") @subheading
     }
 
-    View @card {
-      Text("Reactive Counter") @cardLabel
-      Text("{{ count }}") @countValue
-      Text("doubled: {{ doubled }}") @countMeta
-      Button("Increment") @btn {
+    View @demoCard {
+      View @demoCardHeader {
+        Text("Interactive Signal Demo") @demoTitle
+        Text("Live Component State") @demoStatus
+      }
+
+      View @counterDisplay {
+        Text("{{ count }}") @countValue
+        Text("derived memo (2x): {{ doubled }}") @countMeta
+      }
+
+      Button("Increment Signal (+1)") @btn {
         click => increment()
+      }
+    }
+
+    View @featuresGrid {
+      View @featureCard {
+        Text("Fine-Grained DOM") @featureTitle
+        Text("Direct DOM update targets without Virtual DOM reconciliation passes.") @featureBody
+      }
+      View @featureCard {
+        Text("Layout Routing") @featureTitle
+        Text("Hierarchical layout cascading with typed parameters and navigation hooks.") @featureBody
+      }
+      View @featureCard {
+        Text("Type Safety") @featureTitle
+        Text("End-to-end data contracts compiled directly from .vx source files.") @featureBody
       }
     }
   }
@@ -31,25 +52,35 @@
   @page {
     flow: vertical
     gap: 2xl
+    items: center
   }
 
   @hero {
     flow: vertical
     items: center
     gap: md
-    insetY: xl
+    insetY: lg
     textAlign: center
   }
 
-  @logo {
-    width: 64
-    height: 64
+  @badge {
+    surface: highlighted
+    corner: xl
+    inset: control.sm
+    border: subtle
+  }
+
+  @badgeText {
+    typography: label.xs
+    tone: strong
+    letterSpacing: 0.04em
+    textTransform: uppercase
   }
 
   @heading {
-    typography: heading.xl
+    typography: display.lg
     tone: strong
-    letterSpacing: -0.02em
+    letterSpacing: -0.03em
   }
 
   @subheading {
@@ -59,26 +90,46 @@
     textAlign: center
   }
 
-  @card {
+  @demoCard {
     flow: vertical
     items: center
-    gap: md
+    gap: lg
     surface: raised
-    corner: xl
-    elevation: sm
+    corner: 2xl
+    elevation: md
     border: subtle
-    inset: xl
+    inset: 2xl
+    minWidth: 320
+    maxWidth: 520
   }
 
-  @cardLabel {
-    typography: label.sm
+  @demoCardHeader {
+    flow: horizontal
+    content: between
+    items: center
+    width: fill
+    border: subtle
+    borderBottom: subtle
+  }
+
+  @demoTitle {
+    typography: heading.xs
+    tone: strong
+  }
+
+  @demoStatus {
+    typography: label.xs
     tone: muted
-    textTransform: uppercase
-    letterSpacing: 0.08em
+  }
+
+  @counterDisplay {
+    flow: vertical
+    items: center
+    gap: xs
   }
 
   @countValue {
-    typography: display.lg
+    typography: display.xl
     tone: strong
   }
 
@@ -90,7 +141,7 @@
   @btn {
     surface: primary
     tone: onPrimary
-    corner: md
+    corner: lg
     inset: control.md
     typography: label.md
     border: none
@@ -105,5 +156,36 @@
     when pressed {
       transform: press
     }
+  }
+
+  @featuresGrid {
+    flow: grid
+    columns: 3
+    gap: lg
+    width: fill
+  }
+
+  @featureCard {
+    flow: vertical
+    gap: sm
+    surface: raised
+    corner: xl
+    border: subtle
+    inset: lg
+    elevation: sm
+  }
+
+  @featureIcon {
+    typography: display.sm
+  }
+
+  @featureTitle {
+    typography: heading.xs
+    tone: strong
+  }
+
+  @featureBody {
+    typography: body.xs
+    tone: muted
   }
 #end view

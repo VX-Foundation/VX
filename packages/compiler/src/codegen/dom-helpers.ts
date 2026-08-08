@@ -3,6 +3,7 @@ import type { ScriptBlockNode, ViewNode, ViewSourceMapEntry } from '@vx-foundati
 import type { ComponentCodegenContext } from '../components/codegen-context.js';
 import { isRuntimeDeclaration } from './component-module.js';
 import type { JavaScriptBinding } from './javascript.js';
+import { PRIMITIVE_CALL_PROPERTIES, PRIMITIVE_NATIVE_ELEMENTS } from './primitive-metadata.generated.js';
 
 export interface ComponentSymbols {
   signals: Set<string>;
@@ -62,20 +63,11 @@ export function getPrimitiveTag(widgetName: string, semanticRole?: string): stri
   if (semanticRole === 'title') return 'h1';
   if (semanticRole === 'subtitle') return 'p';
   if (semanticRole === 'code') return 'code';
-  const tags: Record<string, string> = {
-    View: 'div', FieldGroup: 'fieldset', FieldError: 'span', FormError: 'div', ErrorSummary: 'div', Text: 'span', Title: 'h1', Button: 'button', Input: 'input', Image: 'img', Link: 'a',
-    Divider: 'hr', Form: 'form', List: 'div', Checkbox: 'input', Radio: 'input', Select: 'select',
-    TextArea: 'textarea', IFrame: 'iframe', Canvas: 'canvas', Audio: 'audio', Video: 'video',
-    ProgressBar: 'progress', Slider: 'input', Switch: 'input', ScrollView: 'div', Icon: 'span'
-  };
-  return tags[widgetName] ?? 'div';
+  return PRIMITIVE_NATIVE_ELEMENTS[widgetName] ?? 'div';
 }
 
 export function callProperty(widgetName: string): string {
-  if (widgetName === 'Button') return 'label';
-  if (widgetName === 'Title') return 'text';
-  if (widgetName === 'Input' || widgetName === 'TextArea' || widgetName === 'Select') return 'value';
-  return 'text';
+  return PRIMITIVE_CALL_PROPERTIES[widgetName] ?? 'text';
 }
 
 export function sourceKind(node: ViewNode): ViewSourceMapEntry['kind'] {

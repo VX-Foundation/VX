@@ -8,6 +8,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 export interface DevServerOptions {
   root: string;
   port?: number;
+  strictPort?: boolean;
   https?: boolean;
   srcDir?: string;
 }
@@ -17,7 +18,8 @@ export async function startDevServer(options: DevServerOptions) {
   const config: InlineConfig = {
     root: resolve(options.root),
     server: {
-      port: options.port ?? 3000,
+      port: options.port ?? 4000,
+      strictPort: options.strictPort ?? false,
       ...(options.https ? { https: {} } : {})
     },
     plugins: [vitePluginVX({ pagesDir: `${options.srcDir ?? 'src'}/pages` }) as unknown as NonNullable<InlineConfig['plugins']>[number]],

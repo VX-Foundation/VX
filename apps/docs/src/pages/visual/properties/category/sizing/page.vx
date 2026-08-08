@@ -1,0 +1,82 @@
+#view
+  View @page {
+    Text("VISUAL PROPERTY GROUP") @eyebrow
+    Title("Sizing")
+    Text("12 properties in the sizing group.") @lead
+    View @section {
+      Title("Properties") { level: 2 }
+      View @cards {
+        View @card {
+          Link("width") @cardTitle { href: "/visual/properties/width" }
+          Text("CSS: width") @meta
+        }
+        View @card {
+          Link("height") @cardTitle { href: "/visual/properties/height" }
+          Text("CSS: height") @meta
+        }
+        View @card {
+          Link("minWidth") @cardTitle { href: "/visual/properties/min-width" }
+          Text("CSS: min-width") @meta
+        }
+        View @card {
+          Link("minHeight") @cardTitle { href: "/visual/properties/min-height" }
+          Text("CSS: min-height") @meta
+        }
+        View @card {
+          Link("maxWidth") @cardTitle { href: "/visual/properties/max-width" }
+          Text("CSS: max-width") @meta
+        }
+        View @card {
+          Link("maxHeight") @cardTitle { href: "/visual/properties/max-height" }
+          Text("CSS: max-height") @meta
+        }
+        View @card {
+          Link("inset") @cardTitle { href: "/visual/properties/inset" }
+          Text("CSS: padding") @meta
+        }
+        View @card {
+          Link("insetX") @cardTitle { href: "/visual/properties/inset-x" }
+          Text("CSS: padding-left, padding-right") @meta
+        }
+        View @card {
+          Link("insetY") @cardTitle { href: "/visual/properties/inset-y" }
+          Text("CSS: padding-top, padding-bottom") @meta
+        }
+        View @card {
+          Link("margin") @cardTitle { href: "/visual/properties/margin" }
+          Text("CSS: margin") @meta
+        }
+        View @card {
+          Link("marginX") @cardTitle { href: "/visual/properties/margin-x" }
+          Text("CSS: margin-left, margin-right") @meta
+        }
+        View @card {
+          Link("marginY") @cardTitle { href: "/visual/properties/margin-y" }
+          Text("CSS: margin-top, margin-bottom") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

@@ -15,6 +15,8 @@ import { bodyContainsAwait, lowerBody, lowerExpression, type JavaScriptBinding }
 import { expandInterpolatedExpression } from '../interpolation.js';
 import { normalizeVisualExpression } from '../visual/expression.js';
 import { emitClientForms, emitSchemas, emitServerFormHandlers } from '../forms/codegen.js';
+import { FORM_CONTROL_WIDGETS } from '../components/validation-constants.generated.js';
+import { PRIMITIVE_CALL_PROPERTIES, PRIMITIVE_NATIVE_ELEMENTS } from './primitive-metadata.generated.js';
 
 interface ServerSymbols {
   plain: Set<string>;
@@ -625,27 +627,18 @@ function containsEvent(nodes: readonly ViewNode[]): boolean {
 }
 
 function isFormControl(widgetName: string): boolean {
-  return widgetName === 'Input' || widgetName === 'TextArea' || widgetName === 'Select' || widgetName === 'Checkbox' || widgetName === 'Radio' || widgetName === 'Switch' || widgetName === 'Slider';
+  return FORM_CONTROL_WIDGETS.has(widgetName);
 }
 
 function getPrimitiveTag(widgetName: string, semanticRole?: string): string {
   if (semanticRole === 'title') return 'h1';
   if (semanticRole === 'subtitle') return 'p';
   if (semanticRole === 'code') return 'code';
-  const tags: Record<string, string> = {
-    View: 'div', FieldGroup: 'fieldset', FieldError: 'span', FormError: 'div', ErrorSummary: 'div', Text: 'span', Title: 'h1', Button: 'button', Input: 'input', Image: 'img', Link: 'a',
-    Divider: 'hr', Form: 'form', List: 'div', Checkbox: 'input', Radio: 'input', Select: 'select',
-    TextArea: 'textarea', IFrame: 'iframe', Canvas: 'canvas', Audio: 'audio', Video: 'video',
-    ProgressBar: 'progress', Slider: 'input', Switch: 'input', ScrollView: 'div', Icon: 'span'
-  };
-  return tags[widgetName] ?? 'div';
+  return PRIMITIVE_NATIVE_ELEMENTS[widgetName] ?? 'div';
 }
 
 function callProperty(widgetName: string): string {
-  if (widgetName === 'Button') return 'label';
-  if (widgetName === 'Title') return 'text';
-  if (widgetName === 'Input' || widgetName === 'TextArea' || widgetName === 'Select') return 'value';
-  return 'text';
+  return PRIMITIVE_CALL_PROPERTIES[widgetName] ?? 'text';
 }
 
 function isTextProperty(widgetName: string, property: string): boolean {

@@ -1,0 +1,51 @@
+/**
+ * Tabs compiler contract generated from the canonical registry.
+ * DO NOT EDIT: run `pnpm widgets:generate`.
+ */
+import type { CompilerWidgetDefinition } from '../contracts.js';
+
+export const definition = Object.freeze({
+    "name": "Tabs",
+    "category": "navigation",
+    "nativeElement": "div",
+    "groups": [
+      "container",
+      "interactive"
+    ],
+    "callProperty": null,
+    "defaults": {},
+    "contractSource": "#script\n  prop activeTab: String = \"\"\n  prop class: String = \"\"\n  output onTabChange: String\n  content default: optional\n#end script\n",
+    "properties": [
+      {
+        "name": "activeTab",
+        "type": "String",
+        "required": false,
+        "event": false
+      },
+      {
+        "name": "class",
+        "type": "String",
+        "required": false,
+        "event": false
+      },
+      {
+        "name": "onTabChange",
+        "type": "Optional<Event<String>>",
+        "required": false,
+        "event": true
+      }
+    ],
+    "events": [
+      {
+        "name": "onTabChange",
+        "payloadType": "String"
+      }
+    ],
+    "content": [
+      {
+        "name": "default",
+        "cardinality": "optional",
+        "required": false
+      }
+    ]
+  } as const) satisfies CompilerWidgetDefinition;

@@ -1,0 +1,123 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/security-testing")
+    Text("Deterministic fuzzing, secret scanning, and supply-chain policy primitives for VX.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/security-testing") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/security-testing") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./fuzz, ./secrets, ./supply-chain, ./random, ./mutators") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/security-testing@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./fuzz") @chip
+        Text("./secrets") @chip
+        Text("./supply-chain") @chip
+        Text("./random") @chip
+        Text("./mutators") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Deterministic fuzzing, secret scanning, and supply-chain policy primitives for VX.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./fuzz -> ./dist/fuzz.d.ts") @bullet
+        Text("• ./mutators -> ./dist/mutators.d.ts") @bullet
+        Text("• ./random -> ./dist/random.d.ts") @bullet
+        Text("• ./secrets -> ./dist/secrets.d.ts") @bullet
+        Text("• ./supply-chain -> ./dist/supply-chain.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• ByteMutator - type in mutators.ts") @bullet
+        Text("• createDeterministicRandom - function in random.ts") @bullet
+        Text("• defaultByteMutators - const in mutators.ts") @bullet
+        Text("• DeterministicRandom - interface in random.ts") @bullet
+        Text("• FuzzCampaignOptions - interface in fuzz.ts") @bullet
+        Text("• FuzzCrash - interface in fuzz.ts") @bullet
+        Text("• FuzzReport - interface in fuzz.ts") @bullet
+        Text("• reviewLockfileText - function in supply-chain.ts") @bullet
+        Text("• reviewPackageManifest - function in supply-chain.ts") @bullet
+        Text("• scanSecrets - function in secrets.ts") @bullet
+        Text("• SecretFinding - interface in secrets.ts") @bullet
+        Text("• SecretScanOptions - interface in secrets.ts") @bullet
+        Text("• SupplyChainIssue - interface in supply-chain.ts") @bullet
+        Text("• SupplyChainPolicy - interface in supply-chain.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

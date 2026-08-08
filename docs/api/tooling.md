@@ -2,7 +2,7 @@
 
 Compiler-backed formatter, language intelligence, inspection, HMR, testing, and migration tools for VX.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 
@@ -55,6 +55,7 @@ Current package line: `0.1.2`.
 - `VXInspection` - interface in `inspect.ts`
 - `VXLanguageService` - class in `language-service.ts`
 - `VXSymbol` - interface in `types.ts`
+- `WIDGET_COMPLETIONS` - const in `widget-registry.generated.ts`
 - `wordAtOffset` - function in `symbols.ts`
 - `WorkspaceDocument` - interface in `hierarchy.ts`
 - `WorkspaceIndexOptions` - interface in `types.ts`

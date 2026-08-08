@@ -1,0 +1,82 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("Package manager policy")
+    Text("VX development uses pnpm 11 and keeps one exact toolchain version in the root manifest:") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX development uses pnpm 11 and keeps one exact toolchain version in the root manifest:")
+      View @codeBlock {
+        Text("{")
+        Text("  \"packageManager\": \"pnpm@11.19.0\",")
+        Text("  \"engines\": {")
+        Text("    \"pnpm\": \">=11.19.0 <12\"")
+        Text("  }")
+        Text("}")
+      }
+      Text("packageManager is the reproducible toolchain pin used by Corepack and CI. engines.pnpm declares the supported pnpm major for environments that manage the executable separately.")
+    }
+    View @section {
+      Title("Setup") { level: 2 }
+      View @codeBlock {
+        Text("corepack enable")
+        Text("corepack prepare pnpm@11.19.0 --activate")
+        Text("pnpm --version")
+      }
+      Text("The expected version for release work is 11.19.0. pnpm 11 requires Node.js 22 or newer.")
+    }
+    View @section {
+      Title("pnpm 11 configuration") { level: 2 }
+      Text("Project settings live in pnpm-workspace.yaml:")
+      View @codeBlock {
+        Text("pmOnFail: download")
+        Text("engineStrict: true")
+        Text("strictDepBuilds: true")
+        Text("minimumReleaseAge: 1440")
+        Text(" ")
+        Text("allowBuilds:")
+        Text("  esbuild: true")
+      }
+      Text("pmOnFail: download replaces the removed packageManagerStrictVersion setting. When another pnpm version starts in the repository, pnpm downloads and runs the pinned version instead of leaving the workspace in an unsupported state.")
+      Text("pnpm 11 reads only registry and authentication settings from .npmrc; pnpm-specific project settings must remain in pnpm-workspace.yaml.")
+    }
+    View @section {
+      Title("Verification") { level: 2 }
+      View @codeBlock {
+        Text("pnpm verify:package-manager")
+      }
+      Text("The verifier checks:")
+      View @list {
+        Text("• an exact packageManager pin;") @bullet
+        Text("• a matching supported-major range in engines.pnpm;") @bullet
+        Text("• pnpm 11 or newer;") @bullet
+        Text("• pmOnFail, engineStrict, strictDepBuilds, and minimumReleaseAge;") @bullet
+        Text("• the explicit allowBuilds.esbuild approval;") @bullet
+        Text("• absence of removed pnpm 10 build and strictness settings;") @bullet
+        Text("• absence of duplicated pnpm versions in GitHub Actions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

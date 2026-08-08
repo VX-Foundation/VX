@@ -28,6 +28,25 @@ describe('VX project scaffolding', () => {
     });
   }
 
+  it('scaffolds projects with custom package managers (npm, yarn, bun)', () => {
+    const cwd = workspace();
+    const npmResult = scaffoldProject({ cwd, name: 'npm-app', template: 'basic', frameworkVersion: '0.1.0', packageManager: 'npm' });
+    const npmManifest = JSON.parse(readFileSync(join(npmResult.root, 'package.json'), 'utf8')) as Record<string, unknown>;
+    expect(npmManifest['packageManager']).toBe('npm@10.8.0');
+    expect((npmManifest['engines'] as Record<string, unknown>)['npm']).toBe('>=10.0.0');
+    expect((npmManifest['engines'] as Record<string, unknown>)['pnpm']).toBeUndefined();
+
+    const yarnResult = scaffoldProject({ cwd, name: 'yarn-app', template: 'basic', frameworkVersion: '0.1.0', packageManager: 'yarn' });
+    const yarnManifest = JSON.parse(readFileSync(join(yarnResult.root, 'package.json'), 'utf8')) as Record<string, unknown>;
+    expect(yarnManifest['packageManager']).toBe('yarn@1.22.22');
+    expect((yarnManifest['engines'] as Record<string, unknown>)['yarn']).toBe('>=1.22.0');
+
+    const bunResult = scaffoldProject({ cwd, name: 'bun-app', template: 'basic', frameworkVersion: '0.1.0', packageManager: 'bun' });
+    const bunManifest = JSON.parse(readFileSync(join(bunResult.root, 'package.json'), 'utf8')) as Record<string, unknown>;
+    expect(bunManifest['packageManager']).toBe('bun@1.1.0');
+    expect((bunManifest['engines'] as Record<string, unknown>)['bun']).toBe('>=1.1.0');
+  });
+
   it('rejects traversal and absolute project paths', () => {
     const cwd = workspace();
     expect(() => scaffoldProject({ cwd, name: '../escape', template: 'basic', frameworkVersion: '0.1.0' })).toThrow(/inside|not allowed/);

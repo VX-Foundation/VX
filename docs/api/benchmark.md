@@ -2,7 +2,7 @@
 
 Framework-neutral benchmark protocol, statistics, fairness rules, budgets, and reports for VX public performance comparisons.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 

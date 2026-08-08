@@ -1,0 +1,448 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/runtime")
+    Text("VX direct-DOM client runtime and request-scoped SSR server platform.") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/runtime") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/runtime") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text("., ./client, ./server, ./devtools") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/runtime@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+        Text("./client") @chip
+        Text("./server") @chip
+        Text("./devtools") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX direct-DOM client runtime and request-scoped SSR server platform.")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+        Text("• ./client -> ./dist/client.d.ts") @bullet
+        Text("• ./devtools -> ./dist/devtools.d.ts") @bullet
+        Text("• ./server -> ./dist/server.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• AccessibilityIssue - interface in accessibility.ts") @bullet
+        Text("• accessibleName - function in accessibility.ts") @bullet
+        Text("• acquireComponentContext - function in component.ts") @bullet
+        Text("• acquireStore - function in store/index.ts") @bullet
+        Text("• ActionBatchResult - interface in action/types.ts") @bullet
+        Text("• ActionError - interface in action/types.ts") @bullet
+        Text("• ActionExecutionContext - interface in action/types.ts") @bullet
+        Text("• ActionHandler - type in action/types.ts") @bullet
+        Text("• ActionNetworkMode - type in action/types.ts") @bullet
+        Text("• ActionOptions - interface in action/types.ts") @bullet
+        Text("• ActionProgress - interface in action/types.ts") @bullet
+        Text("• ActionQueue - interface in action/types.ts") @bullet
+        Text("• ActionSnapshot - interface in action/types.ts") @bullet
+        Text("• ActionStatus - type in action/types.ts") @bullet
+        Text("• ActionTransaction - interface in action/execution.ts") @bullet
+        Text("• announce - function in accessibility.ts") @bullet
+        Text("• applyForwardedBindings - function in component.ts") @bullet
+        Text("• applyOptimistic - function in action/execution.ts") @bullet
+        Text("• applyVisualPart - function in component.ts") @bullet
+        Text("• applyVisualSemantics - function in visual.ts") @bullet
+        Text("• assertNoRuntimeLeaks - function in ownership.ts") @bullet
+        Text("• assignComponentRef - function in component.ts") @bullet
+        Text("• attachQueryBrowserEvents - function in query/browser.ts") @bullet
+        Text("• attachShadowRoot - function in dom-target.ts") @bullet
+        Text("• attachVisualIntent - function in visual.ts") @bullet
+        Text("• auditAccessibility - function in accessibility.ts") @bullet
+        Text("• batch - function in state.ts") @bullet
+        Text("• cancelElementTransition - function in transitions.ts") @bullet
+        Text("• cancelScheduledTask - function in scheduler.ts") @bullet
+        Text("• claimHydrationComment - function in hydration.ts") @bullet
+        Text("• claimHydrationElement - function in hydration.ts") @bullet
+        Text("• claimHydrationText - function in hydration.ts") @bullet
+        Text("• Cleanup - type in structural.ts") @bullet
+        Text("• CleanupStack - interface in ownership.ts") @bullet
+        Text("• ClientHydrationState - interface in hydration.ts") @bullet
+        Text("• CollectionFallbackRenderers - interface in structural.ts") @bullet
+        Text("• CollectionInput - type in structural.ts") @bullet
+        Text("• collectionMount - function in structural.ts") @bullet
+        Text("• CollectionResource - interface in structural.ts") @bullet
+        Text("• commitTransaction - function in action/execution.ts") @bullet
+        Text("• compareDesignSystems - function in design-system.ts") @bullet
+        Text("• compareSchedulerPriority - function in scheduler.ts") @bullet
+        Text("• ComponentContextLease - interface in component.ts") @bullet
+        Text("• ComponentCreationOptions - interface in component.ts") @bullet
+        Text("• ComponentFactory - type in component.ts") @bullet
+        Text("• ComponentHandle - interface in component.ts") @bullet
+        Text("• ComponentInstance - interface in component.ts") @bullet
+        Text("• componentModel - function in component.ts") @bullet
+        Text("• ComponentModuleValue - type in component.ts") @bullet
+        Text("• componentProp - function in component.ts") @bullet
+        Text("• ComponentProps - type in component.ts") @bullet
+        Text("• ComponentPropValue - type in component.ts") @bullet
+        Text("• ComponentRef - type in component.ts") @bullet
+        Text("• ComponentScope - interface in component.ts") @bullet
+        Text("• conditionalMount - function in structural.ts") @bullet
+        Text("• ContentProvider - type in component.ts") @bullet
+        Text("• ContentProviderResult - type in component.ts") @bullet
+        Text("• ContentProviders - type in component.ts") @bullet
+        Text("• contrast - function in accessibility.ts") @bullet
+        Text("• ContrastResult - interface in accessibility.ts") @bullet
+        Text("• createAction - function in action/create-action.ts") @bullet
+        Text("• createCleanupStack - function in ownership.ts") @bullet
+        Text("• createComponentHandle - function in component.ts") @bullet
+        Text("• createComponentScope - function in component.ts") @bullet
+        Text("• createCssModule - function in styling.ts") @bullet
+        Text("• createDOMElement - function in dom-target.ts") @bullet
+        Text("• CreateDOMElementOptions - interface in dom-target.ts") @bullet
+        Text("• createFocusTrap - function in accessibility.ts") @bullet
+        Text("• createHydrationRegistry - function in hydration.ts") @bullet
+        Text("• createOutputDispatcher - function in component.ts") @bullet
+        Text("• createOwnerId - function in runtime-context.ts") @bullet
+        Text("• createQuery - function in query/resource.ts") @bullet
+        Text("• createQueryKey - function in query/key.ts") @bullet
+        Text("• createRangeHydrationRegistry - function in hydration.ts") @bullet
+        Text("• createRequestRuntime - function in request-runtime.ts") @bullet
+        Text("• createResourceOwner - function in ownership.ts") @bullet
+        Text("• createRovingTabIndex - function in accessibility.ts") @bullet
+        Text("• createRuntimeContext - function in runtime-context.ts") @bullet
+        Text("• createServerAction - function in rpc.ts") @bullet
+        Text("• createServerRenderContext - function in server-platform/render.ts") @bullet
+        Text("• csrfTokenFromRequest - function in server-platform/csrf.ts") @bullet
+        Text("• CsrfTokenOptions - interface in server-platform/csrf.ts") @bullet
+        Text("• currentServerRequest - function in server-platform/request-context.ts") @bullet
+        Text("• DEFAULT_QUERY_POLICY - const in query/policy.ts") @bullet
+        Text("• DEFAULT_SERVER_SERIALIZATION_LIMITS - const in server-platform/serialization.ts") @bullet
+        Text("• defineCustomElement - function in dom-target.ts") @bullet
+        Text("• defineDesignSystem - function in design-system.ts") @bullet
+        Text("• defineStore - function in store/index.ts") @bullet
+        Text("• defineTheme - function in theme.ts") @bullet
+        Text("• DehydratedQuery - interface in query/types.ts") @bullet
+        Text("• DehydratedQueryState - interface in query/types.ts") @bullet
+        Text("• dehydrateQueryClient - function in query/serialization.ts") @bullet
+        Text("• derive - function in state.ts") @bullet
+        Text("• deserializeServerValue - function in server-platform/serialization.ts") @bullet
+        Text("• DesignSystemDefinition - interface in design-system.ts") @bullet
+        Text("• DesignSystemPackage - interface in design-system.ts") @bullet
+        Text("• DesignSystemSelection - interface in design-system.ts") @bullet
+        Text("• devtoolsRegistration - function in devtools.ts") @bullet
+        Text("• DispatchServerActionOptions - interface in server-platform/actions.ts") @bullet
+        Text("• disposeCleanupStack - function in ownership.ts") @bullet
+        Text("• disposeComponentScope - function in component.ts") @bullet
+        Text("• DOM_NAMESPACES - const in dom-target.ts") @bullet
+        Text("• DOMAttributeOptions - interface in dom-target.ts") @bullet
+        Text("• DOMEventOptions - interface in dom-target.ts") @bullet
+        Text("• DOMNamespace - type in dom-target.ts") @bullet
+        Text("• dynamicComponentMount - function in component.ts") @bullet
+        Text("• DynamicComponentOptions - interface in component.ts") @bullet
+        Text("• effect - function in state.ts") @bullet
+        Text("• Effect - interface in state.ts") @bullet
+        Text("• EffectCleanup - type in managed-effect.ts") @bullet
+        Text("• EffectOptions - interface in state.ts") @bullet
+        Text("• eliminateDeadStyles - function in styling.ts") @bullet
+        Text("• emitDevtoolsEvent - function in devtools.ts") @bullet
+        Text("• enableLeakDetection - function in ownership.ts") @bullet
+        Text("• escapeScriptJson - function in server-platform/serialization.ts") @bullet
+        Text("• extractStyles - function in styling.ts") @bullet
+        Text("• flushScheduler - function in scheduler.ts") @bullet
+        Text("• flushSync - function in scheduler.ts") @bullet
+        Text("• FocusTrap - interface in accessibility.ts") @bullet
+        Text("• ForwardedBindings - interface in component.ts") @bullet
+        Text("• getCurrentOwner - function in ownership.ts") @bullet
+        Text("• getCurrentPriority - function in scheduler.ts") @bullet
+        Text("• getSchedulerDiagnostics - function in scheduler.ts") @bullet
+        Text("• getServerAction - function in server-platform/actions.ts") @bullet
+        Text("• getServerActionContract - function in server-platform/actions.ts") @bullet
+        Text("• hashQueryKey - function in query/key.ts") @bullet
+        Text("• HydratableComponentModule - interface in islands.ts") @bullet
+        Text("• hydrateQueryClient - function in query/serialization.ts") @bullet
+        Text("• HydrationDiagnostic - interface in hydration.ts") @bullet
+        Text("• HydrationDiagnosticCode - type in hydration.ts") @bullet
+        Text("• HydrationIsland - interface in server-platform/render.ts") @bullet
+        Text("• HydrationIslandState - interface in islands.ts") @bullet
+        Text("• HydrationMode - type in server-platform/render.ts") @bullet
+        Text("• HydrationRecoveryMode - type in hydration.ts") @bullet
+        Text("• HydrationRegistry - interface in hydration.ts") @bullet
+        Text("• HydrationRegistryOptions - interface in hydration.ts") @bullet
+        Text("• inspectRuntimeLeaks - function in ownership.ts") @bullet
+        Text("• installDesignSystem - function in design-system.ts") @bullet
+        Text("• installStreamingPatches - function in hydration.ts") @bullet
+        Text("• installStyleChunk - function in styling.ts") @bullet
+        Text("• installStyles - function in dom.ts") @bullet
+        Text("• installTheme - function in theme.ts") @bullet
+        Text("• IslandHydrationOptions - interface in islands.ts") @bullet
+        Text("• IslandHydrationStrategy - type in islands.ts") @bullet
+        Text("• IslandHydrationStrategy - type in server-platform/render.ts") @bullet
+        Text("• isStateNode - function in state.ts") @bullet
+        Text("• isURLAttribute - function in security/url.ts") @bullet
+        Text("• lazyComponent - function in component.ts") @bullet
+        Text("• LazyComponent - interface in component.ts") @bullet
+        Text("• LeakDetectionOptions - interface in ownership.ts") @bullet
+        Text("• LeakDiagnostic - interface in ownership.ts") @bullet
+        Text("• listenDOMEvent - function in dom-target.ts") @bullet
+        Text("• listMount - function in structural.ts") @bullet
+        Text("• ManagedAction - interface in action/types.ts") @bullet
+        Text("• managedEffect - function in managed-effect.ts") @bullet
+        Text("• ManagedEffect - interface in managed-effect.ts") @bullet
+        Text("• ManagedEffectContext - interface in managed-effect.ts") @bullet
+        Text("• ManagedEffectOptions - interface in managed-effect.ts") @bullet
+        Text("• markViewSource - function in dom.ts") @bullet
+        Text("• markWidget - function in dom.ts") @bullet
+        Text("• matchesPattern - function in structural.ts") @bullet
+        Text("• matchViewPattern - function in structural.ts") @bullet
+        Text("• measureDevtools - function in devtools.ts") @bullet
+        Text("• MountBlock - interface in structural.ts") @bullet
+        Text("• mountComponentScope - function in component.ts") @bullet
+        Text("• mountContentRegion - function in component.ts") @bullet
+        Text("• MountOutput - type in structural.ts") @bullet
+        Text("• nextTick - function in scheduler.ts") @bullet
+        Text("• normalizeActionError - function in action/error.ts") @bullet
+        Text("• normalizeQueryError - function in query/error.ts") @bullet
+        Text("• normalizeTransition - function in transitions.ts") @bullet
+        Text("• observeExternalDOMMutations - function in hydration.ts") @bullet
+        Text("• on - function in dom.ts") @bullet
+        Text("• onComponentScopeMount - function in component.ts") @bullet
+        Text("• onOwnerCleanup - function in ownership.ts") @bullet
+        Text("• onReactiveError - function in state.ts") @bullet
+        Text("• onSchedulerError - function in scheduler.ts") @bullet
+        Text("• onWidgetEvent - function in dom.ts") @bullet
+        Text("• optionalServerRequest - function in server-platform/request-context.ts") @bullet
+        Text("• OutputHandler - type in component.ts") @bullet
+        Text("• OutputHandlers - type in component.ts") @bullet
+        Text("• OwnedResourceSnapshot - interface in ownership.ts") @bullet
+        Text("• OwnedRuntimeContext - interface in runtime-context.ts") @bullet
+        Text("• packageDesignSystem - function in design-system.ts") @bullet
+        Text("• portalMount - function in component.ts") @bullet
+        Text("• prefersReducedMotion - function in transitions.ts") @bullet
+        Text("• provideComponentContext - function in component.ts") @bullet
+        Text("• QueryClient - class in query/client.ts") @bullet
+        Text("• QueryClientEvent - interface in query/types.ts") @bullet
+        Text("• QueryClientOptions - interface in query/types.ts") @bullet
+        Text("• QueryDehydrateOptions - interface in query/serialization.ts") @bullet
+        Text("• QueryDescriptor - interface in query/types.ts") @bullet
+        Text("• QueryError - interface in query/types.ts") @bullet
+        Text("• QueryEventType - type in query/types.ts") @bullet
+        Text("• QueryExecutionContext - interface in query/types.ts") @bullet
+        Text("• QueryExecutionMode - type in query/types.ts") @bullet
+        Text("• QueryFetchStatus - type in query/types.ts") @bullet
+        Text("• QueryFilter - interface in query/types.ts") @bullet
+        Text("• QueryNetworkMode - type in query/types.ts") @bullet
+        Text("• QueryPolicy - interface in query/types.ts") @bullet
+        Text("• QueryResource - interface in query/types.ts") @bullet
+        Text("• QuerySnapshot - interface in query/types.ts") @bullet
+        Text("• QuerySource - type in query/types.ts") @bullet
+        Text("• QueryStatus - type in query/types.ts") @bullet
+        Text("• QuerySubscription - interface in query/client.ts") @bullet
+        Text("• QueuedActionRequest - interface in action/types.ts") @bullet
+        Text("• reaction - const in state.ts") @bullet
+        Text("• readHydrationState - function in hydration.ts") @bullet
+        Text("• recoverHydrationRange - function in hydration.ts") @bullet
+        Text("• registerServerAction - function in server-platform/actions.ts") @bullet
+        Text("• registerServerAction - function in server-platform/actions.ts") @bullet
+        Text("• registerServerAction - function in server-platform/actions.ts") @bullet
+        Text("• removeComponentRange - function in component.ts") @bullet
+        Text("• renderAttribute - function in server-platform/render.ts") @bullet
+        Text("• renderComment - function in server-platform/render.ts") @bullet
+        Text("• renderContent - function in server-platform/render.ts") @bullet
+        Text("• renderDocument - function in server-platform/render.ts") @bullet
+        Text("• RenderDocumentOptions - interface in server-platform/render.ts") @bullet
+        Text("• RenderedDocument - interface in server-platform/render.ts") @bullet
+        Text("• renderElement - function in server-platform/render.ts") @bullet
+        Text("• renderIsland - function in server-platform/render.ts") @bullet
+        Text("• renderResumableBoundary - function in server-platform/render.ts") @bullet
+        Text("• renderStructuralRange - function in server-platform/render.ts") @bullet
+        Text("• renderText - function in server-platform/render.ts") @bullet
+        Text("• reportRuntimeLeaks - function in ownership.ts") @bullet
+        Text("• RequestRuntime - interface in request-runtime.ts") @bullet
+        Text("• RequestRuntimeOptions - interface in request-runtime.ts") @bullet
+        Text("• resolveDesignTokens - function in design-system.ts") @bullet
+        Text("• resolveDOMNamespace - function in dom-target.ts") @bullet
+        Text("• resolveQueryPolicy - function in query/policy.ts") @bullet
+        Text("• ResourceCleanup - type in ownership.ts") @bullet
+        Text("• ResourceLease - interface in ownership.ts") @bullet
+        Text("• ResourceOwner - interface in ownership.ts") @bullet
+        Text("• ResourceOwnerSnapshot - interface in ownership.ts") @bullet
+        Text("• ResumableBoundary - interface in server-platform/render.ts") @bullet
+        Text("• ResumableBoundaryContext - interface in resumable.ts") @bullet
+        Text("• ResumableBoundaryState - interface in resumable.ts") @bullet
+        Text("• ResumableModule - interface in resumable.ts") @bullet
+        Text("• ResumeBoundariesOptions - interface in resumable.ts") @bullet
+        Text("• retryDelay - function in query/retry.ts") @bullet
+        Text("• rollbackTransaction - function in action/execution.ts") @bullet
+        Text("• RouteTransitionOptions - interface in transitions.ts") @bullet
+        Text("• RuntimeContext - interface in runtime-context.ts") @bullet
+        Text("• RuntimeContextInput - interface in runtime-context.ts") @bullet
+        Text("• RuntimeDevtoolsCategory - type in devtools.ts") @bullet
+        Text("• runWithOwner - function in ownership.ts") @bullet
+        Text("• runWithPriority - function in scheduler.ts") @bullet
+        Text("• runWithServerRequest - function in server-platform/request-context.ts") @bullet
+        Text("• sanitizeURLAttribute - function in security/url.ts") @bullet
+        Text("• ScheduledTask - interface in scheduler.ts") @bullet
+        Text("• scheduleInvalidation - function in action/execution.ts") @bullet
+        Text("• SchedulerCallback - type in scheduler.ts") @bullet
+        Text("• SchedulerDiagnosticSnapshot - interface in scheduler.ts") @bullet
+        Text("• scheduleRefresh - function in action/execution.ts") @bullet
+        Text("• SchedulerPriority - type in scheduler.ts") @bullet
+        Text("• SchedulerTaskContext - interface in scheduler.ts") @bullet
+        Text("• SchedulerTaskState - type in scheduler.ts") @bullet
+        Text("• scheduleTagInvalidation - function in action/execution.ts") @bullet
+        Text("• scheduleTask - function in scheduler.ts") @bullet
+        Text("• ScheduleTaskOptions - interface in scheduler.ts") @bullet
+        Text("• scopeCss - function in styling.ts") @bullet
+        Text("• secureExternalRelation - function in security/url.ts") @bullet
+        Text("• selectPatternBranch - function in structural.ts") @bullet
+        Text("• SerializedEnvelope - interface in server-platform/serialization.ts") @bullet
+        Text("• serializeKeyframes - function in styling.ts") @bullet
+        Text("• serializeQueryState - function in query/serialization.ts") @bullet
+        Text("• serializeServerValue - function in server-platform/serialization.ts") @bullet
+        Text("• ServerActionAuthorization - type in server-platform/actions.ts") @bullet
+        Text("• ServerActionAuthorizationContext - interface in server-platform/actions.ts") @bullet
+        Text("• ServerActionContract - interface in server-platform/actions.ts") @bullet
+        Text("• ServerActionCsrfPolicy - type in server-platform/actions.ts") @bullet
+        Text("• ServerActionHandler - type in server-platform/actions.ts") @bullet
+        Text("• ServerActionParameterContract - interface in server-platform/actions.ts") @bullet
+        Text("• serverActionRequest - function in server-platform/actions.ts") @bullet
+        Text("• ServerActionResponse - interface in rpc.ts") @bullet
+        Text("• ServerQueryResource - interface in server-platform/render.ts") @bullet
+        Text("• ServerRenderContext - interface in server-platform/render.ts") @bullet
+        Text("• ServerRenderContextOptions - interface in server-platform/render.ts") @bullet
+        Text("• ServerRequestContext - interface in server-platform/request-context.ts") @bullet
+        Text("• ServerResourceHint - interface in server-platform/render.ts") @bullet
+        Text("• ServerSerializationLimits - interface in server-platform/serialization.ts") @bullet
+        Text("• ServerStyleAsset - interface in server-platform/render.ts") @bullet
+        Text("• setAttribute - function in dom.ts") @bullet
+        Text("• setDOMAttribute - function in dom-target.ts") @bullet
+        Text("• setDOMAttributeNS - function in dom-target.ts") @bullet
+        Text("• setDOMProperty - function in dom-target.ts") @bullet
+        Text("• setDOMStyle - function in dom-target.ts") @bullet
+        Text("• setDOMStyles - function in dom-target.ts") @bullet
+        Text("• setProperty - function in dom.ts") @bullet
+        Text("• setStyle - function in dom.ts") @bullet
+        Text("• setStyles - function in dom.ts") @bullet
+        Text("• setText - function in dom.ts") @bullet
+        Text("• setVisualProperty - function in visual.ts") @bullet
+        Text("• setVisualState - function in visual.ts") @bullet
+        Text("• setWidgetProperty - function in dom.ts") @bullet
+        Text("• ShadowRootOptions - interface in dom-target.ts") @bullet
+        Text("• SharedElement - interface in transitions.ts") @bullet
+        Text("• shouldRetry - function in query/retry.ts") @bullet
+        Text("• splitStyleChunks - function in styling.ts") @bullet
+        Text("• stableSerialize - function in query/key.ts") @bullet
+        Text("• startTransition - function in scheduler.ts") @bullet
+        Text("• state - function in state.ts") @bullet
+        Text("• StateNode - interface in state.ts") @bullet
+        Text("• StoreDefinition - interface in store/types.ts") @bullet
+        Text("• StoreFactoryContext - interface in store/types.ts") @bullet
+        Text("• StoreLease - interface in store/types.ts") @bullet
+        Text("• StoreLifetime - type in store/types.ts") @bullet
+        Text("• StoreRegistry - class in store/registry.ts") @bullet
+        Text("• StoreRegistryOptions - interface in store/types.ts") @bullet
+        Text("• StreamingMode - type in server-platform/render.ts") @bullet
+        Text("• StructuralKey - type in structural.ts") @bullet
+        Text("• structuralMount - function in structural.ts") @bullet
+        Text("• StructuralScope - interface in structural.ts") @bullet
+        Text("• StructuralSelection - interface in structural.ts") @bullet
+        Text("• StructuralTransition - interface in structural.ts") @bullet
+        Text("• StructuralTransitionInput - type in structural.ts") @bullet
+        Text("• StyleChunk - interface in styling.ts") @bullet
+        Text("• StyleLayer - type in styling.ts") @bullet
+        Text("• StyleManifest - interface in styling.ts") @bullet
+        Text("• ThemeDefinition - interface in theme.ts") @bullet
+        Text("• TokenChange - interface in design-system.ts") @bullet
+        Text("• TokenDiagnostic - interface in design-system.ts") @bullet
+        Text("• TokenInput - type in design-system.ts") @bullet
+        Text("• TokenKind - type in design-system.ts") @bullet
+        Text("• TokenMap - type in design-system.ts") @bullet
+        Text("• TokenPrimitive - type in design-system.ts") @bullet
+        Text("• TransitionController - interface in transitions.ts") @bullet
+        Text("• TransitionDefinition - interface in transitions.ts") @bullet
+        Text("• transitionElement - function in transitions.ts") @bullet
+        Text("• transitionElements - function in transitions.ts") @bullet
+        Text("• TransitionInput - type in transitions.ts") @bullet
+        Text("• TransitionPhase - type in transitions.ts") @bullet
+        Text("• TransitionState - type in transitions.ts") @bullet
+        Text("• TypedToken - interface in design-system.ts") @bullet
+        Text("• untrack - function in state.ts") @bullet
+        Text("• upgradeCustomElements - function in dom-target.ts") @bullet
+        Text("• URLSanitizationContext - interface in security/url.ts") @bullet
+        Text("• validateTokens - function in design-system.ts") @bullet
+        Text("• ViewPatternDescriptor - interface in structural.ts") @bullet
+        Text("• VisualPartDynamicProperty - interface in component.ts") @bullet
+        Text("• VisualPartOverride - interface in component.ts") @bullet
+        Text("• VisualPartOverrides - type in component.ts") @bullet
+        Text("• WIDGET_DEFAULT_ATTRIBUTES - const in widget-metadata.generated.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

@@ -1,6 +1,7 @@
 export type * from './ast.js';
 export type * from './view.js';
 export type * from './config.js';
+export * from './palette.js';
 export type { QueryPolicyIR, QueryIR, ActionIR, EffectIR, StoreIR, SchemaFieldIR, SchemaIR, FormIR, DataProgramIR } from './data-ir.js';
 export type {
   ComponentArtifact,

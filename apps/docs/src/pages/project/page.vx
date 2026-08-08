@@ -1,0 +1,110 @@
+#view
+  View @page {
+    Text("DOCUMENTATION") @eyebrow
+    Title("Project, policy, and release")
+    Text("Engineering standards, release governance, compatibility, security, package management, and roadmap contracts.") @lead
+    View @section {
+      Title("Project documents") { level: 2 }
+      View @cards {
+        View @card {
+          Link("VX Framework: Native Industrial Color Palette System") @cardTitle { href: "/project/color-system" }
+          Text("The VX Framework provides a built-in, industrial-grade color palette system (VX_COLOR_PALETTES) with curated 50-950 shade scales and semantic design tokens for rapid, accessible, and high-performance UI styling.") @meta
+        }
+        View @card {
+          Link("Compatibility Policy") @cardTitle { href: "/project/compatibility" }
+          Text("VX uses semantic versioning for every public package.") @meta
+        }
+        View @card {
+          Link("VX Engineering Standards") @cardTitle { href: "/project/engineering-standards" }
+          Text("Status: mandatory repository policy") @meta
+        }
+        View @card {
+          Link("VX Framework: Multi-Framework Interop Architecture") @cardTitle { href: "/project/multi-framework-interop" }
+          Text("The VX Framework provides native multi-framework component interoperability, allowing existing TypeScript JSX/TSX, Vue, and Svelte components to be imported directly into .vx files and rendered as Integration Islands.") @meta
+        }
+        View @card {
+          Link("Package manager policy") @cardTitle { href: "/project/package-manager" }
+          Text("VX development uses pnpm 11 and keeps one exact toolchain version in the root manifest:") @meta
+        }
+        View @card {
+          Link("VX Project") @cardTitle { href: "/project/project" }
+          Text("VX is a compiler-first web application framework with its own .vx language. It integrates components, fine-grained reactivity, data operations, routing, rendering, server execution, styling intent, accessibility, tooling, testing, packaging, and deployment through one compiler-owned model.") @meta
+        }
+        View @card {
+          Link("Publishing VX") @cardTitle { href: "/project/publishing" }
+          Text("The canonical source repository is https://github.com/VX-Foundation/vx. Release tags use vx-v and must point to a reviewed commit on the protected main branch.") @meta
+        }
+        View @card {
+          Link("VX Release Process") @cardTitle { href: "/project/release" }
+          Text("1. Merge through the protected main branch. 2. Confirm the canonical repository and npm scope ownership. 3. Configure npm trusted publishing for .github/workflows/release.yml. 4. Run pnpm release:npm-preflight from an authenticated maintainer workstation. 5. Start the GitHub Release workflow with canary or next.") @meta
+        }
+        View @card {
+          Link("RFC Process") @cardTitle { href: "/project/rfc-process" }
+          Text("The normative RFC workflow is in rfcs/README.md.") @meta
+        }
+        View @card {
+          Link("Stabilization Process") @cardTitle { href: "/project/stabilization" }
+          Text("Canary releases validate packaging, installation, generated projects, adapters, and early user feedback. They may include incompatible experiments and do not carry support guarantees.") @meta
+        }
+        View @card {
+          Link("@vx-foundation/widgets — Standalone UI Component Library") @cardTitle { href: "/project/standalone-widgets" }
+          Text("@vx-foundation/widgets is a standalone, optional UI component library for the VX Framework. It provides pre-styled, accessible, and high-performance UI primitives (Modal, Toast, Badge, Avatar, Spinner, Button, Input, Select, Switch, etc.) without bloating the core VX compiler.") @meta
+        }
+        View @card {
+          Link("VX Framework: Dual-Mode Visual CSS Architecture") @cardTitle { href: "/project/styles-architecture" }
+          Text("The VX Framework provides a dual-mode styling architecture that balances extreme native performance with flexible web ecosystem integration.") @meta
+        }
+        View @card {
+          Link("Support Policy") @cardTitle { href: "/project/support-policy" }
+          Text("The latest next release receives security fixes and critical defect corrections. Earlier 0.x release candidates may be superseded without backports. Canary builds receive no support guarantee.") @meta
+        }
+        View @card {
+          Link("VX Threat Model") @cardTitle { href: "/project/threat-model" }
+          Text("VX protects application sessions, server-only data, action authorization, request-scoped stores, generated HTML, hydration state, package consumers, and the integrity of published framework artifacts.") @meta
+        }
+        View @card {
+          Link("Versioning and Distribution Tags") @cardTitle { href: "/project/versioning" }
+          Text("VX follows Semantic Versioning for every public package. The canonical release metadata lives in release/version.json; package manifests and generated release documents are derived from it.") @meta
+        }
+        View @card {
+          Link("VX 1.0 Readiness") @cardTitle { href: "/project/vx-1-0-readiness" }
+          Text("VX 1.0 is promoted only by evidence. A maintainer statement, successful local build, or completed implementation phase cannot bypass the stable-release gate.") @meta
+        }
+        View @card {
+          Link("Migrating to VX 0.1") @cardTitle { href: "/project/migrating-0-1" }
+          Text("VX 0.1 makes the following previously implicit requirements enforceable:") @meta
+        }
+        View @card {
+          Link("Git and GitHub bootstrap") @cardTitle { href: "/project/git-publishing" }
+          Text("The source archive intentionally contains no .git directory. Repository history, signatures, protected branches, and release evidence must be created in the canonical Git host rather than fabricated inside a distribution archive.") @meta
+        }
+        View @card {
+          Link("Initial npm bootstrap") @cardTitle { href: "/project/npm-bootstrap" }
+          Text("Trusted publishing is the permanent release path for VX. A new npm package must exist before its package settings can be linked to a trusted publisher, so the first publication is a controlled bootstrap rather than the normal release workflow.") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

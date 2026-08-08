@@ -1,0 +1,153 @@
+#view
+  View @page {
+    Text("PACKAGE REFERENCE") @eyebrow
+    Title("@vx-foundation/widgets")
+    Text("Industrial-grade Native Widget Primitives for the VX Framework") @lead
+    View @section {
+      Title("Package contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Package") @propertyName
+          Text("@vx-foundation/widgets") @propertyDescription
+        }
+        View @tableRow {
+          Text("Version") @propertyName
+          Text("0.2.0") @propertyDescription
+        }
+        View @tableRow {
+          Text("Source") @propertyName
+          Text("packages/widgets") @propertyDescription
+        }
+        View @tableRow {
+          Text("Subpath exports") @propertyName
+          Text(".") @propertyDescription
+        }
+        View @tableRow {
+          Text("Stability") @propertyName
+          Text("follows the unified VX 0.2.0 release line") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Installation") { level: 2 }
+      View @codeBlock {
+        Text("pnpm add @vx-foundation/widgets@next")
+      }
+    }
+    View @section {
+      Title("Public entry points") { level: 2 }
+      View @chipRow {
+        Text(".") @chip
+      }
+    }
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Industrial-grade Native Widget Primitives for the VX Framework")
+      Text("Current package line: 0.2.0.")
+    }
+    View @section {
+      Title("Public entries") { level: 2 }
+      View @list {
+        Text("• . -> ./dist/index.d.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Exported symbols") { level: 2 }
+      View @list {
+        Text("• definition - const in generated/definitions/Accordion.ts") @bullet
+        Text("• definition - const in generated/definitions/Audio.ts") @bullet
+        Text("• definition - const in generated/definitions/Avatar.ts") @bullet
+        Text("• definition - const in generated/definitions/Badge.ts") @bullet
+        Text("• definition - const in generated/definitions/Breadcrumb.ts") @bullet
+        Text("• definition - const in generated/definitions/Button.ts") @bullet
+        Text("• definition - const in generated/definitions/Canvas.ts") @bullet
+        Text("• definition - const in generated/definitions/Checkbox.ts") @bullet
+        Text("• definition - const in generated/definitions/DataTable.ts") @bullet
+        Text("• definition - const in generated/definitions/DatePicker.ts") @bullet
+        Text("• definition - const in generated/definitions/Divider.ts") @bullet
+        Text("• definition - const in generated/definitions/Drawer.ts") @bullet
+        Text("• definition - const in generated/definitions/ErrorSummary.ts") @bullet
+        Text("• definition - const in generated/definitions/FieldError.ts") @bullet
+        Text("• definition - const in generated/definitions/FieldGroup.ts") @bullet
+        Text("• definition - const in generated/definitions/FileUpload.ts") @bullet
+        Text("• definition - const in generated/definitions/Form.ts") @bullet
+        Text("• definition - const in generated/definitions/FormError.ts") @bullet
+        Text("• definition - const in generated/definitions/Icon.ts") @bullet
+        Text("• definition - const in generated/definitions/IFrame.ts") @bullet
+        Text("• definition - const in generated/definitions/Image.ts") @bullet
+        Text("• definition - const in generated/definitions/Input.ts") @bullet
+        Text("• definition - const in generated/definitions/Link.ts") @bullet
+        Text("• definition - const in generated/definitions/List.ts") @bullet
+        Text("• definition - const in generated/definitions/Modal.ts") @bullet
+        Text("• definition - const in generated/definitions/Popover.ts") @bullet
+        Text("• definition - const in generated/definitions/ProgressBar.ts") @bullet
+        Text("• definition - const in generated/definitions/Radio.ts") @bullet
+        Text("• definition - const in generated/definitions/ScrollView.ts") @bullet
+        Text("• definition - const in generated/definitions/Select.ts") @bullet
+        Text("• definition - const in generated/definitions/Skeleton.ts") @bullet
+        Text("• definition - const in generated/definitions/Slider.ts") @bullet
+        Text("• definition - const in generated/definitions/Spinner.ts") @bullet
+        Text("• definition - const in generated/definitions/Switch.ts") @bullet
+        Text("• definition - const in generated/definitions/Tabs.ts") @bullet
+        Text("• definition - const in generated/definitions/Text.ts") @bullet
+        Text("• definition - const in generated/definitions/TextArea.ts") @bullet
+        Text("• definition - const in generated/definitions/Title.ts") @bullet
+        Text("• definition - const in generated/definitions/Toast.ts") @bullet
+        Text("• definition - const in generated/definitions/Tooltip.ts") @bullet
+        Text("• definition - const in generated/definitions/Video.ts") @bullet
+        Text("• definition - const in generated/definitions/View.ts") @bullet
+        Text("• definition - const in generated/definitions/VirtualList.ts") @bullet
+        Text("• PRIMITIVE_CONTRACT_SOURCES - const in generated/registry.ts") @bullet
+        Text("• PRIMITIVE_NAMES - const in generated/registry.ts") @bullet
+        Text("• PRIMITIVE_SOURCES - const in generated/registry.ts") @bullet
+        Text("• PrimitiveName - type in generated/registry.ts") @bullet
+        Text("• WIDGET_REGISTRY - const in generated/registry.ts") @bullet
+        Text("• WidgetCategory - type in contracts.ts") @bullet
+        Text("• WidgetContentContract - interface in contracts.ts") @bullet
+        Text("• WidgetDefinition - interface in contracts.ts") @bullet
+        Text("• WidgetEventContract - interface in contracts.ts") @bullet
+        Text("• WidgetGroup - type in contracts.ts") @bullet
+        Text("• WidgetPropertyContract - interface in contracts.ts") @bullet
+      }
+    }
+    View @section {
+      Title("Stability") { level: 2 }
+      Text("Only entries listed above are public. Imports from src, dist, or undeclared files are unsupported and rejected by the official-application gate.")
+    }
+    View @section {
+      Title("Usage policy") { level: 2 }
+      View @list {
+        Text("• Import only documented root or subpath exports; internal source paths are not compatibility contracts.") @bullet
+        Text("• Keep package versions aligned with release/version.json and the fixed Changesets group.") @bullet
+        Text("• Test browser, server, edge, and Node boundaries only where the package declares support.") @bullet
+        Text("• Treat generated API snapshots and freeze manifests as release gates, not documentation suggestions.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

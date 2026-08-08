@@ -3,7 +3,7 @@ import { existsSync, lstatSync, readFileSync, realpathSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const SCHEMA = 'https://vx.dev/schemas/benchmark-fixture/v1';
+const SCHEMA = 'https://vx.veelv.site/schemas/benchmark-fixture/v1';
 const REQUIRED_EVIDENCE = Object.freeze(['native-runtime', 'rendered-output', 'scenario-contract', 'raw-artifact']);
 
 export async function loadNativeFixture(fixtureRoot, expectedFramework, scenario) {

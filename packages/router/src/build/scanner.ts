@@ -1,5 +1,50 @@
 import type * as fs from 'node:fs';
-import * as path from 'node:path';
+
+interface NodePath {
+  join?: (...args: string[]) => string;
+  resolve?: (...args: string[]) => string;
+  dirname?: (p: string) => string;
+  extname?: (p: string) => string;
+  basename?: (p: string, ext?: string) => string;
+  posix?: {
+    join?: (...args: string[]) => string;
+    resolve?: (...args: string[]) => string;
+  };
+}
+
+function getNodePath(): NodePath | null {
+  try {
+    if (typeof process !== 'undefined' && process.versions?.node) {
+      if (typeof process.getBuiltinModule === 'function') {
+        const pathMod = process.getBuiltinModule('node:path');
+        if (pathMod) return pathMod as unknown as NodePath;
+      }
+      const fn = new Function('m', 'try { return typeof require !== "undefined" ? require(m) : (typeof process !== "undefined" && process.mainModule ? process.mainModule.require(m) : null); } catch { return null; }');
+      return (fn('node:path') ?? fn('path')) as NodePath | null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+const path = {
+  join: (...args: string[]) => getNodePath()?.join?.(...args) ?? args.join('/').replace(/\/+/g, '/'),
+  resolve: (...args: string[]) => getNodePath()?.resolve?.(...args) ?? args.join('/').replace(/\/+/g, '/'),
+  dirname: (p: string) => getNodePath()?.dirname?.(p) ?? (p.substring(0, p.lastIndexOf('/')) || '.'),
+  extname: (p: string) => getNodePath()?.extname?.(p) ?? (p.includes('.') ? p.slice(p.lastIndexOf('.')) : ''),
+  basename: (p: string, ext?: string) => {
+    const np = getNodePath();
+    if (np?.basename) return np.basename(p, ext);
+    let base = p.slice(p.lastIndexOf('/') + 1);
+    if (ext && base.endsWith(ext)) base = base.slice(0, -ext.length);
+    return base;
+  },
+  posix: {
+    join: (...args: string[]) => getNodePath()?.posix?.join?.(...args) ?? args.join('/').replace(/\/+/g, '/'),
+    resolve: (...args: string[]) => getNodePath()?.posix?.resolve?.(...args) ?? args.join('/').replace(/\/+/g, '/')
+  }
+};
 import type {
   ApplicationGraph,
   EndpointMethod,
@@ -87,7 +132,14 @@ const HTTP_METHODS: EndpointMethod[] = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PAT
 
 /** Builds the complete convention-owned application graph. */
 export function buildApplicationGraph(options: ScannerOptions): ApplicationGraph {
-  const resolveDir = (p: string) => (p.startsWith('/') && !p.match(/^[a-zA-Z]:/) ? path.posix.resolve(p) : path.resolve(p).replace(/\\/g, '/'));
+  const resolveDir = (p: string) => {
+    try {
+      const real = fileSystem.realpathSync(p) as string;
+      return typeof real === 'string' ? real.replace(/\\/g, '/') : p.replace(/\\/g, '/');
+    } catch {
+      return (p.startsWith('/') && !p.match(/^[a-zA-Z]:/) ? path.posix.resolve(p) : path.resolve(p).replace(/\\/g, '/'));
+    }
+  };
   const joinPath = (dir: string, file: string) => (dir.startsWith('/') ? path.posix.join(dir, file) : path.join(dir, file)).replace(/\\/g, '/');
   const rootDir = resolveDir(options.rootDir ?? path.dirname(path.dirname(options.dir)));
   const pagesDir = resolveDir(options.dir);

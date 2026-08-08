@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/plugins",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Versioned, capability-based plugin host and official deterministic VX plugins.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

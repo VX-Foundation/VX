@@ -1,0 +1,91 @@
+#view
+  View @page {
+    Text("BUILD WITH VX") @eyebrow
+    Title("Views and styling")
+    Text("The VX view language describes widget structure, event bindings, content, control flow, and visual intent. Styling is lowered through Visual IR instead of a separate #style section.") @lead
+
+    View @section {
+      Title("Widget tree") { level: 2 }
+      View @codeBlock {
+        Text("#view")
+        Text("  View @catalog {")
+        Text("    for product in products keyed(product.id) {")
+        Text("      View @card {")
+        Text("        Image { src: product.image alt: product.name }")
+        Text("        Title(product.name) { level: 2 }")
+        Text("        Button(\"Open\") { click => open(product.id) }")
+        Text("      }")
+        Text("    } empty {")
+        Text("      Text(\"No products found.\")")
+        Text("    }")
+        Text("  }")
+        Text("#end view")
+      }
+    }
+
+    View @section {
+      Title("Local visual roles") { level: 2 }
+      View @codeBlock {
+        Text("@catalog {")
+        Text("  flow: grid")
+        Text("  columns: 3")
+        Text("  gap: lg")
+        Text("}")
+        Text("")
+        Text("@card {")
+        Text("  flow: vertical")
+        Text("  gap: md")
+        Text("  surface: raised")
+        Text("  border: subtle")
+        Text("  corner: lg")
+        Text("  inset: lg")
+        Text("")
+        Text("  when hover {")
+        Text("    elevation: sm")
+        Text("  }")
+        Text("}")
+      }
+      Text("A local role connects intent to one or more nodes in the same component. The compiler resolves tokens, state conditions, accessibility metadata, static CSS, and direct reactive bindings.")
+    }
+
+    View @section {
+      Title("Built-in roles") { level: 2 }
+      Text("VX includes structural roles such as grid, row, column, stack, scroll, center, cluster, sidebar, and split. Semantic roles include page, card, panel, primary, field, navigation, hero, dialog, code, and others.")
+      View @codeBlock {
+        Text("View @grid(min: 260, gap: lg) @catalog {")
+        Text("  ProductCard { product: product }")
+        Text("}")
+      }
+      Text("Roles are compiler metadata. They are not runtime components, CSS classes, or style objects.")
+    }
+
+    View @section {
+      Title("Events and bindings") { level: 2 }
+      View @codeBlock {
+        Text("Input {")
+        Text("  label: \"Search\"")
+        Text("  value: search")
+        Text("  change => updateSearch($event)")
+        Text("}")
+      }
+      Text("Property bindings are typed and events dispatch through declared widget or component contracts. The compiler can connect a changed value directly to its target.")
+    }
+
+    View @section {
+      Title("Accessibility") { level: 2 }
+      Text("Use semantic widgets and accessible names. The compiler validates widget contracts and visual intent, while browser tests must still verify focus order, keyboard behavior, contrast, announcements, dialogs, and real accessibility trees.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Explore the native widget set") { href: "/widgets" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

@@ -1,0 +1,78 @@
+#view
+  View @page {
+    Text("LEARN") @eyebrow
+    Title("Learn VX")
+    Text("A progressive path from installation to production delivery.") @lead
+    View @section {
+      Title("Learning path") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Getting started") @cardTitle { href: "/getting-started" }
+          Text("Install, scaffold, check, run, and build.") @meta
+        }
+        View @card {
+          Link("Project structure") @cardTitle { href: "/project-structure" }
+          Text("Routes, components, modules, server code, and configuration.") @meta
+        }
+        View @card {
+          Link("Language basics") @cardTitle { href: "/language" }
+          Text("#script, #view, types, events, and control flow.") @meta
+        }
+        View @card {
+          Link("Components") @cardTitle { href: "/components" }
+          Text("Props, outputs, content regions, parts, and headless modules.") @meta
+        }
+        View @card {
+          Link("State and reactivity") @cardTitle { href: "/reactivity" }
+          Text("State, derives, queries, actions, effects, and stores.") @meta
+        }
+        View @card {
+          Link("Views and styling") @cardTitle { href: "/views-styling" }
+          Text("Widgets, roles, properties, conditions, and responsive intent.") @meta
+        }
+        View @card {
+          Link("Routing") @cardTitle { href: "/routing" }
+          Text("Filesystem routing, layouts, metadata, guards, and SSR.") @meta
+        }
+        View @card {
+          Link("Data and server") @cardTitle { href: "/data-server" }
+          Text("Queries, mutations, endpoints, sessions, and authorization.") @meta
+        }
+        View @card {
+          Link("Forms") @cardTitle { href: "/forms" }
+          Text("Typed validation, errors, uploads, and progressive enhancement.") @meta
+        }
+        View @card {
+          Link("Testing") @cardTitle { href: "/testing" }
+          Text("Unit, component, DOM, SSR, hydration, browser, and budgets.") @meta
+        }
+        View @card {
+          Link("Deployment") @cardTitle { href: "/deployment" }
+          Text("Adapters, reproducibility, observability, and rollback.") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

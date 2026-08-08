@@ -1,0 +1,65 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("Initial npm bootstrap")
+    Text("Trusted publishing is the permanent release path for VX. A new npm package must exist before its package settings can be linked to a trusted publisher, so the first publication is a controlled bootstrap rather than the normal release workflow.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Trusted publishing is the permanent release path for VX. A new npm package must exist before its package settings can be linked to a trusted publisher, so the first publication is a controlled bootstrap rather than the normal release workflow.")
+    }
+    View @section {
+      Title("Preconditions") { level: 2 }
+      View @list {
+        Text("• Confirm that the @vx-foundation npm organization is controlled by the VX maintainers and that the publishing account belongs to it with package creation permission.") @bullet
+        Text("• Enable two-factor authentication on every maintainer account.") @bullet
+        Text("• Run the repository, package, clean-room, security, and next readiness gates from a clean commit.") @bullet
+        Text("• Inspect every generated tarball and confirm its repository, license, README, exports, integrity, and version.") @bullet
+      }
+    }
+    View @section {
+      Title("One-time publication") { level: 2 }
+      Text("Use one of these reviewed bootstrap methods:")
+      View @list {
+        Text("• publish interactively with two-factor authentication; or") @bullet
+        Text("• use a short-lived granular npm token restricted to the required packages, protected by a GitHub environment, and revoke it immediately after the bootstrap.") @bullet
+      }
+      Text("Do not store a permanent automation token in the repository or organization.")
+      Text("The initial VX Foundation public line is 0.1.1 and must use the next distribution tag. Version 0.1.0 remains an unpublished internal baseline. latest remains reserved for the approved VX 1.0 release.")
+    }
+    View @section {
+      Title("Enable trusted publishing") { level: 2 }
+      Text("After every package exists on npm:")
+      View @list {
+        Text("• Configure its trusted publisher for VX-Foundation/vx and .github/workflows/release.yml.") @bullet
+        Text("• Allow npm publish only from the protected npm GitHub environment.") @bullet
+        Text("• Remove and revoke the bootstrap credential.") @bullet
+        Text("• Run pnpm release:npm-preflight with npm 11.5.1 or newer.") @bullet
+        Text("• Publish future canary and next releases exclusively through the Release workflow.") @bullet
+        Text("• Verify registry signatures and provenance after publishing.") @bullet
+      }
+      Text("The repository workflow requests id-token: write; npm exchanges the GitHub OIDC identity for short-lived publishing authorization and produces registry provenance.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

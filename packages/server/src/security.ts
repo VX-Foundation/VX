@@ -35,10 +35,20 @@ export function applySecurityHeaders(headers: Headers, options: SecurityHeadersO
 export function applyCors(request: Request, headers: Headers, options: CorsOptions): boolean {
   const origin = request.headers.get('origin');
   if (!origin) return true;
-  const allowed = typeof options.origins === 'function' ? options.origins(origin) : options.origins.includes(origin);
+  // eslint-disable-next-line no-control-regex
+  const sanitizedOrigin = origin.replace(/[\u0000-\u0020\u007f]+/g, '').trim();
+  if (!sanitizedOrigin) return false;
+
+  const allowed = typeof options.origins === 'function' ? options.origins(sanitizedOrigin) : options.origins.includes(sanitizedOrigin) || options.origins.includes('*');
   if (!allowed) return false;
-  headers.set('access-control-allow-origin', origin);
-  headers.append('vary', 'Origin');
+
+  if (typeof options.origins !== 'function' && options.origins.includes('*') && !options.credentials) {
+    headers.set('access-control-allow-origin', '*');
+  } else {
+    headers.set('access-control-allow-origin', sanitizedOrigin);
+    headers.append('vary', 'Origin');
+  }
+
   if (options.credentials) headers.set('access-control-allow-credentials', 'true');
   if (options.exposeHeaders?.length) headers.set('access-control-expose-headers', options.exposeHeaders.join(', '));
   if (request.method === 'OPTIONS') {

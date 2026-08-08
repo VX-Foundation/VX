@@ -1,0 +1,25 @@
+#script
+  prop label: String = ""
+  prop variant: String = "default"
+  prop class: String = ""
+#end script
+
+#view
+  View @badgeWrapper {
+    Text(label) @badgeLabel
+  }
+
+  @badgeWrapper {
+    flow: horizontal
+    items: center
+    content: center
+    inset: badge
+    corner: pill
+    surface: sapphire-900
+    border: sapphire-800
+  }
+
+  @badgeLabel {
+    tone: sapphire-100
+  }
+#end view

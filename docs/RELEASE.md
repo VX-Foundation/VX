@@ -2,8 +2,8 @@
 
 ## Distribution channels
 
-- `canary` publishes short-lived evaluation builds using versions such as `0.1.2-canary.<revision>.<sequence>`.
-- `next` publishes compatible release candidates such as `0.1.2-next.<sequence>`.
+- `canary` publishes short-lived evaluation builds using versions such as `0.2.0-canary.<revision>.<sequence>`.
+- `next` publishes compatible release candidates such as `0.2.0-next.<sequence>`.
 - `latest` is reserved for stable releases. VX 1.0 cannot use this tag until every criterion in `release/v1-readiness.json` passes.
 
 ## Required preparation

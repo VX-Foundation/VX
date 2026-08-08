@@ -81,7 +81,7 @@ export interface RunningNodeServer {
 
 export async function startNodeServer(application: FetchApplication, options: NodeServerOptions = {}): Promise<RunningNodeServer> {
   const hostname = options.hostname ?? '127.0.0.1';
-  const port = options.port ?? 3000;
+  const port = options.port ?? 4000;
   const sockets = new Set<Socket>();
   let closing = false;
   const server = createServer(async (incoming, outgoing) => {

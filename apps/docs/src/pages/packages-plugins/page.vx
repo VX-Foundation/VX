@@ -1,0 +1,64 @@
+#view
+  View @page {
+    Text("SHIP AND MAINTAIN") @eyebrow
+    Title("Packages and plugins")
+    Text("VX packages publish stable application contracts. Plugins extend the compiler and build pipeline through isolated, permissioned, deterministic capabilities.") @lead
+
+    View @section {
+      Title("Application packages") { level: 2 }
+      Text("Place public visual components in conventional component directories and headless modules in public module directories. Export only intentional contracts and keep private helpers private.")
+      View @codeBlock {
+        Text("my-library/")
+        Text("  src/")
+        Text("    index.vx")
+        Text("    components/")
+        Text("    modules/")
+        Text("  vx.config.ts")
+        Text("  package.json")
+      }
+    }
+
+    View @section {
+      Title("Package configuration") { level: 2 }
+      View @codeBlock {
+        Text("export default defineConfig({")
+        Text("  package: {")
+        Text("    entry: './src/index.vx',")
+        Text("    public: [")
+        Text("      './src/components',")
+        Text("      './src/modules'")
+        Text("    ]")
+        Text("  }")
+        Text("});")
+      }
+      Text("The author declares stable public directories. Consumers should not need to manually enumerate every emitted JavaScript file.")
+    }
+
+    View @section {
+      Title("Compatibility and publication") { level: 2 }
+      Text("Validate semantic version changes, declarations, package artifacts, API snapshots, integrity, provenance, deprecations, and migration metadata before publishing. Removing a public API requires an intentional compatibility process.")
+    }
+
+    View @section {
+      Title("Plugin contract") { level: 2 }
+      Text("A plugin declares its API version, capabilities, permissions, deterministic inputs, cache identity, timeouts, and emitted files. Plugins execute in isolated workers and cannot assume unrestricted process, environment, filesystem, or network access.")
+    }
+
+    View @section {
+      Title("Plugin safety") { level: 2 }
+      Text("Read projects through mediated APIs, write only to assigned output directories, bound resource use, and sign the detached vx.plugin.json contract for trusted distribution. A plugin must not weaken client-server boundaries or release reproducibility.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Prepare a deployment") { href: "/deployment" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

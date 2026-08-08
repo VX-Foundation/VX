@@ -1,0 +1,75 @@
+#script
+  content route: required
+#end script
+#view
+  View @site {
+    View @topbar {
+      View @brandGroup {
+        Link("VX") @brandLink { href: "/" }
+        Text("Documentation") @brandLabel
+        Text("0.2.0") @version
+      }
+      View @topLinks {
+        Link("Learn") { href: "/learn" }
+        Link("Reference") { href: "/reference" }
+        Link("GitHub") { href: "https://github.com/VX-Foundation/vx" target: "_blank" rel: "noreferrer" }
+      }
+    }
+    View @workspace {
+      View @navigation {
+        Text("START") @navigationHeading
+        Link("Overview") { href: "/" }
+        Link("Learn VX") { href: "/learn" }
+        Link("Getting started") { href: "/getting-started" }
+        Link("Project structure") { href: "/project-structure" }
+        Text("BUILD") @navigationHeading
+        Link("Language") { href: "/language" }
+        Link("Components") { href: "/components" }
+        Link("Reactivity") { href: "/reactivity" }
+        Link("Views and styling") { href: "/views-styling" }
+        Link("Routing") { href: "/routing" }
+        Link("Data and server") { href: "/data-server" }
+        Link("Forms") { href: "/forms" }
+        Text("REFERENCE") @navigationHeading
+        Link("Complete reference") { href: "/reference" }
+        Link("Language specification") { href: "/reference/language" }
+        Link("Widgets") { href: "/widgets" }
+        Link("Visual system") { href: "/visual" }
+        Link("Packages") { href: "/packages" }
+        Link("CLI commands") { href: "/commands" }
+        Link("Tooling") { href: "/tooling" }
+        Text("PRODUCTION") @navigationHeading
+        Link("Guides") { href: "/guides" }
+        Link("Cookbook") { href: "/cookbook" }
+        Link("Tutorials") { href: "/tutorials" }
+        Link("Testing") { href: "/testing" }
+        Link("Deployment") { href: "/deployment" }
+        Link("Security") { href: "/security" }
+        Text("PROJECT") @navigationHeading
+        Link("Framework internals") { href: "/internals" }
+        Link("Packages and plugins") { href: "/packages-plugins" }
+        Link("Project policies") { href: "/project" }
+        Link("Migrations") { href: "/migrations" }
+        Link("Contributing") { href: "/contributing" }
+      }
+      View @contentArea { Content(route) }
+    }
+    View @footer {
+      Text("VX 0.2.0 documentation")
+      Text("Compiler-first web development by Veelv")
+      Link("vx.veelv.site") { href: "https://vx.veelv.site" }
+    }
+  }
+  @site { flow: vertical minHeight: viewport surface: base }
+  @topbar { flow: horizontal align: items.center justify: content.between gap: lg inset: lg surface: raised borderBottom: subtle layer: navigation }
+  @brandGroup { flow: horizontal align: items.center gap: sm }
+  @brandLink { typography: heading.lg color: sapphire-600 decoration: none }
+  @brandLabel { typography: body.md color: cloud-700 }
+  @version { typography: body.xs surface: sapphire-100 color: sapphire-800 corner: pill inset: badge }
+  @topLinks { flow: horizontal align: items.center gap: lg }
+  @workspace { sidebar: 19rem gap: none width: fill }
+  @navigation { flow: vertical gap: sm inset: lg surface: raised borderRight: subtle minHeight: viewport overflow: auto }
+  @navigationHeading { typography: label.sm color: cloud-500 marginTop: lg }
+  @contentArea { width: fill minWidth: 0 }
+  @footer { flow: horizontal align: items.center justify: content.between gap: lg inset: lg surface: raised borderTop: subtle typography: body.sm color: cloud-500 }
+#end view

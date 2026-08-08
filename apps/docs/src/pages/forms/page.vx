@@ -1,0 +1,83 @@
+#view
+  View @page {
+    Text("BUILD WITH VX") @eyebrow
+    Title("Forms")
+    Text("Forms combine accessible native widgets, typed client state, server-owned validation, authorization, CSRF protection, bounded decoding, and structured error responses.") @lead
+
+    View @section {
+      Title("A controlled form") { level: 2 }
+      View @codeBlock {
+        Text("#script")
+        Text("  state email: String = \"\"")
+        Text("  state saving: Bool = false")
+        Text("")
+        Text("  action updateEmail(value: String) {")
+        Text("    email = value")
+        Text("  }")
+        Text("")
+        Text("  action submit() {")
+        Text("    saving = true")
+        Text("    await account.saveEmail(email)")
+        Text("    saving = false")
+        Text("  }")
+        Text("#end script")
+        Text("")
+        Text("#view")
+        Text("  Form @form {")
+        Text("    Input {")
+        Text("      label: \"Email\"")
+        Text("      value: email")
+        Text("      required: true")
+        Text("      change => updateEmail($event)")
+        Text("    }")
+        Text("    Button(\"Save\") {")
+        Text("      disabled: saving")
+        Text("      click => submit()")
+        Text("    }")
+        Text("  }")
+        Text("#end view")
+      }
+    }
+
+    View @section {
+      Title("Validation responsibilities") { level: 2 }
+      Text("Client validation improves feedback but is not a trust boundary. The server must decode bounded input, reject prototype-pollution keys, validate types and business rules, authorize the operation, verify origin and CSRF, and return field or form errors.")
+    }
+
+    View @section {
+      Title("Accessible errors") { level: 2 }
+      Text("Use FieldError for a specific control, FormError for a form-level failure, and ErrorSummary when the user needs a navigable overview. Preserve focus and announce important changes through accessible live regions.")
+    }
+
+    View @section {
+      Title("Uploads") { level: 2 }
+      View @warning {
+        Text("The browser accept attribute is only a user-experience hint.")
+      }
+      Text("The server owns accepted content types, maximum size, storage key, malware and content processing, authorization, retention, and public exposure. File metadata and content are always untrusted.")
+    }
+
+    View @section {
+      Title("Form checklist") { level: 2 }
+      Text("• Provide a visible label or accessible name for every control.")
+      Text("• Keep state mutation inside actions.")
+      Text("• Disable or serialize conflicting submissions intentionally.")
+      Text("• Preserve entered values after recoverable failures.")
+      Text("• Validate and authorize again on the server.")
+      Text("• Test keyboard use, error focus, and browser autofill.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Test the complete application") { href: "/testing" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @warning { surface: amber-50 border: amber-300 corner: lg inset: lg }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

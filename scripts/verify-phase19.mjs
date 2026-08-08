@@ -1,28 +1,53 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-const root = resolve(import.meta.dirname, '..');
-const read = (path) => readFileSync(resolve(root, path), 'utf8');
-for (const packageName of ['package-system','interop','devtools']) assert.ok(existsSync(resolve(root, 'packages', packageName, 'package.json')), `Missing @vx-foundation/${packageName}.`);
-const packageSystem = read('packages/package-system/src/semver.ts') + read('packages/package-system/src/lockfile.ts') + read('packages/package-system/src/signatures.ts') + read('packages/package-system/src/workspace.ts') + read('packages/package-system/src/contracts.ts') + read('packages/package-system/src/publication.ts');
-for (const contract of ['compareSemver', 'satisfiesSemver', 'validSemverRange', 'lockfileVersion', 'ed25519', 'createWorkspaceGraph', 'comparePublicContracts', 'createPublicationManifest', 'verifyPublicationManifest']) assert.ok(packageSystem.includes(contract), `Package system is missing ${contract}.`);
-const pluginExports = JSON.parse(read('packages/plugins/package.json')).exports;
-assert.ok(pluginExports['./sitemap'] && pluginExports['./host']);
-assert.equal(pluginExports['./tailwind'], undefined);
-assert.equal(pluginExports['./mdx'], undefined);
-assert.ok(!existsSync(resolve(root, 'packages/plugins/src/tailwind')) && !existsSync(resolve(root, 'packages/plugins/src/mdx')), 'Symbolic plugins remain in the source tree.');
-const host = read('packages/plugins/src/host.ts');
-for (const contract of ['apiVersion', 'allowedCapabilities', 'allowedPermissions', 'requireSignatures', 'withTimeout', 'deterministic', 'safeRelativePath']) assert.ok(host.includes(contract), `Plugin host is missing ${contract}.`);
-const sandbox = read('packages/plugins/src/sandbox.ts') + read('packages/plugins/src/sandbox-loader.ts') + read('packages/plugins/src/source-integrity.ts') + read('packages/plugins/src/sandbox-worker.ts');
-for (const contract of ['Worker', 'resourceLimits', 'read-project-file', 'blocked sensitive module', 'outside the plugin dependency graph', 'maxOldGenerationSizeMb', 'vx.plugin.json', 'sourceIntegrity', 'protected project data']) assert.ok(sandbox.includes(contract), `Plugin sandbox is missing ${contract}.`);
-const types = read('packages/compiler/src/package/types.ts');
-for (const field of ['privateModules', 'publicContracts', 'deprecation', 'migrations']) assert.ok(types.includes(field), `Generated package manifest is missing ${field}.`);
-const interop = read('packages/interop/src/types.ts') + read('packages/interop/src/runtime.ts') + read('packages/interop/src/resolver.ts');
-for (const contract of ['callback','promise','stream','class','browser','node','server','resolveNpmInteropPackage','declarationsPath','usedConditions','treeShakable']) assert.ok(interop.includes(contract), `Interop contract is missing ${contract}.`);
-const pluginTypes = read('packages/types/src/index.ts');
-for (const forbidden of ["'network' | 'filesystem'", "'spawn-process'"]) assert.ok(!pluginTypes.includes(forbidden), `Unmediated plugin surface remains: ${forbidden}`);
+import { mkdtempSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import {
+  comparePublicContracts,
+  compareSemver,
+  createPublicationManifest,
+  createPublicContractSnapshot,
+  satisfiesSemver,
+  validSemverRange,
+  verifyPublicationManifest
+} from '../packages/package-system/dist/index.js';
+import {
+  assertInteropBoundary,
+  callback,
+  defineInteropModule,
+  treeShakeInterop
+} from '../packages/interop/dist/index.js';
 
-const publish = read('packages/cli/src/commands/publish.ts');
-for (const contract of ['vx.publication.json', 'createPublicationManifest', 'verifyPublicationManifest', 'publicationIntegrity']) assert.ok(publish.includes(contract), `Publish command is missing ${contract}.`);
+assert.equal(compareSemver('1.0.0-beta.2', '1.0.0'), -1);
+assert.equal(validSemverRange('^1.2.3 || ~2.0'), true);
+assert.equal(satisfiesSemver('1.8.0', '^1.2.3'), true);
+assert.equal(satisfiesSemver('2.0.0', '^1.2.3'), false);
 
-console.log('Phase 19 structural verification passed.');
+const metadata = {
+  schema: 'https://vx.veelv.site/schemas/package/v1', version: 1,
+  name: '@vx-foundation/demo', packageVersion: '1.0.0',
+  exports: { '.': './dist/index.js', './old': './dist/old.js' },
+  privateModules: [], publicContracts: { '.': 'sha512-main', './old': 'sha512-old' }
+};
+const previous = createPublicContractSnapshot(metadata);
+const next = createPublicContractSnapshot({ ...metadata, packageVersion: '2.0.0', exports: { '.': './dist/index.js' }, publicContracts: { '.': 'sha512-main' } });
+assert.equal(comparePublicContracts(previous, next).recommendedBump, 'major');
+
+const publicationRoot = mkdtempSync(join(tmpdir(), 'vx-phase19-publication-'));
+writeFileSync(join(publicationRoot, 'package.json'), '{"name":"demo","version":"1.0.0"}');
+writeFileSync(join(publicationRoot, 'index.js'), 'export const value = 1;');
+const publication = createPublicationManifest(publicationRoot, 'demo', '1.0.0', { ignore: ['vx.publication.json'] });
+assert.equal(verifyPublicationManifest(publicationRoot, publication), true);
+writeFileSync(join(publicationRoot, 'index.js'), 'export const value = 2;');
+assert.equal(verifyPublicationManifest(publicationRoot, publication), false);
+
+assert.throws(() => assertInteropBoundary('client', 'node', 'node:fs'), /server-only/);
+const moduleContract = defineInteropModule({ module: 'demo', environment: 'universal', sideEffects: false, exports: [
+  { module: 'demo', exportName: 'used', kind: 'function', environment: 'universal', pure: true },
+  { module: 'demo', exportName: 'unused', kind: 'function', environment: 'universal', pure: true }
+] });
+assert.deepEqual(treeShakeInterop(moduleContract, new Set(['used'])).exports.map((item) => item.exportName), ['used']);
+const once = callback((value) => value + 1, { once: true });
+assert.equal(once(2), 3);
+assert.throws(() => once(2), /after disposal/);
+console.log('Phase 19 behavioral verification passed (semver, API contracts, publication integrity, and interop boundaries).');

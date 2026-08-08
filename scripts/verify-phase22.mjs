@@ -8,8 +8,10 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const NODE_RANGE = '>=22.11.0 <23 || >=24.11.0 <25';
 const PNPM = '11.19.0';
 const REPOSITORY = 'git+https://github.com/VX-Foundation/vx.git';
+const versionManifest = readJson('release/version.json');
+const VERSION = versionManifest.framework;
 const rootManifest = readJson('package.json');
-const VERSION = rootManifest.version;
+assert.equal(rootManifest.version, VERSION, 'Root package version must match release/version.json.');
 assert.match(VERSION, /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u);
 assert.equal(rootManifest.packageManager, `pnpm@${PNPM}`);
 assert.equal(rootManifest.engines?.node, NODE_RANGE);
@@ -19,7 +21,7 @@ assert.equal(rootManifest.license, 'MIT');
 assert.match(readFileSync(join(root, 'LICENSE'), 'utf8'), /Permission is hereby granted/u);
 
 const publicPackages = discoverWorkspaceManifests().filter(({ manifest }) => manifest.private !== true);
-assert.equal(publicPackages.length, 25, 'VX 0.1 must publish 25 packages in the @vx-foundation scope.');
+assert.equal(publicPackages.length, 25, `VX ${VERSION} must publish 25 packages in the @vx-foundation scope.`);
 for (const { path, manifest } of publicPackages) {
   assert.equal(manifest.version, VERSION, `${manifest.name} is not synchronized at ${VERSION}.`);
   assert.equal(manifest.license, 'MIT', `${manifest.name} has no MIT license declaration.`);

@@ -1,0 +1,256 @@
+#view
+  View @page {
+    Text("VISUAL REFERENCE") @eyebrow
+    Title("Built-in visual roles")
+    Text("52 compiler-owned roles encode reusable structural and semantic intent without creating runtime components.") @lead
+    View @section {
+      Title("Structural roles") { level: 2 }
+      View @cards {
+        View @card {
+          Link("@center") @cardTitle { href: "/visual/roles/center" }
+          Text("2 defaults · 0 states · 2 arguments") @meta
+        }
+        View @card {
+          Link("@cluster") @cardTitle { href: "/visual/roles/cluster" }
+          Text("5 defaults · 0 states · 3 arguments") @meta
+        }
+        View @card {
+          Link("@column") @cardTitle { href: "/visual/roles/column" }
+          Text("3 defaults · 0 states · 4 arguments") @meta
+        }
+        View @card {
+          Link("@container") @cardTitle { href: "/visual/roles/container" }
+          Text("2 defaults · 0 states · 2 arguments") @meta
+        }
+        View @card {
+          Link("@flow") @cardTitle { href: "/visual/roles/flow" }
+          Text("3 defaults · 0 states · 5 arguments") @meta
+        }
+        View @card {
+          Link("@grid") @cardTitle { href: "/visual/roles/grid" }
+          Text("4 defaults · 0 states · 6 arguments") @meta
+        }
+        View @card {
+          Link("@layer") @cardTitle { href: "/visual/roles/layer" }
+          Text("3 defaults · 0 states · 1 arguments") @meta
+        }
+        View @card {
+          Link("@masonry") @cardTitle { href: "/visual/roles/masonry" }
+          Text("2 defaults · 0 states · 3 arguments") @meta
+        }
+        View @card {
+          Link("@overlay") @cardTitle { href: "/visual/roles/overlay" }
+          Text("3 defaults · 0 states · 2 arguments") @meta
+        }
+        View @card {
+          Link("@region") @cardTitle { href: "/visual/roles/region" }
+          Text("2 defaults · 0 states · 2 arguments") @meta
+        }
+        View @card {
+          Link("@row") @cardTitle { href: "/visual/roles/row" }
+          Text("3 defaults · 0 states · 5 arguments") @meta
+        }
+        View @card {
+          Link("@scroll") @cardTitle { href: "/visual/roles/scroll" }
+          Text("2 defaults · 0 states · 3 arguments") @meta
+        }
+        View @card {
+          Link("@sidebar") @cardTitle { href: "/visual/roles/sidebar" }
+          Text("3 defaults · 0 states · 3 arguments") @meta
+        }
+        View @card {
+          Link("@split") @cardTitle { href: "/visual/roles/split" }
+          Text("3 defaults · 0 states · 3 arguments") @meta
+        }
+        View @card {
+          Link("@stack") @cardTitle { href: "/visual/roles/stack" }
+          Text("2 defaults · 0 states · 2 arguments") @meta
+        }
+        View @card {
+          Link("@wrap") @cardTitle { href: "/visual/roles/wrap" }
+          Text("4 defaults · 0 states · 3 arguments") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Semantic roles") { level: 2 }
+      View @cards {
+        View @card {
+          Link("@avatar") @cardTitle { href: "/visual/roles/avatar" }
+          Text("3 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@badge") @cardTitle { href: "/visual/roles/badge" }
+          Text("5 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@body") @cardTitle { href: "/visual/roles/body" }
+          Text("2 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@brand") @cardTitle { href: "/visual/roles/brand" }
+          Text("2 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@card") @cardTitle { href: "/visual/roles/card" }
+          Text("4 defaults · 2 states · 2 arguments") @meta
+        }
+        View @card {
+          Link("@chip") @cardTitle { href: "/visual/roles/chip" }
+          Text("4 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@code") @cardTitle { href: "/visual/roles/code" }
+          Text("4 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@danger") @cardTitle { href: "/visual/roles/danger" }
+          Text("6 defaults · 3 states · 2 arguments") @meta
+        }
+        View @card {
+          Link("@dialog") @cardTitle { href: "/visual/roles/dialog" }
+          Text("5 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@empty") @cardTitle { href: "/visual/roles/empty" }
+          Text("5 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@field") @cardTitle { href: "/visual/roles/field" }
+          Text("5 defaults · 2 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@focusScope") @cardTitle { href: "/visual/roles/focus-scope" }
+          Text("1 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@hero") @cardTitle { href: "/visual/roles/hero" }
+          Text("5 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@info") @cardTitle { href: "/visual/roles/info" }
+          Text("3 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@landmark") @cardTitle { href: "/visual/roles/landmark" }
+          Text("1 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@link") @cardTitle { href: "/visual/roles/link" }
+          Text("3 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@live") @cardTitle { href: "/visual/roles/live" }
+          Text("1 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@loading") @cardTitle { href: "/visual/roles/loading" }
+          Text("2 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@menu") @cardTitle { href: "/visual/roles/menu" }
+          Text("3 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@metadata") @cardTitle { href: "/visual/roles/metadata" }
+          Text("2 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@muted") @cardTitle { href: "/visual/roles/muted" }
+          Text("1 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@navigation") @cardTitle { href: "/visual/roles/navigation" }
+          Text("4 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@page") @cardTitle { href: "/visual/roles/page" }
+          Text("4 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@panel") @cardTitle { href: "/visual/roles/panel" }
+          Text("4 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@popover") @cardTitle { href: "/visual/roles/popover" }
+          Text("4 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@price") @cardTitle { href: "/visual/roles/price" }
+          Text("2 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@primary") @cardTitle { href: "/visual/roles/primary" }
+          Text("6 defaults · 3 states · 3 arguments") @meta
+        }
+        View @card {
+          Link("@secondary") @cardTitle { href: "/visual/roles/secondary" }
+          Text("6 defaults · 3 states · 2 arguments") @meta
+        }
+        View @card {
+          Link("@section") @cardTitle { href: "/visual/roles/section" }
+          Text("2 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@subtitle") @cardTitle { href: "/visual/roles/subtitle" }
+          Text("2 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@success") @cardTitle { href: "/visual/roles/success" }
+          Text("3 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@tabs") @cardTitle { href: "/visual/roles/tabs" }
+          Text("3 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@title") @cardTitle { href: "/visual/roles/title" }
+          Text("2 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@toolbar") @cardTitle { href: "/visual/roles/toolbar" }
+          Text("6 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@tooltip") @cardTitle { href: "/visual/roles/tooltip" }
+          Text("5 defaults · 0 states · 0 arguments") @meta
+        }
+        View @card {
+          Link("@warning") @cardTitle { href: "/visual/roles/warning" }
+          Text("3 defaults · 0 states · 0 arguments") @meta
+        }
+      }
+    }
+    View @section {
+      Title("Composition") { level: 2 }
+      View @codeBlock {
+        Text("@productCard uses @card(density: compact) {")
+        Text("  gap: lg")
+        Text("  when hover { elevation: md }")
+        Text("}")
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

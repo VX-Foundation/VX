@@ -26,7 +26,6 @@ VX treats source files, route inputs, serialized state, server-action bodies, pa
 
 Unsafe exceptions must be explicit, narrowly scoped, documented, and covered by a security test.
 
-
 ## Coordinated disclosure timeline
 
 The security team acknowledges a complete report within three business days, provides an initial severity assessment within seven business days, and targets a fix or mitigation plan within ninety days. Critical active exploitation is handled on an emergency timeline. Dates may change when coordination with other vendors is required, but reporters receive status updates.

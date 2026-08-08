@@ -24,6 +24,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: node scripts/release/verify-source-tree.mjs
+      - run: node scripts/release/verify-version-sync.mjs
+      - run: node scripts/verify-json-integrity.mjs
+      - run: node scripts/verify-toolchain-catalog.mjs
+      - run: node scripts/release/verify-source-allowlist.mjs --require-lockfile
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
@@ -40,6 +44,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: node scripts/release/verify-source-tree.mjs
+      - run: node scripts/release/verify-version-sync.mjs
+      - run: node scripts/verify-json-integrity.mjs
+      - run: node scripts/verify-toolchain-catalog.mjs
+      - run: node scripts/release/verify-source-allowlist.mjs --require-lockfile
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
@@ -57,6 +65,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: node scripts/release/verify-source-tree.mjs
+      - run: node scripts/release/verify-version-sync.mjs
+      - run: node scripts/verify-json-integrity.mjs
+      - run: node scripts/verify-toolchain-catalog.mjs
+      - run: node scripts/release/verify-source-allowlist.mjs --require-lockfile
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
@@ -81,6 +93,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: node scripts/release/verify-source-tree.mjs
+      - run: node scripts/release/verify-version-sync.mjs
+      - run: node scripts/verify-json-integrity.mjs
+      - run: node scripts/verify-toolchain-catalog.mjs
+      - run: node scripts/release/verify-source-allowlist.mjs --require-lockfile
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:

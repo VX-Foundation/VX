@@ -1,8 +1,6 @@
 import type { ExpressionNode, ViewBlockNode, ViewNode, WidgetNode, WidgetProperty } from '@vx-foundation/types';
 import type { DiagnosticCollector } from './diagnostics.js';
-
-const FORM_CONTROLS = new Set(['Input', 'TextArea', 'Select', 'Checkbox', 'Radio', 'Slider', 'Switch']);
-const INTERACTIVE_WIDGETS = new Set(['Button', 'Link', ...FORM_CONTROLS]);
+import { FORM_CONTROL_WIDGETS as FORM_CONTROLS, INTERACTIVE_WIDGETS } from '../components/validation-constants.generated.js';
 const LABEL_PROPERTIES = ['ariaLabel', 'ariaLabelledBy'] as const;
 
 /**

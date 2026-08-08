@@ -1,0 +1,106 @@
+#view
+  View @page {
+    Text("VISUAL PROPERTY") @eyebrow
+    Title("scrollBehavior")
+    Text("scrollBehavior belongs to scroll and is validated before CSS emission.") @lead
+    View @section {
+      Title("Lowering contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Property") @propertyName
+          Text("scrollBehavior") @propertyDescription
+        }
+        View @tableRow {
+          Text("Category") @propertyName
+          Text("Scroll") @propertyDescription
+        }
+        View @tableRow {
+          Text("CSS target") @propertyName
+          Text("scroll-behavior") @propertyDescription
+        }
+        View @tableRow {
+          Text("Safety") @propertyName
+          Text("raw semicolons and braces are rejected") @propertyDescription
+        }
+        View @tableRow {
+          Text("Scope") @propertyName
+          Text("local role, composed role, state, media, or container condition") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Syntax") { level: 2 }
+      View @codeBlock {
+        Text("#view")
+        Text("  View @example")
+        Text(" ")
+        Text("  @example {")
+        Text("    scrollBehavior: smooth")
+        Text("  }")
+        Text("#end view")
+      }
+    }
+    View @section {
+      Title("States and responsive use") { level: 2 }
+      View @codeBlock {
+        Text("@example {")
+        Text("  scrollBehavior: smooth")
+        Text("  when hover {")
+        Text("    scrollBehavior: smooth")
+        Text("  }")
+        Text("  when viewport(min: md) {")
+        Text("    scrollBehavior: smooth")
+        Text("  }")
+        Text("}")
+      }
+    }
+    View @section {
+      Title("Value guidance") { level: 2 }
+      Text("Use scrollBehavior through a local or composed role. The compiler maps it to scroll-behavior and rejects unsafe raw CSS fragments.")
+      View @list {
+        Text("• Use a documented token or safe CSS value.") @bullet
+        Text("• Verify dark, light, forced-color, and reduced-motion behavior when relevant.") @bullet
+        Text("• Keep server and client design-system inputs identical to avoid hydration drift.") @bullet
+        Text("• Test keyboard, touch, focus visibility, and scroll restoration.") @bullet
+      }
+    }
+    View @section {
+      Title("Related properties") { level: 2 }
+      View @chipRow {
+        Link("scrollAxis") @chip { href: "/visual/properties/scroll-axis" }
+        Link("snap") @chip { href: "/visual/properties/snap" }
+        Link("snapAlign") @chip { href: "/visual/properties/snap-align" }
+        Link("snapStop") @chip { href: "/visual/properties/snap-stop" }
+        Link("overscroll") @chip { href: "/visual/properties/overscroll" }
+        Link("scrollPadding") @chip { href: "/visual/properties/scroll-padding" }
+        Link("scrollMargin") @chip { href: "/visual/properties/scroll-margin" }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

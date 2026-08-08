@@ -18,7 +18,7 @@ export interface FrameworkIdentity { framework: BenchmarkFramework; version: str
 export interface BenchmarkSample { value: number; metric: BenchmarkMetric; }
 export interface BenchmarkEvidence { readonly [key: string]: string | number | boolean; }
 export interface BenchmarkResult {
-  schema: 'https://vx.dev/schemas/benchmark-result/v1';
+  schema: 'https://vx.veelv.site/schemas/benchmark-result/v1';
   suiteVersion: 1;
   scenario: BenchmarkScenario;
   identity: FrameworkIdentity;

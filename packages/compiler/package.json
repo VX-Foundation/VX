@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/compiler",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "type": "module",
   "description": "Compiler core: Reactive graph, type checking, lowering.",
   "main": "./dist/index.js",
@@ -32,8 +32,7 @@
     "@vx-foundation/language": "workspace:*",
     "@vx-foundation/shared": "workspace:*",
     "@vx-foundation/types": "workspace:*",
-    "@vx-foundation/widgets": "workspace:*",
-    "typescript": "^5.8.3"
+    "typescript": "catalog:"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",

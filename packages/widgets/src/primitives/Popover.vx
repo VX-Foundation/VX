@@ -1,0 +1,32 @@
+#script
+  prop open: Bool = false
+  prop class: String = ""
+
+  output onClose: Void
+  content default: optional
+#end script
+
+#view
+  View @popoverWrapper {
+    if open {
+      View @popoverPanel {
+        Content(default)
+      }
+    }
+  }
+
+  @popoverWrapper {
+    display: inline-flex
+    stack: true
+  }
+
+  @popoverPanel {
+    flow: vertical
+    inset: md
+    corner: lg
+    surface: steel-900
+    border: steel-800
+    elevation: md
+    z: overlay
+  }
+#end view

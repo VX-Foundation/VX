@@ -20,7 +20,7 @@ for (const framework of frameworks) for (const scenario of scenarios) {
 function parse(args) { const output = {}; for (let i=0;i<args.length;i+=1) if (args[i]?.startsWith('--')) output[args[i].slice(2)] = args[i+1] ?? 'true', i+=1; return output; }
 function git(args) { try { return execFileSync('git', args, { cwd: resolve(root, '../..'), encoding: 'utf8' }).trim(); } catch { return ''; } }
 function validate(result, framework, scenario) {
-  if (result.schema !== 'https://vx.dev/schemas/benchmark-result/v1' || result.identity?.framework !== framework || result.scenario !== scenario) throw new Error(`Invalid benchmark identity for ${framework}/${scenario}.`);
+  if (result.schema !== 'https://vx.veelv.site/schemas/benchmark-result/v1' || result.identity?.framework !== framework || result.scenario !== scenario) throw new Error(`Invalid benchmark identity for ${framework}/${scenario}.`);
   if (result.metadata?.implementation !== 'framework-native' || typeof result.metadata?.sourceIntegrity !== 'string') throw new Error(`Benchmark ${framework}/${scenario} is not backed by a native fixture.`);
   if (!Array.isArray(result.samples) || result.samples.length !== result.measuredIterations || result.samples.some((sample) => !Number.isFinite(sample.value) || sample.value < 0)) throw new Error(`Invalid raw samples for ${framework}/${scenario}.`);
   if (!Array.isArray(result.evidence) || result.evidence.length !== result.samples.length) throw new Error(`Missing evidence for ${framework}/${scenario}.`);

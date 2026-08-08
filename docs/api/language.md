@@ -2,7 +2,7 @@
 
 Tokenizer, parser and AST for the VX .vx single-file component language.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 
@@ -19,6 +19,7 @@ Current package line: `0.1.2`.
 - `isBlockKind` - function in `tokens.ts`
 - `parse` - function in `parser.ts`
 - `parseAction` - function in `script-data-parser.ts`
+- `parseAttachedRoles` - function in `view-role-parser.ts`
 - `ParseAttachedVisualRoles` - type in `component-view-parser.ts`
 - `parseComputed` - function in `script-state-parser.ts`
 - `parseConst` - function in `script-state-parser.ts`
@@ -39,6 +40,7 @@ Current package line: `0.1.2`.
 - `parseOutputDeclaration` - function in `component-contract-parser.ts`
 - `parseProp` - function in `script-state-parser.ts`
 - `parseQuery` - function in `script-data-parser.ts`
+- `parseRoleDeclaration` - function in `view-role-parser.ts`
 - `parseSchemaDeclaration` - function in `script-schema-parser.ts`
 - `parseScriptBlock` - function in `script-parser.ts`
 - `parseState` - function in `script-state-parser.ts`
@@ -58,6 +60,7 @@ Current package line: `0.1.2`.
 - `readStringLiteralValue` - function in `expression.ts`
 - `recoverToNextLine` - function in `script-parser-utils.ts`
 - `Scanner` - class in `scanner.ts`
+- `skipBalancedRoleDeclaration` - function in `view-role-parser.ts`
 - `Token` - type in `tokens.ts`
 - `tokenize` - function in `tokenizer.ts`
 

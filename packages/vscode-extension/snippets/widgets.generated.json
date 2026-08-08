@@ -1,0 +1,303 @@
+{
+  "VX Accordion widget": {
+    "prefix": "vxaccordion",
+    "body": [
+      "Accordion(${1:title})"
+    ],
+    "description": "Insert the VX Accordion composite primitive"
+  },
+  "VX Audio widget": {
+    "prefix": "vxaudio",
+    "body": [
+      "Audio"
+    ],
+    "description": "Insert the VX Audio media primitive"
+  },
+  "VX Avatar widget": {
+    "prefix": "vxavatar",
+    "body": [
+      "Avatar"
+    ],
+    "description": "Insert the VX Avatar display primitive"
+  },
+  "VX Badge widget": {
+    "prefix": "vxbadge",
+    "body": [
+      "Badge(${1:label})"
+    ],
+    "description": "Insert the VX Badge display primitive"
+  },
+  "VX Breadcrumb widget": {
+    "prefix": "vxbreadcrumb",
+    "body": [
+      "Breadcrumb {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX Breadcrumb navigation primitive"
+  },
+  "VX Button widget": {
+    "prefix": "vxbutton",
+    "body": [
+      "Button(${1:label})"
+    ],
+    "description": "Insert the VX Button control primitive"
+  },
+  "VX Canvas widget": {
+    "prefix": "vxcanvas",
+    "body": [
+      "Canvas"
+    ],
+    "description": "Insert the VX Canvas media primitive"
+  },
+  "VX Checkbox widget": {
+    "prefix": "vxcheckbox",
+    "body": [
+      "Checkbox"
+    ],
+    "description": "Insert the VX Checkbox control primitive"
+  },
+  "VX DataTable widget": {
+    "prefix": "vxdatatable",
+    "body": [
+      "DataTable {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX DataTable data primitive"
+  },
+  "VX DatePicker widget": {
+    "prefix": "vxdatepicker",
+    "body": [
+      "DatePicker(${1:value})"
+    ],
+    "description": "Insert the VX DatePicker control primitive"
+  },
+  "VX Divider widget": {
+    "prefix": "vxdivider",
+    "body": [
+      "Divider"
+    ],
+    "description": "Insert the VX Divider layout primitive"
+  },
+  "VX Drawer widget": {
+    "prefix": "vxdrawer",
+    "body": [
+      "Drawer {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX Drawer overlay primitive"
+  },
+  "VX ErrorSummary widget": {
+    "prefix": "vxerrorsummary",
+    "body": [
+      "ErrorSummary {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX ErrorSummary feedback primitive"
+  },
+  "VX FieldError widget": {
+    "prefix": "vxfielderror",
+    "body": [
+      "FieldError"
+    ],
+    "description": "Insert the VX FieldError feedback primitive"
+  },
+  "VX FieldGroup widget": {
+    "prefix": "vxfieldgroup",
+    "body": [
+      "FieldGroup {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX FieldGroup form primitive"
+  },
+  "VX FileUpload widget": {
+    "prefix": "vxfileupload",
+    "body": [
+      "FileUpload"
+    ],
+    "description": "Insert the VX FileUpload control primitive"
+  },
+  "VX Form widget": {
+    "prefix": "vxform",
+    "body": [
+      "Form {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX Form form primitive"
+  },
+  "VX FormError widget": {
+    "prefix": "vxformerror",
+    "body": [
+      "FormError"
+    ],
+    "description": "Insert the VX FormError feedback primitive"
+  },
+  "VX Icon widget": {
+    "prefix": "vxicon",
+    "body": [
+      "Icon"
+    ],
+    "description": "Insert the VX Icon display primitive"
+  },
+  "VX IFrame widget": {
+    "prefix": "vxiframe",
+    "body": [
+      "IFrame"
+    ],
+    "description": "Insert the VX IFrame media primitive"
+  },
+  "VX Image widget": {
+    "prefix": "vximage",
+    "body": [
+      "Image"
+    ],
+    "description": "Insert the VX Image media primitive"
+  },
+  "VX Input widget": {
+    "prefix": "vxinput",
+    "body": [
+      "Input(${1:value})"
+    ],
+    "description": "Insert the VX Input control primitive"
+  },
+  "VX Link widget": {
+    "prefix": "vxlink",
+    "body": [
+      "Link(${1:text})"
+    ],
+    "description": "Insert the VX Link navigation primitive"
+  },
+  "VX List widget": {
+    "prefix": "vxlist",
+    "body": [
+      "List {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX List data primitive"
+  },
+  "VX Modal widget": {
+    "prefix": "vxmodal",
+    "body": [
+      "Modal {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX Modal overlay primitive"
+  },
+  "VX Popover widget": {
+    "prefix": "vxpopover",
+    "body": [
+      "Popover {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX Popover overlay primitive"
+  },
+  "VX ProgressBar widget": {
+    "prefix": "vxprogressbar",
+    "body": [
+      "ProgressBar"
+    ],
+    "description": "Insert the VX ProgressBar feedback primitive"
+  },
+  "VX Radio widget": {
+    "prefix": "vxradio",
+    "body": [
+      "Radio"
+    ],
+    "description": "Insert the VX Radio control primitive"
+  },
+  "VX ScrollView widget": {
+    "prefix": "vxscrollview",
+    "body": [
+      "ScrollView {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX ScrollView layout primitive"
+  },
+  "VX Select widget": {
+    "prefix": "vxselect",
+    "body": [
+      "Select(${1:value})"
+    ],
+    "description": "Insert the VX Select control primitive"
+  },
+  "VX Skeleton widget": {
+    "prefix": "vxskeleton",
+    "body": [
+      "Skeleton"
+    ],
+    "description": "Insert the VX Skeleton feedback primitive"
+  },
+  "VX Slider widget": {
+    "prefix": "vxslider",
+    "body": [
+      "Slider"
+    ],
+    "description": "Insert the VX Slider control primitive"
+  },
+  "VX Spinner widget": {
+    "prefix": "vxspinner",
+    "body": [
+      "Spinner"
+    ],
+    "description": "Insert the VX Spinner feedback primitive"
+  },
+  "VX Switch widget": {
+    "prefix": "vxswitch",
+    "body": [
+      "Switch"
+    ],
+    "description": "Insert the VX Switch control primitive"
+  },
+  "VX Tabs widget": {
+    "prefix": "vxtabs",
+    "body": [
+      "Tabs {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX Tabs navigation primitive"
+  },
+  "VX Text widget": {
+    "prefix": "vxtext",
+    "body": [
+      "Text(${1:text})"
+    ],
+    "description": "Insert the VX Text text primitive"
+  },
+  "VX TextArea widget": {
+    "prefix": "vxtextarea",
+    "body": [
+      "TextArea(${1:value})"
+    ],
+    "description": "Insert the VX TextArea control primitive"
+  },
+  "VX Title widget": {
+    "prefix": "vxtitle",
+    "body": [
+      "Title(${1:text})"
+    ],
+    "description": "Insert the VX Title text primitive"
+  },
+  "VX Toast widget": {
+    "prefix": "vxtoast",
+    "body": [
+      "Toast {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX Toast feedback primitive"
+  },
+  "VX Tooltip widget": {
+    "prefix": "vxtooltip",
+    "body": [
+      "Tooltip {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX Tooltip feedback primitive"
+  },
+  "VX Video widget": {
+    "prefix": "vxvideo",
+    "body": [
+      "Video"
+    ],
+    "description": "Insert the VX Video media primitive"
+  },
+  "VX View widget": {
+    "prefix": "vxview",
+    "body": [
+      "View {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX View layout primitive"
+  },
+  "VX VirtualList widget": {
+    "prefix": "vxvirtuallist",
+    "body": [
+      "VirtualList {\n  ${1}\n}"
+    ],
+    "description": "Insert the VX VirtualList data primitive"
+  }
+}

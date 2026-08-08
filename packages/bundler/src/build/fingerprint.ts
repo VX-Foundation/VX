@@ -8,7 +8,13 @@ export function sourceFingerprint(root: string, extra: unknown, excludedPaths: r
   const hash = createHash('sha256');
   for (const filePath of sourceFiles(root, excludedPaths)) {
     const relative = path.relative(root, filePath).split(path.sep).join('/');
-    hash.update(relative); hash.update('\0'); hash.update(fs.readFileSync(filePath)); hash.update('\0');
+    try {
+      if (!fs.existsSync(filePath)) continue;
+      const content = fs.readFileSync(filePath);
+      hash.update(relative); hash.update('\0'); hash.update(content); hash.update('\0');
+    } catch {
+      continue;
+    }
   }
   hash.update(stableJson(extra));
   return hash.digest('hex');
@@ -19,7 +25,13 @@ export function artifactFingerprint(root: string): string {
   for (const filePath of allFiles(root)) {
     const relative = path.relative(root, filePath).split(path.sep).join('/');
     if (relative === 'vx.build.json') continue;
-    hash.update(relative); hash.update('\0'); hash.update(fs.readFileSync(filePath)); hash.update('\0');
+    try {
+      if (!fs.existsSync(filePath)) continue;
+      const content = fs.readFileSync(filePath);
+      hash.update(relative); hash.update('\0'); hash.update(content); hash.update('\0');
+    } catch {
+      continue;
+    }
   }
   return hash.digest('hex');
 }
@@ -41,7 +53,13 @@ function allFiles(root: string): string[] {
   const stack = [root];
   while (stack.length) {
     const current = stack.pop()!;
-    const entries = fs.readdirSync(current, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
+    if (!fs.existsSync(current)) continue;
+    let entries: fs.Dirent[] = [];
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
+    } catch {
+      continue;
+    }
     for (const entry of entries) {
       const full = path.join(current, entry.name);
       if (entry.isSymbolicLink()) throw new Error(`Deterministic build refuses symbolic link '${full}'.`);

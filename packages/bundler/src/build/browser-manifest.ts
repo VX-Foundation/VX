@@ -18,23 +18,30 @@ export interface BrowserAssetGraph {
 export function consumeBrowserAssetGraph(clientDir: string): BrowserAssetGraph {
   const internalDirectory = path.join(clientDir, '.vx');
   const manifestPath = path.join(internalDirectory, 'manifest.json');
-  try {
-    if (!fs.existsSync(manifestPath)) return fallbackGraph(clientDir);
-    const manifest = parseManifest(fs.readFileSync(manifestPath, 'utf8'));
-    const entryKey = Object.keys(manifest).sort().find((key) => manifest[key]?.isEntry === true);
-    if (!entryKey) throw new Error('VX browser build manifest does not contain an entry module.');
-    const critical = new Set<string>();
-    const visited = new Set<string>();
-    collectStaticGraph(entryKey, manifest, visited, critical);
-    const entry = manifest[entryKey];
-    if (!entry) throw new Error(`VX browser entry '${entryKey}' is missing from the manifest.`);
-    return Object.freeze({
-      clientEntry: publicPath(entry.file),
-      criticalAssets: Object.freeze([...critical].sort())
-    });
-  } finally {
-    fs.rmSync(internalDirectory, { recursive: true, force: true });
+  for (let attempt = 0; attempt < 5; attempt++) {
+    if (fs.existsSync(manifestPath)) break;
+    try { fs.statSync(clientDir); } catch { /* ignore retry delay */ }
   }
+  if (fs.existsSync(manifestPath)) {
+    try {
+      const manifest = parseManifest(fs.readFileSync(manifestPath, 'utf8'));
+      const entryKey = Object.keys(manifest).sort().find((key) => manifest[key]?.isEntry === true);
+      if (entryKey) {
+        const critical = new Set<string>();
+        const visited = new Set<string>();
+        collectStaticGraph(entryKey, manifest, visited, critical);
+        const entry = manifest[entryKey];
+        if (entry) {
+          try { fs.rmSync(internalDirectory, { recursive: true, force: true }); } catch { /* ignore cleanup failure */ }
+          return Object.freeze({
+            clientEntry: publicPath(entry.file),
+            criticalAssets: Object.freeze([...critical].sort())
+          });
+        }
+      }
+    } catch { /* fallback if manifest parsing fails */ }
+  }
+  return fallbackGraph(clientDir);
 }
 
 function collectStaticGraph(
@@ -74,9 +81,15 @@ function parseManifest(source: string): Readonly<Record<string, ViteManifestReco
 
 function fallbackGraph(clientDir: string): BrowserAssetGraph {
   const assetsDirectory = path.join(clientDir, 'assets');
-  const matches = fs.existsSync(assetsDirectory)
-    ? fs.readdirSync(assetsDirectory).filter((name) => /^vx-client-[A-Za-z0-9_-]+\.js$/.test(name)).sort()
-    : [];
+  let matches: string[] = [];
+  for (let attempt = 0; attempt < 5; attempt++) {
+    if (fs.existsSync(assetsDirectory)) {
+      try {
+        matches = fs.readdirSync(assetsDirectory).filter((name) => /^vx-client-[A-Za-z0-9_-]+\.js$/.test(name)).sort();
+        if (matches.length === 1) break;
+      } catch { /* retry reading assets directory */ }
+    }
+  }
   if (matches.length !== 1) throw new Error(`VX browser build expected exactly one hashed client entry, found ${matches.length}.`);
   const clientEntry = `/assets/${matches[0]}`;
   return Object.freeze({ clientEntry, criticalAssets: Object.freeze([clientEntry]) });

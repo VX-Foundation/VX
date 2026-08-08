@@ -1,0 +1,85 @@
+#view
+  View @page {
+    Text("DOCUMENTATION") @eyebrow
+    Title("Framework internals")
+    Text("For normative language behavior, use the language specification (../spec/README.md). For package exports, use the API reference (../api/README.md).") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      View @list {
+        Text("• Architecture (architecture.md)") @bullet
+        Text("• Project structure (project-structure.md)") @bullet
+        Text("• Configuration (configuration.md)") @bullet
+        Text("• Rendering and hydration (rendering.md)") @bullet
+        Text("• Data and mutations (data.md)") @bullet
+        Text("• Forms (forms.md)") @bullet
+        Text("• Server platform (server.md)") @bullet
+        Text("• Testing and tooling (testing-and-tooling.md)") @bullet
+        Text("• Official applications (official-applications.md)") @bullet
+      }
+      Text("For normative language behavior, use the language specification (../spec/README.md). For package exports, use the API reference (../api/README.md).")
+    }
+    View @section {
+      Title("Documents") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Framework Architecture") @cardTitle { href: "/internals/architecture" }
+          Text("VX is a compiler-first web application platform. A .vx source module is analyzed into explicit semantic, reactive, data, view, visual, and boundary representations before target code is emitted.") @meta
+        }
+        View @card {
+          Link("Configuration") @cardTitle { href: "/internals/configuration" }
+          Text("Use defineConfig from @vx-foundation/core. Configure adapter, targets, source maps, deterministic and reproducible builds, assets, chunk policy, plugin contracts, and library entrypoints.") @meta
+        }
+        View @card {
+          Link("Data and Mutations") @cardTitle { href: "/internals/data" }
+          Text("QueryClient manages query identity, cache, retries, cancellation, invalidation, dehydration, and hydration. createAction manages mutations, optimistic changes, rollback, concurrency, progress, and offline queuing.") @meta
+        }
+        View @card {
+          Link("Forms") @cardTitle { href: "/internals/forms" }
+          Text("Use typed schemas, client controllers, and server form contracts. The server decodes bounded input, blocks prototype-pollution keys, validates the schema, authorizes the operation, verifies CSRF, and returns structured field or form errors.") @meta
+        }
+        View @card {
+          Link("Official Applications") @cardTitle { href: "/internals/official-applications" }
+          Text("VX maintains three first-party applications as public-API conformance projects:") @meta
+        }
+        View @card {
+          Link("Project Structure") @cardTitle { href: "/internals/project-structure" }
+          Text("A conventional application uses src/pages for routes, src/components for reusable visual components, src/modules for headless VX modules, and src/server for server-only TypeScript.") @meta
+        }
+        View @card {
+          Link("Rendering and Hydration") @cardTitle { href: "/internals/rendering" }
+          Text("VX emits direct DOM updates and deterministic SSR markup. Hydration can be full, lazy, idle, visible, or interaction-triggered. Islands and resumable boundaries are explicit route or component policies.") @meta
+        }
+        View @card {
+          Link("Server Platform") @cardTitle { href: "/internals/server" }
+          Text("@vx-foundation/server provides request context, cookies, signed sessions, authorization, middleware, endpoint contracts, body parsing, security headers, rate limiting, environment validation, tracing, and Node integration.") @meta
+        }
+        View @card {
+          Link("Testing and Tooling") @cardTitle { href: "/internals/testing-and-tooling" }
+          Text("The official testing package covers units, components, DOM, SSR, hydration, routes, actions, endpoints, browsers, accessibility, visual regression, and performance budgets.") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

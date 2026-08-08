@@ -12,7 +12,7 @@ import {
 assert.equal(sanitizeURLAttribute('java\u0000script:alert(1)', { attribute: 'href', tagName: 'a' }), undefined);
 assert.equal(sanitizeURLAttribute(' JAVASCRIPT:alert(1)', { attribute: 'href', tagName: 'a' }), undefined);
 assert.equal(sanitizeURLAttribute('data:text/html;base64,PHNjcmlwdD4=', { attribute: 'src', tagName: 'img' }), undefined);
-assert.equal(sanitizeURLAttribute('https://vx.dev/docs', { attribute: 'href', tagName: 'a' }), 'https://vx.dev/docs');
+assert.equal(sanitizeURLAttribute('https://vx.veelv.site/docs', { attribute: 'href', tagName: 'a' }), 'https://vx.veelv.site/docs');
 
 const dangerous = '</script><script>globalThis.__vxOwned = true</script>\u2028';
 const serialized = serializeServerValue({ dangerous });

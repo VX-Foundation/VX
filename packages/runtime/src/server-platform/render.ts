@@ -5,6 +5,7 @@ import { serializeServerValue } from './serialization.js';
 import { isURLAttribute, sanitizeURLAttribute, secureExternalRelation } from '../security/url.js';
 import type { DOMNamespace } from '../dom-target.js';
 import { createCleanupStack, disposeCleanupStack } from '../ownership.js';
+import { WIDGET_DEFAULT_ATTRIBUTES } from '../widget-metadata.generated.js';
 
 export type HydrationMode = 'full' | 'islands' | 'none';
 export type StreamingMode = 'blocking' | 'stream';
@@ -442,10 +443,12 @@ function renderResourceHint(hint: ServerResourceHint): string {
 }
 
 function applyServerWidgetDefaults(tag: string, widgetName: string | undefined, attributes: Record<string, unknown>): void {
-  if (widgetName === 'Button' && attributes['type'] === undefined) attributes['type'] = 'button';
+  if (widgetName) {
+    for (const [property, value] of Object.entries(WIDGET_DEFAULT_ATTRIBUTES[widgetName] ?? {})) {
+      if (attributes[property] === undefined) attributes[property] = value;
+    }
+  }
   if (widgetName === 'Image') {
-    if (attributes['loading'] === undefined) attributes['loading'] = 'lazy';
-    if (attributes['decoding'] === undefined) attributes['decoding'] = 'async';
     if (attributes['decorative'] === true) {
       attributes['alt'] = '';
       attributes['ariaHidden'] = true;
@@ -454,18 +457,9 @@ function applyServerWidgetDefaults(tag: string, widgetName: string | undefined, 
     delete attributes['decorative'];
   }
   if (widgetName === 'IFrame') {
-    if (attributes['loading'] === undefined) attributes['loading'] = 'lazy';
-    if (attributes['referrerPolicy'] === undefined) attributes['referrerPolicy'] = 'strict-origin-when-cross-origin';
     if (attributes['trusted'] === true) delete attributes['sandbox'];
-    else if (attributes['sandbox'] === undefined) attributes['sandbox'] = '';
     delete attributes['trusted'];
   }
-  if (widgetName === 'Slider') attributes['type'] = 'range';
-  if (widgetName === 'Switch') {
-    attributes['type'] = 'checkbox';
-    if (attributes['role'] === undefined) attributes['role'] = 'switch';
-  }
-  if (widgetName === 'List' && attributes['role'] === undefined) attributes['role'] = 'list';
   if (widgetName === 'Icon' && attributes['ariaLabel'] === undefined && attributes['ariaLabelledBy'] === undefined) {
     attributes['ariaHidden'] = true;
   }

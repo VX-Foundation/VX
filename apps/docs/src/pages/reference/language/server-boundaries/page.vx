@@ -1,0 +1,53 @@
+#view
+  View @page {
+    Text("LANGUAGE SPECIFICATION") @eyebrow
+    Title("Server Boundaries")
+    Text("Server code executes with request-scoped context. Client bundles MUST NOT contain server-only modules, environment secrets, filesystem access, or Node-only APIs.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("Server code executes with request-scoped context. Client bundles MUST NOT contain server-only modules, environment secrets, filesystem access, or Node-only APIs.")
+    }
+    View @section {
+      Title("Requests") { level: 2 }
+      Text("The server platform owns request IDs, tracing, locals, sessions, middleware, rate limits, security headers, CORS, body parsing, endpoint dispatch, streaming, and deferred work.")
+    }
+    View @section {
+      Title("Authentication and authorization") { level: 2 }
+      Text("Authentication establishes a principal. Authorization is evaluated on the server for each protected action, endpoint, form, and data operation. Client-side visibility is not an authorization boundary.")
+    }
+    View @section {
+      Title("Sessions") { level: 2 }
+      Text("Session identifiers are opaque and signed. Secure production cookies use HttpOnly, Secure, an appropriate SameSite policy, and a restricted path. Session regeneration is required after privilege changes.")
+    }
+    View @section {
+      Title("Forms and uploads") { level: 2 }
+      Text("Form input is bounded, decoded, validated, authorized, and protected against CSRF. Upload metadata and content are untrusted. File type, size, storage key, and processing policy are server-owned.")
+    }
+    View @section {
+      Title("Errors") { level: 2 }
+      Text("Operational details and secrets MUST NOT be exposed to clients. Safe error codes may be public; internal causes belong to structured logs and traces.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

@@ -1,0 +1,74 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("VX Project")
+    Text("VX is a compiler-first web application framework with its own .vx language. It integrates components, fine-grained reactivity, data operations, routing, rendering, server execution, styling intent, accessibility, tooling, testing, packaging, and deployment through one compiler-owned model.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX is a compiler-first web application framework with its own .vx language. It integrates components, fine-grained reactivity, data operations, routing, rendering, server execution, styling intent, accessibility, tooling, testing, packaging, and deployment through one compiler-owned model.")
+    }
+    View @section {
+      Title("Mission") { level: 2 }
+      Text("Make complete web applications easier to understand and maintain by moving coordination from runtime conventions into explicit language and framework contracts.")
+    }
+    View @section {
+      Title("Core values") { level: 2 }
+      View @list {
+        Text("• clarity before cleverness;") @bullet
+        Text("• explicit responsibilities;") @bullet
+        Text("• compiler-enforced correctness;") @bullet
+        Text("• predictable ownership and cleanup;") @bullet
+        Text("• minimal necessary runtime;") @bullet
+        Text("• accessibility and security by design;") @bullet
+        Text("• reusable public contracts;") @bullet
+        Text("• reproducible builds and honest release gates.") @bullet
+      }
+    }
+    View @section {
+      Title("Source model") { level: 2 }
+      View @codeBlock {
+        Text("#script  props, constants, state, derives, queries, actions, effects, stores")
+        Text("#view    widget tree, control flow, events, semantic roles, structural roles")
+      }
+      Text("The normative syntax and semantics are frozen under docs/spec. Changes to the language, public APIs, package format, or security boundaries require the RFC and migration process.")
+    }
+    View @section {
+      Title("Documentation map") { level: 2 }
+      View @list {
+        Text("• docs/spec/README.md — normative language and framework source specification.") @bullet
+        Text("• docs/framework/README.md — framework usage and operational behavior.") @bullet
+        Text("• docs/framework/architecture.md — compiler, runtime, server, and package boundaries.") @bullet
+        Text("• docs/api/README.md — public package exports.") @bullet
+        Text("• docs/guides/ — security, deployment, performance, accessibility, package, and plugin guides.") @bullet
+        Text("• docs/tutorials/ and docs/cookbook/ — practical application development.") @bullet
+        Text("• docs/migrations/ — migration contracts for published changes.") @bullet
+      }
+    }
+    View @section {
+      Title("Completion rule") { level: 2 }
+      Text("A feature is complete only when source syntax, semantic validation, runtime behavior, public packaging, documentation, tests, and a real application path agree.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

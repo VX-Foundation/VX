@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vx.dev/schemas/benchmark-fixture/v1",
+  "$schema": "https://vx.veelv.site/schemas/benchmark-fixture/v1",
   "framework": "vx",
   "implementation": "framework-native",
   "runtimePackage": "@vx-foundation/runtime",

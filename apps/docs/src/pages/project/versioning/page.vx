@@ -1,0 +1,55 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("Versioning and Distribution Tags")
+    Text("VX follows Semantic Versioning for every public package. The canonical release metadata lives in release/version.json; package manifests and generated release documents are derived from it.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("VX follows Semantic Versioning for every public package. The canonical release metadata lives in release/version.json; package manifests and generated release documents are derived from it.")
+    }
+    View @section {
+      Title("Historical baseline") { level: 2 }
+      Text("The unpublished internal baseline was 0.1.0, and the first VX Foundation public line began at 0.1.1. Historical versions remain in changelogs and migration documents and are not synchronization targets.")
+    }
+    View @section {
+      Title("Current unstable line") { level: 2 }
+      Text("The current synchronized framework version is 0.2.0 on the next release channel. All public @vx-foundation/* packages use the same version:")
+      View @list {
+        Text("• 0.2.0-canary.. under canary;") @bullet
+        Text("• 0.2.0-next. under next;") @bullet
+        Text("• 1.0.0 under latest only after the stable gate passes.") @bullet
+      }
+      Text("The active compatibility line is VX 0.2. Private repository applications follow the same framework version so integration drift is detected before publication. Template projects keep their own initial project version, while their VX dependencies are replaced with ^0.2.0 when generated.")
+    }
+    View @section {
+      Title("Compatibility") { level: 2 }
+      Text("The public API baseline records exported entrypoints and declarations. A release is rejected when its version change is smaller than the detected compatibility impact. Internal source paths are never public contracts.")
+    }
+    View @section {
+      Title("Changesets") { level: 2 }
+      Text("Every user-visible public package change requires a Changeset. The public package set is configured as one fixed Changesets group, and pnpm version-packages adopts the resulting root version into release/version.json before regenerating every derived version surface.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

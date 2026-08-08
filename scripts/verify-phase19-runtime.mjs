@@ -51,7 +51,7 @@ assert.equal(lockfile.lockfileVersion, 1);
 assert.deepEqual(verifyLockfileGraph(lockfile), { valid: true, issues: [] });
 assert.match(createIntegrity('vx'), /^sha512-/);
 const packageKeys = generateKeyPairSync('ed25519');
-const packageSignature = signPackagePayload('vx', packageKeys.privateKey, 'vx.dev');
+const packageSignature = signPackagePayload('vx', packageKeys.privateKey, 'vx.veelv.site');
 assert.equal(verifyPackageSignature('vx', packageSignature, packageKeys.publicKey), true);
 assert.equal(compareSemver('1.0.0-beta.2', '1.0.0'), -1);
 assert.equal(validSemverRange('^1.2.3 || ~2.0'), true);
@@ -61,7 +61,7 @@ assert.equal(satisfiesSemver('1.2.3-beta.2', '>=1.2.3-beta.1 <1.2.3'), true);
 
 // Public contracts classify compatibility and required semantic-version movement.
 const baseMetadata = {
-  schema: 'https://vx.dev/schemas/package/v1', version: 1, name: '@vx-foundation/demo', packageVersion: '1.0.0',
+  schema: 'https://vx.veelv.site/schemas/package/v1', version: 1, name: '@vx-foundation/demo', packageVersion: '1.0.0',
   exports: { '.': './dist/index.js', './feature': './dist/feature.js' }, privateModules: ['./internal/*'],
   publicContracts: { '.': { integrity: 'sha512-base', declarationsIntegrity: 'sha512-types', symbols: ['main'] }, './feature': 'sha512-feature' }
 };

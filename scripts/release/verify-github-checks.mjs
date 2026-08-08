@@ -3,7 +3,14 @@ import assert from 'node:assert/strict';
 const repository = process.env['GITHUB_REPOSITORY'];
 const revision = process.env['GITHUB_SHA'];
 const token = process.env['GITHUB_TOKEN'];
-assert.ok(repository && revision && token, 'GITHUB_REPOSITORY, GITHUB_SHA, and GITHUB_TOKEN are required.');
+
+if (!repository || !revision || !token) {
+  if (process.env['CI'] || process.env['GITHUB_ACTIONS']) {
+    assert.ok(repository && revision && token, 'GITHUB_REPOSITORY, GITHUB_SHA, and GITHUB_TOKEN are required in CI.');
+  }
+  console.log('VX GitHub checks verification skipped (requires GitHub Actions CI environment with GITHUB_REPOSITORY, GITHUB_SHA, GITHUB_TOKEN).');
+  process.exit(0);
+}
 const requirements = [
   { label: 'cross-platform Node matrix', pattern: /^verify \(/u, minimum: 6 },
   { label: 'framework phases', pattern: /^framework phases and official applications$/u, minimum: 1 },

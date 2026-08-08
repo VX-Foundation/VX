@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/devtools",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Browser DevTools protocol, inspector store, performance timeline, and runtime bridge for VX.",
   "type": "module",
   "main": "./dist/index.js",
@@ -26,8 +26,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "typescript": "^5.8.0",
-    "vitest": "^3.2.0"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "license": "MIT",
   "engines": {

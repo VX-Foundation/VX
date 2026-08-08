@@ -9,7 +9,7 @@ export async function runBenchmark(adapter: BenchmarkAdapter, scenario: Benchmar
     for (let index = 0; index < warmupIterations; index += 1) await within(Promise.resolve(adapter.execute(scenario, controller.signal)), timeoutMs, controller);
     const samples = [];
     for (let index = 0; index < measuredIterations; index += 1) samples.push(await within(Promise.resolve(adapter.execute(scenario, controller.signal)), timeoutMs, controller));
-    return Object.freeze({ schema: 'https://vx.dev/schemas/benchmark-result/v1', suiteVersion: 1, scenario, identity: await adapter.identity(), environment, warmupIterations, measuredIterations, samples: Object.freeze(samples), metadata: Object.freeze({ ...options.metadata }) });
+    return Object.freeze({ schema: 'https://vx.veelv.site/schemas/benchmark-result/v1', suiteVersion: 1, scenario, identity: await adapter.identity(), environment, warmupIterations, measuredIterations, samples: Object.freeze(samples), metadata: Object.freeze({ ...options.metadata }) });
   } finally { unlink(); await adapter.cleanup?.(scenario); }
 }
 async function within<T>(promise: Promise<T>, timeoutMs: number, controller: AbortController): Promise<T> { let timer: ReturnType<typeof setTimeout> | undefined; try { return await Promise.race([promise, new Promise<never>((_resolve, reject) => { timer = setTimeout(() => { const error = new Error(`Benchmark operation exceeded ${timeoutMs} ms.`); error.name = 'TimeoutError'; controller.abort(error); reject(error); }, timeoutMs); })]); } finally { if (timer !== undefined) clearTimeout(timer); } }

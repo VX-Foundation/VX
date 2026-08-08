@@ -1,0 +1,87 @@
+#view
+  View @page {
+    Text("CONTRIBUTE") @eyebrow
+    Title("Working on the VX framework")
+    Text("VX is in the 0.2 stabilization line. Framework contributions must preserve the frozen language specification, public API baseline, security boundaries, deterministic builds, and release evidence model.") @lead
+
+    View @section {
+      Title("Required reading") { level: 2 }
+      Text("• docs/framework/README.md")
+      Text("• docs/spec/README.md")
+      Text("• docs/framework/architecture.md")
+      Text("• docs/ENGINEERING-STANDARDS.md")
+      Text("• docs/COMPATIBILITY.md")
+      Text("• docs/RFC-PROCESS.md")
+      Text("• SECURITY.md")
+    }
+
+    View @section {
+      Title("Prepare the workspace") { level: 2 }
+      View @codeBlock {
+        Text("corepack enable")
+        Text("corepack prepare pnpm@11.19.0 --activate")
+        Text("pnpm install --frozen-lockfile")
+        Text("pnpm verify:policy")
+        Text("pnpm verify")
+      }
+      Text("Node.js 22 and 24 are supported. Do not introduce a second package manager or duplicate the pinned pnpm version in workflows.")
+    }
+
+    View @section {
+      Title("Repository principles") { level: 2 }
+      Text("• English is the only language for source, tests, examples, diagnostics, comments, documentation, and generated project artifacts.")
+      Text("• An authored file must never exceed 1,000 lines and enters mandatory review at 700 lines.")
+      Text("• Every module has one primary reason to change.")
+      Text("• Package internals are not imported through private paths.")
+      Text("• Target-specific types do not leak into target-neutral layers.")
+      Text("• Circular package dependencies are forbidden.")
+      Text("• Generated registries must be deterministic, sharded, and verified.")
+    }
+
+    View @section {
+      Title("Make a change") { level: 2 }
+      Text("Bug fixes require a regression test that fails before the correction. Language, public API, package format, compiler-runtime ownership, compatibility, or security-boundary changes require an accepted RFC.")
+      Text("Public package changes require a Changeset. Package changes require artifact inspection and clean-room installation. Security changes require threat-model coverage.")
+    }
+
+    View @section {
+      Title("Use focused gates") { level: 2 }
+      View @codeBlock {
+        Text("pnpm vx:check")
+        Text("pnpm widgets:check")
+        Text("pnpm typecheck")
+        Text("pnpm test")
+        Text("pnpm verify:conformance")
+        Text("pnpm verify:quality")
+      }
+      Text("Run package-specific checks while developing, then run repository-wide gates before opening or updating a pull request.")
+    }
+
+    View @section {
+      Title("Before release work") { level: 2 }
+      View @codeBlock {
+        Text("pnpm verify:release-candidate")
+        Text("pnpm release:source-check")
+        Text("pnpm release:source-package")
+      }
+      Text("A release source package is assembled by allowlist and includes integrity metadata. Cache directories, dependency trees, generated build state, temporary results, secrets, and local reports are not release source.")
+    }
+
+    View @section {
+      Title("Pull request description") { level: 2 }
+      Text("Explain the problem, design, ownership boundaries, executable validation, compatibility impact, migration path, security implications, accessibility implications, and release impact. Structural text checks cannot replace behavioral tests.")
+    }
+
+    View @next {
+      Text("REFERENCE") @eyebrow
+      Link("Return to documentation overview") { href: "/" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

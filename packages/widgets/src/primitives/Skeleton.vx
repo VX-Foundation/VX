@@ -1,0 +1,16 @@
+#script
+  prop width: String = "fill"
+  prop height: String = "md"
+  prop class: String = ""
+#end script
+
+#view
+  View @skeletonBox {}
+
+  @skeletonBox {
+    surface: steel-800
+    corner: md
+    motion: smooth
+    opacity: loading
+  }
+#end view

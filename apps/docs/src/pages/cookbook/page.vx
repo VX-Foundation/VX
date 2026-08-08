@@ -1,0 +1,62 @@
+#view
+  View @page {
+    Text("DOCUMENTATION") @eyebrow
+    Title("Cookbook")
+    Text("The VX cookbook contains focused production patterns for authentication, permission checks, data tables, optimistic updates, uploads, SEO, static and incremental generation, realtime delivery, offline queues, and conflict handling. Each recipe complements the normative specification and must use public framework contracts rather than implementation imports.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("The VX cookbook contains focused production patterns for authentication, permission checks, data tables, optimistic updates, uploads, SEO, static and incremental generation, realtime delivery, offline queues, and conflict handling. Each recipe complements the normative specification and must use public framework contracts rather than implementation imports.")
+    }
+    View @section {
+      Title("Documents") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Authentication and Permissions") @cardTitle { href: "/cookbook/authentication-and-permissions" }
+          Text("Resolve an opaque signed session on the server, establish a principal after credential verification, regenerate the session, and enforce permissions on every protected operation with authorizeServerRequest or authorization middleware.") @meta
+        }
+        View @card {
+          Link("Data Tables") @cardTitle { href: "/cookbook/data-tables" }
+          Text("Keep sort, filters, cursor, and page size in explicit state. Build a deterministic query key. Use keyed rows, accessible headers, server-side authorization, and cancellation when parameters change.") @meta
+        }
+        View @card {
+          Link("Optimistic Updates") @cardTitle { href: "/cookbook/optimistic-updates" }
+          Text("Apply optimistic changes through an action transaction. Record rollback before the network call, use an idempotency key, reconcile the authoritative response, and invalidate tags after success.") @meta
+        }
+        View @card {
+          Link("Realtime, Offline, and Conflicts") @cardTitle { href: "/cookbook/realtime-offline-conflicts" }
+          Text("Assign stable operation and entity versions. Queue offline mutations with idempotency keys, merge remote events by version, expose conflict state to the user, and never silently discard an unresolvable edit.") @meta
+        }
+        View @card {
+          Link("SEO and Generation") @cardTitle { href: "/cookbook/seo-and-generation" }
+          Text("Use deterministic metadata, canonical URLs, semantic headings, structured data, sitemap output, and static or incremental generation only for routes that do not depend on private request state.") @meta
+        }
+        View @card {
+          Link("Uploads") @cardTitle { href: "/cookbook/uploads" }
+          Text("Use multipart server forms or endpoints with explicit byte limits. Validate content type and signature, isolate storage keys, process media outside the request when appropriate, and never trust the original filename.") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

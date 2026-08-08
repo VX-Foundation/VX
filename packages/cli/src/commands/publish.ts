@@ -61,7 +61,7 @@ export function publishCommand(root = process.cwd(), options: PublishCommandOpti
     }
     const signature = signPackagePayload(publicationPayload, readSigningKey(workspace, options.signingKey), options.signer);
     writeFileSync(join(staged.outDir, 'vx.signature.json'), canonicalJson({
-      schema: 'https://vx.dev/schemas/package-signature/v1',
+      schema: 'https://vx.veelv.site/schemas/package-signature/v1',
       version: 1,
       packageName,
       packageVersion,

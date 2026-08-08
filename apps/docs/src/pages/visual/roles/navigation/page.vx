@@ -1,0 +1,106 @@
+#view
+  View @page {
+    Text("BUILT-IN ROLE") @eyebrow
+    Title("@navigation")
+    Text("A semantic Visual IR role with 4 default properties.") @lead
+    View @section {
+      Title("Role contract") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("Name") @propertyName
+          Text("@navigation") @propertyDescription
+        }
+        View @tableRow {
+          Text("Category") @propertyName
+          Text("semantic") @propertyDescription
+        }
+        View @tableRow {
+          Text("Arguments") @propertyName
+          Text("none") @propertyDescription
+        }
+        View @tableRow {
+          Text("States") @propertyName
+          Text("none") @propertyDescription
+        }
+        View @tableRow {
+          Text("Extra CSS") @propertyName
+          Text("none") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("Default properties") { level: 2 }
+      View @table {
+        View @tableHeader {
+          Text("Field") @propertyName
+          Text("Value") @propertyDescription
+        }
+        View @tableRow {
+          Text("display") @propertyName
+          Text("flex") @propertyDescription
+        }
+        View @tableRow {
+          Text("flow") @propertyName
+          Text("horizontal") @propertyDescription
+        }
+        View @tableRow {
+          Text("items") @propertyName
+          Text("center") @propertyDescription
+        }
+        View @tableRow {
+          Text("gap") @propertyName
+          Text("md") @propertyDescription
+        }
+      }
+    }
+    View @section {
+      Title("State overrides") { level: 2 }
+      Text("This role does not define built-in state overrides.")
+    }
+    View @section {
+      Title("Usage") { level: 2 }
+      View @codeBlock {
+        Text("#view")
+        Text("  View @navigation {")
+        Text("    Text(\"Content\")")
+        Text("  }")
+        Text("#end view")
+      }
+    }
+    View @section {
+      Title("Guidance") { level: 2 }
+      View @list {
+        Text("• Use @navigation when its semantic intent matches the UI, not merely because its current CSS looks convenient.") @bullet
+        Text("• Override only the properties that differ; keep defaults centralized in the compiler-owned catalog.") @bullet
+        Text("• Compose local roles with uses instead of copying the full role definition.") @bullet
+        Text("• Test built-in states and design-system overrides before creating a replacement role.") @bullet
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

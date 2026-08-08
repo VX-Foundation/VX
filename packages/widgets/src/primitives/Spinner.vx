@@ -1,0 +1,15 @@
+#script
+  prop size: String = "md"
+  prop class: String = ""
+#end script
+
+#view
+  View @spinnerRing {}
+
+  @spinnerRing {
+    corner: round
+    border: steel-700
+    borderTop: cherry-500
+    motion: smooth
+  }
+#end view

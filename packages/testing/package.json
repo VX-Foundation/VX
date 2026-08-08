@@ -1,6 +1,6 @@
 {
   "name": "@vx-foundation/testing",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Official VX unit, component, DOM, SSR, hydration, route, action, endpoint, visual, accessibility, and performance testing contracts.",
   "type": "module",
   "main": "./dist/index.js",
@@ -87,6 +87,6 @@
   ],
   "devDependencies": {
     "jsdom": "^29.1.1",
-    "vitest": "^3.2.4"
+    "vitest": "catalog:"
   }
 }

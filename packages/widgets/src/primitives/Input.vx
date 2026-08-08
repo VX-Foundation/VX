@@ -10,6 +10,8 @@
   prop name: Optional<String>
   prop autoComplete: Optional<String>
   prop autoFocus: Optional<Bool> = false
+  prop accept: Optional<String>
+  prop ariaLabel: Optional<String>
   prop maxLength: Optional<Int>
   prop minLength: Optional<Int>
   prop pattern: Optional<String>

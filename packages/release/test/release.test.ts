@@ -10,7 +10,7 @@ import {
 
 function snapshot(version: string, symbols: Array<{ name: string; kind: string; hash: string }>): WorkspaceApiSnapshot {
   return {
-    schema: 'https://vx.dev/schemas/public-api-snapshot/v1',
+    schema: 'https://vx.veelv.site/schemas/public-api-snapshot/v1',
     version: 1,
     packages: [{ name: '@vx-foundation/example', version, peerDependencies: {}, entrypoints: [{ subpath: '.', typesPath: 'dist/index.d.ts', symbols }] }]
   };

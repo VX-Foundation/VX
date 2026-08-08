@@ -55,5 +55,5 @@ try {
 console.log('Phase 9 runtime and release verification passed.');
 
 function snapshot(version, symbols) {
-  return { schema: 'https://vx.dev/schemas/public-api-snapshot/v1', version: 1, packages: [{ name: '@vx-foundation/example', version, peerDependencies: {}, entrypoints: [{ subpath: '.', typesPath: 'dist/index.d.ts', symbols }] }] };
+  return { schema: 'https://vx.veelv.site/schemas/public-api-snapshot/v1', version: 1, packages: [{ name: '@vx-foundation/example', version, peerDependencies: {}, entrypoints: [{ subpath: '.', typesPath: 'dist/index.d.ts', symbols }] }] };
 }

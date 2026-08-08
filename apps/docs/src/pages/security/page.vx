@@ -1,0 +1,54 @@
+#view
+  View @page {
+    Text("DOCUMENTATION") @eyebrow
+    Title("Security documentation")
+    Text("Browse security documentation.") @lead
+    View @section {
+      Title("Documents") { level: 2 }
+      View @cards {
+        View @card {
+          Link("Security advisories") @cardTitle { href: "/security/advisories" }
+          Text("Confirmed vulnerabilities receive a private advisory, affected-version range, severity rationale, CVE request when appropriate, patched versions, mitigations, acknowledgements, and coordinated publication date.") @meta
+        }
+        View @card {
+          Link("External security audit process") @cardTitle { href: "/security/external-audit" }
+          Text("An external audit is required before the first stable 1.0 release and after material changes to the parser, serializer, HTTP server, plugin sandbox, package signing, or release pipeline.") @meta
+        }
+        View @card {
+          Link("Continuous fuzzing") @cardTitle { href: "/security/fuzzing" }
+          Text("Parser, serializer, and HTTP campaigns run on pull requests with bounded iterations and on a scheduled workflow with larger corpora. Every campaign is deterministic from its seed.") @meta
+        }
+        View @card {
+          Link("Supply-chain policy") @cardTitle { href: "/security/supply-chain" }
+          Text("security documentation for VX.") @meta
+        }
+        View @card {
+          Link("VX threat model") @cardTitle { href: "/security/threat-model" }
+          Text("VX protects source code, package metadata, lockfiles, signing keys, plugin code, build outputs, server credentials, user sessions, request data, serialized state, generated HTML, caches, source maps, and release provenance.") @meta
+        }
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

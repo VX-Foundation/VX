@@ -153,7 +153,7 @@ function persistCrashes(target, report) {
     writeFileSync(resolve(artifactRoot, `${prefix}.input.bin`), crash.input);
     writeFileSync(resolve(artifactRoot, `${prefix}.minimized.bin`), crash.minimizedInput);
     writeFileSync(resolve(artifactRoot, `${prefix}.json`), `${JSON.stringify({
-      schema: 'https://vx.dev/schemas/fuzz-crash/v1',
+      schema: 'https://vx.veelv.site/schemas/fuzz-crash/v1',
       target, seed: report.seed, iteration: crash.iteration, error: crash.error,
       runtime: { node: process.version, platform: platform(), release: release(), architecture: arch() },
       commit: gitCommit(), timestamp: new Date().toISOString(),

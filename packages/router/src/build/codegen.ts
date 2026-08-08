@@ -1,4 +1,37 @@
-import * as path from 'node:path';
+interface NodePath {
+  relative?: (from: string, to: string) => string;
+  posix?: {
+    relative?: (from: string, to: string) => string;
+  };
+}
+
+function getNodePath(): NodePath | null {
+  try {
+    if (typeof process !== 'undefined' && process.versions?.node) {
+      if (typeof process.getBuiltinModule === 'function') {
+        const pathMod = process.getBuiltinModule('node:path');
+        if (pathMod) return pathMod as unknown as NodePath;
+      }
+      const fn = new Function('m', 'try { return typeof require !== "undefined" ? require(m) : (typeof process !== "undefined" && process.mainModule ? process.mainModule.require(m) : null); } catch { return null; }');
+      return (fn('node:path') ?? fn('path')) as NodePath | null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+const path = {
+  relative: (from: string, to: string) => {
+    const np = getNodePath();
+    if (np?.posix?.relative) return np.posix.relative(from, to);
+    if (np?.relative) return np.relative(from, to);
+    const f = from.replace(/\/$/, '');
+    if (to.startsWith(`${f}/`)) return to.slice(f.length + 1);
+    return to;
+  },
+  sep: '/'
+};
 import type { ApplicationGraph, EndpointRecord, RouteRecord } from '../types.js';
 
 export interface GeneratedApplicationModules {

@@ -1,0 +1,94 @@
+#view
+  View @page {
+    Text("REFERENCE") @eyebrow
+    Title("CLI commands")
+    Text("The VX CLI owns project creation, development, diagnostics, compilation, testing, package operations, integration verification, and release checks.") @lead
+
+    View @section {
+      Title("Create and initialize") { level: 2 }
+      View @codeBlock {
+        Text("vx new [name] --template starter")
+        Text("vx create [name] --template fullstack")
+        Text("vx init --template basic")
+        Text("vx new my-library --library")
+      }
+      Text("Templates: basic, starter, fullstack, and library. Project creation also supports package-manager selection, non-interactive defaults, and explicit overwrite behavior.")
+    }
+
+    View @section {
+      Title("Develop and build") { level: 2 }
+      View @codeBlock {
+        Text("vx dev [root]")
+        Text("vx build [root] --mode production")
+        Text("vx build --target browser,server --adapter node")
+        Text("vx preview [root] --host 127.0.0.1 --port 4173")
+      }
+      Text("Build options include target selection, adapter, source-map policy, incremental cache control, and bundle-analysis control.")
+    }
+
+    View @section {
+      Title("Check and inspect") { level: 2 }
+      View @codeBlock {
+        Text("vx doctor [root]")
+        Text("vx check [target]")
+        Text("vx format [target] --check")
+        Text("vx lint [target] --fix")
+        Text("vx inspect <file> --generated")
+        Text("vx migrate [target] --write")
+      }
+    }
+
+    View @section {
+      Title("Test") { level: 2 }
+      View @codeBlock {
+        Text("vx test [root] --all")
+        Text("vx test --kind unit,component,ssr,hydration")
+        Text("vx test --filter ProductCard --coverage")
+        Text("vx test:component src/components/ProductCard.vx")
+      }
+      Text("Supported kinds include unit, component, DOM, SSR, hydration, route, action, endpoint, browser, visual, accessibility, performance, security, and fuzz.")
+    }
+
+    View @section {
+      Title("Dependencies and integrations") { level: 2 }
+      View @codeBlock {
+        Text("vx add <package>")
+        Text("vx remove <package>")
+        Text("vx update [package]")
+        Text("vx integrations:verify [root]")
+      }
+      Text("Dependency commands synchronize package metadata and vx.lock. They support dev, peer, optional, and metadata-only modes.")
+    }
+
+    View @section {
+      Title("Package and release") { level: 2 }
+      View @codeBlock {
+        Text("vx package [root]")
+        Text("vx publish [root] --tag next")
+        Text("vx release:check [root] --channel next")
+        Text("vx release:snapshot [root]")
+      }
+      View @warning {
+        Text("publish performs a registry dry run unless --execute is provided. Stable publication should only follow the complete release gate and verified provenance.")
+      }
+    }
+
+    View @section {
+      Title("Run through a project") { level: 2 }
+      Text("When the CLI is installed as a development dependency, prefer pnpm vx followed by the command. Generated package.json scripts may also expose dev, build, preview, check, lint, typecheck, test, and verify directly.")
+    }
+
+    View @next {
+      Text("NEXT") @eyebrow
+      Link("Contribute to the VX repository") { href: "/contributing" }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 960 marginX: auto }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 }
+  @section { flow: vertical gap: md }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @warning { surface: amber-50 border: amber-300 corner: lg inset: lg }
+  @next { flow: vertical gap: sm borderTop: subtle insetY: lg }
+#end view

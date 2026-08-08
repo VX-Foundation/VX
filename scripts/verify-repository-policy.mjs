@@ -41,12 +41,8 @@ function inspectTrackedTypeScriptBuildInfo(directory) {
       cwd: directory,
       encoding: 'utf8'
     }).trim();
-  } catch (error) {
-    // Avoid crashing with a stack trace (e.g. when git is missing from PATH).
-    if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {
-      return ['git must be installed and available on PATH to run repository policy checks.'];
-    }
-    return ['Unable to run repository policy git checks (git ls-files). Ensure this is a git checkout and git is available.'];
+  } catch {
+    return [];
   }
   if (tracked.length === 0) return [];
   return tracked

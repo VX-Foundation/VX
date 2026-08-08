@@ -2,7 +2,7 @@
 
 Public TypeScript contracts for the VX language, compiler, runtime, and platform.
 
-Current package line: `0.1.2`.
+Current package line: `0.2.0`.
 
 ## Public entries
 
@@ -24,6 +24,8 @@ Current package line: `0.1.2`.
 - `ChunkPolicyConfig` - interface in `config.ts`
 - `CollectionFallbackKind` - type in `view.ts`
 - `CollectionFallbackNode` - interface in `view.ts`
+- `ColorShade` - type in `palette.ts`
+- `ColorShadeScale` - interface in `palette.ts`
 - `ComponentArtifact` - interface in `component-ir.ts`
 - `ComponentContentContract` - interface in `component-ir.ts`
 - `ComponentContract` - interface in `component-ir.ts`
@@ -101,6 +103,7 @@ Current package line: `0.1.2`.
 - `QueryPolicyIR` - interface in `data-ir.ts`
 - `ResolvedComponentImport` - interface in `component-ir.ts`
 - `ResolvedImportBinding` - interface in `component-ir.ts`
+- `resolveVXColor` - function in `palette.ts`
 - `ResponsiveImageBuildConfig` - interface in `config.ts`
 - `SchemaDeclaration` - interface in `ast.ts`
 - `SchemaFieldIR` - interface in `data-ir.ts`
@@ -109,6 +112,7 @@ Current package line: `0.1.2`.
 - `SchemaRuleNode` - interface in `ast.ts`
 - `ScriptBlockNode` - interface in `view.ts`
 - `ScriptStatement` - type in `ast.ts`
+- `ServerConfig` - interface in `config.ts`
 - `SourceMapPolicy` - type in `config.ts`
 - `SourcePosition` - interface in `ast.ts`
 - `SourceSpan` - interface in `ast.ts`
@@ -118,6 +122,8 @@ Current package line: `0.1.2`.
 - `StoreIR` - interface in `data-ir.ts`
 - `StoreLifetime` - type in `ast.ts`
 - `StructuralTransitionNode` - interface in `view.ts`
+- `StyleConfig` - interface in `config.ts`
+- `StyleMode` - type in `config.ts`
 - `TextNode` - interface in `view.ts`
 - `TopLevelBlock` - type in `view.ts`
 - `TypeExpressionNode` - interface in `ast.ts`
@@ -158,6 +164,7 @@ Current package line: `0.1.2`.
 - `VisualSelectorBlockNode` - interface in `view.ts`
 - `VisualStyleChunkIR` - interface in `view.ts`
 - `VisualWritingMode` - type in `view.ts`
+- `VX_COLOR_PALETTES` - const in `palette.ts`
 - `VXConfig` - interface in `config.ts`
 - `WhenBlockNode` - interface in `view.ts`
 - `WidgetNode` - interface in `view.ts`

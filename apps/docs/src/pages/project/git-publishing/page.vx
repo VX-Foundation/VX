@@ -1,0 +1,60 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("Git and GitHub bootstrap")
+    Text("The source archive intentionally contains no .git directory. Repository history, signatures, protected branches, and release evidence must be created in the canonical Git host rather than fabricated inside a distribution archive.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("The source archive intentionally contains no .git directory. Repository history, signatures, protected branches, and release evidence must be created in the canonical Git host rather than fabricated inside a distribution archive.")
+    }
+    View @section {
+      Title("Initialize after extraction") { level: 2 }
+      View @codeBlock {
+        Text("node scripts/release/initialize-git.mjs")
+      }
+      Text("The command:")
+      View @list {
+        Text("• initializes branch main only when Git is not already initialized;") @bullet
+        Text("• configures the canonical origin from package.json;") @bullet
+        Text("• refuses to overwrite an origin pointing somewhere else;") @bullet
+        Text("• never stages, commits, signs, or pushes automatically.") @bullet
+      }
+      Text("Use --remote only when the canonical repository identity has been deliberately changed across all release manifests and freeze policies. Use --no-remote for a local mirror.")
+    }
+    View @section {
+      Title("First push") { level: 2 }
+      Text("Before the initial commit:")
+      View @list {
+        Text("• run pnpm install --frozen-lockfile in a supported Node environment;") @bullet
+        Text("• run pnpm verify:release-candidate;") @bullet
+        Text("• review generated provenance and repository metadata;") @bullet
+        Text("• create a signed commit and signed tag according to the maintainer policy;") @bullet
+        Text("• push to GitHub and enable branch protection, required checks, secret scanning, Dependabot, CodeQL, and environment approvals;") @bullet
+        Text("• never push npm credentials or external-audit evidence containing secrets.") @bullet
+      }
+      Text("The main branch is the release source. Canary, next, and stable tags must point to commits whose protected checks passed.")
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

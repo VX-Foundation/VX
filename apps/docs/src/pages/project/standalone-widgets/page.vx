@@ -1,0 +1,125 @@
+#view
+  View @page {
+    Text("PROJECT AND POLICY") @eyebrow
+    Title("@vx-foundation/widgets — Standalone UI Component Library")
+    Text("@vx-foundation/widgets is a standalone, optional UI component library for the VX Framework. It provides pre-styled, accessible, and high-performance UI primitives (Modal, Toast, Badge, Avatar, Spinner, Button, Input, Select, Switch, etc.) without bloating the core VX compiler.") @lead
+    View @section {
+      Title("Overview") { level: 2 }
+      Text("@vx-foundation/widgets is a standalone, optional UI component library for the VX Framework. It provides pre-styled, accessible, and high-performance UI primitives (Modal, Toast, Badge, Avatar, Spinner, Button, Input, Select, Switch, etc.) without bloating the core VX compiler.")
+    }
+    View @section {
+      Title("📦 Installation (Optional)") { level: 2 }
+      Text("Install @vx-foundation/widgets separately when pre-built UI primitives are required:")
+      View @codeBlock {
+        Text("# Using npm")
+        Text("npm install @vx-foundation/widgets")
+        Text(" ")
+        Text("# Using pnpm")
+        Text("pnpm add @vx-foundation/widgets")
+        Text(" ")
+        Text("# Using yarn")
+        Text("yarn add @vx-foundation/widgets")
+        Text(" ")
+        Text("# Using bun")
+        Text("bun add @vx-foundation/widgets")
+      }
+    }
+    View @section {
+      Title("🧱 Complete Industrial Component Catalog") { level: 2 }
+      Title("Category A: Overlays & Feedbacks") { level: 3 }
+      View @list {
+        Text("• Modal.vx: Accessible dialog window with backdrop overlay, title, close action, and body content slot.") @bullet
+        Text("• Drawer.vx: Slide-over side panel drawer.") @bullet
+        Text("• Toast.vx: Floating notification alert banner for success, warning, and error messages.") @bullet
+        Text("• Tooltip.vx: Contextual hover tooltip bubble.") @bullet
+        Text("• Popover.vx: Floating popover menu container.") @bullet
+      }
+      Title("Category B: Data Display & Lists") { level: 3 }
+      View @list {
+        Text("• DataTable.vx: Structured table container for tabular data displays.") @bullet
+        Text("• VirtualList.vx: High-performance scroll container for large datasets.") @bullet
+        Text("• Badge.vx: Rounded status chip badge for tags and state indicators.") @bullet
+        Text("• Avatar.vx: Profile avatar with fallback initials and image support.") @bullet
+      }
+      Title("Category C: Navigation & Organization") { level: 3 }
+      View @list {
+        Text("• Tabs.vx: Segmented tab switcher header and panels.") @bullet
+        Text("• Breadcrumb.vx: Hierarchical navigation path trail.") @bullet
+        Text("• Accordion.vx: Collapsible disclosure card panel.") @bullet
+      }
+      Title("Category D: Loading & Progress") { level: 3 }
+      View @list {
+        Text("• Progress.vx / ProgressBar.vx: Linear progress bar.") @bullet
+        Text("• Spinner.vx: Smooth circular loading spinner.") @bullet
+        Text("• Skeleton.vx: Pulsing content loading placeholder.") @bullet
+      }
+      Title("Category E: Advanced Forms") { level: 3 }
+      View @list {
+        Text("• TextArea.vx: Multi-line text entry field.") @bullet
+        Text("• Slider.vx: Numeric range slider control.") @bullet
+        Text("• DatePicker.vx: Visual date picker input.") @bullet
+        Text("• FileUpload.vx: Drag and drop file upload zone.") @bullet
+      }
+    }
+    View @section {
+      Title("💻 Example Usage") { level: 2 }
+      View @codeBlock {
+        Text("#script")
+        Text("  import { Modal, Toast, Badge, Avatar, Spinner } from \"@vx-foundation/widgets\"")
+        Text(" ")
+        Text("  state isModalOpen: Bool = false")
+        Text("  state isToastVisible: Bool = true")
+        Text("#end script")
+        Text(" ")
+        Text("#view")
+        Text("  View @container {")
+        Text("    Avatar {")
+        Text("      name: \"Alex Developer\"")
+        Text("    }")
+        Text(" ")
+        Text("    Badge {")
+        Text("      label: \"Active\"")
+        Text("    }")
+        Text(" ")
+        Text("    Spinner {}")
+        Text(" ")
+        Text("    Modal {")
+        Text("      open: isModalOpen")
+        Text("      title: \"Account Settings\"")
+        Text("      onClose: isModalOpen = false")
+        Text("    }")
+        Text(" ")
+        Text("    Toast {")
+        Text("      visible: isToastVisible")
+        Text("      title: \"Success\"")
+        Text("      message: \"Profile updated successfully.\"")
+        Text("      onDismiss: isToastVisible = false")
+        Text("    }")
+        Text("  }")
+        Text("#end view")
+      }
+    }
+  }
+
+  @page { flow: vertical gap: xl inset: hero maxWidth: 1120 marginX: auto width: fill }
+  @eyebrow { typography: label.sm color: sapphire-600 }
+  @lead { typography: body.xl color: cloud-600 maxWidth: prose }
+  @section { flow: vertical gap: md }
+  @subsection { flow: vertical gap: sm }
+  @codeBlock { flow: vertical gap: xs typography: mono.md surface: code color: cloud-100 corner: lg inset: lg overflow: auto }
+  @table { flow: vertical gap: none border: subtle corner: lg overflow: hidden }
+  @tableHeader { flow: horizontal gap: md inset: md surface: sapphire-50 typography: label.sm color: sapphire-900 }
+  @tableRow { flow: horizontal gap: md inset: md borderTop: subtle typography: body.sm }
+  @propertyName { typography: mono.sm color: sapphire-700 minWidth: 14rem }
+  @propertyValue { typography: mono.sm color: cloud-700 minWidth: 12rem }
+  @propertyDescription { typography: body.sm color: cloud-600 width: fill }
+  @list { flow: vertical gap: sm }
+  @bullet { typography: body.md color: cloud-700 }
+  @callout { flow: vertical gap: sm inset: lg surface: sapphire-50 border: sapphire-200 corner: lg }
+  @cards { flow: grid columns: 2 minColumn: 260 gap: md }
+  @card { flow: vertical gap: sm inset: lg surface: raised border: subtle corner: lg }
+  @cardTitle { typography: heading.md color: sapphire-700 }
+  @meta { typography: body.sm color: cloud-500 }
+  @chipRow { flow: horizontal gap: sm wrap: true }
+  @chip { typography: mono.sm surface: sapphire-50 color: sapphire-800 border: sapphire-200 corner: pill inset: badge }
+#end view

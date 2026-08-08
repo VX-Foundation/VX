@@ -1,13 +1,13 @@
 {
   "name": "@vx-foundation/language-server",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "private": true,
   "description": "Language Server for the VX framework",
   "main": "./dist/server.js",
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run",
     "lint": "eslint src",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
@@ -19,9 +19,9 @@
     "@vx-foundation/tooling": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "^5.4.5",
-    "@types/node": "^24.0.0",
-    "vitest": "^3.2.0"
+    "typescript": "catalog:",
+    "@types/node": "catalog:",
+    "vitest": "catalog:"
   },
   "engines": {
     "node": ">=22.11.0 <23 || >=24.11.0 <25"

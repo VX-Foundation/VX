@@ -1,6 +1,7 @@
 import type { Cleanup } from './structural.js';
 import { isURLAttribute, sanitizeURLAttribute, secureExternalRelation } from './security/url.js';
 import { listenDOMEvent, setDOMAttribute, setDOMProperty, setDOMStyle, setDOMStyles } from './dom-target.js';
+import { WIDGET_DEFAULT_ATTRIBUTES } from './widget-metadata.generated.js';
 export { conditionalMount, collectionMount, listMount, matchViewPattern, matchesPattern, selectPatternBranch, structuralMount } from './structural.js';
 export type { Cleanup, CollectionFallbackRenderers, CollectionInput, CollectionResource, MountBlock, MountOutput, StructuralKey, StructuralScope, StructuralSelection, StructuralTransition, StructuralTransitionInput, ViewPatternDescriptor } from './structural.js';
 
@@ -248,22 +249,11 @@ function normalizeAttribute(property: string): string {
 
 
 function applyWidgetDefaults(node: HTMLElement, widgetName: string): void {
-  if (widgetName === 'Button' && 'type' in node && !node.hasAttribute('type')) (node as HTMLButtonElement).type = 'button';
-  if (widgetName === 'Image') {
-    if (!node.hasAttribute('loading')) node.setAttribute('loading', 'lazy');
-    if (!node.hasAttribute('decoding')) node.setAttribute('decoding', 'async');
+  if (!node || typeof node.hasAttribute !== 'function') return;
+  for (const [property, value] of Object.entries(WIDGET_DEFAULT_ATTRIBUTES[widgetName] ?? {})) {
+    const attribute = normalizeAttribute(property);
+    if (!node.hasAttribute(attribute)) node.setAttribute(attribute, value);
   }
-  if (widgetName === 'IFrame') {
-    if (!node.hasAttribute('loading')) node.setAttribute('loading', 'lazy');
-    if (!node.hasAttribute('referrerpolicy')) node.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-    if (!node.hasAttribute('sandbox')) node.setAttribute('sandbox', '');
-  }
-  if (widgetName === 'Slider' && 'type' in node) (node as HTMLInputElement).type = 'range';
-  if (widgetName === 'Switch' && 'type' in node) {
-    (node as HTMLInputElement).type = 'checkbox';
-    node.setAttribute('role', 'switch');
-  }
-  if (widgetName === 'List' && !node.hasAttribute('role')) node.setAttribute('role', 'list');
   if (widgetName === 'Icon' && !node.hasAttribute('aria-label')) node.setAttribute('aria-hidden', 'true');
 }
 
