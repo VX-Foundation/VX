@@ -35,7 +35,7 @@ jobs:
       - run: node scripts/release/verify-source-tree.mjs
       - run: node scripts/release/verify-version-sync.mjs
       - uses: pnpm/action-setup@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -67,7 +67,7 @@ jobs:
       - run: node scripts/release/verify-source-tree.mjs
       - run: node scripts/release/verify-version-sync.mjs
       - uses: pnpm/action-setup@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
