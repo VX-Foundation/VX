@@ -12,7 +12,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver": "^10.1.0",
     "vscode-languageserver-textdocument": "^1.0.11",
     "@vx-foundation/language": "workspace:*",
     "@vx-foundation/compiler": "workspace:*",
