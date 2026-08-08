@@ -36,7 +36,7 @@
     "@vx-foundation/testing": "workspace:*",
     "@vx-foundation/security-testing": "workspace:*",
     "@vx-foundation/benchmark": "workspace:*",
-    "jsdom": "^29.1.1"
+    "jsdom": "^30.0.1"
   },
   "engines": {
     "node": ">=22.11.0 <23 || >=24.11.0 <25"
